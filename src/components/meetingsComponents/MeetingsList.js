@@ -16,7 +16,7 @@ const MeetingsList = ({navigation,style, pid}) => {
     }
     return (
         <View style = {style}>
-            <Text style={styles.text}>{pid} project meetings</Text>
+            <Text style={styles.text}>{pid} Project Meetings</Text>
             <FlatList
                 data = {meetingsList}
                 keyExtractor={(meeting)=> meeting}
@@ -33,9 +33,10 @@ const styles = StyleSheet.create({
     },
     text:{
         fontWeight:'bold',
-        fontSize: 26,
+        fontSize: 30,
+        marginVertical: 10,
         alignSelf:'center',
-        color:'oldlace'
+        color:'#FFFFFF'
     }
 });
 
