@@ -8,7 +8,7 @@ const MeetingComp = ({navigation,id, pid}) => {
                 <TouchableOpacity style = {styles.TouchableOpacity}  onPress = {()=>navigation.navigate('CreateM')}>
                 <Text style={styles.inside}> Add Task </Text>
                 </TouchableOpacity>
-                <Text style={styles.tasks}> # Define functional demands </Text> us
+                <Text style={styles.tasks}> # Define functional demands </Text>
         </View>    
     )
 };
