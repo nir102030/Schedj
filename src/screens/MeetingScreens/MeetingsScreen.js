@@ -29,8 +29,8 @@ const styles = StyleSheet.create({
         flexDirection:'row-reverse'
     },
     image: {
-        height:50,
-        width:50,
+        height:40,
+        width:40,
         marginRight: 15,
         alignSelf:'center'
     },

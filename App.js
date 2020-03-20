@@ -29,7 +29,9 @@ const navigator = createStackNavigator({
       title: 'Schedj',
       headerTitleStyle:{
         fontWeight:'bold',
-        textAlign:'center',
+        textAlign:'right',
+        fontSize: 35,
+        color:'#193c4d',
         flex:1
       }
     }
