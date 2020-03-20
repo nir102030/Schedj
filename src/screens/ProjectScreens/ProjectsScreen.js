@@ -8,7 +8,7 @@ const ProjectsScreen = ({navigation}) => {
             <ProjectsList style={styles.list}/>
             <TouchableOpacity style = {styles.TouchableOpacity}  onPress = {()=>navigation.navigate('CreateP')}>
                 <Image source={require('../../../assets/images/add.png')} style={styles.image}/>
-                <Text style={styles.text}>Add a New Project</Text>
+                <Text style={styles.text}>Add a New Project git test</Text>
             </TouchableOpacity>
         </View>
     );
