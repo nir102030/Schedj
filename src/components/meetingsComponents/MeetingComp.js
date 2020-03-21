@@ -6,7 +6,7 @@ const MeetingComp = ({navigation,id, pid}) => {
         <View style={styles.container}>
                 <Text style={styles.text}>{pid} Project, Meeting {id} <Text style={styles.Date}> Date:   __ /__ /__  </Text> </Text>
                 <TouchableOpacity style = {styles.TouchableOpacity}  onPress = {()=>navigation.navigate('CreateM')}>
-                <Text style={styles.inside}> Add Task </Text>
+                    <Text style={styles.inside}> Add Task </Text>
                 </TouchableOpacity>
                 <Text style={styles.tasks}> # Define functional demands </Text>
         </View>    
