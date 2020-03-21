@@ -3,10 +3,6 @@ import {View, Text, StyleSheet,TouchableOpacity,Image,TextInput,ScrollView} from
 import DialogInput from 'react-native-dialog-input';
 import DatePicker from 'react-native-datepicker'
 //import TimePicker from "react-native-24h-timepicker";
-import ProjectDetail from './ProjectDetail';
-
-
-
 
 const CreateMeetingScreen = ({id, pid}) => {
 

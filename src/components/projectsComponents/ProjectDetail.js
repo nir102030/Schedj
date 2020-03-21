@@ -3,9 +3,10 @@ import {Text, StyleSheet, View, TouchableOpacity} from 'react-native';
 import { TextInput, FlatList } from 'react-native-gesture-handler';
 import DialogInput from '../../../node_modules/react-native-dialog-input';
 
-const ProjectDetail = ({parm,value,method}) => {
+const ProjectDetail = ({parm,value,method,onChange}) => {
     const [listValues, setListValues] = useState(value);
     const [addValue,setAddValue] = useState(false);
+    
 
     const submitHandler = (input)=>{
         const newList = [...listValues,input];
@@ -28,6 +29,8 @@ const ProjectDetail = ({parm,value,method}) => {
             <TextInput 
                 style={styles.input} 
                 placeholder={value}
+                value
+                onChangeText= {onChange}
             />
         </View>
         :
