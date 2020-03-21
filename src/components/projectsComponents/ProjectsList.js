@@ -2,11 +2,12 @@ import React, {useState} from 'react';
 import {Text, StyleSheet, View, FlatList} from 'react-native';
 import {withNavigation} from 'react-navigation';
 import ProjectComp from './ProjectComp';
+import { connect } from 'react-redux';
 
-const ProjectList = ({ style }) => {
+const ProjectList = ({projects, style }) => {
     //TODO: get the projects list from the reducers/index
-    const projects = ['Final Project', 'KM','CRM','BI'];
-
+    //const projects = ['Final Project', 'KM','CRM','BI'];
+    console.log(projects);
     function Item({ pid }) {
         return (
             <View style={styles.item}>
@@ -22,6 +23,7 @@ const ProjectList = ({ style }) => {
                 renderItem= {({item}) => <Item pid={item}/>}                    
             />
         </View>
+        
     );
 };
 
@@ -32,4 +34,8 @@ const styles = StyleSheet.create({
     }
 });
 
-export default withNavigation(ProjectList);
+const mapStateToProps = state => {
+    return { projects: state.projects };
+};
+
+export default connect(mapStateToProps)(ProjectList);
