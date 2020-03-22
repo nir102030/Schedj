@@ -7,7 +7,7 @@ const FormInput = ({title, value, onChange, viewStyle}) => {
                 <TextInput 
                     style={styles.input} 
                     placeholder={value}
-                    value
+                    value = {value}
                     onChangeText= {onChange}
                 />
                 <Text style={styles.text}>{title} </Text>
