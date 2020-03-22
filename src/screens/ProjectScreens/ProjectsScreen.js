@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         flex:9  
     },
     TouchableOpacity: {
-        backgroundColor:'black',
+        backgroundColor:'#2b414b',
         flex:1,
         flexDirection:'row-reverse'
     },
@@ -37,7 +37,9 @@ const styles = StyleSheet.create({
     text: {
         fontSize:20,
         color:'oldlace',
-        alignSelf:'center'
+        alignSelf:'center',
+        fontWeight:'bold',
+        marginHorizontal:10
     }
 });
 
