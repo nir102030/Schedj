@@ -1,17 +1,14 @@
-import React, {useState} from 'react';
-import {Text, StyleSheet, View, FlatList} from 'react-native';
-import {withNavigation} from 'react-navigation';
+import React from 'react';
+import {StyleSheet, View, FlatList} from 'react-native';
 import ProjectComp from './ProjectComp';
 import { connect } from 'react-redux';
 
 const ProjectList = ({projects, style }) => {
-    //TODO: get the projects list from the reducers/index
-    //const projects = ['Final Project', 'KM','CRM','BI'];
-    console.log(projects);
-    function Item({ pid }) {
+
+    function Item({ item }) {
         return (
             <View style={styles.item}>
-                <ProjectComp pid={pid}/>
+                <ProjectComp project={item}/>
             </View>
         );
     }
@@ -19,8 +16,8 @@ const ProjectList = ({projects, style }) => {
         <View style={style}>
             <FlatList
                 data = {projects}
-                keyExtractor={(project)=> project}
-                renderItem= {({item}) => <Item pid={item}/>}                    
+                keyExtractor={(project)=> project.id}
+                renderItem= {({item}) => <Item item={item}/>}                    
             />
         </View>
         

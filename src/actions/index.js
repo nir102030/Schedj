@@ -1,6 +1,13 @@
-export const addProject = (pid) => {
+export const addProject = (name) => {
     return {
         type: 'add_project',
-        payload: pid
+        payload: name
+    };
+};
+
+export const editProject = (id, name) => {
+    return {
+        type: 'edit_project',
+        payload: {id,name}
     };
 };

@@ -1,7 +1,20 @@
-export default (state = [], action) => {
+export default (state = [{id:1, name:'Test'}], action) => {
     switch (action.type) {
         case 'add_project':
-            return [...state, action.payload.pid];
+            return ( [
+                ...state, 
+                {
+                id: Math.floor(Math.random()*99999),
+                name: action.payload.name
+                }
+            ]
+            );
+        case 'edit_project':
+            return state.map((project) => {
+                return project.id === action.payload.id 
+                    ?action.payload
+                    :project;
+            });
         default:
             return state;
     }

@@ -4,19 +4,17 @@ import {withNavigation} from 'react-navigation';
 import ProjectStatus from './ProjectStatus';
 import IndexDetail from './IndexDetail';
 
-const ProjectComponent = ({navigation,pid}) => {
-    const[Pid,setPid] = useState(pid);
+const ProjectComponent = ({project}) => {
 
     return (
         <View style={styles.container}>
             <View style={{flexDirection:'column'}}>
-                <Text style={styles.text}>{Pid}</Text>
+                <Text style={styles.text}>{project.name}</Text>
                 <View style={styles.options}>
-                    <IndexDetail imageSrc={require('../../../assets/images/edit_logo.png')} navigationScreen= 'EditP' pid={Pid}/>
-                    <IndexDetail imageSrc={require('../../../assets/images/meeting_logo.png')} navigationScreen= 'Meetings' pid={Pid}/>
-                    <IndexDetail imageSrc={require('../../../assets/images/Task.png')} navigationScreen= 'Task' pid={Pid}/>
-                    <IndexDetail imageSrc={require('../../../assets/images/calendar_icon1.png')} navigationScreen= 'Calendar' pid={Pid}/>
-
+                    <IndexDetail imageSrc={require('../../../assets/images/edit_logo.png')} navigationScreen= 'EditP' project={project}/>
+                    <IndexDetail imageSrc={require('../../../assets/images/meeting_logo.png')} navigationScreen= 'Meetings' project={project}/>
+                    <IndexDetail imageSrc={require('../../../assets/images/Task.png')} navigationScreen= 'Task' project={project}/>
+                    <IndexDetail imageSrc={require('../../../assets/images/calendar_icon1.png')} navigationScreen= 'Calendar' project={project}/>
                 </View>
             </View>
             <ProjectStatus style={styles.status}/>

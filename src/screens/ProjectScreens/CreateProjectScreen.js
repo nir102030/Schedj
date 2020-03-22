@@ -7,7 +7,9 @@ import { connect } from 'react-redux';
 const CreateProjectScreen = ({addProject}) => {
     return (
         <View>
-            <ProjectForm pid='' onSubmit = {(Pname) => addProject({pid:Pname})}/>
+            <ProjectForm initialValues = {{id: '', name:''}} onSubmit = {(name) => {
+                addProject({name});
+            }}/>
         </View>
     );
 };

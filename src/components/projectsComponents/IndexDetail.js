@@ -2,10 +2,10 @@ import React from 'react';
 import {View, TouchableOpacity, Image, StyleSheet} from 'react-native';
 import {withNavigation} from 'react-navigation';
 
-const IndexDetail = ({navigation, imageSrc, navigationScreen, pid}) => {
+const IndexDetail = ({navigation, imageSrc, navigationScreen, project}) => {
     return (
         <View style={{flexDirection:'column'}}>
-            <TouchableOpacity style = {styles.TouchableOpacity} onPress = {() => navigation.navigate(navigationScreen,{pid})}>
+            <TouchableOpacity style = {styles.TouchableOpacity} onPress = {() => navigation.navigate(navigationScreen,project.id)}>
                 <Image source = {imageSrc} style={styles.image}/>
             </TouchableOpacity>
         </View>

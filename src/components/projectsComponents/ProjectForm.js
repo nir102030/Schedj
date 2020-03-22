@@ -6,19 +6,19 @@ import FormSubmitButton from '../genericComponents/FormSubmitButton';
 
 
 
-const ProjectForm = ({navigation,pid, onSubmit}) => {
+const ProjectForm = ({initialValues, onSubmit}) => {
     //TODO: 1.get the participants list from the reducers/index 
-    const Pparticipants = ['Nir', 'Bar'];
-    const [Pname,setPname] = useState(pid);
+    const [name,setName] = useState(initialValues.name);
     const [minForMeeting, setMinForMeeting] = useState('');
+    const [participants,setParticipants] = useState(['Nir','Bar']);
 
     return (
             <View style= {styles.container}>
-                <Text style={styles.header}>{Pname} Project </Text>
-                <FormInput title='Project Name' value = {pid} onChange={setPname} viewStyle = {styles.viewStyle}/>
-                <FormParticipantsList initialList = {Pparticipants}/>
+                <Text style={styles.header}>{name} Project </Text>
+                <FormInput title='Project Name' value = {name} onChange={setName} viewStyle = {styles.viewStyle}/>
+                <FormParticipantsList initialList = {participants}/>
                 <FormInput title='Min for Meeting' value={minForMeeting} onChange = {setMinForMeeting} viewStyle = {styles.viewStyle}/> 
-                <FormSubmitButton onSubmit = {() => onSubmit(Pname)}/>
+                <FormSubmitButton onSubmit = {() => onSubmit(name)}/>
             </View>
     );
 };
