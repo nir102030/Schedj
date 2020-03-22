@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
         marginTop:15,
         marginBottom:5,
         fontWeight:'bold',
-
+        
     },
     input: {
         marginTop:7,
