@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 
 const EditProjectScreen = ({navigation, editProject, projects}) => {
     const id = navigation.getParam('id');
-    console.log(projects);
     const project = projects.find(
         project => project.id === id
     );

@@ -1,7 +1,7 @@
-export const addProject = (name) => {
+export const addProject = (name,minForMeeting) => {
     return {
         type: 'add_project',
-        payload: name
+        payload: {name,minForMeeting}
     };
 };
 

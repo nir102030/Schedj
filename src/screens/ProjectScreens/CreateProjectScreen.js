@@ -4,11 +4,11 @@ import ProjectForm from '../../components/projectsComponents/ProjectForm';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
 
-const CreateProjectScreen = ({addProject}) => {
+const CreateProjectScreen = ({navigation, addProject}) => {
     return (
         <View>
-            <ProjectForm initialValues = {{id: '', name:''}} onSubmit = {(name) => {
-                addProject({name});
+            <ProjectForm initialValues = {{id: '', name:''}} onSubmit = {(name, minForMeeting) => {
+                addProject(name, minForMeeting);
             }}/>
         </View>
     );
