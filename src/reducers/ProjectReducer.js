@@ -5,7 +5,8 @@ export default (state = [{id:1, name:'Test'}], action) => {
                 ...state, 
                 {
                 id: Math.floor(Math.random()*99999),
-                name: action.payload.name
+                name: action.payload.name,
+                minForMeeting: action.payload.minForMeeting
                 }
             ]
             );

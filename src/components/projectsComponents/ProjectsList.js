@@ -4,7 +4,7 @@ import ProjectComp from './ProjectComp';
 import { connect } from 'react-redux';
 
 const ProjectList = ({projects, style }) => {
-
+    console.log(projects);
     function Item({ item }) {
         return (
             <View style={styles.item}>
