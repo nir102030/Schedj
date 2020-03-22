@@ -1,13 +1,12 @@
 import React, {useState} from 'react';
 import {Text, StyleSheet, View, TouchableOpacity,Image} from 'react-native';
-import * as actions from '../../actions';
-import { connect } from 'react-redux';
 import FormInput from '../genericComponents/FormInput';
 import FormParticipantsList from '../genericComponents/FormParticipantsList';
+import FormSubmitButton from '../genericComponents/FormSubmitButton'; 
 
 
 
-const ProjectForm = ({navigation,pid, addProject}) => {
+const ProjectForm = ({navigation,pid, onSubmit}) => {
     //TODO: 1.get the participants list from the reducers/index 
     const Pparticipants = ['Nir', 'Bar'];
     const [Pname,setPname] = useState(pid);
@@ -16,12 +15,10 @@ const ProjectForm = ({navigation,pid, addProject}) => {
     return (
             <View style= {styles.container}>
                 <Text style={styles.header}>{Pname} Project </Text>
-                <FormInput title='Project Name' value = {pid} onChange={setPname} viewStyle = {{}}/>
+                <FormInput title='Project Name' value = {pid} onChange={setPname} viewStyle = {styles.viewStyle}/>
                 <FormParticipantsList initialList = {Pparticipants}/>
                 <FormInput title='Min for Meeting' value={minForMeeting} onChange = {setMinForMeeting}/> 
-                <TouchableOpacity onPress = {() => addProject({pid:Pname})}>
-                    <Image source={require('../../../assets/images/create.png')} style={styles.image}/>
-                </TouchableOpacity>
+                <FormSubmitButton onSubmit = {() => onSubmit(Pname)}/>
             </View>
     );
 };
@@ -37,14 +34,12 @@ const styles = StyleSheet.create({
         alignSelf:'center',
         color:'oldlace'
     },
-    image:{
-        height:50,
-        width:150,
-        borderRadius:5,
-        marginRight: 15,
-        alignSelf:'center'
-    }
+    viewStyle: {
+        flexDirection: 'row',
+        borderBottomWidth: 3,
+        borderBottomColor:'#d9e3f0',      
+    },
 });
 
 
-export default connect(null, actions)(ProjectForm);
+export default ProjectForm;
