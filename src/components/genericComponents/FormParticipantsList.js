@@ -26,11 +26,11 @@ const FormParticipantsList = ({initialList}) => {
         <View style={styles.participants}>
             <View style={styles.allinonerow} >
                 <TouchableOpacity style= {styles.button}  onPress = {()=>setAddValue(true)}>
-                    <Text style = {styles.addMatesButton}>Add Participants</Text>
+                    <Text style = {styles.addMatesButton}>          Add Participants</Text>
                 </TouchableOpacity>
                 <DialogInput 
                     isDialogVisible = {addValue} 
-                    title = {'Add participant'}
+                    title = {'Add Participant'}
                     submitInput = {(input)=>submitHandler(input)}
                     closeDialog={()=>{setAddValue(false)}}
                 />
@@ -41,9 +41,7 @@ const FormParticipantsList = ({initialList}) => {
                 keyExtractor = {(listValue)=> listValue}
                 renderItem = {({item})=><Item style={styles.item} listValue={item}/>}
             />
-           
         </View>
-
     );
 }
 
@@ -73,6 +71,7 @@ const styles = StyleSheet.create({
         marginTop:8,
         marginBottom:10,
         fontWeight:'bold',
+        color: 'black'
     },
     header:{
         fontWeight:'bold',
@@ -93,8 +92,9 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         borderWidth:3,
         borderColor:'white',
-        backgroundColor:'#b1c2ca',
-        borderRadius:5,
+        backgroundColor:'#b3d4e5',
+        borderRadius:50,
+        alignSelf:'center',
         flex: 1,
     }
 });

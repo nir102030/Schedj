@@ -30,11 +30,14 @@ const styles = StyleSheet.create({
         marginBottom:7,
         marginRight:5,
         marginLeft: 10,
-        borderWidth:3,
+        borderWidth:1,
         borderColor:'white',
         backgroundColor:'#b1c2ca',
         borderRadius:5,
         flex: 1,
+        fontSize:20,
+        fontWeight:'bold',
+
         
         //textAlign: 'left'
     }

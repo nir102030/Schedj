@@ -14,7 +14,8 @@ const FormSubmitButton = ({onSubmit}) => {
 
 const styles = StyleSheet.create({
     image:{
-        height:50,
+        marginVertical:20,
+        height:100,
         width:150,
         borderRadius:5,
         marginRight: 15,

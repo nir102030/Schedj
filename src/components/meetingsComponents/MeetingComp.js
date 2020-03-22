@@ -4,37 +4,46 @@ import {Text, StyleSheet, View,TouchableOpacity } from 'react-native'
 const MeetingComp = ({navigation,id, pid}) => {
     return (
         <View style={styles.container}>
-                <Text style={styles.text}>{pid} Project, Meeting {id} <Text style={styles.Date}> Date:   __ /__ /__  </Text> </Text>
+                <Text style={styles.text}>{pid} Project, Meeting {id}</Text>
                 <TouchableOpacity style = {styles.TouchableOpacity}  onPress = {()=>navigation.navigate('CreateM')}>
                     <Text style={styles.inside}> Add Task </Text>
                 </TouchableOpacity>
-                <Text style={styles.tasks}> # Define functional demands </Text>
+                <Text></Text>
         </View>    
     )
 };
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor:'lightslategrey'
-
+        backgroundColor:'lightslategrey',
+        borderBottomWidth: 3,
+        borderBottomColor:'#d9e3f0',
     },
     tasks: {
         marginHorizontal: 10,
     },
     text: {
-        backgroundColor:'#607d8b',
-        //marginVertical: 20,
+        marginVertical: 10,
         marginHorizontal: 10,
         height: 30,
         fontWeight:'bold',
-        fontSize: 22,
-        color:'oldlace'
-
+        fontSize: 24,
+        color:'#263238',
+        flex:1,
+        flexDirection:'row-reverse'
     }, 
+    inside:{
+        marginHorizontal: 10,
+        fontSize: 16,
+        fontWeight:'bold',
+        color:'black'  
+    },
     TouchableOpacity: {
         backgroundColor:'white',
         flex:1,
-        flexDirection:'row-reverse'
+        flexDirection:'row-reverse',
+        alignSelf:'center',
+        //textAlign:'center'
     },
     image: {
         height:50,
@@ -50,12 +59,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color:'black'
     },
-    inside:{
-        marginHorizontal: 10,
-        fontSize: 16,
-        fontWeight:'bold',
-        color:'#11084c'  
-    }
+    
 });
 
 export default MeetingComp;

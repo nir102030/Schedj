@@ -48,25 +48,9 @@ const CreateMeetingScreen = ({id, pid, onSubmit}) => {
                         viewStyle = {styles.viewStyle}
                     />
                     <FormParticipantsList initialList = {Pparticipants}/>
-                    <FormInput 
-                        title='1.' 
-                        value = {note} 
-                        onChange={setNote} 
-                        viewStyle = {styles.viewStyle}
-                    />
-                    <FormInput 
-                        title='2.' 
-                        value = {note} 
-                        onChange={setNote} 
-                        viewStyle = {styles.viewStyle}
-                    />
-                    <FormInput 
-                        title='3.' 
-                        value = {note} 
-                        onChange={setNote} 
-                        viewStyle = {styles.viewStyle}
-                    />
-
+                    <FormInput title='1.' value = {note} onChange={setNote} viewStyle = {styles.viewStyle}/>
+                    <FormInput title='2.' value = {note} onChange={setNote} viewStyle = {styles.viewStyle}/>
+                    <FormInput title='3.' value = {note} onChange={setNote} viewStyle = {styles.viewStyle}/>
                     <TouchableOpacity onPress = {onSubmit}>
                                 <Image 
                                     source={require('../../../assets/images/create.png')} 
