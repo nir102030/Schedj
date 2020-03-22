@@ -20,10 +20,10 @@ const styles = StyleSheet.create({
     text:{
         fontSize: 22,
         marginRight: 10,
-        marginTop:15,
-        marginBottom:5,
+        marginTop:8,
+        marginBottom:10,
         fontWeight:'bold',
-        
+
     },
     input: {
         marginTop:7,

@@ -1,11 +1,15 @@
 import React,{useState} from 'react';
-import {View, Text, StyleSheet,Image,TextInput,ScrollView} from 'react-native';
+import {View, Text, StyleSheet,Image,TextInput,ScrollView,TouchableOpacity} from 'react-native';
 import FormDatePicker from '../../components/genericComponents/FormDatePicker';
-import FormInput from '../../components/genericComponents/FormInput'
+import FormInput from '../../components/genericComponents/FormInput';
+import FormParticipantsList from '../../components/genericComponents/FormParticipantsList'; 
 
-const CreateMeetingScreen = ({id, pid}) => {
+
+const CreateMeetingScreen = ({id, pid, onSubmit}) => {
     const [placeOfMeeting, setplaceOfMeeting] = useState('');
     const [note,setNote]  = useState('');
+    const Pparticipants = ['Nir', 'Bar'];
+
 
     return (
             <View style={styles.container}> 
@@ -34,11 +38,17 @@ const CreateMeetingScreen = ({id, pid}) => {
                         onChange={setplaceOfMeeting} 
                         viewStyle = {styles.viewStyle}
                     />
+
+                    <FormParticipantsList initialList = {Pparticipants}/>
+
+
                     <View style={styles.viewStyle}>
                         <TextInput  style={styles.realInput}
                         placeholder= "Find your friends"/>            
                         <Text style={styles.input}>Participants: </Text> 
                     </View>
+
+
                     <FormInput 
                         title='.1' 
                         value = {note} 
@@ -57,7 +67,13 @@ const CreateMeetingScreen = ({id, pid}) => {
                         onChange={setNote} 
                         viewStyle = {styles.viewStyle}
                     />
-                    <Image style={styles.image} source={require('../../../assets/images/create.png')}/>
+
+                    <TouchableOpacity onPress = {onSubmit}>
+                                <Image 
+                                    source={require('../../../assets/images/create.png')} 
+                                    style={styles.image}
+                                />
+                    </TouchableOpacity>                    
                 </ScrollView>
             </View>
     );
@@ -77,7 +93,11 @@ const CreateMeetingScreen = ({id, pid}) => {
             backgroundColor:'#455a64',
         },
         image: {
-            marginVertical: 100
+            marginVertical: 50,
+            height:100,
+            width:150,
+            borderRadius:10,
+            alignSelf:'center'
         },
         input: {
             marginVertical: 20,

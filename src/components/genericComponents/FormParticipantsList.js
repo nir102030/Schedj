@@ -23,22 +23,25 @@ const FormParticipantsList = ({initialList}) => {
     }
 
     return (
-        <View>
-            <Text style={styles.text}>Participants: </Text>
-            <FlatList
+        <View style={styles.participants}>
+            <View style={styles.allinonerow} >
+                <TouchableOpacity style= {styles.button}  onPress = {()=>setAddValue(true)}>
+                    <Text style = {styles.addMatesButton}>Add Participants</Text>
+                </TouchableOpacity>
+                <DialogInput 
+                    isDialogVisible = {addValue} 
+                    title = {'Add participant'}
+                    submitInput = {(input)=>submitHandler(input)}
+                    closeDialog={()=>{setAddValue(false)}}
+                />
+                <Text style={styles.addMates}>Participants: </Text>
+            </View>
+            <FlatList 
                 data = {listValues}
                 keyExtractor = {(listValue)=> listValue}
                 renderItem = {({item})=><Item style={styles.item} listValue={item}/>}
             />
-            <TouchableOpacity style= {styles.button}  onPress = {()=>setAddValue(true)}>
-                <Text style = {{fontSize:20}}>Add Participant</Text>
-            </TouchableOpacity>
-            <DialogInput 
-                isDialogVisible = {addValue} 
-                title = {'Add participant'}
-                submitInput = {(input)=>submitHandler(input)}
-                closeDialog={()=>{setAddValue(false)}}
-            />
+           
         </View>
 
     );
@@ -49,7 +52,28 @@ const styles = StyleSheet.create({
         width: '100%',
         height:'100%'
     },
-
+    allinonerow:{
+        flexDirection: 'row',
+    },
+    participants:{
+        borderBottomWidth: 3,
+        borderBottomColor:'#d9e3f0',
+        marginVertical: 10,
+    },
+    addMates:{
+        fontSize: 22,
+        marginRight: 10,
+        marginTop:8,
+        marginBottom:10,
+        fontWeight:'bold',
+    },
+    addMatesButton:{
+        fontSize: 16,
+        marginRight: 10,
+        marginTop:8,
+        marginBottom:10,
+        fontWeight:'bold',
+    },
     header:{
         fontWeight:'bold',
         fontSize: 24,
@@ -57,17 +81,21 @@ const styles = StyleSheet.create({
         color:'oldlace'
     },
     item:{
-        fontSize: 20,
+        fontSize: 18,
         marginRight: 10,
         marginBottom:5,
-        color:'oldlace'
+        color:'black'
     },
     button:{
-        borderWidth:1,
-        borderColor:'grey',
-        backgroundColor:'gainsboro',
-        alignSelf:'flex-end',
-        borderRadius:5
+        marginTop:1,
+        marginBottom:7,
+        marginRight:5,
+        marginLeft: 10,
+        borderWidth:3,
+        borderColor:'white',
+        backgroundColor:'#b1c2ca',
+        borderRadius:5,
+        flex: 1,
     }
 });
 
