@@ -9,6 +9,9 @@ const CreateMeetingScreen = ({id, pid, onSubmit}) => {
     const [placeOfMeeting, setplaceOfMeeting] = useState('');
     const [note,setNote]  = useState('');
     const Pparticipants = ['Nir', 'Bar'];
+    const [hour,setHour]  = useState('');
+
+
 
 
     return (
@@ -18,51 +21,47 @@ const CreateMeetingScreen = ({id, pid, onSubmit}) => {
                     <Text style={styles.text}>Project {pid}</Text>
                 </View>
                 <ScrollView> 
-                    <Text style={styles.fill}>Please fill the required fields </Text>
+                    <Text  style={styles.fill}>Please fill the required fields </Text>
                     <View style={styles.viewStyle}>
                         <FormDatePicker/>
-                        <Text style={styles.input}>Date:</Text> 
+                        <Text style={styles.input}>Meeting Date:</Text> 
                     </View>
-                    <View style={styles.viewStyle}>
-                        <TextInput  style={styles.realInput}
-                        placeholder="##:##"/>    
-                        <Text style={styles.input}> Till  </Text> 
-                        <TextInput  style={styles.realInput}
-                        placeholder="##:##"/>            
-                        <Text style={styles.input}>Hours: </Text> 
+                    <Text style={styles.input}>Meeting Hours: </Text> 
+                    <View style={styles.hours}>
+                        <FormInput 
+                            title=' To:  ' 
+                            value = {hour} 
+                            onChange={setHour} 
+                            viewStyle = {styles.viewStyle2}
+                        />   
+                        <FormInput 
+                            title='From:' 
+                            value = {hour} 
+                            onChange={setHour} 
+                            viewStyle = {styles.viewStyle2}
+                        />              
                     </View>
-
                     <FormInput 
                         title='Place Of Meeting:' 
                         value = {placeOfMeeting} 
                         onChange={setplaceOfMeeting} 
                         viewStyle = {styles.viewStyle}
                     />
-
                     <FormParticipantsList initialList = {Pparticipants}/>
-
-
-                    <View style={styles.viewStyle}>
-                        <TextInput  style={styles.realInput}
-                        placeholder= "Find your friends"/>            
-                        <Text style={styles.input}>Participants: </Text> 
-                    </View>
-
-
                     <FormInput 
-                        title='.1' 
+                        title='1.' 
                         value = {note} 
                         onChange={setNote} 
                         viewStyle = {styles.viewStyle}
                     />
                     <FormInput 
-                        title='.2' 
+                        title='2.' 
                         value = {note} 
                         onChange={setNote} 
                         viewStyle = {styles.viewStyle}
                     />
                     <FormInput 
-                        title='.3' 
+                        title='3.' 
                         value = {note} 
                         onChange={setNote} 
                         viewStyle = {styles.viewStyle}
@@ -137,7 +136,11 @@ const CreateMeetingScreen = ({id, pid, onSubmit}) => {
             flexDirection: 'row',
             borderBottomWidth: 3,
             borderBottomColor:'#d9e3f0',
-            
+        }, 
+        hours: {
+            flexDirection: 'row',
+            borderBottomWidth: 3,
+            borderBottomColor:'#d9e3f0',
         }, 
         viewStyle1: {
             marginVertical: 2,
@@ -146,6 +149,13 @@ const CreateMeetingScreen = ({id, pid, onSubmit}) => {
             fontWeight:'bold',
             alignSelf:'flex-end',
             fontSize: 20
+        }, 
+        viewStyle2: {
+            marginVertical: 2,
+            flexDirection: 'row',
+            fontWeight:'bold',
+            fontSize: 20,
+            flex: 1,
         }, 
         text: {
             marginVertical: 20,
