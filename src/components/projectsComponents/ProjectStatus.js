@@ -12,7 +12,7 @@ const ProjectStatus = ({project,style}) => {
                 <Text style={{fontSize:14}}>{status}</Text>
             </View>
             <TouchableOpacity style={{alignSelf:'center'}} onPress = {() => {()=>{}}}>
-                <Image source={require('../../../assets/images/status.png')} style={{height:30,width:30}}/>
+                <Image style={styles.statusStyle}  source={require('../../../assets/images/status.png')} style={{height:30,width:30}}/>
             </TouchableOpacity>
         </View>
 
@@ -22,6 +22,9 @@ const styles = StyleSheet.create({
     container:{
         justifyContent:'center',
         flexDirection:'row-reverse'
+    },
+    statusStyle:{
+
     }
 });
 

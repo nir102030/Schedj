@@ -1,56 +1,66 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {View, Text, StyleSheet,Image,TextInput,ScrollView} from 'react-native';
 import FormDatePicker from '../../components/genericComponents/FormDatePicker';
+import FormInput from '../../components/genericComponents/FormInput'
 
 const CreateMeetingScreen = ({id, pid}) => {
+    const [placeOfMeeting, setplaceOfMeeting] = useState('');
+    const [note,setNote]  = useState('');
 
-        return (
-                <View style={styles.container}> 
-                    <View style={styles.header}>
-                        <Text style={styles.text}>-     Meeting {id} </Text>
-                        <Text style={styles.text}>Project {pid}</Text>
-                    </View>
-                    <ScrollView> 
-                        <Text style={styles.fill}>Please fill the required fields </Text>
-                        <View style={styles.viewStyle}>
-                            <FormDatePicker/>
-                            <Text style={styles.input}>Date:</Text> 
-                        </View>
-                        <View style={styles.viewStyle}>
-                            <TextInput  style={styles.realInput}
-                            placeholder="##:##"/>    
-                            <Text style={styles.input}> Till  </Text> 
-                            <TextInput  style={styles.realInput}
-                            placeholder="##:##"/>            
-                            <Text style={styles.input}>Hours: </Text> 
-                        </View>
-                        <View style={styles.viewStyle}>
-                            <TextInput  style={styles.realInput}
-                            placeholder="Enter Place"/>            
-                            <Text style={styles.input}>Place of meeting: </Text> 
-                        </View>
-                        <View style={styles.viewStyle}>
-                            <TextInput  style={styles.realInput}
-                            placeholder= "Find your friends"/>            
-                            <Text style={styles.input}>Participants: </Text> 
-                        </View>
-                        <Text style={styles.notes}>Notes: </Text> 
-                        <View>
-                            <TextInput  style={styles.viewStyle1}
-                            placeholder= ".1."/> 
-                        </View>
-                        <View>
-                            <TextInput  style={styles.viewStyle1}
-                            placeholder= ".2."/> 
-                        </View>
-                        <View>
-                            <TextInput  style={styles.viewStyle1}
-                            placeholder= ".3."/> 
-                        </View>
-                        <Image style={styles.image} source={require('../../../assets/images/create.png')}/>
-                    </ScrollView>
+    return (
+            <View style={styles.container}> 
+                <View style={styles.header}>
+                    <Text style={styles.text}>-     Meeting {id} </Text>
+                    <Text style={styles.text}>Project {pid}</Text>
                 </View>
-        );
+                <ScrollView> 
+                    <Text style={styles.fill}>Please fill the required fields </Text>
+                    <View style={styles.viewStyle}>
+                        <FormDatePicker/>
+                        <Text style={styles.input}>Date:</Text> 
+                    </View>
+                    <View style={styles.viewStyle}>
+                        <TextInput  style={styles.realInput}
+                        placeholder="##:##"/>    
+                        <Text style={styles.input}> Till  </Text> 
+                        <TextInput  style={styles.realInput}
+                        placeholder="##:##"/>            
+                        <Text style={styles.input}>Hours: </Text> 
+                    </View>
+
+                    <FormInput 
+                        title='Place Of Meeting:' 
+                        value = {placeOfMeeting} 
+                        onChange={setplaceOfMeeting} 
+                        viewStyle = {styles.viewStyle}
+                    />
+                    <View style={styles.viewStyle}>
+                        <TextInput  style={styles.realInput}
+                        placeholder= "Find your friends"/>            
+                        <Text style={styles.input}>Participants: </Text> 
+                    </View>
+                    <FormInput 
+                        title='.1' 
+                        value = {note} 
+                        onChange={setNote} 
+                        viewStyle = {styles.viewStyle}
+                    />
+                    <FormInput 
+                        title='.2' 
+                        value = {note} 
+                        onChange={setNote} 
+                        viewStyle = {styles.viewStyle}
+                    />
+                    <FormInput 
+                        title='.3' 
+                        value = {note} 
+                        onChange={setNote} 
+                        viewStyle = {styles.viewStyle}
+                    />
+                    <Image style={styles.image} source={require('../../../assets/images/create.png')}/>
+                </ScrollView>
+            </View>
+    );
 };
 
     const styles = StyleSheet.create({
@@ -107,6 +117,7 @@ const CreateMeetingScreen = ({id, pid}) => {
             flexDirection: 'row',
             borderBottomWidth: 3,
             borderBottomColor:'#d9e3f0',
+            
         }, 
         viewStyle1: {
             marginVertical: 2,
