@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     },
     header:{
         fontWeight:'bold',
-        fontSize: 26,
+        fontSize: 27,
         alignSelf:'center',
         color:'oldlace'
     },
