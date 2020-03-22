@@ -1,12 +1,11 @@
 import React, {useState} from 'react';
 import {Text, StyleSheet, View, TouchableOpacity} from 'react-native';
-import { TextInput, FlatList } from 'react-native-gesture-handler';
+import { FlatList } from 'react-native-gesture-handler';
 import DialogInput from '../../../node_modules/react-native-dialog-input';
 
-const ProjectDetail = ({parm,value,method,onChange}) => {
-    const [listValues, setListValues] = useState(value);
+const FormParticipantsList = ({initialList}) => {
+    const [listValues, setListValues] = useState(initialList);
     const [addValue,setAddValue] = useState(false);
-    
 
     const submitHandler = (input)=>{
         const newList = [...listValues,input];
@@ -14,6 +13,7 @@ const ProjectDetail = ({parm,value,method,onChange}) => {
         setListValues(newList);
         setAddValue(false);
     }
+
     function Item({ listValue }) {
         return (
           <View >
@@ -23,26 +23,15 @@ const ProjectDetail = ({parm,value,method,onChange}) => {
     }
 
     return (
-        method=='input'? 
         <View>
-            <Text style={styles.text}>{parm}: </Text>
-            <TextInput 
-                style={styles.input} 
-                placeholder={value}
-                value
-                onChangeText= {onChange}
-            />
-        </View>
-        :
-        <View>
-            <Text style={styles.text}>{parm}: </Text>
+            <Text style={styles.text}>Participants: </Text>
             <FlatList
                 data = {listValues}
                 keyExtractor = {(listValue)=> listValue}
                 renderItem = {({item})=><Item style={styles.item} listValue={item}/>}
             />
             <TouchableOpacity style= {styles.button}  onPress = {()=>setAddValue(true)}>
-                <Text style = {{fontSize:20}}>Add {parm}</Text>
+                <Text style = {{fontSize:20}}>Add Participant</Text>
             </TouchableOpacity>
             <DialogInput 
                 isDialogVisible = {addValue} 
@@ -53,7 +42,7 @@ const ProjectDetail = ({parm,value,method,onChange}) => {
         </View>
 
     );
-};
+}
 
 const styles = StyleSheet.create({
     container:{
@@ -66,21 +55,6 @@ const styles = StyleSheet.create({
         fontSize: 24,
         alignSelf:'center',
         color:'oldlace'
-    },
-    text:{
-        fontSize: 22,
-        marginRight: 5,
-        marginTop:15,
-        marginBottom:5
-    },
-    input: {
-        fontSize: 18,
-        marginRight: 5,
-        borderWidth:1,
-        borderColor:'white',
-        backgroundColor:'white',
-        borderRadius:5,
-        marginLeft:150
     },
     item:{
         fontSize: 20,
@@ -97,5 +71,4 @@ const styles = StyleSheet.create({
     }
 });
 
-
-export default ProjectDetail;
+export default FormParticipantsList;

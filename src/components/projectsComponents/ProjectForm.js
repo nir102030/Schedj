@@ -1,24 +1,24 @@
 import React, {useState} from 'react';
 import {Text, StyleSheet, View, TouchableOpacity,Image} from 'react-native';
-import {withNavigation} from 'react-navigation';
-import ProjectDetail from './ProjectDetail';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
+import FormInput from '../genericComponents/FormInput';
+import FormParticipantsList from '../genericComponents/FormParticipantsList';
+
 
 
 const ProjectForm = ({navigation,pid, addProject}) => {
-    //TODO: 1.get the participants list from the reducers/index
-    //      2.Add an "addProject" reducer and use it in the OnPress property  
+    //TODO: 1.get the participants list from the reducers/index 
     const Pparticipants = ['Nir', 'Bar'];
-    const [newPid, setNewPid] = useState('FP');
     const [Pname,setPname] = useState(pid);
+    const [minForMeeting, setMinForMeeting] = useState('');
 
     return (
             <View style= {styles.container}>
-                <Text style={styles.header}>{pid} Project </Text>
-                <ProjectDetail parm='Name' value={pid} method='input' onChange={setPname}/>
-                <ProjectDetail parm='Participants' value={Pparticipants} method='picker'/>
-                <ProjectDetail parm='Min for Meeting' value={'3'} method = 'input'/>
+                <Text style={styles.header}>{Pname} Project </Text>
+                <FormInput title='Project Name' value = {pid} onChange={setPname} viewStyle = {{}}/>
+                <FormParticipantsList initialList = {Pparticipants}/>
+                <FormInput title='Min for Meeting' value={minForMeeting} onChange = {setMinForMeeting}/> 
                 <TouchableOpacity onPress = {() => addProject({pid:Pname})}>
                     <Image source={require('../../../assets/images/create.png')} style={styles.image}/>
                 </TouchableOpacity>
@@ -31,7 +31,6 @@ const styles = StyleSheet.create({
         backgroundColor:'lightslategrey',
         height:'100%'
     },
-
     header:{
         fontWeight:'bold',
         fontSize: 26,
