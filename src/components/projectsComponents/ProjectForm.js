@@ -17,7 +17,7 @@ const ProjectForm = ({navigation,pid, onSubmit}) => {
                 <Text style={styles.header}>{Pname} Project </Text>
                 <FormInput title='Project Name' value = {pid} onChange={setPname} viewStyle = {styles.viewStyle}/>
                 <FormParticipantsList initialList = {Pparticipants}/>
-                <FormInput title='Min for Meeting' value={minForMeeting} onChange = {setMinForMeeting}/> 
+                <FormInput title='Min for Meeting' value={minForMeeting} onChange = {setMinForMeeting} viewStyle = {styles.viewStyle}/> 
                 <FormSubmitButton onSubmit = {() => onSubmit(Pname)}/>
             </View>
     );
