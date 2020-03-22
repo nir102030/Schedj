@@ -12,9 +12,11 @@ const ProjectComponent = ({navigation,pid}) => {
             <View style={{flexDirection:'column'}}>
                 <Text style={styles.text}>{Pid}</Text>
                 <View style={styles.options}>
-                    <IndexDetail imageSrc = {require('../../../assets/images/meeting_logo.png')} navigationScreen= 'Meetings' pid={Pid}/>
-                    <IndexDetail imageSrc={require('../../../assets/images/calendar_icon.png')} navigationScreen= 'Calendar' pid={Pid}/>
                     <IndexDetail imageSrc={require('../../../assets/images/edit_logo.png')} navigationScreen= 'EditP' pid={Pid}/>
+                    <IndexDetail imageSrc={require('../../../assets/images/meeting_logo.png')} navigationScreen= 'Meetings' pid={Pid}/>
+                    <IndexDetail imageSrc={require('../../../assets/images/Task.png')} navigationScreen= 'Task' pid={Pid}/>
+                    <IndexDetail imageSrc={require('../../../assets/images/calendar_icon1.png')} navigationScreen= 'Calendar' pid={Pid}/>
+
                 </View>
             </View>
             <ProjectStatus style={styles.status}/>
@@ -26,7 +28,7 @@ const styles = StyleSheet.create({
     container: {
         flexDirection:'row-reverse',
         justifyContent:'space-between',
-        borderBottomWidth:1,
+        borderBottomWidth:3,
         borderColor:'oldlace',
         paddingBottom:20
     },
