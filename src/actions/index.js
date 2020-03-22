@@ -5,9 +5,9 @@ export const addProject = (name) => {
     };
 };
 
-export const editProject = (id, name) => {
+export const editProject = (id, name , minForMeeting) => {
     return {
         type: 'edit_project',
-        payload: {id,name}
+        payload: {id,name,minForMeeting}
     };
 };
