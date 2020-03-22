@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 const EditProjectScreen = ({navigation, editProject, projects}) => {
     const id = navigation.getParam('id');
-
+    console.log(projects);
     const project = projects.find(
         project => project.id === id
     );
@@ -23,4 +23,8 @@ const EditProjectScreen = ({navigation, editProject, projects}) => {
     );
 };
 
-export default connect(null,actions)(EditProjectScreen);
+const mapStateToProps = state => {
+    return { projects: state.projects };
+};
+
+export default connect(mapStateToProps,actions)(EditProjectScreen);
