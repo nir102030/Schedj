@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, StyleSheet, View, Button, ImageBackground, TouchableOpacity, Image} from 'react-native'
+import { Text, StyleSheet, View, TouchableOpacity, Image} from 'react-native'
 import MeetingList from '../../components/meetingsComponents/MeetingsList';
 
 const MeetingsScreen = ({navigation, pid}) => {

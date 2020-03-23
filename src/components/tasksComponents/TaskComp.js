@@ -3,15 +3,13 @@ import {Text, StyleSheet, View,TouchableOpacity } from 'react-native'
 import {withNavigation} from 'react-navigation';
 
 
-const MeetingComp = ({navigation,id, pid}) => {
+const TaskComp = ({navigation,id, pid}) => {
     return (
         <View style={styles.container}>
-                <Text style={styles.text}>{pid} Project - Meeting {id}</Text>
-                <Text style={styles.text}> Meeting Date</Text>
-                <TouchableOpacity style = {styles.TouchableOpacity}  onPress = {()=>navigation.navigate('Tasks')}>
+                <Text style={styles.text}> Task {id}</Text>
+                <TouchableOpacity style = {styles.TouchableOpacity}  onPress = {()=>navigation.navigate('CreateT')}>
                     <Text style={styles.inside}> Add Task </Text>
                 </TouchableOpacity>
-                <Text></Text>
         </View>    
     )
 };
@@ -26,7 +24,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
     },
     text: {
-        marginVertical: 5,
+        marginVertical: 10,
         marginHorizontal: 10,
         height: 30,
         fontWeight:'bold',
@@ -36,18 +34,16 @@ const styles = StyleSheet.create({
         flexDirection:'row-reverse'
     }, 
     inside:{
-        marginHorizontal: 15,
-        fontSize:20,
+        marginHorizontal: 10,
+        fontSize: 16,
         fontWeight:'bold',
-        color:'black',
+        color:'black'  
     },
     TouchableOpacity: {
-        marginVertical: 5,
         backgroundColor:'white',
         flex:1,
         flexDirection:'row-reverse',
         alignSelf:'center',
-        borderRadius: 20,
     },
     image: {
         height:50,
@@ -57,7 +53,7 @@ const styles = StyleSheet.create({
     },
     Date:{
         backgroundColor:'#607d8b',
-        marginHorizontal: 5,
+        marginHorizontal: 10,
         height: 60,
         fontWeight:'bold',
         fontSize: 20,
@@ -65,4 +61,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default withNavigation(MeetingComp);
+export default withNavigation(TaskComp);

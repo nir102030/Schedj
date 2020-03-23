@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import {View, Text, StyleSheet,Image,TextInput,ScrollView,TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet,Image,ScrollView,TouchableOpacity} from 'react-native';
 import FormDatePicker from '../../components/genericComponents/FormDatePicker';
 import FormInput from '../../components/genericComponents/FormInput';
 import FormParticipantsList from '../../components/genericComponents/FormParticipantsList'; 

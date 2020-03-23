@@ -11,23 +11,26 @@ const ProjectForm = ({initialValues, onSubmit}) => {
     const [name,setName] = useState(initialValues.name);
     const [note,setNote]  = useState('');
     const [minForMeeting, setMinForMeeting] = useState(initialValues.minForMeeting);
+    const [reminder, setReminder] = useState(initialValues.reminder);
     const Pparticipants = ['Nir', 'Bar','Dor'];
 
     return (
             <View style= {styles.container}>
-                <ScrollView>
                     <View style={styles.header}>
                         <Text style={styles.text}>{name} Project</Text>
                         <Image source={require('../../../assets/images/project.png')} style={styles.image}/>
                     </View>
+                    <ScrollView>
                     <Text  style={styles.fillRequired}>Please fill the required fields </Text>
                     <FormInput title='Project Name:' value = {name} onChange={setName} viewStyle = {styles.projectName}/>
                     <FormParticipantsList initialList = {Pparticipants}/>
-                    <FormInput title='Min Participants for Meeting:' value={minForMeeting} onChange = {setMinForMeeting} viewStyle = {styles.minMeet}/> 
+                    <FormInput title='Min Participants For Meeting:' value={minForMeeting} onChange = {setMinForMeeting} viewStyle = {styles.minMeet}/> 
+                    <FormInput title='Reminder Before Meeting:' value={reminder} onChange = {setReminder} viewStyle = {styles.minMeet}/> 
                     <Text  style={styles.note}>   Write your notes here!  </Text>
                     <FormInput title='1.' value = {note} onChange={setNote} viewStyle = {styles.notes}/>
                     <FormInput title='2.' value = {note} onChange={setNote} viewStyle = {styles.notes}/>
                     <FormInput title='3.' value = {note} onChange={setNote} viewStyle = {styles.notes}/>
+                    <Text  style={styles.task}>   *Define your tasks later  </Text>
                     <FormSubmitButton onSubmit = {() => onSubmit(name,minForMeeting)}/>
                 </ScrollView>
             </View>
@@ -84,6 +87,12 @@ const styles = StyleSheet.create({
     note: {
         alignSelf:'center',
         fontWeight:'bold',
+    },
+    task:{
+        marginTop: 15,
+        //alignSelf:'center',
+        fontWeight:'bold',
+        color:'#263238'
     },
 });
 
