@@ -6,9 +6,13 @@ import FormParticipantsList from '../../components/genericComponents/FormPartici
 
 const CreateMeetingScreen = ({id, pid, onSubmit}) => {
     const [placeOfMeeting, setplaceOfMeeting] = useState('');
-    const [note,setNote]  = useState('');
     const Pparticipants = ['Nir', 'Bar'];
-    const [hour,setHour]  = useState('');
+    const [startHour,setStartHour]  = useState('');
+    const [endHour,setEndHour]  = useState('');
+    const [note1,setNote1]  = useState('');
+    const [note2,setNote2]  = useState('');
+    const [note3,setNote3]  = useState('');
+
 
     return (
             <View style={styles.container}> 
@@ -24,14 +28,15 @@ const CreateMeetingScreen = ({id, pid, onSubmit}) => {
                     </View>
                     <Text style={styles.input}>Meeting Hours: </Text> 
                     <View style={styles.hours}>
-                        <FormInput title=' To:  ' value = {hour}  onChange={setHour}  viewStyle = {styles.meetDesign} />   
-                        <FormInput title='From:' value = {hour}  onChange={setHour}  viewStyle = {styles.meetDesign} />   
+                        <FormInput title=' To:  ' value = {endHour}  onChange={setEndHour}  viewStyle = {styles.meetDesign} />   
+                        <FormInput title='From:' value = {startHour}  onChange={setStartHour}  viewStyle = {styles.meetDesign} />   
                     </View>
                     <FormInput title='Place Of Meeting:' value = {placeOfMeeting} onChange={setplaceOfMeeting} viewStyle = {styles.designSquare}/>
                     <FormParticipantsList initialList = {Pparticipants}/>
-                    <FormInput title='1.' value = {note} onChange={setNote} viewStyle = {styles.designSquare}/>
-                    <FormInput title='2.' value = {note} onChange={setNote} viewStyle = {styles.designSquare}/>
-                    <FormInput title='3.' value = {note} onChange={setNote} viewStyle = {styles.designSquare}/>
+                    <Text  style={styles.note}>   Write your notes here!  </Text>
+                    <FormInput title='1.' value = {note1} onChange={setNote1} viewStyle = {styles.notes}/>
+                    <FormInput title='2.' value = {note2} onChange={setNote2} viewStyle = {styles.notes}/>
+                    <FormInput title='3.' value = {note3} onChange={setNote3} viewStyle = {styles.notes}/>
                     <TouchableOpacity onPress = {onSubmit}>
                                 <Image 
                                     source={require('../../../assets/images/create.png')} 
@@ -50,23 +55,49 @@ const styles = StyleSheet.create({
     header: {
         flexDirection: 'row',
         backgroundColor:'#455a64',
+        //alignSelf: 'flex-end',
+        justifyContent: 'flex-end',
+
     },
-    headerStyle: {
-        marginVertical: 20,
-        marginHorizontal: 10,
-        height: 30,
-        fontWeight:'bold',
-        fontSize: 22,
-        color:'oldlace', 
+    headerStyle: {        
+    fontWeight:'bold',
+    fontSize: 30,
+    marginVertical: 10,
+    marginHorizontal:34,
+    alignSelf:'center',
+    color:'#263238',
+    textAlign:'left'
     },
+    // headerStyle: {
+    //     marginVertical: 20,
+    //     marginHorizontal: 10,
+    //     height: 30,
+    //     fontWeight:'bold',
+    //     fontSize: 22,
+    //     color:'oldlace', 
+    // },
     fillRequired: {
         backgroundColor:'red',        
         flex:1
+    },
+    note: {
+        //backgroundColor:'#d2c443',      
+        alignSelf:'center',
+        fontWeight:'bold',
+        //borderBottomWidth: 3,
+        //borderBottomColor:'#d9e3f0',
+
+        //flex:1
     },
     designSquare: {
         flexDirection: 'row',
         borderBottomWidth: 3,
         borderBottomColor:'#d9e3f0',
+    }, 
+    notes: {
+        flexDirection: 'row',
+        //borderBottomWidth: 3,
+        //borderBottomColor:'#d9e3f0',
     }, 
     input: {
         marginVertical: 20,

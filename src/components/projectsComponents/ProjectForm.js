@@ -43,22 +43,25 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         marginHorizontal:34,
         alignSelf:'center',
-        color:'#263238'
+        color:'#263238',
+        textAlign:'left'
     },
     image:{
         marginVertical:10,
         height:60,
         width:60,
-        borderRadius:5,
-        marginRight: 15,
-        alignSelf:'center'
+        alignSelf: 'flex-end',
+        justifyContent: 'flex-end',
+
     },
     header:{
         flexDirection:'row',
         flexWrap:'wrap',
         borderBottomWidth:5,
         borderBottomColor:'#2d6886',
-        backgroundColor:'#8aa9b9'
+        backgroundColor:'#8aa9b9',
+        justifyContent: 'flex-end',
+
     },
     viewStyle: {
         flexDirection: 'row',
