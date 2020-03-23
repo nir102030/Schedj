@@ -43,7 +43,6 @@ const styles = StyleSheet.create({
         flex:1,
         flexDirection:'row-reverse',
         alignSelf:'center',
-        //textAlign:'center'
     },
     image: {
         height:50,
@@ -59,7 +58,6 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color:'black'
     },
-    
 });
 
 export default MeetingComp;

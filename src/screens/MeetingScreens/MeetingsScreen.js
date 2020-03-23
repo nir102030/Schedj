@@ -8,7 +8,7 @@ const MeetingsScreen = ({navigation, pid}) => {
             <MeetingList style={styles.list}/>
             <TouchableOpacity style = {styles.TouchableOpacity}  onPress = {()=>navigation.navigate('CreateM')}>
                 <Image source={require('../../../assets/images/add.png')} style={styles.image}/>
-                <Text style={styles.text}>Add a New Meeting</Text>
+                <Text style={styles.text}>  Add a New Meeting</Text>
             </TouchableOpacity>
         </View>
     );
@@ -24,20 +24,22 @@ const styles = StyleSheet.create({
         backgroundColor:'lightslategrey'
     },
     TouchableOpacity: {
-        backgroundColor:'black',
+        backgroundColor:'#2b414b',
         flex:1,
         flexDirection:'row-reverse'
     },
     image: {
-        height:40,
-        width:40,
+        height:37,
+        width:37,
         marginRight: 15,
         alignSelf:'center'
     },
     text: {
         fontSize:20,
         color:'oldlace',
-        alignSelf:'center'
+        alignSelf:'center',
+        fontWeight:'bold'
+
     }
 });
 

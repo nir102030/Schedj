@@ -17,14 +17,10 @@ const MeetingsList = ({navigation,style, pid}) => {
     return (
         <View style = {style}>
             <ScrollView>
-                <View style={{flexDirection:'row', flexWrap:'wrap'}}>
+                <View style={styles.header}>
                     <Text style={styles.text}>{pid} Project Meetings</Text>
-                    <Image
-                        source={require('../../../assets/images/meeting_logo.png')} 
-                        style={styles.image}
-                        />
+                    <Image source={require('../../../assets/images/meeting_logo.png')} style={styles.image}/>
                 </View>
-                
                 <FlatList
                     data = {meetingsList}
                     keyExtractor={(meeting)=> meeting}
@@ -41,12 +37,19 @@ const styles = StyleSheet.create({
         marginVertical: 10
     },
     image:{
-        marginVertical:20,
-        height:70,
-        width:70,
+        marginVertical:10,
+        height:60,
+        width:60,
         borderRadius:5,
         marginRight: 15,
         alignSelf:'center'
+    },
+    header:{
+        flexDirection:'row', 
+        flexWrap:'wrap',
+        borderBottomWidth:5,
+        borderBottomColor:'#2d6886',
+        backgroundColor:'#8aa9b9',
     },
     text:{
         fontWeight:'bold',
@@ -54,7 +57,7 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         marginHorizontal:34,
         alignSelf:'center',
-        color:'#FFFFFF'
+        color:'#263238',
     }
 });
 
