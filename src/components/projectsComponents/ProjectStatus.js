@@ -15,16 +15,12 @@ const ProjectStatus = ({project,style}) => {
                 <Image style={styles.statusStyle}  source={require('../../../assets/images/status.png')} style={{height:30,width:30}}/>
             </TouchableOpacity>
         </View>
-
     );
 };
 const styles = StyleSheet.create({
     container:{
         justifyContent:'center',
         flexDirection:'row-reverse'
-    },
-    statusStyle:{
-
     }
 });
 

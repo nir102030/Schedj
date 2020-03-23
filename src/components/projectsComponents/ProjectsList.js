@@ -20,7 +20,6 @@ const ProjectList = ({projects, style }) => {
                 renderItem= {({item}) => <Item item={item}/>}                    
             />
         </View>
-        
     );
 };
 

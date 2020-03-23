@@ -4,16 +4,10 @@ import {View, Text, TextInput, StyleSheet} from 'react-native';
 const FormInput = ({title, value, onChange, viewStyle}) => {
     return(
             <View style={viewStyle}>
-                <TextInput 
-                    style={styles.input} 
-                    placeholder={value}
-                    value = {value}
-                    onChangeText= {onChange}
-                />
-                <Text style={styles.text}>{title} </Text>
-                
+                <TextInput style={styles.input} placeholder={value} value = {value} onChangeText= {onChange}/>
+                <Text style={styles.text}>{title} </Text> 
             </View>
-    );
+        );
 };
 
 const styles = StyleSheet.create({
@@ -22,8 +16,7 @@ const styles = StyleSheet.create({
         marginRight: 10,
         marginTop:8,
         marginBottom:10,
-        fontWeight:'bold',
-
+        fontWeight:'bold'
     },
     input: {
         marginTop:7,
@@ -37,9 +30,6 @@ const styles = StyleSheet.create({
         flex: 1,
         fontSize:20,
         fontWeight:'bold',
-
-        
-        //textAlign: 'left'
     }
 });
 

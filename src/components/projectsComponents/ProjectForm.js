@@ -11,7 +11,7 @@ const ProjectForm = ({initialValues, onSubmit}) => {
     const [name,setName] = useState(initialValues.name);
     const [note,setNote]  = useState('');
     const [minForMeeting, setMinForMeeting] = useState(initialValues.minForMeeting);
-    const [participants,setParticipants] = useState(initialValues.participants);
+    const Pparticipants = ['Nir', 'Bar','Dor'];
 
     return (
             <View style= {styles.container}>
@@ -20,12 +20,14 @@ const ProjectForm = ({initialValues, onSubmit}) => {
                         <Text style={styles.text}>{name} Project</Text>
                         <Image source={require('../../../assets/images/project.png')} style={styles.image}/>
                     </View>
-                    <FormInput title='Project Name' value = {name} onChange={setName} viewStyle = {styles.viewStyle}/>
-                    <FormParticipantsList initialList = {participants}/>
-                    <FormInput title='Min for Meeting' value={minForMeeting} onChange = {setMinForMeeting} viewStyle = {styles.viewStyle}/> 
-                    <FormInput title='1.' value = {note} onChange={setNote} viewStyle = {styles.viewStyle}/>
-                    <FormInput title='2.' value = {note} onChange={setNote} viewStyle = {styles.viewStyle}/>
-                    <FormInput title='3.' value = {note} onChange={setNote} viewStyle = {styles.viewStyle}/>
+                    <Text  style={styles.fillRequired}>Please fill the required fields </Text>
+                    <FormInput title='Project Name:' value = {name} onChange={setName} viewStyle = {styles.projectName}/>
+                    <FormParticipantsList initialList = {Pparticipants}/>
+                    <FormInput title='Min Participants for Meeting:' value={minForMeeting} onChange = {setMinForMeeting} viewStyle = {styles.minMeet}/> 
+                    <Text  style={styles.note}>   Write your notes here!  </Text>
+                    <FormInput title='1.' value = {note} onChange={setNote} viewStyle = {styles.notes}/>
+                    <FormInput title='2.' value = {note} onChange={setNote} viewStyle = {styles.notes}/>
+                    <FormInput title='3.' value = {note} onChange={setNote} viewStyle = {styles.notes}/>
                     <FormSubmitButton onSubmit = {() => onSubmit(name,minForMeeting)}/>
                 </ScrollView>
             </View>
@@ -36,6 +38,10 @@ const styles = StyleSheet.create({
     container:{
         backgroundColor:'lightslategrey',
         height:'100%'
+    },
+    fillRequired: {
+        backgroundColor:'red',        
+        flex:1
     },
     text:{
         fontWeight:'bold',
@@ -52,7 +58,6 @@ const styles = StyleSheet.create({
         width:60,
         alignSelf: 'flex-end',
         justifyContent: 'flex-end',
-
     },
     header:{
         flexDirection:'row',
@@ -61,13 +66,24 @@ const styles = StyleSheet.create({
         borderBottomColor:'#2d6886',
         backgroundColor:'#8aa9b9',
         justifyContent: 'flex-end',
-
     },
-    viewStyle: {
+    projectName: {
         flexDirection: 'row',
         borderBottomWidth: 3,
         borderBottomColor:'#d9e3f0',   
-        marginVertical:5
+    },
+    minMeet: {
+        flexDirection: 'row',
+        borderBottomWidth: 3,
+        borderBottomColor:'#d9e3f0',  
+        marginBottom:10 
+    },
+    notes: {
+        flexDirection: 'row',
+    }, 
+    note: {
+        alignSelf:'center',
+        fontWeight:'bold',
     },
 });
 

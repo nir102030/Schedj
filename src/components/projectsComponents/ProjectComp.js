@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React from 'react'
 import { Text, StyleSheet, View  } from 'react-native'
 import {withNavigation} from 'react-navigation';
 import ProjectStatus from './ProjectStatus';
@@ -12,8 +12,8 @@ const ProjectComponent = ({project}) => {
                 <Text style={styles.text}>{project.name}</Text>
                 <View style={styles.options}>
                     <IndexDetail imageSrc={require('../../../assets/images/edit_logo.png')} navigationScreen= 'EditP' project={project}/>
-                    <IndexDetail imageSrc={require('../../../assets/images/meeting_logo.png')} navigationScreen= 'Meetings' project={project}/>
                     <IndexDetail imageSrc={require('../../../assets/images/Task.png')} navigationScreen= 'Task' project={project}/>
+                    <IndexDetail imageSrc={require('../../../assets/images/meeting_logo.png')} navigationScreen= 'Meetings' project={project}/>
                     <IndexDetail imageSrc={require('../../../assets/images/calendar_icon1.png')} navigationScreen= 'Calendar' project={project}/>
                 </View>
             </View>
@@ -43,10 +43,6 @@ const styles = StyleSheet.create({
     TouchableOpacity: {
         marginRight:10
     },
-    image: {
-        height:60,
-        width:60
-    }
 });
 
 export default withNavigation(ProjectComponent);

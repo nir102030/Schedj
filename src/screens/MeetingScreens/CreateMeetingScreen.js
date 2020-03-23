@@ -6,43 +6,40 @@ import FormParticipantsList from '../../components/genericComponents/FormPartici
 
 const CreateMeetingScreen = ({id, pid, onSubmit}) => {
     const [placeOfMeeting, setplaceOfMeeting] = useState('');
-    const Pparticipants = ['Nir', 'Bar'];
+    const Pparticipants = ['Nir', 'Bar','Dor'];
     const [startHour,setStartHour]  = useState('');
     const [endHour,setEndHour]  = useState('');
     const [note1,setNote1]  = useState('');
     const [note2,setNote2]  = useState('');
     const [note3,setNote3]  = useState('');
 
-
     return (
             <View style={styles.container}> 
                 <View style={styles.header}>
-                    <Text style={styles.headerStyle}>-     Meeting {id} </Text>
-                    <Text style={styles.headerStyle}>Project {pid}</Text>
+                    <Text style={styles.headerStyle}>-  Meeting {id} </Text>
+                    <Text style={styles.headerStyle}>Project{pid}</Text>
                 </View>
-                <ScrollView> 
-                    <Text  style={styles.fillRequired}>Please fill the required fields </Text>
-                    <View style={styles.designSquare}>
-                        <FormDatePicker/>
-                        <Text style={styles.input}>Meeting Date:</Text> 
-                    </View>
-                    <Text style={styles.input}>Meeting Hours: </Text> 
-                    <View style={styles.hours}>
-                        <FormInput title=' To:  ' value = {endHour}  onChange={setEndHour}  viewStyle = {styles.meetDesign} />   
-                        <FormInput title='From:' value = {startHour}  onChange={setStartHour}  viewStyle = {styles.meetDesign} />   
-                    </View>
-                    <FormInput title='Place Of Meeting:' value = {placeOfMeeting} onChange={setplaceOfMeeting} viewStyle = {styles.designSquare}/>
-                    <FormParticipantsList initialList = {Pparticipants}/>
-                    <Text  style={styles.note}>   Write your notes here!  </Text>
-                    <FormInput title='1.' value = {note1} onChange={setNote1} viewStyle = {styles.notes}/>
-                    <FormInput title='2.' value = {note2} onChange={setNote2} viewStyle = {styles.notes}/>
-                    <FormInput title='3.' value = {note3} onChange={setNote3} viewStyle = {styles.notes}/>
-                    <TouchableOpacity onPress = {onSubmit}>
-                                <Image 
-                                    source={require('../../../assets/images/create.png')} 
-                                    style={styles.image}/>
-                    </TouchableOpacity>                    
-                </ScrollView>
+                    <ScrollView> 
+                        <Text  style={styles.fillRequired}>Please fill the required fields </Text>
+                        <View style={styles.designSquare}>
+                            <FormDatePicker/>
+                            <Text style={styles.input}>Meeting Date:</Text> 
+                        </View>
+                        <Text style={styles.input}>Meeting Hours: </Text> 
+                        <View style={styles.hours}>
+                            <FormInput title=' To:  ' value = {endHour}  onChange={setEndHour}  viewStyle = {styles.meetDesign} />   
+                            <FormInput title='From:' value = {startHour}  onChange={setStartHour}  viewStyle = {styles.meetDesign} />   
+                        </View>
+                        <FormInput title='Place Of Meeting:' value = {placeOfMeeting} onChange={setplaceOfMeeting} viewStyle = {styles.designSquare}/>
+                        <FormParticipantsList initialList = {Pparticipants}/>
+                        <Text  style={styles.note}>   Write your notes here!  </Text>
+                        <FormInput title='1.' value = {note1} onChange={setNote1} viewStyle = {styles.notes}/>
+                        <FormInput title='2.' value = {note2} onChange={setNote2} viewStyle = {styles.notes}/>
+                        <FormInput title='3.' value = {note3} onChange={setNote3} viewStyle = {styles.notes}/>
+                        <TouchableOpacity onPress = {onSubmit}>
+                            <Image source={require('../../../assets/images/create.png')} style={styles.image}/>
+                        </TouchableOpacity>                    
+                    </ScrollView>
             </View>
     );
 };
@@ -54,10 +51,10 @@ const styles = StyleSheet.create({
     },
     header: {
         flexDirection: 'row',
-        backgroundColor:'#455a64',
-        //alignSelf: 'flex-end',
+        backgroundColor:'#8aa9b9',
         justifyContent: 'flex-end',
-
+        borderBottomWidth:5,
+        borderBottomColor:'#2d6886'
     },
     headerStyle: {        
     fontWeight:'bold',
@@ -68,26 +65,13 @@ const styles = StyleSheet.create({
     color:'#263238',
     textAlign:'left'
     },
-    // headerStyle: {
-    //     marginVertical: 20,
-    //     marginHorizontal: 10,
-    //     height: 30,
-    //     fontWeight:'bold',
-    //     fontSize: 22,
-    //     color:'oldlace', 
-    // },
     fillRequired: {
         backgroundColor:'red',        
         flex:1
     },
     note: {
-        //backgroundColor:'#d2c443',      
         alignSelf:'center',
         fontWeight:'bold',
-        //borderBottomWidth: 3,
-        //borderBottomColor:'#d9e3f0',
-
-        //flex:1
     },
     designSquare: {
         flexDirection: 'row',
@@ -96,8 +80,6 @@ const styles = StyleSheet.create({
     }, 
     notes: {
         flexDirection: 'row',
-        //borderBottomWidth: 3,
-        //borderBottomColor:'#d9e3f0',
     }, 
     input: {
         marginVertical: 20,

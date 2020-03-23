@@ -33,10 +33,10 @@ const FormParticipantsList = ({initialList}) => {
                     title = {'Add Participant'}
                     submitInput = {(input)=>submitHandler(input)}
                     closeDialog={()=>{setAddValue(false)}}
-                />
+                    />
                 <Text style={styles.addMates}>Participants: </Text>
             </View>
-            <FlatList 
+            <FlatList
                 data = {listValues}
                 keyExtractor = {(listValue)=> listValue}
                 renderItem = {({item})=><Item style={styles.item} listValue={item}/>}
@@ -56,13 +56,13 @@ const styles = StyleSheet.create({
     participants:{
         borderBottomWidth: 3,
         borderBottomColor:'#d9e3f0',
-        marginVertical: 10,
+        marginVertical: 5,
     },
     addMates:{
         fontSize: 22,
         marginRight: 10,
         marginTop:8,
-        marginBottom:10,
+        marginBottom:5,
         fontWeight:'bold',
     },
     addMatesButton:{
@@ -80,10 +80,11 @@ const styles = StyleSheet.create({
         color:'oldlace'
     },
     item:{
-        fontSize: 18,
+        fontSize: 20,
         marginRight: 10,
         marginBottom:5,
-        color:'black'
+        fontWeight:'bold',
+        color:'#b3d4e5',
     },
     button:{
         marginTop:1,
