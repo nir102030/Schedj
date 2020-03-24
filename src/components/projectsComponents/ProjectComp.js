@@ -12,7 +12,7 @@ const ProjectComponent = ({project}) => {
                 <Text style={styles.text}>{project.name}</Text>
                 <View style={styles.options}>
                     <IndexDetail imageSrc={require('../../../assets/images/edit_logo.png')} navigationScreen= 'EditP' project={project}/>
-                    <IndexDetail imageSrc={require('../../../assets/images/Task.png')} navigationScreen= 'Task' project={project}/>
+                    <IndexDetail imageSrc={require('../../../assets/images/Task.png')} navigationScreen= 'TaskStatus' project={project}/>
                     <IndexDetail imageSrc={require('../../../assets/images/meeting_logo.png')} navigationScreen= 'Meetings' project={project}/>
                     <IndexDetail imageSrc={require('../../../assets/images/calendar_icon1.png')} navigationScreen= 'Calendar' project={project}/>
                 </View>
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
         marginRight:10
     },
     options:{
-        flexDirection:'row'
+        flexDirection:'row',
     },
     TouchableOpacity: {
         marginRight:10

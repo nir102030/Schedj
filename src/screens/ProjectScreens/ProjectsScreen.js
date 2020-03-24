@@ -2,7 +2,9 @@ import React from 'react'
 import { Text, StyleSheet, View, TouchableOpacity, Image} from 'react-native'
 import ProjectsList from '../../components/projectsComponents/ProjectsList'
 
-const ProjectsScreen = ({navigation}) => {    
+
+
+const ProjectsScreen = ({navigation,project}) => {    
     return (
         <View style={styles.container}>
             <ProjectsList style={styles.list}/>
@@ -19,6 +21,9 @@ const styles = StyleSheet.create({
         height:'100%',
         width:'100%',
         backgroundColor: 'lightslategrey'
+    },
+    options:{
+        flexDirection:'row',
     },
     list: {
         flex:9  

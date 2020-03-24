@@ -11,9 +11,11 @@ import EditProjectScreen from './src/screens/ProjectScreens/EditProjectScreen';
 import MeetingsScreen from './src/screens/MeetingScreens/MeetingsScreen';
 import CreateMeetingScreen from './src/screens/MeetingScreens/CreateMeetingScreen';
 import EditMeetingScreen from './src/screens/MeetingScreens/EditMeetingScreen';
-import TaskScreen from './src/screens/TaskScreens/TaskScreen'
+import TaskScreen from './src/screens/TaskScreens/TaskScreen';
+import TaskStatusScreen from './src/screens/TaskScreens/TaskStatusScreen';
 import CreateTaskScreen from './src/screens/TaskScreens/CreateTaskScreen';
 import EditTaskScreen from './src/screens/TaskScreens/EditTaskScreen';
+
 
 const navigator = createStackNavigator({
     Calendar: ProjectCalendarScreen,
@@ -23,7 +25,8 @@ const navigator = createStackNavigator({
     Meetings: MeetingsScreen,
     CreateM: CreateMeetingScreen,
     EditM: EditMeetingScreen,
-    Tasks: TaskScreen,
+    Tasks:TaskScreen,
+    TaskStatus: TaskStatusScreen,
     CreateT: CreateTaskScreen,
     EditT: EditTaskScreen
   },

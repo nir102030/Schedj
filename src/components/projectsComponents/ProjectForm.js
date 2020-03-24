@@ -9,7 +9,9 @@ import FormSubmitButton from '../genericComponents/FormSubmitButton';
 const ProjectForm = ({initialValues, onSubmit}) => {
     //TODO: 1.get the participants list from the reducers/index 
     const [name,setName] = useState(initialValues.name);
-    const [note,setNote]  = useState('');
+    const [note1,setNote1]  = useState('');
+    const [note2,setNote2]  = useState('');
+    const [note3,setNote3]  = useState('');
     const [minForMeeting, setMinForMeeting] = useState(initialValues.minForMeeting);
     const [reminder, setReminder] = useState(initialValues.reminder);
     const Pparticipants = ['Nir', 'Bar','Dor'];
@@ -27,9 +29,9 @@ const ProjectForm = ({initialValues, onSubmit}) => {
                     <FormInput title='Min Participants For Meeting:' value={minForMeeting} onChange = {setMinForMeeting} viewStyle = {styles.minMeet}/> 
                     <FormInput title='Reminder Before Meeting:' value={reminder} onChange = {setReminder} viewStyle = {styles.minMeet}/> 
                     <Text  style={styles.note}>   Write your notes here!  </Text>
-                    <FormInput title='1.' value = {note} onChange={setNote} viewStyle = {styles.notes}/>
-                    <FormInput title='2.' value = {note} onChange={setNote} viewStyle = {styles.notes}/>
-                    <FormInput title='3.' value = {note} onChange={setNote} viewStyle = {styles.notes}/>
+                    <FormInput title='1.' value = {note1} onChange={setNote1} viewStyle = {styles.notes}/>
+                    <FormInput title='2.' value = {note2} onChange={setNote2} viewStyle = {styles.notes}/>
+                    <FormInput title='3.' value = {note3} onChange={setNote3} viewStyle = {styles.notes}/>
                     <Text  style={styles.task}>   *Define your tasks later  </Text>
                     <FormSubmitButton onSubmit = {() => onSubmit(name,minForMeeting)}/>
                 </ScrollView>
@@ -89,10 +91,9 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
     },
     task:{
-        marginTop: 15,
-        //alignSelf:'center',
+        marginTop: 20,
         fontWeight:'bold',
-        color:'#263238'
+        color:'#194d33'
     },
 });
 
