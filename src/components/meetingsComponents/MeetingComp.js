@@ -18,7 +18,7 @@ const MeetingComp = ({navigation,id, pid}) => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor:'lightslategrey',
+        backgroundColor:'#607d8b',
         borderBottomWidth: 3,
         borderBottomColor:'#d9e3f0',
     },

@@ -15,6 +15,8 @@ import TaskScreen from './src/screens/TaskScreens/TaskScreen';
 import TaskStatusScreen from './src/screens/TaskScreens/TaskStatusScreen';
 import CreateTaskScreen from './src/screens/TaskScreens/CreateTaskScreen';
 import EditTaskScreen from './src/screens/TaskScreens/EditTaskScreen';
+import AboutUs from './src/screens/General/AboutUs'
+import Settings from './src/screens/General/Settings'
 
 
 const navigator = createStackNavigator({
@@ -28,7 +30,9 @@ const navigator = createStackNavigator({
     Tasks:TaskScreen,
     TaskStatus: TaskStatusScreen,
     CreateT: CreateTaskScreen,
-    EditT: EditTaskScreen
+    EditT: EditTaskScreen,
+    AboutUs: AboutUs,
+    Settings: Settings
   },
   {
     initialRouteName: 'Projects',
@@ -37,7 +41,7 @@ const navigator = createStackNavigator({
       headerTitleStyle:{
         fontWeight:'bold',
         textAlign:'right',
-        fontSize: 35,
+        fontSize: 38,
         color:'#193c4d',
         flex:1
       }

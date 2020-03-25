@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     },
     list: {
         flex:9,
-        backgroundColor:'lightslategrey'
+        backgroundColor:'#607d8b'
     },
     TouchableOpacity: {
         backgroundColor:'#2b414b',

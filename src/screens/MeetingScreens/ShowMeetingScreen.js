@@ -11,7 +11,7 @@ const ShowMeetingScreen = ({id, pid}) => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor:'lightslategrey'
+        backgroundColor:'#607d8b'
     },
     text: {
         marginVertical: 20,

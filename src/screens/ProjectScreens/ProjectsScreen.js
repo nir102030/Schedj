@@ -8,10 +8,20 @@ const ProjectsScreen = ({navigation,project}) => {
     return (
         <View style={styles.container}>
             <ProjectsList style={styles.list}/>
-            <TouchableOpacity style = {styles.TouchableOpacity}  onPress = {()=>navigation.navigate('CreateP')}>
+            <TouchableOpacity style = {styles.TouchableOpacityAdd}  onPress = {()=>navigation.navigate('CreateP')}>
                 <Image source={require('../../../assets/images/add.png')} style={styles.image}/>
                 <Text style={styles.text}>Add a New Project</Text>
             </TouchableOpacity>
+            <TouchableOpacity style = {styles.TouchableOpacityAbout}  onPress = {()=>navigation.navigate('AboutUs')}>
+                <Image source={require('../../../assets/images/AboutUsIcon.png')} style={styles.image}/>
+                <Text style={styles.text}>About Us</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style = {styles.TouchableOpacitySettings}  onPress = {()=>navigation.navigate('Settings')}>
+                <Image source={require('../../../assets/images/settings.png')} style={styles.image}/>
+                <Text style={styles.text}>Settings</Text>
+            </TouchableOpacity>
+
+
         </View>
     );
 };
@@ -20,7 +30,7 @@ const styles = StyleSheet.create({
     container: {
         height:'100%',
         width:'100%',
-        backgroundColor: 'lightslategrey'
+        backgroundColor: '#607d8b'
     },
     options:{
         flexDirection:'row',
@@ -28,10 +38,21 @@ const styles = StyleSheet.create({
     list: {
         flex:9  
     },
-    TouchableOpacity: {
+    TouchableOpacityAdd: {
         backgroundColor:'#2b414b',
         flex:1,
         flexDirection:'row-reverse'
+    },
+    TouchableOpacityAbout: {
+        backgroundColor:'#375360',
+        flex:1,
+        flexDirection:'row-reverse'
+    },
+    TouchableOpacitySettings: {
+        backgroundColor:'#375360',
+        flex:1,
+        flexDirection:'row-reverse',
+        paddingLeft:3
     },
     image: {
         height:37,

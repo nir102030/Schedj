@@ -46,7 +46,7 @@ const CreateMeetingScreen = ({id, pid, onSubmit}) => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor:'lightslategrey',        
+        backgroundColor:'#607d8b',        
         flex:1
     },
     header: {

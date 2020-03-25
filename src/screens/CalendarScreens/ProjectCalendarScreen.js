@@ -34,7 +34,7 @@ const ProjectCalendarScreen = ({navigation}) => {
 
 const styles = StyleSheet.create({
     container:{
-        backgroundColor:'lightslategrey',
+        backgroundColor:'#607d8b',
         height:'100%'
     },
     text: {
