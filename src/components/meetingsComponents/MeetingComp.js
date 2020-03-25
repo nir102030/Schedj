@@ -1,5 +1,5 @@
 import React from 'react'
-import {Text, StyleSheet, View,TouchableOpacity } from 'react-native'
+import {Text, StyleSheet, View,TouchableOpacity, Image } from 'react-native'
 import {withNavigation} from 'react-navigation';
 
 
@@ -7,9 +7,10 @@ const MeetingComp = ({navigation,id, pid}) => {
     return (
         <View style={styles.container}>
                 <Text style={styles.text}>{pid} Project - Meeting {id}</Text>
-                <Text style={styles.text}> Meeting Date</Text>
+                <Text style={styles.textDate}> Meeting Date</Text>
                 <TouchableOpacity style = {styles.TouchableOpacity}  onPress = {()=>navigation.navigate('Tasks')}>
-                    <Text style={styles.inside}> Add Task </Text>
+                    <Image source={require('../../../assets/images/addTask.png')} style={styles.imageAdd}/>
+                    <Text style={styles.inside}>Add Task</Text>
                 </TouchableOpacity>
                 <Text></Text>
         </View>    
@@ -35,34 +36,37 @@ const styles = StyleSheet.create({
         flex:1,
         flexDirection:'row-reverse'
     }, 
+    textDate: {
+        marginVertical: 10,
+        marginHorizontal: 12,
+        height: 30,
+        fontWeight:'bold',
+        fontSize: 18,
+        color:'black',
+        flex:1,
+        flexDirection:'row-reverse'
+    }, 
     inside:{
-        marginHorizontal: 15,
+        marginHorizontal: 10,
         fontSize:20,
         fontWeight:'bold',
         color:'black',
+        alignSelf:'center'
     },
     TouchableOpacity: {
         marginVertical: 5,
-        backgroundColor:'white',
+        backgroundColor:'#91a5af',
         flex:1,
         flexDirection:'row-reverse',
         alignSelf:'center',
         borderRadius: 20,
     },
-    image: {
-        height:50,
-        width:50,
+    imageAdd: {
+        height:35,
+        width:35,
         marginRight: 15,
         alignSelf:'center'
-    },
-    Date:{
-        backgroundColor:'#607d8b',
-        marginHorizontal: 5,
-        height: 60,
-        fontWeight:'bold',
-        fontSize: 20,
-        color:'black'
-    },
+    }
 });
 
 export default withNavigation(MeetingComp);

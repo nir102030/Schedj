@@ -7,9 +7,6 @@ const TaskComp = ({navigation,id, pid}) => {
     return (
         <View style={styles.container}>
                 <Text style={styles.text}> Task {id}</Text>
-                <TouchableOpacity style = {styles.TouchableOpacity}  onPress = {()=>navigation.navigate('TaskStatus')}>
-                    <Text style={styles.inside}> Add Task </Text>
-                </TouchableOpacity>
         </View>    
     )
 };
