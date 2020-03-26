@@ -1,5 +1,5 @@
 import React from 'react'
-import {Text, StyleSheet, View,ImageBackground,Button } from 'react-native'
+import {Text, StyleSheet, View,ImageBackground,Button,Image } from 'react-native'
 import ApiCalendar from 'react-google-calendar-api';
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import {withNavigation} from 'react-navigation';
@@ -10,7 +10,8 @@ const ProjectCalendarScreen = ({navigation}) => {
     const project = navigation.getParam('project');
     return <View style = {styles.container}>
                 <View style={styles.header}>
-                    <Text style={styles.text}>{project} Project Calendar</Text>
+                    <Text style={styles.text}>{project} Project Calendar </Text>
+                    <Image source={require('../../../assets/images/calendar_icon1.png')} style={styles.image}/>
                 </View>
             {/* <View>
                     <Button
@@ -54,6 +55,12 @@ const styles = StyleSheet.create({
     container:{
         backgroundColor:'#607d8b',
         height:'100%'
+    },
+    image: {
+        height:50,
+        width:50,
+        marginRight: 15,
+        alignSelf:'center'
     },
     text: {
         fontWeight:'bold',
