@@ -92,13 +92,13 @@ const styles = StyleSheet.create({
         borderBottomColor:'#2d6886'
     },
     headerStyle: {        
-    fontWeight:'bold',
-    fontSize: 30,
-    marginVertical: 10,
-    marginHorizontal:34,
-    alignSelf:'center',
-    color:'#263238',
-    textAlign:'left'
+        fontWeight:'bold',
+        fontSize: 30,
+        marginVertical: 10,
+        marginHorizontal:34,
+        alignSelf:'center',
+        color:'#263238',
+        textAlign:'left'
     },
     subHeader: {
         marginVertical: 12,

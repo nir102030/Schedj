@@ -3,7 +3,7 @@ import {Text, StyleSheet, View, FlatList,Image,ScrollView} from 'react-native';
 import {withNavigation} from 'react-navigation';
 import TaskComp from './TaskComp';
 
-const TaskList = ({navigation,style, pid}) => {
+const TaskList = ({style, pid}) => {
     const taskList = ['1', '2', '3']
     const [tasks, setTasks] = useState(taskList);
 

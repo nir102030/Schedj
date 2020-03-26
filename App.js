@@ -17,6 +17,8 @@ import CreateTaskScreen from './src/screens/TaskScreens/CreateTaskScreen';
 import EditTaskScreen from './src/screens/TaskScreens/EditTaskScreen';
 import AboutUs from './src/screens/General/AboutUs'
 import Settings from './src/screens/General/Settings'
+import OpenScreen from './src/screens/General/OpenScreen'
+
 
 
 const navigator = createStackNavigator({
@@ -32,7 +34,8 @@ const navigator = createStackNavigator({
     CreateT: CreateTaskScreen,
     EditT: EditTaskScreen,
     AboutUs: AboutUs,
-    Settings: Settings
+    Settings: Settings,
+    OpenS:OpenScreen
   },
   {
     initialRouteName: 'Projects',

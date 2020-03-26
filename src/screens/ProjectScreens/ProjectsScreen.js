@@ -4,7 +4,7 @@ import ProjectsList from '../../components/projectsComponents/ProjectsList'
 
 
 
-const ProjectsScreen = ({navigation,project}) => {    
+const ProjectsScreen = ({navigation}) => {    
     return (
         <View style={styles.container}>
             <ProjectsList style={styles.list}/>
