@@ -12,6 +12,7 @@ const MeetingComp = ({navigation,id, pid}) => {
                     <Image source={require('../../../assets/images/addTask.png')} style={styles.imageAdd}/>
                     <Text style={styles.addTask}>Add Task</Text>
                 </TouchableOpacity>
+                <Text></Text>
         </View>    
     )
 };
