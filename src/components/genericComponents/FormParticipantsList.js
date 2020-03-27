@@ -3,21 +3,20 @@ import {Text, StyleSheet, View, TouchableOpacity} from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import DialogInput from '../../../node_modules/react-native-dialog-input';
 
-const FormParticipantsList = ({initialList}) => {
-    const [listValues, setListValues] = useState(initialList);
-    const [addValue,setAddValue] = useState(false);
+const FormParticipantsList = ({participants, setParticipant}) => {
+    const [showDialog,setShowDialog] = useState(false);
 
     const submitHandler = (input)=>{
-        const newList = [...listValues,input];
-        input==''? setListValues(listValues):
-        setListValues(newList);
-        setAddValue(false);
+        const newList = [...participants,input];
+        input==''? setParticipant(participants):
+        setParticipant(newList);
+        setShowDialog(false);
     }
 
-    function Item({ listValue }) {
+    function Item({ participants }) {
         return (
           <View >
-            <Text style={styles.item}>{listValue}</Text>
+            <Text style={styles.item}>{participants}</Text>
           </View>
         );
     }
@@ -25,21 +24,21 @@ const FormParticipantsList = ({initialList}) => {
     return (
         <View style={styles.participants}>
             <View style={styles.allinonerow} >
-                <TouchableOpacity style= {styles.button}  onPress = {()=>setAddValue(true)}>
+                <TouchableOpacity style= {styles.button}  onPress = {()=>setShowDialog(true)}>
                     <Text style = {styles.addMatesButton}>          Add Participants</Text>
                 </TouchableOpacity>
                 <DialogInput 
-                    isDialogVisible = {addValue} 
+                    isDialogVisible = {showDialog} 
                     title = {'Add Participant'}
                     submitInput = {(input)=>submitHandler(input)}
-                    closeDialog={()=>{setAddValue(false)}}
+                    closeDialog={()=>{setShowDialog(false)}}
                     />
                 <Text style={styles.addMates}>Participants: </Text>
             </View>
             <FlatList
-                data = {listValues}
-                keyExtractor = {(listValue)=> listValue}
-                renderItem = {({item})=><Item style={styles.item} listValue={item}/>}
+                data = {participants}
+                keyExtractor = {(participants)=> participants}
+                renderItem = {({item})=><Item style={styles.item} participants={item}/>}
             />
         </View>
     );

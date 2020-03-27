@@ -4,7 +4,7 @@ import ProjectComp from './ProjectComp';
 import { connect } from 'react-redux';
 
 const ProjectList = ({projects, style }) => {
-    console.log(projects);
+
     function Item({ item }) {
         return (
             <View style={styles.item}>
@@ -16,7 +16,7 @@ const ProjectList = ({projects, style }) => {
         <View style={style}>
             <FlatList
                 data = {projects}
-                keyExtractor={(project)=> project.id}
+                keyExtractor={(project) => `list-project-${project.id}`}
                 renderItem= {({item}) => <Item item={item}/>}                    
             />
         </View>

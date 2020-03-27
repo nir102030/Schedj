@@ -6,35 +6,67 @@ import FormSubmitButton from '../genericComponents/FormSubmitButton';
 
 
 
-const ProjectForm = ({initialValues, onSubmit}) => {
-    //TODO: 1.get the participants list from the reducers/index 
-    const [name,setName] = useState(initialValues.name);
-    const [note1,setNote1]  = useState('');
-    const [note2,setNote2]  = useState('');
-    const [note3,setNote3]  = useState('');
-    const [minForMeeting, setMinForMeeting] = useState(initialValues.minForMeeting);
-    const [reminder, setReminder] = useState(initialValues.reminder);
-    const Pparticipants = ['Nir', 'Bar','Dor'];
+const ProjectForm = ({oldProject, onSubmit}) => {
+    const [project,setProject] = useState(oldProject);
+
+    const handleNoteList = (note, index) => {
+        const newNotes = [...project.notes];
+        newNotes[index] = note;
+        setProject({...project, "notes":newNotes});
+    }
 
     return (
             <View style= {styles.container}>
                     <View style={styles.header}>
-                        <Text style={styles.text}>{name} Project</Text>
+                        <Text style={styles.text}>{project.name}</Text>
                         <Image source={require('../../../assets/images/project.png')} style={styles.image}/>
                     </View>
                     <ScrollView>
-                    <Text  style={styles.fillRequired}>Please fill the required fields </Text>
-                    <FormInput title='Project Name:' value = {name} onChange={setName} viewStyle = {styles.projectName}/>
-                    <FormParticipantsList initialList = {Pparticipants}/>
-                    <FormInput title='Min Participants For Meeting:' value={minForMeeting} onChange = {setMinForMeeting} viewStyle = {styles.minMeet}/> 
-                    <FormInput title='Reminder Before Meeting:' value={reminder} onChange = {setReminder} viewStyle = {styles.minMeet}/> 
-                    <Text  style={styles.note}>   Write your notes here!  </Text>
-                    <FormInput title='1.' value = {note1} onChange={setNote1} viewStyle = {styles.notes}/>
-                    <FormInput title='2.' value = {note2} onChange={setNote2} viewStyle = {styles.notes}/>
-                    <FormInput title='3.' value = {note3} onChange={setNote3} viewStyle = {styles.notes}/>
-                    <Text  style={styles.task}>   *Define your tasks later  </Text>
-                    <FormSubmitButton onSubmit = {() => onSubmit(name,minForMeeting)}/>
-                </ScrollView>
+                        <Text  style={styles.fillRequired}>Please fill the required fields </Text>
+                        <FormInput 
+                            title='Project Name:' 
+                            value = {project.name} 
+                            onChange={(name) => setProject({...project, "name":name})} 
+                            viewStyle = {styles.projectName}
+                        />
+                        <FormParticipantsList 
+                            participants = {project.participants} 
+                            setParticipant = {(participants) => setProject({...project, "participants": participants})}
+                        />
+                        <FormInput 
+                            title='Min Participants For Meeting:' 
+                            value={project.minForMeeting} 
+                            onChange = {(minForMeeting) => setProject({...project, "minForMeeting": minForMeeting})} 
+                            viewStyle = {styles.minMeet}
+                        /> 
+                        <FormInput 
+                            title='Reminder Before Meeting:' 
+                            value={project.reminder} 
+                            onChange = {(reminder) => setProject({...project, "reminder":reminder})} 
+                            viewStyle = {styles.minMeet}
+                        /> 
+                        <Text  style={styles.note}>   Write your notes here!  </Text>
+                        <FormInput 
+                            title='1.' 
+                            value = {project.notes[0]} 
+                            onChange={(note) => handleNoteList(note,0)} 
+                            viewStyle = {styles.notes}
+                        />
+                        <FormInput 
+                            title='2.' 
+                            value = {project.notes[1]} 
+                            onChange={(note) => handleNoteList(note,1)} 
+                            viewStyle = {styles.notes}
+                        />
+                        <FormInput 
+                            title='3.' 
+                            value = {project.notes[2]} 
+                            onChange={(note) => handleNoteList(note,2)} 
+                            viewStyle = {styles.notes}
+                        />
+                        <Text  style={styles.task}>   *Define your tasks later  </Text>
+                        <FormSubmitButton onSubmit = {() => onSubmit(project)}/>
+                    </ScrollView>
             </View>
     );
 };

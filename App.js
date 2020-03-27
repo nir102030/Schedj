@@ -1,6 +1,7 @@
 import { createAppContainer} from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import React from 'react';
+import { YellowBox } from 'react-native'
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import reducers from './src/reducers';
@@ -20,6 +21,11 @@ import Settings from './src/screens/General/Settings'
 import OpenScreen from './src/screens/General/OpenScreen'
 
 
+
+//This function ignores unresolved warnings
+YellowBox.ignoreWarnings([
+  'VirtualizedLists should never be nested',//This warning will be ignored.
+]);
 
 const navigator = createStackNavigator({
     Calendar: ProjectCalendarScreen,

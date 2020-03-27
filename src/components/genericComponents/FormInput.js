@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         backgroundColor:'#b1c2ca',
         borderRadius:5,
         flex: 1,
-        fontSize:20,
+        fontSize:16,
         fontWeight:'bold',
     }
 });

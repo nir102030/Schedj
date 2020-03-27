@@ -1,13 +1,13 @@
-export const addProject = (name,minForMeeting) => {
+export const addProject = (project) => {
     return {
         type: 'add_project',
-        payload: {name,minForMeeting}
+        payload: {project}
     };
 };
 
-export const editProject = (id, name , minForMeeting) => {
+export const editProject = (project) => {
     return {
         type: 'edit_project',
-        payload: {id,name,minForMeeting}
+        payload: {project}
     };
 };

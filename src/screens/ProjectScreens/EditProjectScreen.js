@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {View} from 'react-native';
 import ProjectForm from '../../components/projectsComponents/ProjectForm';
 import * as actions from '../../actions';
@@ -6,19 +6,15 @@ import { connect } from 'react-redux';
 
 const EditProjectScreen = ({navigation, editProject, projects}) => {
     const id = navigation.getParam('id');
-    const project = projects.find(
-        project => project.id === id
-    );
-
+    const project = projects.find((project) => project.id === id);
+    
     return (
         <View>
             <ProjectForm 
-                initialValues = {{
-                    name: project.name, 
-                    minForMeeting: project.minForMeeting, 
-                    participants: project.participants}}
-                onSubmit = {(name, minForMeeting) => {
-                    editProject(id,name,minForMeeting);
+                oldProject = {project}
+                onSubmit = {(project) => {
+                    console.log(project);
+                    editProject(project);
                 }}  
             />
         </View>
