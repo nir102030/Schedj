@@ -14,13 +14,6 @@ const IndexDetail = ({navigation, imageSrc, navigationScreen, project}) => {
 };
 
 const styles = StyleSheet.create({
-    text: {
-        fontWeight:'bold',
-        fontSize: 20,
-        color:'oldlace',
-        marginBottom:10,
-        marginRight:10
-    },
     TouchableOpacity: {
         marginRight:10
     },

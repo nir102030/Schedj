@@ -7,7 +7,7 @@ const FormParticipantsList = ({initialList}) => {
     const [listValues, setListValues] = useState(initialList);
     const [addValue,setAddValue] = useState(false);
 
-    const submitHandler = (input)=>{
+    const submitHandler = (input)=> {
         const newList = [...listValues,input];
         input==''? setListValues(listValues):
         setListValues(newList);
@@ -26,14 +26,14 @@ const FormParticipantsList = ({initialList}) => {
         <View style={styles.participants}>
             <View style={styles.allinonerow} >
                 <TouchableOpacity style= {styles.button}  onPress = {()=>setAddValue(true)}>
-                    <Text style = {styles.addMatesButton}>          Add Participants</Text>
+                    <Text style = {styles.addMatesButton}>Add Participants</Text>
                 </TouchableOpacity>
                 <DialogInput 
                     isDialogVisible = {addValue} 
                     title = {'Add Participant'}
                     submitInput = {(input)=>submitHandler(input)}
                     closeDialog={()=>{setAddValue(false)}}
-                    />
+                />
                 <Text style={styles.addMates}>Participants: </Text>
             </View>
             <FlatList
@@ -46,45 +46,20 @@ const FormParticipantsList = ({initialList}) => {
 }
 
 const styles = StyleSheet.create({
-    container:{
-        width: '100%',
-        height:'100%'
-    },
-    allinonerow:{
-        flexDirection: 'row',
-    },
-    participants:{
-        borderBottomWidth: 3,
-        borderBottomColor:'#d9e3f0',
-        marginVertical: 5,
-    },
-    addMates:{
-        fontSize: 22,
-        marginRight: 10,
-        marginTop:8,
-        marginBottom:5,
-        fontWeight:'bold',
-    },
-    addMatesButton:{
-        fontSize: 16,
-        marginRight: 10,
-        marginTop:8,
-        marginBottom:10,
-        fontWeight:'bold',
-        color: 'black'
-    },
-    header:{
-        fontWeight:'bold',
-        fontSize: 24,
-        alignSelf:'center',
-        color:'oldlace'
-    },
     item:{
         fontSize: 20,
         marginRight: 10,
         marginBottom:5,
         fontWeight:'bold',
         color:'#b3d4e5',
+    },
+    participants:{
+        borderBottomWidth: 3,
+        borderBottomColor:'#d9e3f0',
+        marginVertical: 5,
+    },
+    allinonerow:{
+        flexDirection: 'row',
     },
     button:{
         marginTop:1,
@@ -97,6 +72,21 @@ const styles = StyleSheet.create({
         borderRadius:50,
         alignSelf:'center',
         flex: 1,
+    },
+    addMatesButton:{
+        fontSize: 16,
+        marginRight: 10,
+        marginTop:8,
+        marginBottom:10,
+        fontWeight:'bold',
+        color: 'black'
+    },
+    addMates:{
+        fontSize: 22,
+        marginRight: 10,
+        marginTop:8,
+        marginBottom:5,
+        fontWeight:'bold',
     }
 });
 

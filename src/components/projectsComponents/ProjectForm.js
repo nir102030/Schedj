@@ -44,9 +44,13 @@ const styles = StyleSheet.create({
         backgroundColor:'#607d8b',
         height:'100%'
     },
-    fillRequired: {
-        backgroundColor:'red',        
-        flex:1
+    header:{
+        flexDirection:'row',
+        flexWrap:'wrap',
+        borderBottomWidth:5,
+        borderBottomColor:'#2d6886',
+        backgroundColor:'#8aa9b9',
+        justifyContent: 'flex-end',
     },
     text:{
         fontWeight:'bold',
@@ -64,13 +68,9 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-end',
         justifyContent: 'flex-end',
     },
-    header:{
-        flexDirection:'row',
-        flexWrap:'wrap',
-        borderBottomWidth:5,
-        borderBottomColor:'#2d6886',
-        backgroundColor:'#8aa9b9',
-        justifyContent: 'flex-end',
+    fillRequired: {
+        backgroundColor:'red',        
+        flex:1
     },
     projectName: {
         flexDirection: 'row',
@@ -83,13 +83,13 @@ const styles = StyleSheet.create({
         borderBottomColor:'#d9e3f0',  
         marginBottom:10 
     },
-    notes: {
-        flexDirection: 'row',
-    }, 
     note: {
         alignSelf:'center',
         fontWeight:'bold',
     },
+    notes: {
+        flexDirection: 'row',
+    }, 
     task:{
         marginTop: 20,
         fontWeight:'bold',

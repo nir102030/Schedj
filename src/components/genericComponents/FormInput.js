@@ -4,7 +4,7 @@ import {View, Text, TextInput, StyleSheet} from 'react-native';
 const FormInput = ({title, value, onChange, viewStyle}) => {
     return(
             <View style={viewStyle}>
-                <TextInput style={styles.input} placeholder={value} value = {value} onChangeText= {onChange}/>
+                <TextInput style={styles.input} placeholder={value} value={value} onChangeText={onChange}/>
                 <Text style={styles.text}>{title} </Text> 
             </View>
         );

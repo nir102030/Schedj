@@ -3,7 +3,7 @@ import {Text, StyleSheet, View, FlatList,Image,ScrollView} from 'react-native';
 import {withNavigation} from 'react-navigation';
 import MeetingComp from './MeetingComp';
 
-const MeetingsList = ({navigation,style, pid}) => {
+const MeetingsList = ({style, pid}) => {
     const meetingsList = ['1', '2', '3']
     const [meetings, setMeetings] = useState(meetingsList);
 
@@ -15,7 +15,7 @@ const MeetingsList = ({navigation,style, pid}) => {
         );
     }
     return (
-        <View style = {style}>
+        <View >
             <ScrollView>
                 <View style={styles.header}>
                     <Text style={styles.text}>{pid} Project Meetings</Text>
@@ -36,14 +36,6 @@ const styles = StyleSheet.create({
         padding:3,
         marginVertical: 10
     },
-    image:{
-        marginVertical:10,
-        height:60,
-        width:60,
-        borderRadius:5,
-        marginRight: 15,
-        alignSelf:'center'
-    },
     header:{
         flexDirection:'row', 
         flexWrap:'wrap',
@@ -58,6 +50,14 @@ const styles = StyleSheet.create({
         marginHorizontal:34,
         alignSelf:'center',
         color:'#263238',
+    },
+    image:{
+        marginVertical:10,
+        height:60,
+        width:60,
+        borderRadius:5,
+        marginRight: 15,
+        alignSelf:'center'
     }
 });
 
