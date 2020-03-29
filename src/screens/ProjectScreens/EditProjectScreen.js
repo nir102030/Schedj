@@ -13,7 +13,6 @@ const EditProjectScreen = ({navigation, editProject, projects}) => {
             <ProjectForm 
                 oldProject = {project}
                 onSubmit = {(project) => {
-                    console.log(project);
                     editProject(project);
                 }}  
             />

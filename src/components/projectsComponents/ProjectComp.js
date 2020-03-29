@@ -39,10 +39,7 @@ const styles = StyleSheet.create({
     },
     options:{
         flexDirection:'row',
-    },
-    TouchableOpacity: {
-        marginRight:10
-    },
+    }
 });
 
 export default withNavigation(ProjectComponent);
