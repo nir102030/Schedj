@@ -44,7 +44,7 @@ const navigator = createStackNavigator({
     OpenS:OpenScreen
   },
   {
-    initialRouteName: 'Projects',
+    initialRouteName: 'OpenS',
     defaultNavigationOptions: {
       title: 'Schedj',
       headerTitleStyle:{

@@ -21,13 +21,13 @@ const styles = StyleSheet.create({
     },
     TouchableOpacity: {
         backgroundColor:'#2b414b',
-        flex:1,
         flexDirection:'row-reverse'
+
     },
     backgroundimage: {
-        height:730,
+        height:'100%',
         paddingBottom:20,
-        width:510,
+        width:'100%',
         alignSelf:'center'
     },
     image: {

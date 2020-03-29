@@ -5,7 +5,7 @@ import * as actions from '../../actions';
 import { connect } from 'react-redux';
 
 const CreateProjectScreen = ({navigation, addProject}) => {
-    const project = {id: '', name:'', minForMeeting: '', participants:[], reminder: '' ,notes: ['somthing','','']}
+    const project = {id: '', name:'', minForMeeting: '', participants:[], reminder: '' ,notes: ['','','']}
 
     return (
         <View>
