@@ -1,11 +1,10 @@
 import React from 'react'
-import { Text, StyleSheet, View  } from 'react-native'
-import {withNavigation} from 'react-navigation';
+import { Text, StyleSheet, View, TouchableOpacity  } from 'react-native'
 import ProjectStatus from './ProjectStatus';
 import IndexDetail from './IndexDetail';
+import {AntDesign} from '@expo/vector-icons';
 
-const ProjectComponent = ({project}) => {
-
+const ProjectComponent = ({project, deleteProject}) => {
     return (
         <View style={styles.container}>
             <View style={{flexDirection:'column'}}>
@@ -17,6 +16,9 @@ const ProjectComponent = ({project}) => {
                     <IndexDetail imageSrc={require('../../../assets/images/calendar_icon1.png')} navigationScreen= 'Calendar' project={project}/>
                 </View>
             </View>
+            <TouchableOpacity style = {styles.TouchableOpacity} onPress = {() => deleteProject(project)}>
+                <AntDesign name = 'delete' size= {35}/>
+            </TouchableOpacity>
             <ProjectStatus style={styles.status}/>
         </View>
     )
@@ -42,4 +44,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default withNavigation(ProjectComponent);
+export default ProjectComponent;

@@ -2,13 +2,14 @@ import React from 'react';
 import {StyleSheet, View, FlatList} from 'react-native';
 import ProjectComp from './ProjectComp';
 import { connect } from 'react-redux';
+import * as actions from '../../actions';
 
-const ProjectList = ({projects, style }) => {
+const ProjectList = ({projects, style, deleteProject }) => {
 
     function Item({ item }) {
         return (
             <View style={styles.item}>
-                <ProjectComp project={item}/>
+                <ProjectComp project={item} deleteProject={(project) => deleteProject({project})}/>
             </View>
         );
     }
@@ -34,4 +35,4 @@ const mapStateToProps = state => {
     return { projects: state.projects };
 };
 
-export default connect(mapStateToProps)(ProjectList);
+export default connect(mapStateToProps,actions)(ProjectList);

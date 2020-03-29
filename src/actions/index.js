@@ -11,3 +11,10 @@ export const editProject = (project) => {
         payload: {project}
     };
 };
+
+export const deleteProject = (project) => {
+    return {
+        type: 'delete_project',
+        payload: project
+    }
+}

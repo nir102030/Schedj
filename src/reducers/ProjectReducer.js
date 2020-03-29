@@ -1,4 +1,4 @@
-export default (state = [], action) => {
+export default (state = [{'id':'1', 'name':'Test'}], action) => {
     switch (action.type) {
         case 'add_project':
             return ( [
@@ -19,6 +19,8 @@ export default (state = [], action) => {
                     ?action.payload.project
                     :project
             });
+        case 'delete_project':
+            return state.filter((project) => project.id != action.payload.project.id);
         default:
             return state;
     }
