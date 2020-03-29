@@ -6,7 +6,7 @@ import {withNavigation} from 'react-navigation';
 const TaskComp = ({navigation,id, pid}) => {
     return (
         <View style={styles.container}>
-                <Text style={styles.text}> Task {id}</Text>
+                <Text style={styles.text}>{id}</Text>
         </View>    
     )
 };

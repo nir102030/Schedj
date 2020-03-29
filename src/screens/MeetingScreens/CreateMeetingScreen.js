@@ -16,8 +16,8 @@ const CreateMeetingScreen = ({id, pid, onSubmit}) => {
     return (
             <View style={styles.container}> 
                 <View style={styles.header}>
-                    <Text style={styles.headerStyle}>-  Meeting {id} </Text>
-                    <Text style={styles.headerStyle}>Project{pid}</Text>
+                    <Text style={styles.headerStyle}>- Meeting 4 </Text>
+                    <Text style={styles.headerStyle}>Final Project </Text>
                 </View>
                     <ScrollView> 
                         <Text  style={styles.fillRequired}>Please fill the required fields </Text>
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     fontWeight:'bold',
     fontSize: 30,
     marginVertical: 10,
-    marginHorizontal:34,
+    //marginHorizontal:34,
     alignSelf:'center',
     color:'#263238',
     textAlign:'left'

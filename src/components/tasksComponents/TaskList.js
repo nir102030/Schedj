@@ -4,7 +4,7 @@ import {withNavigation} from 'react-navigation';
 import TaskComp from './TaskComp';
 
 const TaskList = ({style, pid}) => {
-    const taskList = ['1', '2', '3']
+    const taskList = ['Create Presentation', 'Screenshots', 'Plan Future Development']
     const [tasks, setTasks] = useState(taskList);
 
     function Item({ id }) {
