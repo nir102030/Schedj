@@ -3,7 +3,6 @@ import {Text, StyleSheet, View,ImageBackground,Button,Image } from 'react-native
 import ApiCalendar from 'react-google-calendar-api';
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import {withNavigation} from 'react-navigation';
-import FlashMessage from "react-native-flash-message";
 import { showMessage, hideMessage } from "react-native-flash-message";
 
 const ProjectCalendarScreen = ({navigation}) => {
@@ -13,7 +12,7 @@ const ProjectCalendarScreen = ({navigation}) => {
                     <Text style={styles.text}>{project} Project Calendar </Text>
                     <Image source={require('../../../assets/images/calendar_icon1.png')} style={styles.image}/>
                 </View>
-            {/* <View>
+            <View>
                     <Button
                         onPress={() => {
                             showMessage({
@@ -25,7 +24,7 @@ const ProjectCalendarScreen = ({navigation}) => {
                         title="Color Details"
                         color="#841584"
                     />
-            </View> */}
+            </View>
 
             <Calendar markedDates={{'2020-02-25':{selected: true, marked: true, selectedColor: 'green'},
                                     '2020-02-19':{selected: true, marked: true, selectedColor: 'green'},

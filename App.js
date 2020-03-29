@@ -5,6 +5,7 @@ import { YellowBox } from 'react-native'
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import reducers from './src/reducers';
+import FlashMessage from "react-native-flash-message";
 import ProjectCalendarScreen from './src/screens/CalendarScreens/ProjectCalendarScreen';
 import ProjectsScreen from './src/screens/ProjectScreens/ProjectsScreen';
 import CreateProjectScreen from './src/screens/ProjectScreens/CreateProjectScreen';
@@ -49,7 +50,7 @@ const navigator = createStackNavigator({
       title: 'Schedj',
       headerTitleStyle:{
         fontWeight:'bold',
-        textAlign:'right',
+        textAlign:'center',
         fontSize: 38,
         color:'#193c4d',
         flex:1
@@ -57,10 +58,12 @@ const navigator = createStackNavigator({
     }
   }
 );
+
 const App =  createAppContainer(navigator);
 
 export default ()=>{
   return <Provider store = { createStore (reducers) } >
     <App/>
+    <FlashMessage position="top" />
   </Provider>
 }
