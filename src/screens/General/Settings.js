@@ -3,7 +3,6 @@ import {View, Text, StyleSheet,CheckBox,Image} from 'react-native';
 import FormInput from '../../components/genericComponents/FormInput';
 
 
-
 const Settings = ({pid}) => {
     const [checked,setChecked]  = useState(checked);
     const [edit,setEdit] = useState('');

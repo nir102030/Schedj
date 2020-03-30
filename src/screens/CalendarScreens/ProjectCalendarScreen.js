@@ -1,5 +1,5 @@
 import React from 'react'
-import {Text, StyleSheet, View,ImageBackground,Button,Image } from 'react-native'
+import {Text, StyleSheet, View,ImageBackground,Button,Image,TouchableOpacity } from 'react-native'
 import ApiCalendar from 'react-google-calendar-api';
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import {withNavigation} from 'react-navigation';
@@ -16,37 +16,30 @@ const ProjectCalendarScreen = ({navigation}) => {
                     <Button
                         onPress={() => {
                             showMessage({
-                                message: "Simple message",
-                                description: "Simple message",
+                                message: "Calender Colors",
+                                description: "Green-Available   Yellow-Waiting  Red-Scheduled    Grey-Busy",
                                 type: "info",
+                                color:"black"
+                                
                             });
                         }}
                         title="Color Details"
-                        color="#841584"
+                        color="#678b79"
+
                     />
             </View>
+            <Calendar />
+            
+            
+            {/* the code below not going to be here in the future, just help to build the screens */}
 
-            <Calendar markedDates={{'2020-02-25':{selected: true, marked: true, selectedColor: 'green'},
-                                    '2020-02-19':{selected: true, marked: true, selectedColor: 'green'},
-                                    '2020-02-18':{selected: true, marked: true, selectedColor: 'orange'},
-                                    '2020-02-16':{selected: true, marked: true, selectedColor: 'green'},
-                                    '2020-02-09':{selected: true, marked: true, selectedColor: 'orange'},
-                                    '2020-02-10':{selected: true, marked: true, selectedColor: 'green'},
-                                    '2020-02-13':{selected: true, marked: true, selectedColor: 'green'},
-                                    '2020-02-02':{selected: true, marked: true, selectedColor: 'green'},
-                                    '2020-02-03':{selected: true, marked: true, selectedColor: 'green'},
-                                    '2020-02-05':{selected: true, marked: true, selectedColor: 'green'},
-                                    '2020-02-06':{selected: true, marked: true, selectedColor: 'orange'},
-                                    '2020-02-17':{selected: true, marked: true, selectedColor: 'green'},
-                                    '2020-02-23':{selected: true, marked: true, selectedColor: 'orange'},
-                                    '2020-02-24':{selected: true, marked: true, selectedColor: 'green'},
-                                    '2020-02-11':{selected: true, marked: true, selectedColor: 'red'},
-                                    '2020-02-12':{selected: true, marked: true, selectedColor: 'red'},
-                                    '2020-02-20':{selected: true, marked: true, selectedColor: 'red'},
-                                    '2020-02-26':{selected: true, marked: true, selectedColor: 'red'},
-                                    '2020-02-27':{selected: true, marked: true, selectedColor: 'red'},
-                                    '2020-02-04':{selected: true, marked: true, selectedColor: 'red'},
-                                    '2020-02-27':{selected: true, marked: true, selectedColor: 'red'}}}/>
+            <TouchableOpacity style={styles.TouchableOpacity}  onPress = {()=>navigation.navigate('InviteP')}>
+                <Text style={styles.test}>New Project Invitation</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.TouchableOpacity}  onPress = {()=>navigation.navigate('InviteM')}>
+                <Text style={styles.test}>New Meeting Invitation</Text>
+            </TouchableOpacity>
     </View>
 };
 
@@ -70,6 +63,15 @@ const styles = StyleSheet.create({
         color:'#263238',
         textAlign:'left',
     },
+    test: {
+        fontWeight:'bold',
+        fontSize: 30,
+        marginVertical: 10,
+        marginHorizontal:34,
+        alignSelf:'center',
+        color:'white',
+        textAlign:'left',
+    },
     header: {
         flexDirection: 'row',
         backgroundColor:'#8aa9b9',
@@ -77,6 +79,11 @@ const styles = StyleSheet.create({
         borderBottomWidth:5,
         borderBottomColor:'#2d6886'
     },
+    TouchableOpacity: {
+        backgroundColor:'#2b414b',
+        flex:1,
+        flexDirection:'row-reverse'
+    }
 });
 
 export default withNavigation(ProjectCalendarScreen);

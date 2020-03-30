@@ -18,7 +18,7 @@ const CreateTaskScreen = ({pid,onSubmit}) => {
             <TouchableOpacity onPress = {onSubmit}>
                 <Image source={require('../../../assets/images/create.png')} style={styles.image}/>
             </TouchableOpacity> 
-            <Image source={require('../../../assets/images/schedj.png')} style={styles.schedj}/> 
+            <Image source={require('../../../assets/images/schedjTry.png')} style={styles.schedj}/> 
         </View>
 
     );

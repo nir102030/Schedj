@@ -18,8 +18,8 @@ const styles = StyleSheet.create({
         marginRight:10
     },
     image: {
-        height:50,
-        width:50,
+        height:47,
+        width:47,
         marginHorizontal:1
     }
 });

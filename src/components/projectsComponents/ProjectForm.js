@@ -99,6 +99,7 @@ const styles = StyleSheet.create({
         width:60,
         alignSelf: 'flex-end',
         justifyContent: 'flex-end',
+        marginHorizontal:10
     },
     fillRequired: {
         backgroundColor:'red',        

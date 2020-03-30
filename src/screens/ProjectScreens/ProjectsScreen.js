@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, StyleSheet, View, TouchableOpacity, Image} from 'react-native'
 import ProjectsList from '../../components/projectsComponents/ProjectsList'
-
+import { Header } from 'react-native/Libraries/NewAppScreen';
 
 
 const ProjectsScreen = ({navigation}) => {    
@@ -20,10 +20,17 @@ const ProjectsScreen = ({navigation}) => {
                 <Image source={require('../../../assets/images/settings.png')} style={styles.image}/>
                 <Text style={styles.text}>Settings</Text>
             </TouchableOpacity>
-
-
         </View>
     );
+};
+
+ProjectsScreen.navigationOptions = () => {
+    return{
+        HeaderRight:  
+        <TouchableOpacity>
+            <Text> d </Text>
+        </TouchableOpacity>
+    };
 };
 
 const styles = StyleSheet.create({

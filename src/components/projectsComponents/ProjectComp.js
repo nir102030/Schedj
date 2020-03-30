@@ -9,16 +9,19 @@ const ProjectComponent = ({project, deleteProject}) => {
         <View style={styles.container}>
             <View style={{flexDirection:'column'}}>
                 <Text style={styles.text}>{project.name}</Text>
-                <View style={styles.options}>
+                <View style={styles.options}>   
+
+                    {/* add: Delete project - You won't be able to restore your project! yes or no  */}
+                    <TouchableOpacity style = {styles.TouchableOpacity} onPress = {() => deleteProject(project)}>
+                        <AntDesign name = 'delete' size= {37}/>
+                    </TouchableOpacity>  
                     <IndexDetail imageSrc={require('../../../assets/images/edit_logo.png')} navigationScreen= 'EditP' project={project}/>
                     <IndexDetail imageSrc={require('../../../assets/images/Task.png')} navigationScreen= 'TaskStatus' project={project}/>
                     <IndexDetail imageSrc={require('../../../assets/images/meeting_logo.png')} navigationScreen= 'Meetings' project={project}/>
-                    <IndexDetail imageSrc={require('../../../assets/images/calendar_icon1.png')} navigationScreen= 'Calendar' project={project}/>
+                    <IndexDetail imageSrc={require('../../../assets/images/calendar_icon1.png')} navigationScreen= 'Calendar' project={project}/>               
                 </View>
             </View>
-            <TouchableOpacity style = {styles.TouchableOpacity} onPress = {() => deleteProject(project)}>
-                <AntDesign name = 'delete' size= {35}/>
-            </TouchableOpacity>
+           
             <ProjectStatus style={styles.status}/>
         </View>
     )
@@ -31,6 +34,12 @@ const styles = StyleSheet.create({
         borderBottomWidth:3,
         borderColor:'oldlace',
         paddingBottom:20
+    },
+    TouchableOpacity:{
+        alignSelf:'center',
+        marginHorizontal:5,
+        //backgroundColor:'white',
+        borderRadius:10    
     },
     text: {
         fontWeight:'bold',

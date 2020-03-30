@@ -19,9 +19,7 @@ const ProjectStatus = ({project,style}) => {
 };
 const styles = StyleSheet.create({
     container:{
-        justifyContent:'center',
-        flexDirection:'row-reverse',
-        paddingTop:35
+        flexDirection:'row-reverse'
     },
     statusStyle:{
         width:32,

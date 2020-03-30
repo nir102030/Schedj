@@ -10,9 +10,11 @@ import ProjectCalendarScreen from './src/screens/CalendarScreens/ProjectCalendar
 import ProjectsScreen from './src/screens/ProjectScreens/ProjectsScreen';
 import CreateProjectScreen from './src/screens/ProjectScreens/CreateProjectScreen';
 import EditProjectScreen from './src/screens/ProjectScreens/EditProjectScreen';
+import ProjectInvitation from './src/screens/Invitations/ProjectInvitation';
 import MeetingsScreen from './src/screens/MeetingScreens/MeetingsScreen';
 import CreateMeetingScreen from './src/screens/MeetingScreens/CreateMeetingScreen';
 import EditMeetingScreen from './src/screens/MeetingScreens/EditMeetingScreen';
+import MeetingInvitation from './src/screens/Invitations/MeetingInvitation';
 import TaskScreen from './src/screens/TaskScreens/TaskScreen';
 import TaskStatusScreen from './src/screens/TaskScreens/TaskStatusScreen';
 import CreateTaskScreen from './src/screens/TaskScreens/CreateTaskScreen';
@@ -20,6 +22,7 @@ import EditTaskScreen from './src/screens/TaskScreens/EditTaskScreen';
 import AboutUs from './src/screens/General/AboutUs'
 import Settings from './src/screens/General/Settings'
 import OpenScreen from './src/screens/General/OpenScreen'
+import LogInScreen from './src/screens/General/LogInScreen'
 
 
 
@@ -33,26 +36,30 @@ const navigator = createStackNavigator({
     Projects: ProjectsScreen,
     CreateP: CreateProjectScreen,
     EditP: EditProjectScreen,
+    InviteP: ProjectInvitation,
     Meetings: MeetingsScreen,
     CreateM: CreateMeetingScreen,
     EditM: EditMeetingScreen,
+    InviteM: MeetingInvitation,
     Tasks:TaskScreen,
     TaskStatus: TaskStatusScreen,
     CreateT: CreateTaskScreen,
     EditT: EditTaskScreen,
     AboutUs: AboutUs,
     Settings: Settings,
-    OpenS:OpenScreen
+    OpenS:OpenScreen,
+    LogIn:LogInScreen
   },
   {
-    initialRouteName: 'OpenS',
+    initialRouteName: 'LogIn',
     defaultNavigationOptions: {
       title: 'Schedj',
       headerTitleStyle:{
         fontWeight:'bold',
-        textAlign:'center',
+        textAlign:'right',
         fontSize: 38,
         color:'#193c4d',
+        paddingBottom:15,
         flex:1
       }
     }
@@ -64,6 +71,6 @@ const App =  createAppContainer(navigator);
 export default ()=>{
   return <Provider store = { createStore (reducers) } >
     <App/>
-    <FlashMessage position="top" />
+    <FlashMessage position="top"/>
   </Provider>
 }
