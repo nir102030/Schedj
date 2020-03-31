@@ -24,6 +24,7 @@ const ProjectList = ({projects, style, deleteProject }) => {
     );
 };
 
+
 const styles = StyleSheet.create({
     item:{
         padding:3,

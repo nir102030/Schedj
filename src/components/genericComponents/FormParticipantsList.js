@@ -25,7 +25,7 @@ const FormParticipantsList = ({participants, setParticipant}) => {
         <View style={styles.participants}>
             <View style={styles.allinonerow} >
                 <TouchableOpacity style= {styles.button}  onPress = {()=>setShowDialog(true)}>
-                    <Text style = {styles.addMatesButton}>          Add Participants</Text>
+                    <Text style = {styles.addMatesButton}>Add Participants</Text>
                 </TouchableOpacity>
                 <DialogInput 
                     isDialogVisible = {showDialog} 
@@ -33,7 +33,7 @@ const FormParticipantsList = ({participants, setParticipant}) => {
                     submitInput = {(input)=>submitHandler(input)}
                     closeDialog={()=>{setShowDialog(false)}}
                 />
-                <Text style={styles.addMates}>Participants: </Text>
+                <Text style={styles.addMates}>Participants:</Text>
             </View>
             <FlatList
                 data = {participants}
@@ -78,7 +78,8 @@ const styles = StyleSheet.create({
         marginTop:8,
         marginBottom:10,
         fontWeight:'bold',
-        color: 'black'
+        color: 'black',
+        alignSelf:'center'
     },
     addMates:{
         fontSize: 22,

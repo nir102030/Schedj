@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 import {View, Text, StyleSheet,CheckBox,Image} from 'react-native';
 import FormInput from '../../components/genericComponents/FormInput';
+import RNPickerSelect from 'react-native-picker-select';
 
 
 const Settings = ({pid}) => {
@@ -28,6 +29,22 @@ const Settings = ({pid}) => {
                 <CheckBox title='Mobile' checked={setChecked} style={styles.CheckBox2}/>
                 <Text style={styles.notification}>Mobile  </Text>
             </View>
+            <View  style={styles.rankPic}>
+            <Image source={require('../../../assets/images/rank.png')} style={styles.imageRank}/>
+            <Text style={styles.rank}>Rank our app</Text>
+            </View>
+            <RNPickerSelect 
+                            placeholder={{}}
+                            onValueChange={() => {}}
+                            items={[
+                                { label: '1', value: '1' },
+                                { label: '2', value: '2' },
+                                { label: '3', value: '3' },
+                                { label: '4', value: '4' },
+                                { label: '5', value: '5' },
+                            ]}
+                            style={{ }}
+            />
         </View>
     );
 };
@@ -120,7 +137,26 @@ const styles = StyleSheet.create({
     imagePP:{
         height:60,
         width:60
-    }
+    },
+    imageRank:{
+        height:60,
+        width:150
+    },
+    rank:{
+        marginVertical:15,
+        marginHorizontal:15,
+        fontWeight:'bold',
+        fontSize: 22,
+        color:'#152d48',
+        borderBottomWidth: 3,
+        borderBottomColor:'#d9e3f0',
+        paddingRight:70
+    },
+    rankPic:{
+        paddingTop:150,
+        flexDirection: 'row',
+        alignSelf:'flex-end'
+    },
 });
 
 export default Settings;

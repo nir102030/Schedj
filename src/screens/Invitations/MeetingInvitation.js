@@ -6,15 +6,15 @@ const MeetingInvitation = ({Owner,pid}) => {
     return (
         <View style = {styles.container}>
             <View style={styles.header}>
-                <Text style={styles.text}>New Meeting Invitation </Text>
+                <Text style={styles.header2}>New Meeting Invitation </Text>
             </View>
-            <Text style={styles.freeText1}>Hello {Owner}  </Text>
+            <Text style={styles.Hello}>Hello {Owner}  </Text>
             <Text style={styles.freeText}>New meeting has been scheduled! </Text>
             <Text style={styles.projName}>{pid} Project</Text>
 
             <TouchableOpacity style = {styles.TouchableOpacity}>
                 <Image source={require('../../../assets/images/calendar_icon.png')} style={styles.image} onPress = {()=>{}}/>
-                <Text style={styles.freeText2}>Check it out</Text>
+                <Text style={styles.freeText2}>Check it out here !!</Text>
             </TouchableOpacity>   
             <Image source={require('../../../assets/images/schedjTry.png')} style={styles.schedj}/> 
 
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
         borderBottomWidth:5,
         borderBottomColor:'#2d6886'
     },
-    text: {
+    header2: {
         fontWeight:'bold',
         fontSize: 30,
         marginVertical: 10,
@@ -44,16 +44,20 @@ const styles = StyleSheet.create({
         textAlign:'left',
         flex:1
     },
-    TouchableOpacity: {
-        backgroundColor:'#375360',
-        flexDirection:'row-reverse',
+    Hello: {
+        fontWeight:'bold',
+        fontSize:30,
         marginVertical:10,
+        marginHorizontal:10,
+        color:'white',
+        textAlign:'right',
     },
-    image: {
-        height:50,
-        width:50,
-        marginRight: 15,
-        alignSelf:'center'
+    freeText: {
+        fontWeight:'bold',
+        fontSize: 23,
+        marginVertical: 10,
+        color:'white',
+        paddingLeft:10,
     },
     projName: {
         fontWeight:'bold',
@@ -63,21 +67,16 @@ const styles = StyleSheet.create({
         color:'#40b1bf',
         backgroundColor:'#375360',
     },
-    freeText: {
-        fontWeight:'bold',
-        fontSize: 23,
-        marginVertical: 10,
-        color:'white',
-        backgroundColor:'#375360',
-        paddingLeft:10,
-    },
-    freeText1: {
-        fontWeight:'bold',
-        fontSize:30,
+    TouchableOpacity: {
+        backgroundColor:'#5ca9b1',
+        flexDirection:'row-reverse',
         marginVertical:10,
-        marginHorizontal:10,
-        color:'white',
-        textAlign:'right',
+    },
+    image: {
+        height:50,
+        width:50,
+        marginRight: 15,
+        alignSelf:'center'
     },
     freeText2: {
         fontWeight:'bold',

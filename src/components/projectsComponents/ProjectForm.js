@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Text, StyleSheet, View, Image,ScrollView} from 'react-native';
+import {Text, StyleSheet, View, Image,ScrollView,FlatList} from 'react-native';
 import FormInput from '../genericComponents/FormInput';
 import FormParticipantsList from '../genericComponents/FormParticipantsList';
 import FormSubmitButton from '../genericComponents/FormSubmitButton'; 
@@ -8,7 +8,6 @@ import FormSubmitButton from '../genericComponents/FormSubmitButton';
 
 const ProjectForm = ({oldProject, onSubmit}) => {
     const [project,setProject] = useState(oldProject);
-
     const handleNoteList = (note, index) => {
         const newNotes = [...project.notes];
         newNotes[index] = note;

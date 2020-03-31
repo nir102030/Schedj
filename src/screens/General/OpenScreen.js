@@ -26,7 +26,8 @@ const styles = StyleSheet.create({
     },
     TouchableOpacity: {
         flexDirection:'row-reverse',
-        flex:1
+        flex:1,
+        alignSelf:'center'
     },
     backgroundimage: {
         height: 700,
@@ -36,14 +37,14 @@ const styles = StyleSheet.create({
     },
     smallHeader: {
         height:150,
-        width:450,
+        width:430,
         alignSelf:'center',
         backgroundColor:'#749699',  
     },
     image: {
         height:120,
         width:220,
-        marginRight:90,
+        marginRight:15
     },
     whiteHeadr: {
         height:120,
