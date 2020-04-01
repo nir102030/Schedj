@@ -19,6 +19,10 @@ const ProjectsScreen = ({navigation}) => {
                 <Image source={require('../../../assets/images/settings.png')} style={styles.image}/>
                 <Text style={styles.text}>Settings</Text>
             </TouchableOpacity>
+            <TouchableOpacity style={styles.TouchableOpacityComing}  onPress = {()=>navigation.navigate('ComeSoon')}>
+                <Image source={require('../../../assets/images/comingsoon.png')} style={styles.image}/>
+                <Text style={styles.text}>Coming Soon...</Text>
+            </TouchableOpacity>
         </View>
     );
 };
@@ -38,18 +42,32 @@ const styles = StyleSheet.create({
     TouchableOpacityAdd: {
         backgroundColor:'#2b414b',
         flex:1,
-        flexDirection:'row-reverse'
+        flexDirection:'row-reverse',
+        borderBottomWidth:0.6,
+        borderBottomColor:'white'
     },
     TouchableOpacityAbout: {
         backgroundColor:'#375360',
         flex:1,
-        flexDirection:'row-reverse'
+        flexDirection:'row-reverse',
+        borderBottomWidth:0.6,
+        borderBottomColor:'white'
     },
     TouchableOpacitySettings: {
         backgroundColor:'#375360',
         flex:1,
         flexDirection:'row-reverse',
-        paddingLeft:3
+        paddingLeft:3,
+        borderBottomWidth:0.6,
+        borderBottomColor:'white'
+    },
+    TouchableOpacityComing: {
+        backgroundColor:'#375360',
+        flex:1,
+        flexDirection:'row-reverse',
+        paddingLeft:3,
+        borderBottomWidth:0.6,
+        borderBottomColor:'white'
     },
     image: {
         height:37,
@@ -62,8 +80,9 @@ const styles = StyleSheet.create({
         color:'oldlace',
         alignSelf:'center',
         fontWeight:'bold',
-        marginHorizontal:10
-    }
+        marginHorizontal:10,
+    },
+    
 });
 
 export default ProjectsScreen;

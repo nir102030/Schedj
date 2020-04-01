@@ -8,7 +8,7 @@ const ProjectStatus = ({project,style}) => {
     return (
         <View style={styles.container}>
             <View style={{alignSelf:'center',marginLeft:5,marginRight:5}}>
-                <Text style={{fontSize:18,color:'oldlace',fontWeight:'bold'}}>Status</Text>
+                <Text style={{fontSize:18,color:'white',fontWeight:'bold'}}>Status</Text>
                 <Text style={{fontSize:14,color:'#FCDC00',fontWeight:'bold'}}>{status}</Text>
             </View>
             <TouchableOpacity style={{alignSelf:'center'}} onPress = {() => {()=>{}}}>
@@ -19,7 +19,9 @@ const ProjectStatus = ({project,style}) => {
 };
 const styles = StyleSheet.create({
     container:{
-        flexDirection:'row-reverse'
+        flexDirection:'row-reverse',
+        backgroundColor:'#507384',
+        borderRadius:25
     },
     statusStyle:{
         width:32,

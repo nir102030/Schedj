@@ -1,5 +1,5 @@
 import React from 'react'
-import {Text, StyleSheet, View,ImageBackground,Button,Image,TouchableOpacity } from 'react-native'
+import {Text, StyleSheet, View,ImageBackground,Button,Image,TouchableOpacity,ScrollView } from 'react-native'
 import ApiCalendar from 'react-google-calendar-api';
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import {withNavigation} from 'react-navigation';
@@ -30,16 +30,17 @@ const ProjectCalendarScreen = ({navigation}) => {
             </View>
             <Calendar />
             
-            
-            {/* the code below not going to be here in the future, just help to build the screens */}
+            <ScrollView>
+                {/* the code below not going to be here in the future, just help to build the screens */}
 
-            <TouchableOpacity style={styles.TouchableOpacity}  onPress = {()=>navigation.navigate('InviteP')}>
-                <Text style={styles.test}>New Project Invitation</Text>
-            </TouchableOpacity>
+                <TouchableOpacity style={styles.TouchableOpacity}  onPress = {()=>navigation.navigate('InviteP')}>
+                    <Text style={styles.test}>New Project Invitation</Text>
+                </TouchableOpacity>
 
-            <TouchableOpacity style={styles.TouchableOpacity}  onPress = {()=>navigation.navigate('InviteM')}>
-                <Text style={styles.test}>New Meeting Invitation</Text>
-            </TouchableOpacity>
+                <TouchableOpacity style={styles.TouchableOpacity}  onPress = {()=>navigation.navigate('InviteM')}>
+                    <Text style={styles.test}>New Meeting Invitation</Text>
+                </TouchableOpacity>
+            </ScrollView>
     </View>
 };
 

@@ -21,6 +21,7 @@
     "react-native-dialog-input": "^1.0.7",
     "react-native-drop-down-item": "^1.1.0",
     "react-native-flash-message": "^0.1.15",
+    "react-native-gantt-chart": "^1.0.6",
     "react-native-gesture-handler": "~1.5.0",
     "react-native-picker-select": "^6.6.0",
     "react-native-picklist": "^1.3.2",

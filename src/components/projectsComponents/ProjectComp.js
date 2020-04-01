@@ -11,7 +11,7 @@ const ProjectComponent = ({project, deleteProject}) => {
                 <Text style={styles.text}>{project.name}</Text>
                 <View style={styles.options}>   
 
-                    {/* add: Delete project - You won't be able to restore your project! yes or no  */}
+                    {/* add pop-up: Delete project - You won't be able to restore your project! yes or no  */}
                     <TouchableOpacity style = {styles.TouchableOpacity} onPress = {() => deleteProject(project)}>
                         <AntDesign name = 'delete' size= {37}/>
                     </TouchableOpacity>  
@@ -38,7 +38,6 @@ const styles = StyleSheet.create({
     TouchableOpacity:{
         alignSelf:'center',
         marginHorizontal:5,
-        //backgroundColor:'white',
         borderRadius:10    
     },
     text: {

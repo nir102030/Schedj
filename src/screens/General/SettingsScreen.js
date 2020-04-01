@@ -4,14 +4,14 @@ import FormInput from '../../components/genericComponents/FormInput';
 import RNPickerSelect from 'react-native-picker-select';
 
 
-const Settings = ({pid}) => {
+const SettingsScreen = ({pid}) => {
     const [checked,setChecked]  = useState(checked);
     const [edit,setEdit] = useState('');
 
     return (
         <View style={styles.container}> 
             <View style={styles.header}>
-                    <Text style={styles.headerStyle}> {pid} Project Settings </Text>
+                    <Text style={styles.headerStyle}>Settings </Text>
                     <Image source={require('../../../assets/images/settings.png')} style={styles.imageHeader}/>
             </View>
             <Text style={styles.subHeader}> Edit Profile </Text>
@@ -159,4 +159,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Settings;
+export default SettingsScreen;

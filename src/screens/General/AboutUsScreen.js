@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, Image} from 'react-native';
 
-const AboutUs = () => {
+const AboutUsScreen = () => {
 
     return (
             <View style={styles.container}>
@@ -34,4 +34,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default AboutUs;
+export default AboutUsScreen;

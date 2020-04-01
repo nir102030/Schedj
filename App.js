@@ -19,11 +19,12 @@ import TaskScreen from './src/screens/TaskScreens/TaskScreen';
 import TaskStatusScreen from './src/screens/TaskScreens/TaskStatusScreen';
 import CreateTaskScreen from './src/screens/TaskScreens/CreateTaskScreen';
 import EditTaskScreen from './src/screens/TaskScreens/EditTaskScreen';
-import AboutUs from './src/screens/General/AboutUs'
-import Settings from './src/screens/General/Settings'
+import AboutUsScreen from './src/screens/General/AboutUsScreen'
+import SettingsScreen from './src/screens/General/SettingsScreen'
 import OpenScreen from './src/screens/General/OpenScreen'
 import LogInScreen from './src/screens/General/LogInScreen'
-
+import GanttScreen from './src/screens/General/GanttScreen'
+import ComingSoonScreen from './src/screens/General/ComingSoonScreen'
 
 
 //This function ignores unresolved warnings
@@ -45,10 +46,12 @@ const navigator = createStackNavigator({
     TaskStatus: TaskStatusScreen,
     CreateT: CreateTaskScreen,
     EditT: EditTaskScreen,
-    AboutUs: AboutUs,
-    Settings: Settings,
+    AboutUs: AboutUsScreen,
+    Settings: SettingsScreen,
     OpenS:OpenScreen,
-    LogIn:LogInScreen
+    LogIn:LogInScreen,
+    Gantt:GanttScreen,
+    ComeSoon:ComingSoonScreen
   },
   {
     initialRouteName: 'LogIn',
@@ -59,7 +62,7 @@ const navigator = createStackNavigator({
         textAlign:'right',
         fontSize: 38,
         color:'#193c4d',
-        paddingBottom:15,
+        paddingBottom:5,
         flex:1
       }
     }

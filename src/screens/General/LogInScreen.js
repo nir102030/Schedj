@@ -21,6 +21,7 @@ const LogInScreen = ({navigation}) => {
     );
 };
 
+
 // make it work!!! should be home page button for all screens
 
 // LogInScreen.navigationOptions = ({navigation}) => {
