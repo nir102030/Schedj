@@ -1,4 +1,4 @@
-export default (state = [{'id':'1', 'name':'Test'}], action) => {
+export default (state = [{id:'1', name:'Test', participants: ['Nir','Bar','Dor'], minForMeeting:'2', reminder:'',notes:[]}], action) => {
     switch (action.type) {
         case 'add_project':
             return ( [

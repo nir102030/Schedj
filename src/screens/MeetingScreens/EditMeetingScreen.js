@@ -1,17 +1,28 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import MeetingForm from '../../components/meetingsComponents/MeetingForm'
+import * as actions from '../../actions';
+import { connect } from 'react-redux';
 
-const EditMeetingScreen = () => {
+const EditMeetingScreen = ({navigation,meetings,editMeeting}) => {
+    const mid = navigation.getParam('meeting').mid;
+    const pid = navigation.getParam('meeting').pid;
+    const meeting = meetings.find((meeting) => meeting.pid === pid && meeting.mid === mid);
 
+    const onSubmit = (meeting) => {
+        editMeeting(meeting);
+        navigation.pop();
+    }
+    
     return (
-        <View>
-            <Text>This is the Edit meeting screen</Text>
-        </View>
+        <MeetingForm 
+            oldMeeting = {meeting}
+            onSubmit = {(meeting) => onSubmit(meeting)}
+        />
     );
 };
 
-const style = StyleSheet.create({
+const mapStateToProps = state => {
+    return { meetings: state.meetings };
+};
 
-});
-
-export default EditMeetingScreen;
+export default connect(mapStateToProps,actions)(EditMeetingScreen);

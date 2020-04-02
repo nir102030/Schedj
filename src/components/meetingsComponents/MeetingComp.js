@@ -3,25 +3,25 @@ import {Text, StyleSheet, View,TouchableOpacity, Image } from 'react-native';
 import {withNavigation} from 'react-navigation';
 import {AntDesign} from '@expo/vector-icons';
 
-
-const MeetingComp = ({navigation,id, pid,meeting, deleteMeeting}) => {
+const MeetingComp = ({navigation, meeting, deleteMeeting}) => {
     return (
         <View style={styles.container}>
-                <Text style={styles.header}>{pid} Project - Meeting {id}</Text>
-                <Text style={styles.date}> Meeting Date</Text>
-                <TouchableOpacity style = {styles.TouchableOpacity}  onPress = {()=>navigation.navigate('Tasks')}>
-                    <Image source={require('../../../assets/images/addTask.png')} style={styles.imageAdd}/>
-                    <Text style={styles.addTask}>Add Task</Text>
-                    
-                    {/* the code below should be in that format */}
+                <TouchableOpacity style = {styles.editButton} onPress = {() => navigation.navigate('EditM',{meeting})}>
+                    <Image source = {require('../../../assets/images/edit_logo.png')} style={styles.image}/>
+                </TouchableOpacity>
+                <View style={{flex:4}}>
+                    <Text style={styles.header}>Meeting {meeting.mid}</Text>
+                    <Text style={styles.date}> Meeting Date</Text>
+                    <TouchableOpacity style = {styles.TouchableOpacity}  onPress = {()=>navigation.navigate('Tasks')}>
+                        <Image source={require('../../../assets/images/addTask.png')} style={styles.imageAdd}/>
+                        <Text style={styles.addTask}>Add Task</Text>
+                    </TouchableOpacity>
+                </View>
+                {/* the code below should be in that format */}
 
                     {/* <TouchableOpacity style = {styles.delete} onPress = {() => deleteMeeting(meeting)}>
                         <AntDesign name = 'delete' size= {35}/>
                     </TouchableOpacity>   */}
-                
-                </TouchableOpacity>
-
-                <Text></Text>
         </View>    
     )
 };
@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
         backgroundColor:'#607d8b',
         borderBottomWidth: 3,
         borderBottomColor:'#d9e3f0',
+        flexDirection:'row'
     },
     header: {
         marginVertical: 5,
@@ -79,6 +80,15 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
         color:'black',
         alignSelf:'center'
+    },
+    image: {
+        height:47,
+        width:47,
+        marginHorizontal:1
+    },
+    editButton: {
+        alignSelf:'flex-start',
+        flex:1
     }
 });
 

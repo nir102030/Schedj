@@ -1,30 +1,30 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Text, StyleSheet, View, FlatList,Image,ScrollView} from 'react-native';
-import {withNavigation} from 'react-navigation';
 import MeetingComp from './MeetingComp';
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
 
-const MeetingsList = ({style, pid}) => {
-    const meetingsList = ['1', '2', '3']
-    const [meetings, setMeetings] = useState(meetingsList);
+const MeetingsList = ({meetings, project, style}) => {
+    const meetingsList = meetings.filter((meeting) =>  meeting.pid == project.id);
 
-    function Item({ id }) {
+    function Item({ item }) {
         return (
           <View style={styles.item}>
-            <MeetingComp id={id} pid= {pid}/>
+            <MeetingComp meeting = {item}/>
           </View>
         );
     }
     return (
-        <View >
+        <View style = {style}>
             <ScrollView>
                 <View style={styles.header}>
-                    <Text style={styles.text}>{pid} Project Meetings</Text>
+                    <Text style={styles.text}>{project.name} Meetings</Text>
                     <Image source={require('../../../assets/images/meeting_logo.png')} style={styles.image}/>
                 </View>
                 <FlatList
                     data = {meetingsList}
-                    keyExtractor={(meeting)=> meeting}
-                    renderItem= {({item}) => <Item id={item}/>}  
+                    keyExtractor={(meeting)=> meeting.mid}
+                    renderItem= {({item}) => <Item item = {item}/>}  
                 />
             </ScrollView>
         </View>
@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
         marginHorizontal:34,
         alignSelf:'center',
         color:'#263238',
+        flex:4
     },
     image:{
         marginVertical:10,
@@ -57,8 +58,13 @@ const styles = StyleSheet.create({
         width:60,
         borderRadius:5,
         marginRight: 15,
-        alignSelf:'center'
+        alignSelf:'center',
+        flex:1
     }
 });
 
-export default withNavigation(MeetingsList);
+const mapStateToProps = state => {
+    return { meetings: state.meetings };
+};
+
+export default connect(mapStateToProps,actions)(MeetingsList);

@@ -8,6 +8,7 @@ import FormSubmitButton from '../genericComponents/FormSubmitButton';
 
 const ProjectForm = ({oldProject, onSubmit}) => {
     const [project,setProject] = useState(oldProject);
+    
     const handleNoteList = (note, index) => {
         const newNotes = [...project.notes];
         newNotes[index] = note;

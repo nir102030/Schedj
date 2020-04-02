@@ -1,5 +1,4 @@
 import React from 'react';
-import {View} from 'react-native';
 import ProjectForm from '../../components/projectsComponents/ProjectForm';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
@@ -13,12 +12,10 @@ const CreateProjectScreen = ({navigation, addProject}) => {
     }
 
     return (
-        <View>
-            <ProjectForm 
-                oldProject = {project}
-                onSubmit = {(project) => onSubmit(project)}
-            />
-        </View>
+        <ProjectForm 
+            oldProject = {project}
+            onSubmit = {(project) => onSubmit(project)}
+        />
     );
 };
 

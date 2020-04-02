@@ -16,5 +16,26 @@ export const deleteProject = (project) => {
     return {
         type: 'delete_project',
         payload: project
-    }
-}
+    };
+};
+
+export const addMeeting = (meeting) => {
+    return {
+        type: 'add_meeting',
+        payload: {meeting}
+    };
+};
+
+export const editMeeting = (meeting) => {
+    return {
+        type: 'edit_meeting',
+        payload: {meeting}
+    };
+};
+
+export const deleteMeeting = (meeting) => {
+    return {
+        type: 'delete_meeting',
+        payload: {meeting}
+    };
+};

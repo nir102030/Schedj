@@ -2,11 +2,13 @@ import React from 'react'
 import { Text, StyleSheet, View, TouchableOpacity, Image} from 'react-native'
 import MeetingList from '../../components/meetingsComponents/MeetingsList';
 
-const MeetingsScreen = ({navigation, pid}) => {
+const MeetingsScreen = ({navigation}) => {
+    const project = navigation.getParam('project');
+
     return (
-        <View style={styles.container} pid={pid}>
-            <MeetingList style={styles.list}/>
-            <TouchableOpacity style = {styles.TouchableOpacity}  onPress = {()=>navigation.navigate('CreateM')}>
+        <View style={styles.container}>
+            <MeetingList project = {project} style={styles.list}/>
+            <TouchableOpacity style = {styles.TouchableOpacity}  onPress = {()=>navigation.navigate('CreateM',{project})}>
                 <Image source={require('../../../assets/images/add.png')} style={styles.image}/>
                 <Text style={styles.text}>  Add a New Meeting</Text>
             </TouchableOpacity>
