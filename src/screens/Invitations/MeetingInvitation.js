@@ -16,7 +16,7 @@ const MeetingInvitation = ({Owner,pid}) => {
                 <Image source={require('../../../assets/images/calendar_icon.png')} style={styles.image} onPress = {()=>{}}/>
                 <Text style={styles.freeText2}>Check it out here !!</Text>
             </TouchableOpacity>   
-            <Image source={require('../../../assets/images/schedjTry.png')} style={styles.schedj}/> 
+            <Image source={require('../../../assets/images/schedjTryA.png')} style={styles.schedj}/> 
 
         </View>
     );
@@ -87,9 +87,9 @@ const styles = StyleSheet.create({
         alignSelf:'center',
     },
     schedj: {
-        height:370,
+        height:400,
         width:370,
-        borderRadius:30,
+        borderRadius:10,
         alignSelf:'center'
     },
 });

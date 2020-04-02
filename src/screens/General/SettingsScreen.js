@@ -30,8 +30,8 @@ const SettingsScreen = ({pid}) => {
                 <Text style={styles.notification}>Mobile  </Text>
             </View>
             <View  style={styles.rankPic}>
-            <Image source={require('../../../assets/images/rank.png')} style={styles.imageRank}/>
-            <Text style={styles.rank}>Rank our app</Text>
+                {/* <Image source={require('../../../assets/images/rank.png')} style={styles.imageRank}/> */}
+                <Text style={styles.subHeader}> Rank our app </Text>
             </View>
             <RNPickerSelect 
                             placeholder={{}}
@@ -140,7 +140,8 @@ const styles = StyleSheet.create({
     },
     imageRank:{
         height:60,
-        width:150
+        width:150,
+        marginHorizontal:20
     },
     rank:{
         marginVertical:15,

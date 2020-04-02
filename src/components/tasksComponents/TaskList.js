@@ -18,7 +18,7 @@ const TaskList = ({style, pid}) => {
         <View style = {style}>
             <ScrollView>
                 <View style={styles.header}>
-                    <Text style={styles.text}>{pid} Project Tasks</Text>
+                    <Text style={styles.text}>{pid}         Project Tasks</Text>
                     <Image source={require('../../../assets/images/Task.png')} style={styles.image}/>
                 </View>
                 <FlatList
@@ -33,7 +33,6 @@ const TaskList = ({style, pid}) => {
 
 const styles = StyleSheet.create({
     item:{
-        padding:3,
         marginVertical: 10
     },
     image:{
@@ -41,12 +40,10 @@ const styles = StyleSheet.create({
         height:60,
         width:60,
         borderRadius:5,
-        marginRight: 15,
         alignSelf:'center'
     },
     header:{
         flexDirection:'row', 
-        flexWrap:'wrap',
         borderBottomWidth:5,
         borderBottomColor:'#2d6886',
         backgroundColor:'#8aa9b9',

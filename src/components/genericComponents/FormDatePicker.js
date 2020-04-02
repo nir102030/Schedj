@@ -16,19 +16,19 @@ const FormDatePicker = () =>{
                 confirmBtnText="Confirm"
                 cancelBtnText="Cancel"
                 customStyles={{
-                dateTouchBody: {
-                    marginTop: 12,
-                },
-                dateIcon: {
-                    position: 'absolute',
-                    left: 2,
-                    top: 5,
-                    marginLeft: 10  
-                },
-                dateInput: {
-                    marginLeft: 50,
-                    marginHorizontal:30
-                }
+                    dateTouchBody: {
+                        marginTop: 12,
+                    },
+                    dateIcon: {
+                        position: 'absolute',
+                        left: 2,
+                        top: 5,
+                        marginLeft: 10  
+                    },
+                    dateInput: {
+                        marginLeft: 50,
+                        marginHorizontal:30
+                    }
                 }}
                 onDateChange={(date) => {setDate(date)}}
             />    

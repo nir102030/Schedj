@@ -5,7 +5,7 @@ const AboutUsScreen = () => {
 
     return (
             <View style={styles.container}>
-                <Image source={require('../../../assets/images/AboutTry.png')} style={styles.image}/>
+                <Image source={require('../../../assets/images/AboutTryA.png')} style={styles.image}/>
             </View>
     );
 };

@@ -12,31 +12,24 @@ const ProjectCalendarScreen = ({navigation}) => {
                     <Text style={styles.text}>{project} Project Calendar </Text>
                     <Image source={require('../../../assets/images/calendar_icon1.png')} style={styles.image}/>
                 </View>
-            <View>
-                    <Button
-                        onPress={() => {
-                            showMessage({
-                                message: "Calender Colors",
-                                description: "Green-Available   Yellow-Waiting  Red-Scheduled    Grey-Busy",
-                                type: "info",
-                                color:"black"
-                                
-                            });
-                        }}
-                        title="Color Details"
-                        color="#678b79"
-
-                    />
+            <ScrollView>
+            <View style = {{flexDirection: 'row-reverse'}}>
+                    <Button onPress={() => {showMessage({message: "Green",description: "Green-Available",type: "info",color:"black" });
+                        }} title="Green" color="#388e3c"/>
+                    <Button onPress={() => {showMessage({message: "Yellow",description: "Yellow-Waiting",type: "info",color:"black" });
+                        }} title="Yellow" color="#fcc400"/>
+                    <Button onPress={() => {showMessage({message: "Red",description: "Red-Scheduled",type: "info",color:"black" });
+                        }} title="Red" color="#d32f2f"/> 
+                    <Button onPress={() => {showMessage({message: "Grey",description: "Grey-Busy",type: "info",color:"black" });
+                        }} title="Grey" color="#808080"/>                              
             </View>
             <Calendar />
             
-            <ScrollView>
                 {/* the code below not going to be here in the future, just help to build the screens */}
 
                 <TouchableOpacity style={styles.TouchableOpacity}  onPress = {()=>navigation.navigate('InviteP')}>
                     <Text style={styles.test}>New Project Invitation</Text>
                 </TouchableOpacity>
-
                 <TouchableOpacity style={styles.TouchableOpacity}  onPress = {()=>navigation.navigate('InviteM')}>
                     <Text style={styles.test}>New Meeting Invitation</Text>
                 </TouchableOpacity>
