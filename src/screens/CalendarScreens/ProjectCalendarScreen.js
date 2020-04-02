@@ -1,6 +1,6 @@
 import React from 'react'
 import {Text, StyleSheet, View,ImageBackground,Button,Image,TouchableOpacity,ScrollView } from 'react-native'
-import ApiCalendar from 'react-google-calendar-api';
+//import ApiCalendar from 'react-google-calendar-api';
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import {withNavigation} from 'react-navigation';
 import { showMessage, hideMessage } from "react-native-flash-message";

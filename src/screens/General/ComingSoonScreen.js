@@ -1,6 +1,7 @@
 import React from 'react'
 import { View,ScrollView,StyleSheet,Text,Image,TouchableOpacity } from 'react-native'
-import FormHour from './../../components/genericComponents/FormHour'
+import FormHour from './../../components/genericComponents/FormHour';
+
 
 const ComingSoonScreen = ({navigation}) => {
     return(
@@ -11,7 +12,6 @@ const ComingSoonScreen = ({navigation}) => {
             <TouchableOpacity style={styles.TouchableOpacity}  onPress = {()=>navigation.navigate('Hour')}>
                 <Text style={styles.text}>Hour Component</Text>
             </TouchableOpacity>
-            <FormHour />
         </View>
     );
 };

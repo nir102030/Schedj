@@ -1,39 +1,31 @@
 import React, { useState } from "react";
 import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
-import TimePicker from "react-native-24h-timepicker";
  
 
-const FormHour = () => {
-const onCancel = () => {
-    TimePicker.close();
-};
-// const state = () => {
-//     time: ""
-//   };
-// }
-const onConfirm = (hour, minute) => {
-    const [State,setState] = useState({time: `${hour}:${minute}`});
-    TimePicker.close();
-}
- 
-return (
-        <View style={styles.container}>
-            <Text style={styles.text}>REACT NATIVE</Text>
-            <Text style={styles.text}>24 HOURS FORMAT TIMEPICKER</Text>
-            <TouchableOpacity onPress={() => TimePicker.open()} style={styles.button}>
-                <Text style={styles.buttonText}>TIMEPICKER</Text>
-            </TouchableOpacity>
-            <Text style={styles.text}>{State}</Text>
-            <TimePicker
-                ref={ref => {
-                    TimePicker = ref;
-                }}
-                onCancel={() => onCancel()}
-                onConfirm={(hour, minute) => onConfirm(hour, minute)}
-            />
-        </View>
-        );
-}
+
+const FormHour = ({TimePicker}) => {
+    const [time,setTime] = useState('00:00');
+
+    const onConfirm = (hour, minute) => {
+        setTime(`${hour}:${minute}`);
+        TimePicker.close();
+    }
+    
+    return (
+            <View style={styles.container}>
+                <TouchableOpacity onPress={() => TimePicker.open()} style={styles.button}>
+                    <Text style={styles.buttonText}>{time}</Text>
+                </TouchableOpacity>
+                <TimePicker
+                    ref={ref => {
+                        TimePicker = ref;
+                    }}
+                    onCancel={() => TimePicker.close()}
+                    onConfirm={(hour, minute) => onConfirm(hour, minute)}
+                />
+            </View>
+            );
+    }
 
  
 const styles = StyleSheet.create({

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import GanttChart from 'react-native-gantt-chart'
 import { View,ScrollView,StyleSheet,Text,Image } from 'react-native'
 
-const GantScreen = () => {
+const GanttScreen = () => {
     const tasks = [
         { _id: "1", name: "Task 1", "start": new Date(2020, 0, 1), "end": new Date(2020, 0, 5), progress: 0.7 },
         { _id: "2", name: "Task 2", "start": new Date(2020, 0, 1), "end": new Date(2020, 0, 5), progress: 1 },
@@ -66,4 +66,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default GantScreen
+export default GanttScreen

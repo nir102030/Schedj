@@ -3,6 +3,8 @@ import {View, Text, StyleSheet,Image,ScrollView,TouchableOpacity} from 'react-na
 import FormDatePicker from '../../components/genericComponents/FormDatePicker';
 import FormInput from '../../components/genericComponents/FormInput';
 import FormParticipantsList from '../../components/genericComponents/FormParticipantsList'; 
+import FormHour from '../../components/genericComponents/FormHour';
+import TimePicker from "react-native-24h-timepicker";
 
 const CreateMeetingScreen = ({id, pid, onSubmit}) => {
     const [placeOfMeeting, setplaceOfMeeting] = useState('');
@@ -26,10 +28,7 @@ const CreateMeetingScreen = ({id, pid, onSubmit}) => {
                             <Text style={styles.input}>Meeting Date:</Text> 
                         </View>
                         <Text style={styles.input}>Meeting Hours: </Text> 
-                        <View style={styles.hours}>
-                            <FormInput title=' To:  ' value = {endHour}  onChange={setEndHour}  viewStyle = {styles.meetDesign} />   
-                            <FormInput title='From:' value = {startHour}  onChange={setStartHour}  viewStyle = {styles.meetDesign} />   
-                        </View>
+                        <FormHour TimePicker = {TimePicker}/>
                         <FormInput title='Place Of Meeting:' value = {placeOfMeeting} onChange={setplaceOfMeeting} viewStyle = {styles.designSquare}/>
                         <FormParticipantsList initialList = {Pparticipants}/>
                         <Text  style={styles.note}>   Write your notes here!  </Text>
@@ -107,7 +106,7 @@ const styles = StyleSheet.create({
         width:150,
         borderRadius:10,
         alignSelf:'center'
-    },
+    }
 });
 
 export default CreateMeetingScreen;
