@@ -27,7 +27,7 @@ const LogInScreen = ({navigation}) => {
 // LogInScreen.navigationOptions = ({navigation}) => {
 //     return{
 //         headerRight:(  
-//         <TouchableOpacity onPress = {()=>navigation.navigate('CreateP')}>
+//         <TouchableOpacity onPress = {()=>navigation.navigate('Projects')}>
 //              <Text> adasdasdas </Text>
 //         </TouchableOpacity>)  
       

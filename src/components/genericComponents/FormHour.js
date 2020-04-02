@@ -9,7 +9,7 @@ const FormHour = ({TimePicker}) => {
     const onConfirm = (hour, minute) => {
         setTime(`${hour}:${minute}`);
         TimePicker.close();
-    }
+}
     
     return (
             <View style={styles.container}>
@@ -25,31 +25,31 @@ const FormHour = ({TimePicker}) => {
                 />
             </View>
             );
-    }
+}
 
  
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    backgroundColor: "#fff",
-    paddingTop: 100
+    backgroundColor: "#607d8b",
+    paddingLeft:40
   },
   text: {
     fontSize: 20,
-    marginTop: 10
+    marginTop: 10,
   },
   button: {
-    backgroundColor: "#4EB151",
-    paddingVertical: 11,
-    paddingHorizontal: 17,
+    backgroundColor: "#b1c2ca",
+    paddingVertical: 5,
+    paddingHorizontal: 10,
     borderRadius: 3,
-    marginVertical: 50
   },
   buttonText: {
     color: "#FFFFFF",
     fontSize: 16,
-    fontWeight: "600"
+    fontWeight: "600",
+    fontWeight:'bold',
   }
 });
  

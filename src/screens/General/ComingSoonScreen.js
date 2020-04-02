@@ -1,6 +1,5 @@
 import React from 'react'
 import { View,ScrollView,StyleSheet,Text,Image,TouchableOpacity } from 'react-native'
-import FormHour from './../../components/genericComponents/FormHour';
 
 
 const ComingSoonScreen = ({navigation}) => {
@@ -8,9 +7,6 @@ const ComingSoonScreen = ({navigation}) => {
         <View style={styles.container}>
             <TouchableOpacity style={styles.TouchableOpacity}  onPress = {()=>navigation.navigate('Gantt')}>
                 <Text style={styles.text}>Gantt</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.TouchableOpacity}  onPress = {()=>navigation.navigate('Hour')}>
-                <Text style={styles.text}>Hour Component</Text>
             </TouchableOpacity>
         </View>
     );
@@ -27,8 +23,6 @@ const styles = StyleSheet.create({
         backgroundColor:'#375360',
         flexDirection:'row-reverse',
         paddingLeft:3,
-        borderBottomColor:'white',
-        borderBottomWidth:3
     },
     image: {
         height:37,
@@ -41,6 +35,7 @@ const styles = StyleSheet.create({
         color:'oldlace',
         fontWeight:'bold',
         marginHorizontal:10,
+        marginVertical:10
     },
 });
 

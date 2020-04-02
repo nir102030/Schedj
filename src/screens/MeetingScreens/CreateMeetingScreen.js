@@ -28,7 +28,12 @@ const CreateMeetingScreen = ({id, pid, onSubmit}) => {
                             <Text style={styles.input}>Meeting Date:</Text> 
                         </View>
                         <Text style={styles.input}>Meeting Hours: </Text> 
-                        <FormHour TimePicker = {TimePicker}/>
+                        <View style={styles.hours} >
+                            <FormHour TimePicker = {TimePicker}/>
+                            <Text style={styles.hour}>Until: </Text>
+                            <FormHour TimePicker = {TimePicker}/>
+                            <Text style={styles.hour}>From: </Text>
+                        </View>
                         <FormInput title='Place Of Meeting:' value = {placeOfMeeting} onChange={setplaceOfMeeting} viewStyle = {styles.designSquare}/>
                         <FormParticipantsList initialList = {Pparticipants}/>
                         <Text  style={styles.note}>   Write your notes here!  </Text>
@@ -59,7 +64,6 @@ const styles = StyleSheet.create({
     fontWeight:'bold',
     fontSize: 30,
     marginVertical: 10,
-    //marginHorizontal:34,
     alignSelf:'center',
     color:'#263238',
     textAlign:'left'
@@ -81,17 +85,26 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     }, 
     input: {
-        marginVertical: 20,
+        marginVertical: 15,
+        marginHorizontal:10,
+        fontWeight:'bold',
+        fontSize: 22,
+        color:'black',
+        flex:1,
+    }, 
+    hour:{
         marginHorizontal:10,
         fontWeight:'bold',
         fontSize: 22,
         color:'black',
         flex:1
-    }, 
+    },
     hours: {
         flexDirection: 'row',
         borderBottomWidth: 3,
         borderBottomColor:'#d9e3f0',
+        paddingBottom:10
+
     },
     meetDesign: {
         marginVertical: 2,
