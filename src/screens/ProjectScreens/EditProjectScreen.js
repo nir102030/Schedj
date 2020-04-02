@@ -7,14 +7,17 @@ import { connect } from 'react-redux';
 const EditProjectScreen = ({navigation, editProject, projects}) => {
     const id = navigation.getParam('id');
     const project = projects.find((project) => project.id === id);
+
+    const onSubmit = (project) => {
+        editProject(project);
+        navigation.pop();
+    }
     
     return (
         <View>
             <ProjectForm 
                 oldProject = {project}
-                onSubmit = {(project) => {
-                    editProject(project);
-                }}  
+                onSubmit = {(project) => onSubmit(project)}
             />
         </View>
     );

@@ -6,14 +6,17 @@ import { connect } from 'react-redux';
 
 const CreateProjectScreen = ({navigation, addProject}) => {
     const project = {id: '', name:'', minForMeeting: '', participants:[], reminder: '' ,notes: ['','','']}
+    
+    const onSubmit = (project) => {
+        addProject(project);
+        navigation.pop();
+    }
 
     return (
         <View>
             <ProjectForm 
                 oldProject = {project}
-                onSubmit = {(project) => {
-                    addProject(project);
-                }}
+                onSubmit = {(project) => onSubmit(project)}
             />
         </View>
     );
