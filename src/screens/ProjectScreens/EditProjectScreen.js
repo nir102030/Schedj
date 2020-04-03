@@ -16,6 +16,7 @@ const EditProjectScreen = ({navigation, editProject, projects}) => {
         <ProjectForm 
             oldProject = {project}
             onSubmit = {(project) => onSubmit(project)}
+            type = 'edit'
         />
     );
 };

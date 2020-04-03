@@ -9,7 +9,7 @@ const ProjectCalendarScreen = ({navigation}) => {
     const project = navigation.getParam('project');
     return <View style = {styles.container}>
                 <View style={styles.header}>
-                    <Text style={styles.text}>{project} Project Calendar </Text>
+                    <Text style={styles.text}>{project.name} Calendar </Text>
                     <Image source={require('../../../assets/images/calendar_icon1.png')} style={styles.image}/>
                 </View>
             <ScrollView>

@@ -6,22 +6,20 @@ import {AntDesign} from '@expo/vector-icons';
 const MeetingComp = ({navigation, meeting, deleteMeeting}) => {
     return (
         <View style={styles.container}>
-                <TouchableOpacity style = {styles.editButton} onPress = {() => navigation.navigate('EditM',{meeting})}>
+                <TouchableOpacity style = {styles.button} onPress = {() => navigation.navigate('EditM',{meeting})}>
                     <Image source = {require('../../../assets/images/edit_logo.png')} style={styles.image}/>
                 </TouchableOpacity>
+                <TouchableOpacity style = {styles.button} onPress = {() => deleteMeeting(meeting)}>
+                    <AntDesign name = 'delete' size= {35}/>
+                </TouchableOpacity>  
                 <View style={{flex:4}}>
                     <Text style={styles.header}>Meeting {meeting.mid}</Text>
-                    <Text style={styles.date}> Meeting Date</Text>
+                    <Text style={styles.date}> {meeting.date}</Text>
                     <TouchableOpacity style = {styles.TouchableOpacity}  onPress = {()=>navigation.navigate('Tasks')}>
                         <Image source={require('../../../assets/images/addTask.png')} style={styles.imageAdd}/>
                         <Text style={styles.addTask}>Add Task</Text>
                     </TouchableOpacity>
                 </View>
-                {/* the code below should be in that format */}
-
-                    {/* <TouchableOpacity style = {styles.delete} onPress = {() => deleteMeeting(meeting)}>
-                        <AntDesign name = 'delete' size= {35}/>
-                    </TouchableOpacity>   */}
         </View>    
     )
 };
@@ -53,13 +51,6 @@ const styles = StyleSheet.create({
         flex:1,
         flexDirection:'row-reverse'
     }, 
-    delete: {
-        marginVertical: 5,
-        marginHorizontal:99,
-        backgroundColor:'red',
-        flex:1,
-        borderRadius: 10
-    },
     TouchableOpacity: {
         marginVertical: 5,
         backgroundColor:'#91a5af',
@@ -86,7 +77,7 @@ const styles = StyleSheet.create({
         width:47,
         marginHorizontal:1
     },
-    editButton: {
+    button: {
         alignSelf:'flex-start',
         flex:1
     }

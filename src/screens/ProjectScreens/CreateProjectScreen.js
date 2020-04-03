@@ -15,6 +15,7 @@ const CreateProjectScreen = ({navigation, addProject}) => {
         <ProjectForm 
             oldProject = {project}
             onSubmit = {(project) => onSubmit(project)}
+            type = 'create'
         />
     );
 };

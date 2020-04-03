@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import {View, Text, StyleSheet,Image,ScrollView,TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet,ScrollView} from 'react-native';
 import FormDatePicker from '../../components/genericComponents/FormDatePicker';
 import FormInput from '../../components/genericComponents/FormInput';
 import FormParticipantsList from '../../components/genericComponents/FormParticipantsList'; 
@@ -7,9 +7,8 @@ import FormHour from '../../components/genericComponents/FormHour';
 import TimePicker from "react-native-24h-timepicker";
 import FormSubmitButton from '../genericComponents/FormSubmitButton'; 
 import FormNotes from '../genericComponents/FormNotes'
-import MeetingsList from './MeetingsList';
 
-const MeetingForm = ({oldMeeting, onSubmit}) => {
+const MeetingForm = ({oldMeeting, onSubmit, type}) => {
     const [meeting,setMeeting] = useState(oldMeeting);
 
     return (
@@ -20,14 +19,25 @@ const MeetingForm = ({oldMeeting, onSubmit}) => {
                     <ScrollView> 
                         <Text  style={styles.fillRequired}>Please fill the required fields </Text>
                         <View style={styles.designSquare}>
-                            <FormDatePicker/>
+                            <FormDatePicker 
+                                date = {meeting.date} 
+                                setDate = {(date) => setMeeting({...meeting,"date": date})}
+                            />
                             <Text style={styles.input}>Meeting Date:</Text> 
                         </View>
                         <Text style={styles.input}>Meeting Hours: </Text> 
                         <View style={styles.hours} >
-                            <FormHour TimePicker = {TimePicker}/>
+                            <FormHour 
+                                TimePicker = {TimePicker} 
+                                time = {meeting.to} 
+                                setTime = {(time) => setMeeting({...meeting, "to": time})}
+                            />
                             <Text style={styles.hour}>Until: </Text>
-                            <FormHour TimePicker = {TimePicker}/>
+                            <FormHour 
+                                TimePicker = {TimePicker} 
+                                time = {meeting.from} 
+                                setTime = {(time) => setMeeting({...meeting, "from": time})}
+                            />
                             <Text style={styles.hour}>From: </Text>
                         </View>
                         <FormInput 
@@ -43,8 +53,9 @@ const MeetingForm = ({oldMeeting, onSubmit}) => {
                         <Text  style={styles.note}>   Write your notes here!  </Text>
                         <FormNotes 
                             notes = {meeting.notes} 
-                            setNotes = {(notes)=> setMeeting({...meeting, "notes": notes})}/>
-                        <FormSubmitButton onSubmit = {() => onSubmit(meeting)}/>                   
+                            setNotes = {(notes)=> setMeeting({...meeting, "notes": notes})}
+                        />
+                        <FormSubmitButton onSubmit = {() => onSubmit(meeting)} type = {type}/>                   
                     </ScrollView>
             </View>
     );

@@ -2,18 +2,12 @@ import React, {useState} from 'react';
 import {Text, StyleSheet, View, Image,ScrollView,FlatList} from 'react-native';
 import FormInput from '../genericComponents/FormInput';
 import FormParticipantsList from '../genericComponents/FormParticipantsList';
-import FormSubmitButton from '../genericComponents/FormSubmitButton'; 
+import FormSubmitButton from '../genericComponents/FormSubmitButton';
+import FormNotes from '../../components/genericComponents/FormNotes'; 
 
 
-
-const ProjectForm = ({oldProject, onSubmit}) => {
+const ProjectForm = ({oldProject, onSubmit, type}) => {
     const [project,setProject] = useState(oldProject);
-    
-    const handleNoteList = (note, index) => {
-        const newNotes = [...project.notes];
-        newNotes[index] = note;
-        setProject({...project, "notes":newNotes});
-    }
 
     return (
             <View style= {styles.container}>
@@ -46,26 +40,12 @@ const ProjectForm = ({oldProject, onSubmit}) => {
                             viewStyle = {styles.minMeet}
                         /> 
                         <Text  style={styles.note}>   Write your notes here!  </Text>
-                        <FormInput 
-                            title='1.' 
-                            value = {project.notes[0]} 
-                            onChange={(note) => handleNoteList(note,0)} 
-                            viewStyle = {styles.notes}
-                        />
-                        <FormInput 
-                            title='2.' 
-                            value = {project.notes[1]} 
-                            onChange={(note) => handleNoteList(note,1)} 
-                            viewStyle = {styles.notes}
-                        />
-                        <FormInput 
-                            title='3.' 
-                            value = {project.notes[2]} 
-                            onChange={(note) => handleNoteList(note,2)} 
-                            viewStyle = {styles.notes}
+                        <FormNotes 
+                            notes = {project.notes} 
+                            setNotes = {(notes)=> setProject({...project, "notes": notes})}
                         />
                         <Text  style={styles.task}>   *Define your tasks later  </Text>
-                        <FormSubmitButton onSubmit = {() => onSubmit(project)}/>
+                        <FormSubmitButton onSubmit = {() => onSubmit(project)} type = {type}/>
                     </ScrollView>
             </View>
     );
@@ -91,7 +71,7 @@ const styles = StyleSheet.create({
         marginHorizontal:34,
         alignSelf:'center',
         color:'#263238',
-        textAlign:'left'
+        flex:4
     },
     image:{
         marginVertical:10,
@@ -99,7 +79,8 @@ const styles = StyleSheet.create({
         width:60,
         alignSelf: 'flex-end',
         justifyContent: 'flex-end',
-        marginHorizontal:10
+        marginHorizontal:10,
+        flex:1
     },
     fillRequired: {
         backgroundColor:'red',        

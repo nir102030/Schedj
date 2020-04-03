@@ -17,6 +17,7 @@ const EditMeetingScreen = ({navigation,meetings,editMeeting}) => {
         <MeetingForm 
             oldMeeting = {meeting}
             onSubmit = {(meeting) => onSubmit(meeting)}
+            type = 'edit'
         />
     );
 };

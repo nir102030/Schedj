@@ -3,10 +3,9 @@ import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
  
 
 
-const FormHour = ({TimePicker}) => {
-    const [time,setTime] = useState('00:00');
+const FormHour = ({TimePicker, time, setTime}) => {
 
-    const onConfirm = (hour, minute) => {
+    const onConfirm = (minute, hour) => {
         setTime(`${hour}:${minute}`);
         TimePicker.close();
 }
@@ -21,7 +20,7 @@ const FormHour = ({TimePicker}) => {
                         TimePicker = ref;
                     }}
                     onCancel={() => TimePicker.close()}
-                    onConfirm={(hour, minute) => onConfirm(hour, minute)}
+                    onConfirm={(minute, hour) => onConfirm(minute, hour)}
                 />
             </View>
             );

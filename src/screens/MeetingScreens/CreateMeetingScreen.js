@@ -3,9 +3,14 @@ import MeetingForm from '../../components/meetingsComponents/MeetingForm';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
 
-const CreateMeetingScreen = ({navigation, addMeeting}) => {
+const CreateMeetingScreen = ({navigation, addMeeting, meetings}) => {
     const pid = navigation.getParam('project').id;
-    const meeting = {pid:pid, mid:'1', date: '', from:'10:00', to: '12:00', place:'',participants: [], notes:['','',''] }
+    const projectMeetings = meetings.filter((meeting) => meeting.pid === pid);
+    const maxMeetingIndx = 
+            projectMeetings == ""
+            ? 0 :
+            Math.max.apply(Math, projectMeetings.map(function(meeting) { return meeting.mid; }))
+    const meeting = {pid:pid, mid:maxMeetingIndx + 1, date: '', from:'10:00', to: '12:00', place:'',participants: [], notes:['','',''] }
 
     const onSubmit = (meeting) => {
         addMeeting(meeting);
@@ -16,8 +21,13 @@ const CreateMeetingScreen = ({navigation, addMeeting}) => {
         <MeetingForm
             oldMeeting = {meeting}
             onSubmit = {(meeting) => onSubmit(meeting)}
+            type = 'create'
         />
     );
 };
 
-export default connect(null,actions)(CreateMeetingScreen);
+const mapStateToProps = state => {
+    return { meetings: state.meetings }
+};
+
+export default connect(mapStateToProps,actions)(CreateMeetingScreen)

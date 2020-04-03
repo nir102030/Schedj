@@ -1,11 +1,15 @@
 import React from 'react';
 import {TouchableOpacity, Image, StyleSheet} from 'react-native';
 
-const FormSubmitButton = ({onSubmit}) => {
+const FormSubmitButton = ({onSubmit, type}) => {
+    const source = 
+            type === 'create'
+            ?require('../../../assets/images/create.png'):
+            require('../../../assets/images/Update.png');
     return(
         <TouchableOpacity onPress = {onSubmit}>
             <Image 
-                source={require('../../../assets/images/create.png')} 
+                source={source}
                 style={styles.image}
             />
         </TouchableOpacity>

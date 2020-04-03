@@ -4,13 +4,13 @@ import MeetingComp from './MeetingComp';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
-const MeetingsList = ({meetings, project, style}) => {
+const MeetingsList = ({meetings, project, style, deleteMeeting}) => {
     const meetingsList = meetings.filter((meeting) =>  meeting.pid == project.id);
 
     function Item({ item }) {
         return (
           <View style={styles.item}>
-            <MeetingComp meeting = {item}/>
+            <MeetingComp meeting = {item} deleteMeeting = {deleteMeeting}/>
           </View>
         );
     }
@@ -23,7 +23,7 @@ const MeetingsList = ({meetings, project, style}) => {
                 </View>
                 <FlatList
                     data = {meetingsList}
-                    keyExtractor={(meeting)=> meeting.mid}
+                    keyExtractor={(meeting)=> toString(meeting.mid)}
                     renderItem= {({item}) => <Item item = {item}/>}  
                 />
             </ScrollView>

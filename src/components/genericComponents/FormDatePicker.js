@@ -1,8 +1,7 @@
 import React,{useState} from 'react';
 import DatePicker from 'react-native-datepicker';
 
-const FormDatePicker = () =>{
-    const [date, setDate] = useState(new Date());
+const FormDatePicker = ({date, setDate}) =>{
 
     return(
             <DatePicker
