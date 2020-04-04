@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
         width:'100%'
     },
     list: {
-        flex:9,
+        flex:8,
         backgroundColor:'#607d8b'
     },
     TouchableOpacity: {
@@ -38,7 +38,8 @@ const styles = StyleSheet.create({
         fontSize:20,
         color:'oldlace',
         alignSelf:'center',
-        fontWeight:'bold'
+        fontWeight:'bold',
+        flex:1
     }
 });
 

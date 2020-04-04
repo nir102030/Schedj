@@ -21,7 +21,7 @@ const CreateTopic = ({addTopic, project, style}) => {
                 submitInput = {(input)=>addNewTopic(input)}
                 closeDialog={()=>{setShowDialog(false)}}
             />
-            <TouchableOpacity style = {style}  onPress ={() => setShowDialog(true)}>
+            <TouchableOpacity style={styles.TouchableOpacity} onPress ={() => setShowDialog(true)}>
                 <Image source={require('../../../assets/images/addTopic.png')} style={styles.image}/>
                 <Text style={styles.text}>  Add a New Topic</Text>
             </TouchableOpacity>
@@ -43,6 +43,10 @@ const styles = StyleSheet.create({
         alignSelf:'center',
         fontWeight:'bold',
         marginVertical:12,
+    },
+    TouchableOpacity: {
+        backgroundColor:'#2b414b',
+        flexDirection:'row-reverse'
     },
 });
 
