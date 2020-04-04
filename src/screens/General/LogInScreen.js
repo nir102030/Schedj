@@ -1,12 +1,10 @@
 import React from 'react';
 import {View, StyleSheet, Image,TouchableOpacity} from 'react-native';
 import {withNavigation} from 'react-navigation';
-//import { Header } from "react-navigation";
 
 
 const LogInScreen = ({navigation}) => {
     
-
     return (
         <View style={styles.container}>
             <Image source={require('../../../assets/images/schedjWhiteTry.png')} style={styles.whiteHeadr}/>
@@ -15,7 +13,7 @@ const LogInScreen = ({navigation}) => {
                 <TouchableOpacity style = {styles.TouchableOpacity}  onPress = {()=>navigation.navigate('OpenS')}>
                     <Image source={require('../../../assets/images/loginWith.png')} style={styles.loginWith}/>
                 </TouchableOpacity>
-            
+                {/* <GoogleSignInButton/> */}
             </View>
         </View>
     );
