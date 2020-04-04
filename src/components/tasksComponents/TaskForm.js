@@ -3,10 +3,9 @@ import {View, Text, StyleSheet,Picklist,TouchableOpacity,Image,TextInput} from '
 import FormInput from '../../components/genericComponents/FormInput';
 import FormSubmitButton from '../genericComponents/FormSubmitButton';
 
-
 const TaskForm = ({oldTask,onSubmit,type}) => {
     const [task,setTask]  = useState(oldTask);
-   
+
     return (
         <View style={styles.container}> 
             <View style={styles.header}>
@@ -14,7 +13,10 @@ const TaskForm = ({oldTask,onSubmit,type}) => {
                 {/* <Picklist title='Topic' data={topics}  navigation=''/> */}
             </View>
             <FormInput title='Task Name ' value = {task.name} onChange={(name) => setTask({...task, "name":name})} viewStyle = {styles.meetDesign} />
-            <FormInput title='Description ' value = {task.description} onChange={(description) => setTask({...task, "description":description})}  viewStyle = {styles.meetDesign} />
+            <View style={styles.meetDesign}>
+                <TextInput style={styles.input} autoGrow='true' placeholder={task.description} value={task.description} onChangeText={(description) => setTask({...task, "description":description})}/>
+                <Text style={styles.text}>Description  </Text> 
+            </View>
             <FormSubmitButton onSubmit = {() => onSubmit(task)} type = {type}/>                   
         </View>
 
@@ -48,6 +50,22 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
         fontSize: 20,
     }, 
+    input: {
+        marginTop:7,
+        marginBottom:7,
+        marginRight:5,
+        marginLeft: 10,
+        borderWidth:1,
+        borderColor:'white',
+        backgroundColor:'#b1c2ca',
+        borderRadius:5,
+        flex: 1,
+        fontSize:16,
+        fontWeight:'bold',
+        lineHeight: 10,
+        height:100,
+        textAlignVertical: 'top'
+    },
     image: {
         marginVertical: 30,
         height:60,
@@ -65,7 +83,7 @@ const styles = StyleSheet.create({
         marginRight: 10,
         marginTop:8,
         marginBottom:10,
-        color:'white'
+        color:'white',
     },
 });
 

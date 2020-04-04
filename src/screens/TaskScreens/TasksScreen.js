@@ -8,7 +8,6 @@ const TasksScreen = ({navigation}) => {
     const project = navigation.getParam('project');
 
     return (
-        <ScrollView> 
             <View style={styles.container}> 
                 <View style={styles.header}>
                     <Text style={styles.headerStyle}> {project.id} Project - Tasks</Text>
@@ -19,7 +18,6 @@ const TasksScreen = ({navigation}) => {
                     <Text style={styles.text}>  Add a New Topic</Text>
                 </TouchableOpacity>
             </View>
-        </ScrollView>
     );
 };
 
@@ -30,10 +28,11 @@ const styles = StyleSheet.create({
         backgroundColor: '#607d8b'
     },
     list: {
-        flex:9,
+        flex:8,
         backgroundColor:'#607d8b'
     },
     header: {
+        flex:1,
         flexDirection: 'row',
         backgroundColor:'#8aa9b9',
         justifyContent: 'flex-end',

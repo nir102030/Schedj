@@ -9,8 +9,8 @@ const TopicsComp = ({navigation, topic}) => {
             <View style = {styles.topic}>
                 <Text style={styles.subHeader}> {topic.name} </Text>
                 <TouchableOpacity style = {styles.TouchableOpacity}  onPress = {()=>navigation.navigate('CreateT', {topic})}>
-                    <Text style={styles.text}>  Add a New Task</Text>
                     <Image source={require('../../../assets/images/add.png')} style={styles.image}/>
+                    <Text style={styles.text}>Add a New Task</Text>
                 </TouchableOpacity>
             </View>
             <TaskList topic = {topic} style = {styles.list}/>
@@ -21,41 +21,39 @@ const TopicsComp = ({navigation, topic}) => {
 const styles = StyleSheet.create({
     container: {
         backgroundColor:'#607d8b',
-        borderBottomWidth: 3,
-        borderBottomColor:'#d9e3f0'
+        flex:1,
     },
     list: {
         flex:9,
         backgroundColor:'#607d8b'
     },
     topic: {
-        flexDirection:'row-reverse'
+        flexDirection:'row-reverse',
+        borderBottomWidth: 3,
+        borderBottomColor:'#d9e3f0'
     },
     subHeader: {
         fontSize: 22,
         color:'white',
-        borderBottomWidth: 3,
-        borderBottomColor:'#d9e3f0',
-        flex:4
+        flex:4,
+        marginVertical:10,
+        fontWeight:'bold',
     },
     TouchableOpacity: {
-        flex:3,
+        flex:4,
         flexDirection:'row-reverse',
-        alignSelf:'baseline'
     },
     text:{
         flex:4,
         fontSize:20,
         color:'oldlace',
         alignSelf:'center',
-        fontWeight:'bold'
     },
     image: {
         height:37,
         width:37,
-        marginRight: 15,
         alignSelf:'center',
-        flex:1
+        marginHorizontal:5
     },
     
 });
