@@ -63,8 +63,9 @@ const styles = StyleSheet.create({
         fontSize:16,
         fontWeight:'bold',
         lineHeight: 10,
-        height:100,
-        textAlignVertical: 'top'
+        height:200,
+        //textAlignVertical: ''
+        
     },
     image: {
         marginVertical: 30,

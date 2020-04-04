@@ -30,7 +30,8 @@ const styles = StyleSheet.create({
     },
     progCheckRow:{
         flexDirection: 'row',
-        alignSelf:'stretch',
+        alignSelf:'center',
+        marginLeft:37
     }, 
     CheckBox:{
         marginVertical:10,

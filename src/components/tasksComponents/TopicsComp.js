@@ -1,16 +1,29 @@
-import React from 'react';
-import {Text, StyleSheet, View, TouchableOpacity, Image} from 'react-native';
+import React,{useState} from 'react';
+import {Text, StyleSheet, View, TouchableOpacity, Image,TextInput} from 'react-native';
 import {withNavigation} from 'react-navigation';
 import TaskList from './TaskList';
+import * as actions from '../../actions';
+import { connect } from 'react-redux';
 
-const TopicsComp = ({navigation, topic}) => {
+const TopicsComp = ({navigation, topic,editTopic}) => {
+    const [newTopic,setNewTopic] = useState(topic);
+
+    const setExistTopic = (name)=>{
+        setNewTopic({...newTopic, 'name':name});
+        editTopic(newTopic)
+    }
+
     return (
         <View style={styles.container}>
             <View style = {styles.topic}>
-                <Text style={styles.subHeader}> {topic.name} </Text>
+                <TextInput style={styles.subHeader} 
+                    placeholder={newTopic.name}  
+                    value={newTopic.name}  
+                    onChangeText={(name) => setExistTopic(name)}
+                /> 
                 <TouchableOpacity style = {styles.TouchableOpacity}  onPress = {()=>navigation.navigate('CreateT', {topic})}>
                     <Image source={require('../../../assets/images/add.png')} style={styles.image}/>
-                    <Text style={styles.text}>Add a New Task</Text>
+                    {/* <Text style={styles.text}>Add a New Task</Text> */}
                 </TouchableOpacity>
             </View>
             <TaskList topic = {topic} style = {styles.list}/>
@@ -40,8 +53,9 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
     },
     TouchableOpacity: {
-        flex:4,
+        flex:1,
         flexDirection:'row-reverse',
+        marginLeft:150
     },
     text:{
         flex:4,
@@ -58,4 +72,4 @@ const styles = StyleSheet.create({
     
 });
 
-export default withNavigation(TopicsComp)
+export default connect(null,actions)(TopicsComp);
