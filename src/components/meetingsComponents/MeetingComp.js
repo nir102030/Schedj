@@ -6,12 +6,12 @@ import {AntDesign} from '@expo/vector-icons';
 const MeetingComp = ({navigation, meeting, deleteMeeting}) => {
     return (
         <View style={styles.container}>
-                <TouchableOpacity style = {styles.button} onPress = {() => navigation.navigate('EditM',{meeting})}>
-                    <Image source = {require('../../../assets/images/edit_logo.png')} style={styles.image}/>
-                </TouchableOpacity>
                 <TouchableOpacity style = {styles.button} onPress = {() => deleteMeeting(meeting)}>
                     <AntDesign name = 'delete' size= {35}/>
                 </TouchableOpacity>  
+                <TouchableOpacity style = {styles.button} onPress = {() => navigation.navigate('EditM',{meeting})}>
+                    <Image source = {require('../../../assets/images/edit_logo.png')} style={styles.image}/>
+                </TouchableOpacity>
                 <View style={{flex:4}}>
                     <Text style={styles.header}>Meeting {meeting.mid}</Text>
                     <Text style={styles.date}> {meeting.date}</Text>
@@ -73,9 +73,9 @@ const styles = StyleSheet.create({
         alignSelf:'center'
     },
     image: {
-        height:47,
-        width:47,
-        marginHorizontal:1
+        height:35,
+        width:35,
+        marginHorizontal:5
     },
     button: {
         alignSelf:'flex-start',
