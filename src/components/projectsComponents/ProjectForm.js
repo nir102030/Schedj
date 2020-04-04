@@ -18,7 +18,7 @@ const ProjectForm = ({oldProject, onSubmit, type}) => {
                     <ScrollView>
                         <Text  style={styles.fillRequired}>Please fill the required fields </Text>
                         <FormInput 
-                            title='Project Name:' 
+                            title='Project Name' 
                             value = {project.name} 
                             onChange={(name) => setProject({...project, "name":name})} 
                             viewStyle = {styles.projectName}
@@ -28,13 +28,13 @@ const ProjectForm = ({oldProject, onSubmit, type}) => {
                             setParticipant = {(participants) => setProject({...project, "participants": participants})}
                         />
                         <FormInput 
-                            title='Min Participants For Meeting:' 
+                            title='Min Participants For Meeting' 
                             value={project.minForMeeting} 
                             onChange = {(minForMeeting) => setProject({...project, "minForMeeting": minForMeeting})} 
                             viewStyle = {styles.minMeet}
                         /> 
                         <FormInput 
-                            title='Reminder Before Meeting:' 
+                            title='Reminder Before Meeting' 
                             value={project.reminder} 
                             onChange = {(reminder) => setProject({...project, "reminder":reminder})} 
                             viewStyle = {styles.minMeet}
@@ -100,6 +100,7 @@ const styles = StyleSheet.create({
     note: {
         alignSelf:'center',
         fontWeight:'bold',
+        color:'white'
     },
     notes: {
         flexDirection: 'row',
@@ -107,7 +108,7 @@ const styles = StyleSheet.create({
     task:{
         marginTop: 20,
         fontWeight:'bold',
-        color:'#194d33'
+        color:'white'
     },
 });
 

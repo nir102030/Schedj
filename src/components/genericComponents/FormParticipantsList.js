@@ -33,7 +33,7 @@ const FormParticipantsList = ({participants, setParticipant}) => {
                     submitInput = {(input)=>submitHandler(input)}
                     closeDialog={()=>{setShowDialog(false)}}
                 />
-                <Text style={styles.addMates}>Participants:</Text>
+                <Text style={styles.addMates}>Participants</Text>
             </View>
             <FlatList
                 data = {participants}
@@ -67,18 +67,17 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         borderWidth:3,
         borderColor:'white',
-        backgroundColor:'#b3d4e5',
+        backgroundColor:'#9BBCCD',
         borderRadius:50,
         alignSelf:'center',
         flex: 1,
     },
     addMatesButton:{
         fontSize: 16,
-        marginRight: 10,
         marginTop:8,
         marginBottom:10,
         fontWeight:'bold',
-        color: 'black',
+        color: 'white',
         alignSelf:'center'
     },
     addMates:{
@@ -86,7 +85,7 @@ const styles = StyleSheet.create({
         marginRight: 10,
         marginTop:8,
         marginBottom:5,
-        fontWeight:'bold',
+        color:'white'
     }
 });
 

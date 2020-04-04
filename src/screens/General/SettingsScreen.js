@@ -18,7 +18,7 @@ const SettingsScreen = ({pid}) => {
                 <FormInput title=' Edit Profile Name:' value={edit} onChange = {setEdit} viewStyle = {styles.Pname}/> 
             <View  style={styles.changePic}>
                 <Image source={require('../../../assets/images/pp.png')} style={styles.imagePP}/>
-                <Text style={styles.task}>Change Profile Picture:      </Text>
+                <Text style={styles.task}>Change Profile Picture     </Text>
             </View>
             <Text style={styles.subHeader}> Notifications </Text>
             <View style={styles.Check}>
@@ -29,9 +29,8 @@ const SettingsScreen = ({pid}) => {
                 <CheckBox title='Mobile' checked={setChecked} style={styles.CheckBox2}/>
                 <Text style={styles.notification}>Mobile  </Text>
             </View>
-            <View  style={styles.rankPic}>
-                {/* <Image source={require('../../../assets/images/rank.png')} style={styles.imageRank}/> */}
-                <Text style={styles.subHeader}> Rank our app </Text>
+            <Text style={styles.subHeader}> Rank our app </Text>
+            <View  style={styles.Check}>
             </View>
             <RNPickerSelect 
                             placeholder={{}}
@@ -81,7 +80,7 @@ const styles = StyleSheet.create({
         alignSelf:'flex-end'
     },
     subHeader: {
-        marginVertical: 12,
+        marginVertical:10,
         paddingBottom:10,
         marginHorizontal:10,
         fontWeight:'bold',
@@ -92,17 +91,15 @@ const styles = StyleSheet.create({
     }, 
     task:{
         marginVertical:10,
-        fontWeight:'bold',
         fontSize: 22,
         marginHorizontal:15,
-        color:'black',
+        color:'white',
     },
     notification:{
         marginVertical:10,
-        fontWeight:'bold',
         fontSize: 22,
         marginHorizontal:15,
-        color:'black',
+        color:'white',
         alignSelf:'center',
     },
     Check:{

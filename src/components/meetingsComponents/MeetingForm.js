@@ -23,25 +23,25 @@ const MeetingForm = ({oldMeeting, onSubmit, type}) => {
                                 date = {meeting.date} 
                                 setDate = {(date) => setMeeting({...meeting,"date": date})}
                             />
-                            <Text style={styles.input}>Meeting Date:</Text> 
+                            <Text style={styles.input}>Meeting Date</Text> 
                         </View>
-                        <Text style={styles.input}>Meeting Hours: </Text> 
+                        <Text style={styles.input}>Meeting Hours</Text> 
                         <View style={styles.hours} >
                             <FormHour 
                                 TimePicker = {TimePicker} 
                                 time = {meeting.to} 
                                 setTime = {(time) => setMeeting({...meeting, "to": time})}
                             />
-                            <Text style={styles.hour}>Until: </Text>
+                            <Text style={styles.hour}>Until</Text>
                             <FormHour 
                                 TimePicker = {TimePicker} 
                                 time = {meeting.from} 
                                 setTime = {(time) => setMeeting({...meeting, "from": time})}
                             />
-                            <Text style={styles.hour}>From: </Text>
+                            <Text style={styles.hour}>From</Text>
                         </View>
                         <FormInput 
-                            title='Place Of Meeting:' 
+                            title='Place Of Meeting' 
                             value = {meeting.place} 
                             onChange={(place) => setMeeting({...meeting, 'place': place})} 
                             viewStyle = {styles.designSquare}
@@ -89,6 +89,7 @@ const styles = StyleSheet.create({
     note: {
         alignSelf:'center',
         fontWeight:'bold',
+        color:'white'
     },
     designSquare: {
         flexDirection: 'row',
@@ -98,16 +99,14 @@ const styles = StyleSheet.create({
     input: {
         marginVertical: 15,
         marginHorizontal:10,
-        fontWeight:'bold',
         fontSize: 22,
-        color:'black',
+        color:'white',
         flex:1,
     }, 
     hour:{
         marginHorizontal:10,
-        fontWeight:'bold',
         fontSize: 22,
-        color:'black',
+        color:'white',
         flex:1
     },
     hours: {

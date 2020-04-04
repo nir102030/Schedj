@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         marginRight: 10,
         marginTop:8,
         marginBottom:10,
-        fontWeight:'bold'
+        color:'white'
     },
     input: {
         marginTop:7,
