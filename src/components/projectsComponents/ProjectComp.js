@@ -16,7 +16,7 @@ const ProjectComponent = ({project, deleteProject}) => {
                         <AntDesign name = 'delete' size= {37}/>
                     </TouchableOpacity>  
                     <IndexDetail imageSrc={require('../../../assets/images/edit_logo.png')} navigationScreen= 'EditP' project={project}/>
-                    <IndexDetail imageSrc={require('../../../assets/images/Task.png')} navigationScreen= 'TaskStatus' project={project}/>
+                    <IndexDetail imageSrc={require('../../../assets/images/Task.png')} navigationScreen= 'Tasks' project={project}/>
                     <IndexDetail imageSrc={require('../../../assets/images/meeting_logo.png')} navigationScreen= 'Meetings' project={project}/>
                     <IndexDetail imageSrc={require('../../../assets/images/calendar_icon1.png')} navigationScreen= 'Calendar' project={project}/>               
                 </View>

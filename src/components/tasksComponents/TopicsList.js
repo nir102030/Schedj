@@ -1,16 +1,16 @@
 import React from 'react';
-import {Text, StyleSheet, View, FlatList,Image,ScrollView} from 'react-native';
-import TaskComp from './TaskComp';
+import {StyleSheet, View, FlatList,ScrollView} from 'react-native';
+import TopicsComp from './TopicsComp';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
-const TaskList = ({tasks, topic, style, deleteTask}) => {
-    const taskList = tasks.filter((task) =>  task.pid === topic.pid && task.topic === topic.name);
+const TopicsList = ({topics, project, style, deleteTopic}) => {
+    const topicsList = [{pid: project.pid, name:'Design'}]
 
     function Item({ item }) {
         return (
           <View style={styles.item}>
-            <TaskComp task = {item}/>
+            <TopicsComp topic = {item} />
           </View>
         );
     }
@@ -18,9 +18,9 @@ const TaskList = ({tasks, topic, style, deleteTask}) => {
         <View style = {style}>
             <ScrollView>
                 <FlatList
-                    data = {taskList}
-                    keyExtractor={(task)=> task.tid}
-                    renderItem= {({item}) => <Item item={item}/>}  
+                    data = {topicsList}
+                    keyExtractor={(topic)=> toString(topic)}
+                    renderItem= {({item}) => <Item item = {item}/>}  
                 />
             </ScrollView>
         </View>
@@ -29,17 +29,12 @@ const TaskList = ({tasks, topic, style, deleteTask}) => {
 
 const styles = StyleSheet.create({
     item:{
+        padding:3,
         marginVertical: 10
-    },
-    image:{
-        marginVertical:10,
-        height:60,
-        width:60,
-        borderRadius:5,
-        alignSelf:'center'
     },
     header:{
         flexDirection:'row', 
+        flexWrap:'wrap',
         borderBottomWidth:5,
         borderBottomColor:'#2d6886',
         backgroundColor:'#8aa9b9',
@@ -51,11 +46,21 @@ const styles = StyleSheet.create({
         marginHorizontal:34,
         alignSelf:'center',
         color:'#263238',
+        flex:4
+    },
+    image:{
+        marginVertical:10,
+        height:60,
+        width:60,
+        borderRadius:5,
+        marginRight: 15,
+        alignSelf:'center',
+        flex:1
     }
 });
 
 const mapStateToProps = state => {
-    return { tasks: state.tasks };
+    return { topics: state.topics };
 };
 
-export default connect(mapStateToProps,actions)(TaskList);
+export default connect(mapStateToProps,actions)(TopicsList);

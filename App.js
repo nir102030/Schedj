@@ -15,8 +15,7 @@ import MeetingsScreen from './src/screens/MeetingScreens/MeetingsScreen';
 import CreateMeetingScreen from './src/screens/MeetingScreens/CreateMeetingScreen';
 import EditMeetingScreen from './src/screens/MeetingScreens/EditMeetingScreen';
 import MeetingInvitation from './src/screens/Invitations/MeetingInvitation';
-import TaskScreen from './src/screens/TaskScreens/TaskScreen';
-import TaskStatusScreen from './src/screens/TaskScreens/TaskStatusScreen';
+import TasksScreen from './src/screens/TaskScreens/TasksScreen';
 import CreateTaskScreen from './src/screens/TaskScreens/CreateTaskScreen';
 import EditTaskScreen from './src/screens/TaskScreens/EditTaskScreen';
 import AboutUsScreen from './src/screens/General/AboutUsScreen'
@@ -42,8 +41,7 @@ const navigator = createStackNavigator({
     CreateM: CreateMeetingScreen,
     EditM: EditMeetingScreen,
     InviteM: MeetingInvitation,
-    Tasks:TaskScreen,
-    TaskStatus: TaskStatusScreen,
+    Tasks: TasksScreen,
     CreateT: CreateTaskScreen,
     EditT: EditTaskScreen,
     AboutUs: AboutUsScreen,
