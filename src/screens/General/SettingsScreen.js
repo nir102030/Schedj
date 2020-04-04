@@ -15,7 +15,7 @@ const SettingsScreen = ({pid}) => {
                     <Image source={require('../../../assets/images/settings.png')} style={styles.imageHeader}/>
             </View>
             <Text style={styles.subHeader}> Edit Profile </Text>
-                <FormInput title=' Edit Profile Name:' value={edit} onChange = {setEdit} viewStyle = {styles.Pname}/> 
+                <FormInput title=' Edit Profile Name' value={edit} onChange = {setEdit} viewStyle = {styles.Pname}/> 
             <View  style={styles.changePic}>
                 <Image source={require('../../../assets/images/pp.png')} style={styles.imagePP}/>
                 <Text style={styles.task}>Change Profile Picture     </Text>

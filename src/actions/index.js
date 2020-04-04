@@ -39,3 +39,10 @@ export const deleteMeeting = (meeting) => {
         payload: {meeting}
     };
 };
+
+export const addTask = (task) => {
+    return {
+        type: 'add_task',
+        payload: {task}
+    };
+};
