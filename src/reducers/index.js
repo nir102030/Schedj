@@ -2,11 +2,13 @@ import { combineReducers } from 'redux';
 import ProjectReducer from './ProjectReducer';
 import MeetingReducer from './MeetingReducer';
 import TaskReducer from './TaskReducer';
+import TopicReducer from './TopicReducer';
 
 
 export default combineReducers ({
     projects: ProjectReducer,
     meetings: MeetingReducer,
-    tasks: TaskReducer
+    tasks: TaskReducer,
+    topics: TopicReducer
 });
 

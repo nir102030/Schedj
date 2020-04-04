@@ -46,3 +46,39 @@ export const addTask = (task) => {
         payload: {task}
     };
 };
+
+export const editTask = (task) => {
+    return {
+        type: 'edit_task',
+        payload: {task}
+    };
+};
+
+export const deleteTask = (task) => {
+    return {
+        type: 'delete_task',
+        payload: {task}
+    };
+};
+
+export const addTopic = (topic) => {
+    return {
+        type: 'add_topic',
+        payload: {topic}
+    };
+};
+
+export const editTopic = (topic) => {
+    return {
+        type: 'edit_topic',
+        payload: {topic}
+    };
+};
+
+export const deleteTopic = (topic) => {
+    return {
+        type: 'delete_topic',
+        payload: {topic}
+    };
+};
+

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
 const TopicsList = ({topics, project, style, deleteTopic}) => {
-    const topicsList = [{pid: project.pid, name:'Design'}]
+    const topicsList = topics.filter((topic) =>  topic.pid == project.id);
 
     function Item({ item }) {
         return (
@@ -19,7 +19,7 @@ const TopicsList = ({topics, project, style, deleteTopic}) => {
             <ScrollView>
                 <FlatList
                     data = {topicsList}
-                    keyExtractor={(topic)=> toString(topic)}
+                    keyExtractor={(topic)=> topic.name}
                     renderItem= {({item}) => <Item item = {item}/>}  
                 />
             </ScrollView>
