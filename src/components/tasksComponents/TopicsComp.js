@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
         color:'white',
         flex:4,
         marginVertical:10,
+        marginHorizontal:5,
         fontWeight:'bold',
     },
     TouchableOpacity: {
