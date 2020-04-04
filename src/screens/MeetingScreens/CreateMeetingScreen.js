@@ -10,7 +10,7 @@ const CreateMeetingScreen = ({navigation, addMeeting, meetings}) => {
             projectMeetings == ""
             ? 0 :
             Math.max.apply(Math, projectMeetings.map(function(meeting) { return meeting.mid; }))
-    const meeting = {pid:pid, mid:maxMeetingIndx + 1, date: '', from:'10:00', to: '12:00', place:'',participants: [], notes:['','',''] }
+    const meeting = {pid:pid, mid:maxMeetingIndx + 1, date: '', from:'00:00', to: '00:00', place:'',participants: [], notes:['','',''] }
 
     const onSubmit = (meeting) => {
         addMeeting(meeting);
