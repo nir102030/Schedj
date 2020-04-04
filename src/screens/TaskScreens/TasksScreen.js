@@ -1,25 +1,20 @@
 import React,{useState} from 'react';
-import {View, Text, StyleSheet,ScrollView,TouchableOpacity,Image} from 'react-native';
-import {withNavigation} from 'react-navigation';
+import {View, Text, StyleSheet} from 'react-native';
 import TopicsList from '../../components/tasksComponents/TopicsList';
+import CreateTopic from '../../components/tasksComponents/CreateTopic';
 
 
 const TasksScreen = ({navigation}) => {
     const project = navigation.getParam('project');
 
     return (
-        <ScrollView> 
             <View style={styles.container}> 
                 <View style={styles.header}>
                     <Text style={styles.headerStyle}> {project.id} Project - Tasks</Text>
                 </View>
-                <TopicsList project = {project} style = {styles.list}/>
-                <TouchableOpacity style = {styles.TouchableOpacity}  onPress ={()=>navigation.navigate('CreateT')}>
-                    <Image source={require('../../../assets/images/addTopic.png')} style={styles.image}/>
-                    <Text style={styles.text}>  Add a New Topic</Text>
-                </TouchableOpacity>
+                <TopicsList project = {project} style = {styles.list} />
+                <CreateTopic project = {project} style = {styles.TouchableOpacity}/>
             </View>
-        </ScrollView>
     );
 };
 
@@ -30,7 +25,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#607d8b'
     },
     list: {
-        flex:9,
+        flex:8,
         backgroundColor:'#607d8b'
     },
     header: {
@@ -38,7 +33,8 @@ const styles = StyleSheet.create({
         backgroundColor:'#8aa9b9',
         justifyContent: 'flex-end',
         borderBottomWidth:5,
-        borderBottomColor:'#2d6886'
+        borderBottomColor:'#2d6886',
+        flex:1
     },
     headerStyle: {        
         fontWeight:'bold',
@@ -51,25 +47,12 @@ const styles = StyleSheet.create({
     },
     TouchableOpacity: {
         backgroundColor:'#2b414b',
-        flex:1,
+        flex:2,
         flexDirection:'row-reverse',
         borderBottomWidth:1,
         borderBottomColor:'#d9e3f0',
         paddingTop: 5,
-    },
-    image: {
-        height:37,
-        width:37,
-        marginRight: 15,
-        alignSelf:'center'
-    },
-    text: {
-        fontSize:20,
-        color:'oldlace',
-        alignSelf:'center',
-        fontWeight:'bold',
-        marginVertical:12,
-    },
+    }
 });
 
-export default withNavigation(TasksScreen);
+export default TasksScreen;

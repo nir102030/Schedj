@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
 const TaskList = ({tasks, topic, style, deleteTask}) => {
-    const taskList = tasks.filter((task) =>  task.pid === topic.pid && task.topic === topic.name);
+    const taskList = tasks.filter((task) =>  task.pid == topic.pid && task.topic == topic.name);
 
     function Item({ item }) {
         return (
