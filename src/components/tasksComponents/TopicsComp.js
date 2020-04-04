@@ -73,4 +73,4 @@ const styles = StyleSheet.create({
     
 });
 
-export default connect(null,actions)(TopicsComp);
+export default connect(null,actions)(withNavigation(TopicsComp));

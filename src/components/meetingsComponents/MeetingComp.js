@@ -2,8 +2,17 @@ import React from 'react';
 import {Text, StyleSheet, View,TouchableOpacity, Image } from 'react-native';
 import {withNavigation} from 'react-navigation';
 import {AntDesign} from '@expo/vector-icons';
+import RNPickerSelect from 'react-native-picker-select';
+import { connect } from 'react-redux';
 
-const MeetingComp = ({navigation, meeting, deleteMeeting}) => {
+const MeetingComp = ({tasks, navigation, meeting, deleteMeeting}) => {
+    const taskList = tasks.filter((task) => task.pid === meeting.pid);
+    const taskChoice = taskList.map((task) => {
+            return {'label':task.name, 'value': task.name}
+    });
+    console.log(tasks);
+    console.log(taskList);
+    console.log(taskChoice);
     return (
         <View style={styles.container}>
                 <TouchableOpacity style = {styles.button} onPress = {() => deleteMeeting(meeting)}>
@@ -19,6 +28,12 @@ const MeetingComp = ({navigation, meeting, deleteMeeting}) => {
                         <Image source={require('../../../assets/images/addTask.png')} style={styles.imageAdd}/>
                         <Text style={styles.addTask}>Add Task</Text>
                     </TouchableOpacity>
+                    <RNPickerSelect 
+                        placeholder={{}}
+                        onValueChange={() => {}}
+                        items= {taskChoice}
+                        style={{ }}
+                    />
                 </View>
         </View>    
     )
@@ -83,4 +98,8 @@ const styles = StyleSheet.create({
     }
 });
 
-export default withNavigation(MeetingComp);
+const mapStateToProps = (state) => {
+    return {tasks: state.tasks}
+}
+
+export default connect(mapStateToProps)(MeetingComp);
