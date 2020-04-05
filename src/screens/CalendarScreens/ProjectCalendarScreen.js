@@ -14,13 +14,13 @@ const ProjectCalendarScreen = ({navigation}) => {
                 </View>
             <ScrollView>
             <View style = {{flexDirection: 'row-reverse'}}>
-                    <Button onPress={() => {showMessage({message: "Green",description: "Green-Available",type: "info",color:"black" });
+                    <Button onPress={() => {showMessage({message: "Green",description: "Green - Available",type: "info",color:"white",backgroundColor:'#388e3c' });
                         }} title="Green" color="#388e3c"/>
-                    <Button onPress={() => {showMessage({message: "Yellow",description: "Yellow-Waiting",type: "info",color:"black" });
+                    <Button onPress={() => {showMessage({message: "Yellow",description: "Yellow - Waiting",type: "info",color:"white",backgroundColor:'#fcc400' });
                         }} title="Yellow" color="#fcc400"/>
-                    <Button onPress={() => {showMessage({message: "Red",description: "Red-Scheduled",type: "info",color:"black" });
+                    <Button onPress={() => {showMessage({message: "Red",description: "Red - Scheduled",type: "info",color:"white",backgroundColor:'#d32f2f' });
                         }} title="Red" color="#d32f2f"/> 
-                    <Button onPress={() => {showMessage({message: "Grey",description: "Grey-Busy",type: "info",color:"black" });
+                    <Button onPress={() => {showMessage({message: "Grey",description: "Grey - Busy",type: "info",color:"white",backgroundColor:'#808080' });
                         }} title="Grey" color="#808080"/>                              
             </View>
             <Calendar />
