@@ -33,12 +33,6 @@ const ProjectForm = ({oldProject, onSubmit, type}) => {
                             onChange = {(minForMeeting) => setProject({...project, "minForMeeting": minForMeeting})} 
                             viewStyle = {styles.minMeet}
                         /> 
-                        <FormInput 
-                            title='Reminder Before Meeting' 
-                            value={project.reminder} 
-                            onChange = {(reminder) => setProject({...project, "reminder":reminder})} 
-                            viewStyle = {styles.minMeet}
-                        /> 
                         <Text  style={styles.note}>   Write your notes here!  </Text>
                         <FormNotes 
                             notes = {project.notes} 
