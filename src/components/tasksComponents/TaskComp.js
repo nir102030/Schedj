@@ -6,13 +6,20 @@ import {withNavigation} from 'react-navigation';
 
 const TaskComp = ({navigation,task, deleteTask}) => {
     const [checked,setChecked]  = useState();
+    const [progress,setProgress]  = useState(0.05);
+    const [color,setColor]  = useState('red');
 
     return (
         <View style={styles.progCheckRow}>
             <CheckBox title={task.name} checked={setChecked} style={styles.CheckBox} value={true}/>
-            <Progress.Bar progress={0.05} width={200} height={30} animated={true} color={'red'} borderColor={'#99BAC9'} marginVertical={10}/>
-            <Progress.Bar progress={0.65} width={200} height={30} animated={true} color={'#fccb00'} borderColor={'#99BAC9'} marginVertical={10}/>
-            <Progress.Bar progress={1} width={200} height={30} animated={true} color={'#008B02'} borderColor={'#99BAC9'} marginVertical={10}/>
+            <Progress.Bar progress={progress} width={200} height={30} animated={true} color={color} borderColor={'#99BAC9'} marginVertical={10}/> />
+            {/* <Progress.Bar progress={0.65} width={200} height={30} animated={true} color={'#fccb00'} borderColor={'#99BAC9'} marginVertical={10}/>
+            <Progress.Bar progress={1} width={200} height={30} animated={true} color={'#008B02'} borderColor={'#99BAC9'} marginVertical={10}/> */}
+            {/* on press touchabke opacity set progress */}
+            
+            
+            
+            
             <Text style={styles.task}> {task.name}  </Text>
             
         </View>
