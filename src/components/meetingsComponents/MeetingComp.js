@@ -1,18 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Text, StyleSheet, View,TouchableOpacity, Image } from 'react-native';
 import {withNavigation} from 'react-navigation';
 import {AntDesign} from '@expo/vector-icons';
-import RNPickerSelect from 'react-native-picker-select';
 import { connect } from 'react-redux';
+import RNPickerSelect from 'react-native-picker-select';
+import MultiSelect from 'react-native-multiple-select';
 
 const MeetingComp = ({tasks, navigation, meeting, deleteMeeting}) => {
     const taskList = tasks.filter((task) => task.pid === meeting.pid);
     const taskChoice = taskList.map((task) => {
-            return {'label':task.name, 'value': task.name}
-    });
+            return {'id':task.tid, 'name': task.name}
+    })
+    const [selectedItems,setSelectedItems] = useState([]);
+    onSelectedItemsChange = selectedItems => {
+        setSelectedItems({ selectedItems });
+      };
+
+
     console.log(tasks);
     console.log(taskList);
     console.log(taskChoice);
+    
     return (
         <View style={styles.container}>
                 <TouchableOpacity style = {styles.button} onPress = {() => deleteMeeting(meeting)}>
@@ -23,17 +31,37 @@ const MeetingComp = ({tasks, navigation, meeting, deleteMeeting}) => {
                 </TouchableOpacity>
                 <View style={{flex:4}}>
                     <Text style={styles.header}>Meeting {meeting.mid}</Text>
-                    <Text style={styles.date}> {meeting.date}</Text>
-                    <TouchableOpacity style = {styles.TouchableOpacity}  onPress = {()=>navigation.navigate('Tasks')}>
-                        <Image source={require('../../../assets/images/addTask.png')} style={styles.imageAdd}/>
-                        <Text style={styles.addTask}>Add Task</Text>
-                    </TouchableOpacity>
-                    <RNPickerSelect 
-                        placeholder={{}}
-                        onValueChange={() => {}}
-                        items= {taskChoice}
-                        style={{ }}
-                    />
+                    <Text style={styles.date}>Meeting Date {meeting.date}</Text>
+                    {/* <RNPickerSelect 
+                            placeholder={{label:'Pick Your Meeting Tasks',value:'',color:'red'}}
+                            onValueChange={() => {}}
+                            items= {taskChoice}
+                            style={{}}
+                        /> */}
+                    <View style={{ flex: 1 }}>
+                        <MultiSelect
+                            hideTags
+                            items={taskChoice}
+                            uniqueKey="id"
+                            //ref={(component) => { multiSelect = component }}
+                            onSelectedItemsChange={onSelectedItemsChange}
+                            selectedItems={selectedItems}
+                            selectText="Pick Items"
+                            searchInputPlaceholderText="Search Items..."
+                            onChangeInput={ (text)=> console.log(text)}
+                            //altFontFamily="ProximaNova-Light"
+                            tagRemoveIconColor="#CCC"
+                            tagBorderColor="#CCC"
+                            tagTextColor="#CCC"
+                            selectedItemTextColor="#CCC"
+                            selectedItemIconColor="#CCC"
+                            itemTextColor="#000"
+                            displayKey="name"
+                            searchInputStyle={{ color: '#CCC' }}
+                            submitButtonColor="#CCC"
+                            submitButtonText="Submit"
+                        />
+                    </View>
                 </View>
         </View>    
     )
@@ -52,7 +80,7 @@ const styles = StyleSheet.create({
         height: 30,
         fontWeight:'bold',
         fontSize: 24,
-        color:'#263238',
+        color:'white',
         flex:1,
         flexDirection:'row-reverse'
     }, 
@@ -62,12 +90,11 @@ const styles = StyleSheet.create({
         height: 30,
         fontWeight:'bold',
         fontSize: 18,
-        color:'black',
+        color:'white',
         flex:1,
         flexDirection:'row-reverse'
     }, 
     TouchableOpacity: {
-        marginVertical: 5,
         backgroundColor:'#91a5af',
         flex:1,
         flexDirection:'row-reverse',
@@ -81,7 +108,7 @@ const styles = StyleSheet.create({
         alignSelf:'center'
     },
     addTask:{
-        marginHorizontal: 10,
+        marginHorizontal: 50,
         fontSize:20,
         fontWeight:'bold',
         color:'black',

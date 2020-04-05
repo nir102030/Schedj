@@ -17,8 +17,9 @@ const CreateTopic = ({addTopic, project, style}) => {
         <View>
             <DialogInput 
                 isDialogVisible = {showDialog} 
-                title = {'Topic Name'}
-                submitInput = {(input)=>addNewTopic(input)}
+                title={'Topic Name             '}
+                hintInput ={"write your new topic here!"}
+                submitInput={(input)=>addNewTopic(input)}
                 closeDialog={()=>{setShowDialog(false)}}
             />
             <TouchableOpacity style={styles.TouchableOpacity} onPress ={() => setShowDialog(true)}>

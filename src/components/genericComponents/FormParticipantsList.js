@@ -29,7 +29,7 @@ const FormParticipantsList = ({participants, setParticipant}) => {
                 </TouchableOpacity>
                 <DialogInput 
                     isDialogVisible = {showDialog} 
-                    title = {'Add Participant'}
+                    title = {'Add Participant          '}
                     submitInput = {(input)=>submitHandler(input)}
                     closeDialog={()=>{setShowDialog(false)}}
                 />
