@@ -3,19 +3,13 @@ import {Text, StyleSheet, View,TouchableOpacity, Image } from 'react-native';
 import {withNavigation} from 'react-navigation';
 import {AntDesign} from '@expo/vector-icons';
 import { connect } from 'react-redux';
-import RNPickerSelect from 'react-native-picker-select';
-import MultiSelect from 'react-native-multiple-select';
+import FormMultiSelect from '../genericComponents/FormMultiSelect';
 
-const MeetingComp = ({tasks, navigation, meeting, deleteMeeting}) => {
+const MeetingComp = ({tasks, navigation, meeting, deleteMeeting, multiSelect}) => {
     const taskList = tasks.filter((task) => task.pid === meeting.pid);
     const taskChoice = taskList.map((task) => {
             return {'id':task.tid, 'name': task.name}
     })
-    const [selectedItems,setSelectedItems] = useState([]);
-    onSelectedItemsChange = selectedItems => {
-        setSelectedItems({ selectedItems });
-      };
-
 
     console.log(tasks);
     console.log(taskList);
@@ -38,30 +32,7 @@ const MeetingComp = ({tasks, navigation, meeting, deleteMeeting}) => {
                             items= {taskChoice}
                             style={{}}
                         /> */}
-                    <View style={{ flex: 1 }}>
-                        <MultiSelect
-                            hideTags
-                            items={taskChoice}
-                            uniqueKey="id"
-                            //ref={(component) => { multiSelect = component }}
-                            onSelectedItemsChange={onSelectedItemsChange}
-                            selectedItems={selectedItems}
-                            selectText="Pick Items"
-                            searchInputPlaceholderText="Search Items..."
-                            onChangeInput={ (text)=> console.log(text)}
-                            //altFontFamily="ProximaNova-Light"
-                            tagRemoveIconColor="#CCC"
-                            tagBorderColor="#CCC"
-                            tagTextColor="#CCC"
-                            selectedItemTextColor="#CCC"
-                            selectedItemIconColor="#CCC"
-                            itemTextColor="#000"
-                            displayKey="name"
-                            searchInputStyle={{ color: '#CCC' }}
-                            submitButtonColor="#CCC"
-                            submitButtonText="Submit"
-                        />
-                    </View>
+                    <FormMultiSelect taskChoice = {taskChoice}/>
                 </View>
         </View>    
     )
