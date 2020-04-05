@@ -11,7 +11,10 @@ class FormMultiSelect extends Component {
     items = this.props.taskChoice
     
     onSelectedItemsChange = selectedItems => {
+        console.log(selectedItems);
         this.setState({ selectedItems });
+        this.props.addTasksToMeeting(selectedItems);
+        //this.props.addTaskToMeeting(selectedItems);
     };
     
     render() {
@@ -25,8 +28,8 @@ class FormMultiSelect extends Component {
                 ref={(component) => { this.multiSelect = component }}
                 onSelectedItemsChange={this.onSelectedItemsChange}
                 selectedItems={selectedItems}
-                selectText="Pick Items"
-                searchInputPlaceholderText="Search Items..."
+                selectText="Add Tasks"
+                searchInputPlaceholderText="Search tasks..."
                 onChangeInput={ (text)=> console.log(text)}
                 //altFontFamily="ProximaNova-Light"
                 tagRemoveIconColor="#CCC"

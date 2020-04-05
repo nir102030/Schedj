@@ -1,19 +1,32 @@
 import React, { useState } from 'react';
-import {Text, StyleSheet, View,TouchableOpacity, Image } from 'react-native';
+import {Text, StyleSheet, View,TouchableOpacity, Image, FlatList } from 'react-native';
 import {withNavigation} from 'react-navigation';
 import {AntDesign} from '@expo/vector-icons';
 import { connect } from 'react-redux';
+import * as actions from '../../actions';
 import FormMultiSelect from '../genericComponents/FormMultiSelect';
+import FormSectionedMultiSelect from '../genericComponents/FormSectionedMultiSelect'
 
-const MeetingComp = ({tasks, navigation, meeting, deleteMeeting, multiSelect}) => {
+const MeetingComp = ({tasks, topics, navigation, meeting, deleteMeeting,editTask}) => {
     const taskList = tasks.filter((task) => task.pid === meeting.pid);
-    const taskChoice = taskList.map((task) => {
-            return {'id':task.tid, 'name': task.name}
-    })
+    const topicsList = topics.filter((topic) => topic.pid === meeting.pid)
+    const taskChoices = topicsList.map((topic) => {
+        const children = taskList.filter((task) => task.topic === topic.name).map((task) => {
+            return {name: task.name, id: task.tid}
+        })
+        return {name: topic.name, id: topic.name, children: children}     
+    });
 
-    console.log(tasks);
-    console.log(taskList);
-    console.log(taskChoice);
+    const meetingTasks = taskList.filter((task) => task.mid === meeting.mid);
+    console.log(meetingTasks);
+
+    const addTasksToMeeting = (selectedItems) => {
+        selectedItems.map((selectedItem) => {
+            const task = taskList.find((task) => task.tid === selectedItem);
+            const editedTask = {...task, mid:meeting.mid}
+            editTask(editedTask);
+        })
+    }
     
     return (
         <View style={styles.container}>
@@ -25,15 +38,14 @@ const MeetingComp = ({tasks, navigation, meeting, deleteMeeting, multiSelect}) =
                 </TouchableOpacity>
                 <View style={{flex:4}}>
                     <Text style={styles.header}>Meeting {meeting.mid}</Text>
-                    <Text style={styles.date}>Meeting Date {meeting.date}</Text>
-                    {/* <RNPickerSelect 
-                            placeholder={{label:'Pick Your Meeting Tasks',value:'',color:'red'}}
-                            onValueChange={() => {}}
-                            items= {taskChoice}
-                            style={{}}
-                        /> */}
-                    <FormMultiSelect taskChoice = {taskChoice}/>
+                    <Text style={styles.date}>{meeting.date}</Text>
+                    {/* <FormMultiSelect 
+                        taskChoice = {taskChoice}
+                        addTasksToMeeting = {(selectedItems) => addTasksToMeeting(selectedItems)} 
+                     /> */}
                 </View>
+                <FormSectionedMultiSelect taskChoices = {taskChoices} addTasksToMeeting = {addTasksToMeeting}/>
+
         </View>    
     )
 };
@@ -97,7 +109,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-    return {tasks: state.tasks}
+    return {tasks: state.tasks, topics: state.topics}
 }
 
-export default connect(mapStateToProps)(MeetingComp);
+export default connect(mapStateToProps, actions)(withNavigation(MeetingComp));

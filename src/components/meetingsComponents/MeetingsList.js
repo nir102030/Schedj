@@ -23,7 +23,7 @@ const MeetingsList = ({meetings, project, style, deleteMeeting}) => {
                 </View>
                 <FlatList
                     data = {meetingsList}
-                    keyExtractor={(meeting)=> toString(meeting.mid)}
+                    keyExtractor={(meeting)=> meeting.mid}
                     renderItem= {({item}) => <Item item = {item}/>}  
                 />
             </ScrollView>
