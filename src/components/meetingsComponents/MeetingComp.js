@@ -17,8 +17,8 @@ const MeetingComp = ({tasks, topics, navigation, meeting, deleteMeeting,editTask
         return {name: topic.name, id: topic.name, children: children}     
     });
 
-    const meetingTasks = taskList.filter((task) => task.mid === meeting.mid);
-    console.log(meetingTasks);
+    //const meetingTasks = taskList.filter((task) => task.mid === meeting.mid);
+    //console.log(meetingTasks);
 
     const addTasksToMeeting = (selectedItems) => {
         selectedItems.map((selectedItem) => {
@@ -29,7 +29,7 @@ const MeetingComp = ({tasks, topics, navigation, meeting, deleteMeeting,editTask
     }
     
     return (
-        <View style={styles.container}>
+            <View style={styles.container}>
                 <TouchableOpacity style = {styles.button} onPress = {() => deleteMeeting(meeting)}>
                     <AntDesign name = 'delete' size= {35}/>
                 </TouchableOpacity>  
@@ -42,11 +42,13 @@ const MeetingComp = ({tasks, topics, navigation, meeting, deleteMeeting,editTask
                     {/* <FormMultiSelect 
                         taskChoice = {taskChoice}
                         addTasksToMeeting = {(selectedItems) => addTasksToMeeting(selectedItems)} 
-                     /> */}
+                    /> */}
+                    <View style = {styles.multiSelect}>
+                        <FormSectionedMultiSelect taskChoices = {taskChoices} addTasksToMeeting = {addTasksToMeeting} />
+                    </View>
                 </View>
-                <FormSectionedMultiSelect taskChoices = {taskChoices} addTasksToMeeting = {addTasksToMeeting}/>
-
-        </View>    
+            </View>
+             
     )
 };
 
@@ -105,6 +107,9 @@ const styles = StyleSheet.create({
     button: {
         alignSelf:'flex-start',
         flex:1
+    },
+    multiSelect: {
+
     }
 });
 
