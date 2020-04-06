@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     },
     subHeader: {
         fontSize: 22,
-        color:'white',
+        color:'#152d48',
         flex:4,
         marginVertical:10,
         marginHorizontal:5,

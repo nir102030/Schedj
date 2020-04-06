@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     subHeader: {
         marginVertical:10,
         paddingBottom:10,
-        marginHorizontal:10,
+        paddingLeft:10,
         fontWeight:'bold',
         fontSize: 22,
         color:'#152d48',
@@ -116,13 +116,13 @@ const styles = StyleSheet.create({
     }, 
     task:{
         marginVertical:10,
-        fontSize: 22,
+        fontSize: 20,
         marginHorizontal:15,
         color:'white',
     },
     notification:{
         marginVertical:10,
-        fontSize: 22,
+        fontSize: 20,
         marginHorizontal:15,
         color:'white',
         alignSelf:'center'

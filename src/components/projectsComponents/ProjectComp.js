@@ -15,10 +15,10 @@ const ProjectComponent = ({project, deleteProject}) => {
                     <TouchableOpacity style = {styles.TouchableOpacity} onPress = {() => deleteProject(project)}>
                         <AntDesign name = 'delete' size= {37}/>
                     </TouchableOpacity>  
-                    <IndexDetail imageSrc={require('../../../assets/images/edit_logo.png')} navigationScreen= 'EditP' project={project}/>
-                    <IndexDetail imageSrc={require('../../../assets/images/Task.png')} navigationScreen= 'Tasks' project={project}/>
-                    <IndexDetail imageSrc={require('../../../assets/images/meeting_logo.png')} navigationScreen= 'Meetings' project={project}/>
-                    <IndexDetail imageSrc={require('../../../assets/images/calendar_icon1.png')} navigationScreen= 'Calendar' project={project}/>               
+                    <IndexDetail imageSrc={require('../../../assets/images/edit.png')} navigationScreen= 'EditP' project={project}/>
+                    <IndexDetail imageSrc={require('../../../assets/images/tasks.png')} navigationScreen= 'Tasks' project={project}/>
+                    <IndexDetail imageSrc={require('../../../assets/images/meeting.png')} navigationScreen= 'Meetings' project={project}/>
+                    <IndexDetail imageSrc={require('../../../assets/images/calendar.png')} navigationScreen= 'Calendar' project={project}/>               
                 </View>
             </View>
            

@@ -33,8 +33,7 @@ const MeetingsList = ({meetings, project, style, deleteMeeting}) => {
 
 const styles = StyleSheet.create({
     item:{
-        padding:3,
-        marginVertical: 10
+        marginVertical: 5
     },
     header:{
         flexDirection:'row', 

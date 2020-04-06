@@ -22,32 +22,39 @@ export default class FormSectionedMultiSelect extends Component {
                     items={this.items}
                     uniqueKey="id"
                     subKey="children"
-                    selectText="Add tasks"
+                    selectText="Add Tasks"
                     showDropDowns={true}
+                    showCancelButton={true}
+                    searchPlaceholderText=' Search Tasks'	
+                    alwaysShowSelectText={false}
                     readOnlyHeadings={true}
                     onSelectedItemsChange={this.onSelectedItemsChange}
                     selectedItems={this.state.selectedItems}
                     showDropDowns = {true}
                     expandDropDowns = {true}
-                    hideSearch = {true}
+                    hideSearch = {false}
                     dropDownToggleIconUpComponent = {[]}
-                    colors = {{primary: '#6495ed', itemBackground: '#f0f8ff', subItemBackground:'#ffffff', chipColor:'#ffffff'}}
+                    colors = {{primary: '#455a64' ,itemBackground: '#a8cfd3', subItemBackground:'#ffffff', chipColor:'#ffffff'}}
                     styles = {{
                         modalWrapper :{
-                            width:'80%',
+                            width:'75%',
                             maxHeight: '80%',
                             alignSelf:'center',
-                            marginTop: '50%',
-                            backgroundColor:'transparent'
+                            marginTop: '40%',
+                            backgroundColor:'transparent',
                         },
                         chipContainer : {
-
+                            width:'30%',
+                            alignItems:'center',
+                            alignSelf:'flex-end'
+                        },
+                        chipsText: { 
                         },
                         chipsWrapper: {
-                            alignItems:'center'
+                            alignItems:'flex-end'
                         },
                         parentChipContainer: {
-                            alignItems:'center'
+                            alignItems:'flex-end'
                         }
                     }}
                 />

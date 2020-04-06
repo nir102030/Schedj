@@ -31,27 +31,7 @@ const styles = StyleSheet.create({
     item:{
         marginVertical: 10
     },
-    image:{
-        marginVertical:10,
-        height:60,
-        width:60,
-        borderRadius:5,
-        alignSelf:'center'
-    },
-    header:{
-        flexDirection:'row', 
-        borderBottomWidth:5,
-        borderBottomColor:'#2d6886',
-        backgroundColor:'#8aa9b9',
-    },
-    text:{
-        fontWeight:'bold',
-        fontSize: 30,
-        marginVertical: 10,
-        marginHorizontal:34,
-        alignSelf:'center',
-        color:'#263238',
-    }
+
 });
 
 const mapStateToProps = state => {

@@ -1,4 +1,4 @@
-export default (state = [{pid:'1', topic:'General', mid:'1', tid:'1', name:'Build DB', description:''}], action) => {
+export default (state = [{pid:'1', topic:'General', mid:'1', tid:'1', name:'Build DB', description:'Build our DB from Scretch'}], action) => {
     switch (action.type) {
         case 'add_task':
             return ( [

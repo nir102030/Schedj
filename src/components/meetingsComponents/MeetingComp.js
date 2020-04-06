@@ -29,26 +29,23 @@ const MeetingComp = ({tasks, topics, navigation, meeting, deleteMeeting,editTask
     }
     
     return (
-            <View style={styles.container}>
+            <View style={styles.container}> 
                 <TouchableOpacity style = {styles.button} onPress = {() => deleteMeeting(meeting)}>
                     <AntDesign name = 'delete' size= {35}/>
                 </TouchableOpacity>  
                 <TouchableOpacity style = {styles.button} onPress = {() => navigation.navigate('EditM',{meeting})}>
                     <Image source = {require('../../../assets/images/edit_logo.png')} style={styles.image}/>
                 </TouchableOpacity>
-                <View style={{flex:4}}>
-                    <Text style={styles.header}>Meeting {meeting.mid}</Text>
-                    <Text style={styles.date}>{meeting.date}</Text>
-                    {/* <FormMultiSelect 
-                        taskChoice = {taskChoice}
-                        addTasksToMeeting = {(selectedItems) => addTasksToMeeting(selectedItems)} 
-                    /> */}
+                <View style={{flex:6}}>
+                    <View style={{flexDirection:'row-reverse'}}>
+                        <Text style={styles.header}>Meeting {meeting.mid}</Text>
+                        <Text style={styles.date}>{meeting.date}</Text>
+                    </View>
                     <View style = {styles.multiSelect}>
                         <FormSectionedMultiSelect taskChoices = {taskChoices} addTasksToMeeting = {addTasksToMeeting} />
                     </View>
                 </View>
             </View>
-             
     )
 };
 
@@ -62,7 +59,7 @@ const styles = StyleSheet.create({
     header: {
         marginVertical: 5,
         marginHorizontal: 10,
-        height: 30,
+        height: 32,
         fontWeight:'bold',
         fontSize: 24,
         color:'white',
@@ -84,7 +81,6 @@ const styles = StyleSheet.create({
         flex:1,
         flexDirection:'row-reverse',
         alignSelf:'center',
-        borderRadius: 20,
     },
     imageAdd: {
         height:35,
@@ -93,7 +89,6 @@ const styles = StyleSheet.create({
         alignSelf:'center'
     },
     addTask:{
-        marginHorizontal: 50,
         fontSize:20,
         fontWeight:'bold',
         color:'black',
@@ -105,11 +100,10 @@ const styles = StyleSheet.create({
         marginHorizontal:5
     },
     button: {
-        alignSelf:'flex-start',
+        alignSelf:'baseline',
         flex:1
     },
     multiSelect: {
-
     }
 });
 
