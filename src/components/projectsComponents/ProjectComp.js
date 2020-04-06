@@ -15,10 +15,10 @@ const ProjectComponent = ({project, deleteProject}) => {
                     <TouchableOpacity style = {styles.TouchableOpacity} onPress = {() => deleteProject(project)}>
                         <AntDesign name = 'delete' size= {37}/>
                     </TouchableOpacity>  
-                    <IndexDetail imageSrc={require('../../../assets/images/edit.png')} navigationScreen= 'EditP' project={project}/>
-                    <IndexDetail imageSrc={require('../../../assets/images/tasks.png')} navigationScreen= 'Tasks' project={project}/>
-                    <IndexDetail imageSrc={require('../../../assets/images/meeting.png')} navigationScreen= 'Meetings' project={project}/>
-                    <IndexDetail imageSrc={require('../../../assets/images/calendar.png')} navigationScreen= 'Calendar' project={project}/>               
+                    <IndexDetail imageSrc={require('../../../assets/images/edit_logo.png')} navigationScreen= 'EditP' project={project}/>
+                    <IndexDetail imageSrc={require('../../../assets/images/taskTry.png')} navigationScreen= 'Tasks' project={project}/>
+                    <IndexDetail imageSrc={require('../../../assets/images/meetingTry.png')} navigationScreen= 'Meetings' project={project}/>
+                    <IndexDetail imageSrc={require('../../../assets/images/calendarTry.png')} navigationScreen= 'Calendar' project={project}/>               
                 </View>
             </View>
            
@@ -32,8 +32,8 @@ const styles = StyleSheet.create({
         flexDirection:'row-reverse',
         justifyContent:'space-between',
         borderBottomWidth:3,
-        borderColor:'oldlace',
-        paddingBottom:20
+        borderColor:'white',
+        paddingBottom:20,
     },
     TouchableOpacity:{
         alignSelf:'center',
@@ -49,7 +49,10 @@ const styles = StyleSheet.create({
     },
     options:{
         flexDirection:'row',
-    }
+    },
+    // status:{
+    //     paddingRight:20
+    // }
 });
 
 export default ProjectComponent;
