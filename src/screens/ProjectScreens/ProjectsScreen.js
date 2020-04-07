@@ -54,35 +54,32 @@ const styles = StyleSheet.create({
         flex:2.5,
         flexDirection:'column',
         borderBottomWidth:0.6,
-        //borderBottomColor:'white'
+        borderBottomColor:'white'
     },
     TouchableOpacityAbout: {
         backgroundColor:'#cfd8dc',
         flex:2.5,
         flexDirection:'column',
         borderBottomWidth:0.6,
-        //borderBottomColor:'white'
+        borderBottomColor:'white'
     },
     TouchableOpacitySettings: {
         backgroundColor:'#90a4ae',
         flex:2.5,
         flexDirection:'column',
-        //paddingLeft:3,
         borderBottomWidth:0.6,
-        //borderBottomColor:'white'
+        borderBottomColor:'white'
     },
     TouchableOpacityComing: {
         backgroundColor:'#90a4ae',
         flex:2.5,
         flexDirection:'column',
-        //paddingLeft:3,
         borderBottomWidth:0.6,
-        //borderBottomColor:'white'
+        borderBottomColor:'white'
     },
     image: {
         height:37,
         width:37,
-        //marginRight: 15,
         alignSelf:'center'
     },
     image2: {

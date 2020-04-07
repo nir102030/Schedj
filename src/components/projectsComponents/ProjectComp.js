@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, StyleSheet, View, TouchableOpacity,TouchableHighlight} from 'react-native'
+import { Text, StyleSheet, View, TouchableOpacity,TouchableHighlight,Image} from 'react-native'
 import ProjectStatus from './ProjectStatus';
 import IndexDetail from './IndexDetail';
 import {AntDesign} from '@expo/vector-icons';
@@ -10,17 +10,32 @@ const ProjectComponent = ({project, deleteProject}) => {
     const rightButtons = [
         <TouchableHighlight style={{}}>
             <TouchableOpacity style = {styles.TouchableOpacity} onPress = {() => deleteProject(project)}>
-                <AntDesign name = 'delete' size= {37}/>
+            <Image source={require('../../../assets/images/delete.png')} style={styles.image}/>
             </TouchableOpacity> 
         </TouchableHighlight>
     ];
     const leftButtons = [
         <TouchableHighlight style={{}}>
             <TouchableOpacity style = {styles.TouchableOpacity} onPress = {() => deleteProject(project)}>
-                <AntDesign name = 'delete' size= {37}/>
+            <Image source={require('../../../assets/images/delete.png')} style={styles.image}/>
             </TouchableOpacity> 
         </TouchableHighlight>
     ];
+
+
+{/* add pop-up: Delete project - You won't be able to restore your project! yes or no  */}
+
+// const Alert = () => {
+//     Alert.alert(
+//         'Are you sure you want to delete this item?',                        
+//         [
+//           {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
+//           {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+//           {text: 'OK', onPress: () => deleteProject(project)},
+//         ],
+//         { cancelable: false }
+//     )
+// };
 
     return (
         <View style={styles.asd}>
@@ -28,9 +43,7 @@ const ProjectComponent = ({project, deleteProject}) => {
                 <View style={styles.container}>
                     <View style={{flexDirection:'column'}}>
                         <Text style={styles.text}>{project.name}</Text>
-                        <View style={styles.options}>  
-                            {/* add pop-up: Delete project - You won't be able to restore your project! yes or no  */}
-                            
+                        <View style={styles.options}>                              
                             <IndexDetail imageSrc={require('../../../assets/images/edit_logo.png')} navigationScreen= 'EditP' project={project}/>
                             <IndexDetail imageSrc={require('../../../assets/images/taskTry.png')} navigationScreen= 'Tasks' project={project}/>
                             <IndexDetail imageSrc={require('../../../assets/images/meetingTry.png')} navigationScreen= 'Meetings' project={project}/>
@@ -48,7 +61,7 @@ const ProjectComponent = ({project, deleteProject}) => {
 const styles = StyleSheet.create({
     asd: {
         borderBottomWidth:3,
-        borderColor:'white',
+        borderColor:'#d9e3f0',
     },
     container: {
         flexDirection:'row-reverse',
@@ -72,6 +85,11 @@ const styles = StyleSheet.create({
     options:{
         flexDirection:'row',
     },
+    image:{
+        height:40,
+        width:40
+
+    }
     // status:{
     //     paddingRight:20
     // }

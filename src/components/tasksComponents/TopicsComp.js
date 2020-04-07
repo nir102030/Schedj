@@ -23,7 +23,6 @@ const TopicsComp = ({navigation, topic,editTopic}) => {
                 /> 
                 <TouchableOpacity style = {styles.TouchableOpacity}  onPress = {()=>navigation.navigate('CreateT', {topic})}>
                     <Image source={require('../../../assets/images/add.png')} style={styles.image}/>
-                    {/* <Text style={styles.text}>Add a New Task</Text> */}
                 </TouchableOpacity>
             </View>
             <TaskList topic = {topic} style = {styles.list}/>
@@ -57,12 +56,6 @@ const styles = StyleSheet.create({
         flex:1,
         flexDirection:'row-reverse',
         marginLeft:150
-    },
-    text:{
-        flex:4,
-        fontSize:20,
-        color:'oldlace',
-        alignSelf:'center',
     },
     image: {
         height:37,

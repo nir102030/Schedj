@@ -5,33 +5,23 @@ const AboutUsScreen = () => {
 
     return (
             <View style={styles.container}>
-                <Image source={require('../../../assets/images/AboutTryB.png')} style={styles.image}/>
+                <Image source={require('../../../assets/images/AboutTryD.png')} style={styles.image}/>
             </View>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
+        backgroundColor:'#d9d9d9',
         height:'100%',
         width:'100%',
     },
-    TouchableOpacity: {
-        backgroundColor:'#2b414b',
-        flex:1,
-        flexDirection:'row-reverse'
-    },
     image: {
-        height:730,
+        height:'100%',
+        width:'100%',
         paddingBottom:20,
-        width:510,
         alignSelf:'center'
     },
-    text: {
-        fontSize:20,
-        color:'oldlace',
-        alignSelf:'center',
-        fontWeight:'bold',
-    }
 });
 
 export default AboutUsScreen;
