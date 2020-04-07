@@ -7,8 +7,10 @@ import { showMessage, hideMessage } from "react-native-flash-message";
 import * as Animatable from 'react-native-animatable';
 
 
+
 const ProjectCalendarScreen = ({navigation}) => {
     const project = navigation.getParam('project');
+
     return <View style = {styles.container}>
                 <View style={styles.header}>
                     <Text style={styles.text}>{project.name} Calendar </Text>

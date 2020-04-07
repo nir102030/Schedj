@@ -34,8 +34,18 @@ export default class FormSectionedMultiSelect extends Component {
                     expandDropDowns = {true}
                     hideSearch = {false}
                     dropDownToggleIconUpComponent = {[]}
-                    colors = {{primary: '#455a64' ,itemBackground: '#a8cfd3', subItemBackground:'#ffffff', chipColor:'#ffffff'}}
+                    colors = {{selectToggleTextColor:'white', primary: '#455a64' ,itemBackground: '#a8cfd3', subItemBackground:'#ffffff', chipColor:'#ffffff'}}
                     styles = {{
+                        selectToggleText:{
+                            fontSize:16,
+                            fontWeight:'bold',
+
+                        },
+                        selectToggle: { 
+                            height: 35,
+                            alignSelf:'stretch',
+                            flex:1,
+                        },
                         modalWrapper :{
                             width:'75%',
                             maxHeight: '80%',
@@ -46,14 +56,16 @@ export default class FormSectionedMultiSelect extends Component {
                         chipContainer : {
                             //width:'40%',
                             //alignItems:'center',
-                            //alignSelf:'flex-end',
-                            height:30,
+                            alignSelf:'stretch',
+                            flex:1,
+                            
                             
                         },
                         chipsText: { 
                         },
                         chipsWrapper: {
-                            alignItems:'flex-end'
+                            alignItems:'flex-end',
+                            height: 40
                         },
                         parentChipContainer: {
                             alignItems:'flex-end'

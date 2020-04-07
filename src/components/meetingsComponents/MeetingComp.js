@@ -104,6 +104,7 @@ const styles = StyleSheet.create({
         flex:1
     },
     multiSelect: {
+        marginHorizontal:10
     }
 });
 

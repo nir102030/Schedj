@@ -31,8 +31,8 @@ const styles = StyleSheet.create({
         alignSelf:'center'
     },
     statusStyle:{
-        width:25,
-        height:25
+        width:30,
+        height:30
     }
 });
 
