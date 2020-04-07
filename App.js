@@ -54,14 +54,13 @@ const navigator = createStackNavigator({
   {
     initialRouteName: 'LogIn',
     defaultNavigationOptions: {
-      title: 'Schedj',
+      title: '',
       headerTitleStyle:{
         fontWeight:'bold',
         textAlign:'right',
         fontSize: 38,
         color:'#193c4d',
         paddingBottom:5,
-        flex:1
       }
     }
   }

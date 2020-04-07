@@ -4,6 +4,8 @@ import {Text, StyleSheet, View,ImageBackground,Button,Image,TouchableOpacity,Scr
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import {withNavigation} from 'react-navigation';
 import { showMessage, hideMessage } from "react-native-flash-message";
+import * as Animatable from 'react-native-animatable';
+
 
 const ProjectCalendarScreen = ({navigation}) => {
     const project = navigation.getParam('project');
@@ -26,13 +28,16 @@ const ProjectCalendarScreen = ({navigation}) => {
             <Calendar />
             
                 {/* the code below not going to be here in the future, just help to build the screens */}
-
-                <TouchableOpacity style={styles.TouchableOpacity}  onPress = {()=>navigation.navigate('InviteP')}>
-                    <Text style={styles.test}>New Project Invitation</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.TouchableOpacity}  onPress = {()=>navigation.navigate('InviteM')}>
-                    <Text style={styles.test}>New Meeting Invitation</Text>
-                </TouchableOpacity>
+                    <TouchableOpacity style={styles.TouchableOpacity}  onPress = {()=>navigation.navigate('InviteP')}>
+                        <Animatable.Text animation="slideInLeft" iterationCount={3} direction="alternate">
+                            <Text style={styles.test}> New Project Invitation</Text>
+                        </Animatable.Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.TouchableOpacity}  onPress = {()=>navigation.navigate('InviteM')}>
+                        <Animatable.Text animation="slideInRight" iterationCount={3} direction="alternate">  
+                            <Text style={styles.test}> New Meeting Invitation</Text>
+                        </Animatable.Text>
+                    </TouchableOpacity>
             </ScrollView>
     </View>
 };

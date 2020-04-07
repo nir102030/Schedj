@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, Image,TouchableOpacity} from 'react-native';
 import {withNavigation} from 'react-navigation';
+import * as Animatable from 'react-native-animatable';
 
 const OpenScreen = ({navigation}) => {
 
@@ -11,7 +12,9 @@ const OpenScreen = ({navigation}) => {
                 <Image source={require('../../../assets/images/gif.png')} style={styles.backgroundimage}/>
                 <Image source={require('../../../assets/images/smallHeader.png')} style={styles.smallHeader}/>
                 <TouchableOpacity style = {styles.TouchableOpacity}  onPress = {()=>navigation.navigate('Projects')}>
-                    <Image source={require('../../../assets/images/goSchedjTry.png')} style={styles.image}/>
+                    <Animatable.Text animation="pulse" easing="ease-out" iterationCount="infinite" style={{ textAlign: 'center' }}>
+                        <Image source={require('../../../assets/images/goSchedjTry.png')} style={styles.image}/>
+                    </Animatable.Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -43,8 +46,10 @@ const styles = StyleSheet.create({
     },
     image: {
         height:120,
-        width:220,
-        marginRight:15
+        width:200,
+        //marginRight:15
+        marginBottom:20
+        
     },
     whiteHeadr: {
         height:120,

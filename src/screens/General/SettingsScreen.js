@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import {View, Text, StyleSheet,CheckBox,Image} from 'react-native';
 import FormInput from '../../components/genericComponents/FormInput';
 import RNPickerSelect from 'react-native-picker-select';
-
+import {Feather} from '@expo/vector-icons';
 
 const SettingsScreen = ({pid}) => {
     const [checked,setChecked]  = useState(checked);
@@ -15,10 +15,6 @@ const SettingsScreen = ({pid}) => {
 
     return (
         <View style={styles.container}> 
-            <View style={styles.header}>
-                    <Text style={styles.headerStyle}>Settings </Text>
-                    <Image source={require('../../../assets/images/settings.png')} style={styles.imageHeader}/>
-            </View>
             <Text style={styles.subHeader}> Edit Profile </Text>
                 <FormInput title=' Edit Profile Name' value={edit} onChange = {setEdit} viewStyle = {styles.Pname}/> 
             <View  style={styles.changePic}>
@@ -71,22 +67,6 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor:'#607d8b',        
         flex:1
-    },
-    header: {
-        flexDirection: 'row',
-        backgroundColor:'#8aa9b9',
-        justifyContent: 'flex-end',
-        borderBottomWidth:5,
-        borderBottomColor:'#2d6886'
-    },
-    headerStyle: {        
-        fontWeight:'bold',
-        fontSize: 30,
-        marginVertical: 10,
-        marginHorizontal:34,
-        alignSelf:'center',
-        color:'#263238',
-        textAlign:'left'
     },
     minMeet: {
         flexDirection: 'row',
@@ -150,14 +130,7 @@ const styles = StyleSheet.create({
         marginBottom:10,
         fontSize:16
     },
-    imageHeader:{
-        marginVertical:10,
-        height:60,
-        width:60,
-        borderRadius:5,
-        marginRight: 15,
-        alignSelf:'center'
-    },
+
     imagePP:{
         height:60,
         width:60
@@ -166,6 +139,10 @@ const styles = StyleSheet.create({
         height:60,
         width:150,
         marginHorizontal:20
+    },
+    imageS:{
+        height:60,
+        width:150,
     },
     rank:{
         marginVertical:15,

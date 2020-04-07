@@ -1,6 +1,7 @@
 import React from 'react';
-import {View, StyleSheet, Image,TouchableOpacity} from 'react-native';
+import {View, StyleSheet,Text, Image,TouchableOpacity} from 'react-native';
 import {withNavigation} from 'react-navigation';
+import * as Animatable from 'react-native-animatable';
 
 
 const LogInScreen = ({navigation}) => {
@@ -9,9 +10,11 @@ const LogInScreen = ({navigation}) => {
         <View style={styles.container}>
             <Image source={require('../../../assets/images/schedjWhiteTry.png')} style={styles.whiteHeadr}/>
             <View style={styles.container}>
-                <Image source={require('../../../assets/images/loginPicture.png')} style={styles.backgroundimage}/>
+            <Text style={{fontSize:25,color:'white'}}>Ola Leocito ! Daddi and Mommy is here sweatHeart</Text>
+            <Animatable.Text animation="pulse" easing="ease-out" iterationCount="infinite" style={{ textAlign: 'center',fontSize:50 }}>❤️</Animatable.Text>
+                <Image source={require('../../../assets/images/pp.png')} style={styles.backgroundimage}/>
                 <TouchableOpacity style = {styles.TouchableOpacity}  onPress = {()=>navigation.navigate('OpenS')}>
-                    <Image source={require('../../../assets/images/loginWith.png')} style={styles.loginWith}/>
+                    <Image source={require('../../../assets/images/loginWithTry.png')} style={styles.loginWith}/>
                 </TouchableOpacity>
                 {/* <GoogleSignInButton/> */}
             </View>
@@ -45,8 +48,8 @@ const styles = StyleSheet.create({
         flex:1
     },
     backgroundimage: {
-        height: 800,
-        width:400,
+        height:300,
+        width:300,
         flex:1,
         alignSelf:'center',  
     },
@@ -58,9 +61,9 @@ const styles = StyleSheet.create({
     },
     loginWith: {
         height:200,
-        width:400,
+        width:450,
         marginVertical:0,
-        marginRight:30,
+        marginRight:10,
     },
     whiteHeadr: {
         height:120,

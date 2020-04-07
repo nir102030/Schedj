@@ -12,7 +12,7 @@ const TaskForm = ({oldTask,onSubmit,type}) => {
                 <Text style={styles.headerStyle}>{task.pid} Project - New Task</Text>
                 {/* <Picklist title='Topic' data={topics}  navigation=''/> */}
             </View>
-            <FormInput title='Task Name ' value = {task.name} long={6} onChange={(name) => setTask({...task, "name":name})} viewStyle = {styles.task} />
+            <FormInput title='Task Name ' value = {task.name} long={15} onChange={(name) => setTask({...task, "name":name})} viewStyle = {styles.task} />
             <View style={styles.meetDesign}>
                 <TextInput style={styles.input} autoGrow='true' placeholder={task.description} value={task.description} onChangeText={(description) => setTask({...task, "description":description})}/>
                 <Text style={styles.text}>Description  </Text> 
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
         alignSelf:'center'
     },
     text:{
-        fontSize: 22,
+        fontSize: 20,
         marginRight: 10,
         marginTop:8,
         marginBottom:10,

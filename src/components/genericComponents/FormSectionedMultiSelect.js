@@ -44,9 +44,11 @@ export default class FormSectionedMultiSelect extends Component {
                             backgroundColor:'transparent',
                         },
                         chipContainer : {
-                            width:'30%',
-                            alignItems:'center',
-                            alignSelf:'flex-end'
+                            //width:'40%',
+                            //alignItems:'center',
+                            //alignSelf:'flex-end',
+                            height:30,
+                            
                         },
                         chipsText: { 
                         },
