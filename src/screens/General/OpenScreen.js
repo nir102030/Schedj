@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         height:150,
         width:430,
         alignSelf:'center',
-        backgroundColor:'#749699',  
+        //backgroundColor:'#749699',  
     },
     image: {
         height:120,
