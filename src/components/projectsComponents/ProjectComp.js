@@ -66,13 +66,16 @@ const styles = StyleSheet.create({
     container: {
         flexDirection:'row-reverse',
         justifyContent:'space-between',
-
         paddingBottom:20,
     },
     TouchableOpacity:{
-        marginVertical:5,
-        marginHorizontal:20,
-        paddingTop:25,
+        marginVertical:20,
+        paddingBottom:3,
+        marginHorizontal:25,
+        paddingTop:3,
+        paddingHorizontal:5,
+        borderRadius:10,
+        backgroundColor:'#cfd8dc',
         //borderRadius:10    
     },
     text: {
@@ -87,8 +90,8 @@ const styles = StyleSheet.create({
     },
     image:{
         height:40,
-        width:40
-
+        width:40,
+        
     }
     // status:{
     //     paddingRight:20
