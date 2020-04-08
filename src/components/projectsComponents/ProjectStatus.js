@@ -14,7 +14,7 @@ const ProjectStatus = ({project,style}) => {
                     <Text style={{fontSize:18,color:'white',fontWeight:'bold',paddingLeft:3}}>Status</Text>
                     <Text style={{fontSize:14,alignSelf:'center',paddingLeft:5,color:'#FCDC00',fontWeight:'bold',paddingBottom:2}}>{status[0]}</Text>
                 </View>
-                <TouchableOpacity style={{alignSelf:'center'}} onPress={() => {showMessage({message: "Status: Waiting",description: "Not all members confirm the project invitation yet",type: "info",color:"black",backgroundColor:'#cfd8dc' })}}>
+                <TouchableOpacity style={{alignSelf:'center'}} onPress={() => {showMessage({message: "Status: Waiting",description: "Not all members approved the invitation",type: "info",color:"black",backgroundColor:'#c2dbe6' })}}>
                     <Image style={styles.statusStyle}  source={require('../../../assets/images/status.png')}/>
                 </TouchableOpacity>
             </View>

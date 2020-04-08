@@ -105,7 +105,6 @@ const styles = StyleSheet.create({
         alignSelf:'baseline',
         flex:1,
         marginTop:5,
-        marginHorizontal:5
     },
     multiSelect: {
         marginHorizontal:10

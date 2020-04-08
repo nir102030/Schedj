@@ -44,7 +44,7 @@ const ProjectComponent = ({project, deleteProject}) => {
                     <View style={{flexDirection:'column'}}>
                         <Text style={styles.text}>{project.name}</Text>
                         <View style={styles.options}>                              
-                            <IndexDetail imageSrc={require('../../../assets/images/edit_logo.png')} navigationScreen= 'EditP' project={project}/>
+                            <IndexDetail imageSrc={require('../../../assets/images/edit_logoTry.png')} navigationScreen= 'EditP' project={project}/>
                             <IndexDetail imageSrc={require('../../../assets/images/taskTry.png')} navigationScreen= 'Tasks' project={project}/>
                             <IndexDetail imageSrc={require('../../../assets/images/meetingTry.png')} navigationScreen= 'Meetings' project={project}/>
                             <IndexDetail imageSrc={require('../../../assets/images/calendarTry.png')} navigationScreen= 'Calendar' project={project}/>               
