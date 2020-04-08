@@ -8,16 +8,16 @@ import Swipeable from 'react-native-swipeable-row';
 
 const ProjectComponent = ({project, deleteProject}) => {
     const rightButtons = [
-        <TouchableHighlight style={{}}>
+        <TouchableHighlight>
             <TouchableOpacity style = {styles.TouchableOpacity} onPress = {() => deleteProject(project)}>
-            <Image source={require('../../../assets/images/delete.png')} style={styles.image}/>
+                <Image source={require('../../../assets/images/delete.png')} style={styles.image}/>
             </TouchableOpacity> 
         </TouchableHighlight>
     ];
     const leftButtons = [
-        <TouchableHighlight style={{}}>
+        <TouchableHighlight>
             <TouchableOpacity style = {styles.TouchableOpacity} onPress = {() => deleteProject(project)}>
-            <Image source={require('../../../assets/images/delete.png')} style={styles.image}/>
+                <Image source={require('../../../assets/images/delete.png')} style={styles.image}/>
             </TouchableOpacity> 
         </TouchableHighlight>
     ];
@@ -91,7 +91,6 @@ const styles = StyleSheet.create({
     image:{
         height:40,
         width:40,
-        
     }
     // status:{
     //     paddingRight:20

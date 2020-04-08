@@ -39,7 +39,6 @@ export default class FormSectionedMultiSelect extends Component {
                         selectToggleText:{
                             fontSize:16,
                             fontWeight:'bold',
-
                         },
                         selectToggle: { 
                             height: 35,
@@ -57,9 +56,7 @@ export default class FormSectionedMultiSelect extends Component {
                             //width:'40%',
                             //alignItems:'center',
                             alignSelf:'stretch',
-                            flex:1,
-                            
-                            
+                            flex:1,                            
                         },
                         chipsText: { 
                         },

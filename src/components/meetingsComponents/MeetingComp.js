@@ -30,21 +30,23 @@ const MeetingComp = ({tasks, topics, navigation, meeting, deleteMeeting,editTask
     
     return (
             <View style={styles.container}> 
-                <TouchableOpacity style = {styles.button} onPress = {() => deleteMeeting(meeting)}>
-                    <AntDesign name = 'delete' size= {35}/>
-                </TouchableOpacity>  
-                <TouchableOpacity style = {styles.button} onPress = {() => navigation.navigate('EditM',{meeting})}>
-                    <Image source = {require('../../../assets/images/edit_logo.png')} style={styles.image}/>
-                </TouchableOpacity>
+                <View style={{flex:6, flexDirection:'row'}}>
+                    <TouchableOpacity style = {styles.button} onPress = {() => deleteMeeting(meeting)}>
+                        <Image source={require('../../../assets/images/delete.png')} style={styles.image}/>
+                    </TouchableOpacity>   
+                     <TouchableOpacity style = {styles.button} onPress = {() => navigation.navigate('EditM',{meeting})}>
+                        <Image source = {require('../../../assets/images/edit_logo.png')} style={styles.image}/>
+                    </TouchableOpacity>
                 <View style={{flex:6}}>
                     <View style={{flexDirection:'row-reverse'}}>
                         <Text style={styles.header}>Meeting {meeting.mid}</Text>
                         <Text style={styles.date}>{meeting.date}</Text>
                     </View>
+                </View>
+                </View>
                     <View style = {styles.multiSelect}>
                         <FormSectionedMultiSelect taskChoices = {taskChoices} addTasksToMeeting = {addTasksToMeeting} />
                     </View>
-                </View>
             </View>
     )
 };
@@ -54,7 +56,7 @@ const styles = StyleSheet.create({
         backgroundColor:'#607d8b',
         borderBottomWidth: 3,
         borderBottomColor:'#d9e3f0',
-        flexDirection:'row'
+        // flexDirection:'row'
     },
     header: {
         marginVertical: 5,
@@ -101,7 +103,9 @@ const styles = StyleSheet.create({
     },
     button: {
         alignSelf:'baseline',
-        flex:1
+        flex:1,
+        marginTop:5,
+        marginHorizontal:5
     },
     multiSelect: {
         marginHorizontal:10
