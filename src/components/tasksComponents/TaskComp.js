@@ -8,7 +8,7 @@ import { showMessage, hideMessage } from "react-native-flash-message";
 
 const TaskComp = ({navigation,task, deleteTask}) => {
     // const [checked,setChecked]  = useState();
-    const [progress,setProgress]  = useState(0.05);
+    const [progress,setProgress]  = useState(0.3);
     const [color,setColor]  = useState('red');
 
     const f1 = ()=>{ setProgress(0.65)}
@@ -17,7 +17,7 @@ const TaskComp = ({navigation,task, deleteTask}) => {
     const f3 = ()=>{ setProgress(1)}
     const f4 = ()=>{ setColor('#008B02')}
     const Done = ()=>{ f3(), f4()}
-    const f5 = ()=>{ setProgress(0.05)}
+    const f5 = ()=>{ setProgress(0.3)}
     const f6 = ()=>{ setColor('red')}
     const Start = ()=>{ f5(), f6()}
 
@@ -30,16 +30,16 @@ const TaskComp = ({navigation,task, deleteTask}) => {
 
     return (
         <View style={styles.progCheckRow}>
-            <TouchableOpacity onPress={() => {showMessage({message:task.name,description:task.description ,type: "info",color:"white",backgroundColor:'#455a64' })}} >
+            <TouchableOpacity style={styles.prog}  onPress={() => {showMessage({message:task.name,description:task.description ,type: "info",color:"white",backgroundColor:'#455a64' })}} >
                 <Text style={styles.task}>{task.name}</Text>
-            </TouchableOpacity> 
-            <Progress.Bar progress={progress} width={130} height={30} animated={true} color={color} borderColor={'#99BAC9'} marginVertical={10}/>
+            </TouchableOpacity>  
+            <Progress.Bar style={styles.prog} progress={progress} width={150} height={30} animated={true} color={color} borderColor={'#99BAC9'} marginVertical={10}/>
                 <View style={styles.AAA}>
-                    <TouchableOpacity  style={{flexDirection:'row',marginRight:10}}  onPress={() => {InProgress();setText(' Last Stage');}} >
+                    <TouchableOpacity  style={{flexDirection:'row',marginRight:10,flex:1}}  onPress={() => {InProgress();setText(' Last Stage');}} >
                         <Text style={styles.BBC}>  {text}</Text>
                         <Image style={styles.statusStyle}  source={require('../../../assets/images/status.png')}/>
                     </TouchableOpacity>
-                    <TouchableOpacity style={{flexDirection:'row',marginRight:10}}  onPress={() => {Start();setText('Next Stage');}} >
+                    <TouchableOpacity style={{flexDirection:'row',marginRight:10,flex:1}}  onPress={() => {Start();setText('Next Stage');}} >
                         <Text style={styles.BBB}>  Previous Stage</Text>
                         <Image style={styles.statusStyle}  source={require('../../../assets/images/status.png')}/>
                     </TouchableOpacity>  
@@ -65,19 +65,25 @@ const styles = StyleSheet.create({
     container:{
         backgroundColor:'#607d8b'
     },
+    prog:{
+        flex:1
+    },
     BBB:{
         //paddingTop:3,
         marginLeft:0,
         fontWeight:'bold',
         color:'white',
-        fontSize: 16
+        fontSize: 16,
+        flex:1
     },
     BBC:{
         //paddingTop:3,
         marginLeft:30.1,
         fontWeight:'bold',
         color:'white',
-        fontSize: 16
+        fontSize: 16,
+        flex:1
+
     },
     statusStyle:{
         height:20,
@@ -89,11 +95,13 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
         fontSize: 20,
         color:'white',
+        flex:1
     },
     AAA:{
         flexDirection: 'column',
         marginTop:5,
-        marginVertical:3
+        marginVertical:3,
+        flex:2
     },
     nxtPrv:{
         flexDirection: 'column',
@@ -102,8 +110,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row-reverse',
         borderBottomWidth: 1,
         borderBottomColor:'#d9e3f0',
-        justifyContent:'center',
-        
+        //justifyContent:'space-between',
+        paddingLeft:20,
+        alignSelf:'center',        
     }, 
 });
 

@@ -1,8 +1,8 @@
 import React,{useState} from 'react';
 import {View, Text, StyleSheet,CheckBox,Image} from 'react-native';
 import FormInput from '../../components/genericComponents/FormInput';
+import FormPickerSelect from '../../components/genericComponents/FormPickerSelect';
 import RNPickerSelect from 'react-native-picker-select';
-import {Feather} from '@expo/vector-icons';
 
 const SettingsScreen = ({pid}) => {
     const [checked,setChecked]  = useState(checked);
@@ -44,21 +44,17 @@ const SettingsScreen = ({pid}) => {
                     { label:'       1 Hour', value:'1 Hours',color:'#192C4D' },
                     { label:'       No Reminder', value:'No Reminder',color:'red' },
                 ]}
-                style={{}}
+                style={{placeholder:{color:'white'}}}
             />
             <Text style={styles.subHeader}> Rank our app </Text>
-            <RNPickerSelect 
-                placeholder={{}}
-                onValueChange={() => {}}
-                items={[
-                    { label: '      1', value: '1' ,color:'#192C4D'},
-                    { label: '      2', value: '2' ,color:'#192C4D'},
-                    { label: '      3', value: '3' ,color:'#192C4D'},
-                    { label: '      4', value: '4' ,color:'#192C4D'},
-                    { label: '      5', value: '5' ,color:'#192C4D'},
-                ]}
-                style={{}}
-            />
+            {/* <FormPickerSelect 
+                label1='1' value1='1'
+                // label2='2' value2='2' 
+                // label3='3' value3='3' 
+                // label4='4' value4='4' 
+                // label5='5' value5='5' 
+                // label6='-' value6='-' 
+            /> */}
         </View>
     );
 };
