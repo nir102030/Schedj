@@ -9,6 +9,17 @@ import FormNotes from '../../components/genericComponents/FormNotes';
 const ProjectForm = ({oldProject, onSubmit, type}) => {
     const [project,setProject] = useState(oldProject);
 
+    
+    // const validation = (project)=>{
+    //     if (project.name != '') {
+    //         alert('Success')
+    //         return project;
+    //     }
+    //     else {
+    //         alert('Please Enter Project Name');
+    //     }
+    // }
+
     return (
             <View style= {styles.container}>
                     <View style={styles.header}>
@@ -20,7 +31,7 @@ const ProjectForm = ({oldProject, onSubmit, type}) => {
                         <FormInput 
                             title='Project Name' 
                             value = {project.name} 
-                            onChange={(name) => setProject({...project, "name":name})} 
+                            onChange={(name) => setProject({...project, "name":name})}
                             viewStyle = {styles.projectName}
                         />
                         <FormParticipantsList 

@@ -2,6 +2,9 @@ import React from 'react';
 import {View, Text, TextInput, StyleSheet} from 'react-native';
 
 const FormInput = ({title, value, onChange, viewStyle,long}) => {
+
+   
+
     return(
             <View style={viewStyle}>
                 <TextInput style={styles.input} placeholder={value} value={value} onChangeText={onChange} maxLength={long}/>

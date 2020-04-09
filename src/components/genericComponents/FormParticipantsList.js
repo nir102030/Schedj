@@ -71,6 +71,8 @@ const styles = StyleSheet.create({
         borderRadius:50,
         alignSelf:'center',
         flex: 1,
+        //height:40
+        
     },
     addMatesButton:{
         fontSize: 16,
