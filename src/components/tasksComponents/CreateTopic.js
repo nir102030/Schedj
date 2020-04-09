@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, TouchableOpacity,Image, StyleSheet} from 'react-native';
+import {View, Text, TouchableOpacity,Image,Alert, StyleSheet} from 'react-native';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
 import DialogInput from '../../../node_modules/react-native-dialog-input';
@@ -9,8 +9,14 @@ const CreateTopic = ({addTopic, project, style}) => {
     
     const addNewTopic = (input)=>{
         const topic = {pid: project.id, name: input};
-        addTopic(topic);
-        setShowDialog(false);
+        if (topic.name != '') {
+            alert('Success')
+            addTopic(topic);
+            setShowDialog(false);
+            }
+        else {
+            alert('Please Enter Topic Name');
+            }
     }
 
     return (
@@ -19,7 +25,7 @@ const CreateTopic = ({addTopic, project, style}) => {
                 isDialogVisible = {showDialog} 
                 title={'Topic Name             '}
                 hintInput ={"write your new topic here!"}
-                submitInput={(input)=>addNewTopic(input)}
+                submitInput={(input)=> addNewTopic(input)}
                 closeDialog={()=>{setShowDialog(false)}}
             />
             <TouchableOpacity style={styles.TouchableOpacity} onPress ={() => setShowDialog(true)}>

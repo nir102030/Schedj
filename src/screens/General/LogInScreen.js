@@ -11,7 +11,7 @@ const LogInScreen = ({navigation}) => {
             <Image source={require('../../../assets/images/schedjWhiteTry.png')} style={styles.whiteHeadr}/>
             <View style={styles.container}>
             <Text style={{fontSize:25,color:'white',textAlign:'center'}}>Ola Leocito ! Daddi and Mommy       is here sweatHeart</Text>
-            <Animatable.Text animation="pulse" easing="ease-out" iterationCount="infinite" style={{ textAlign: 'center',fontSize:50 }}>❤️</Animatable.Text>
+            <Animatable.Text animation="pulse" easing="ease-out" iterationCount="infinite" style={{ textAlign: 'center',fontSize:70 }}>❤️</Animatable.Text>
                 <Image source={require('../../../assets/images/pp.png')} style={styles.backgroundimage}/>
                 <TouchableOpacity style = {styles.TouchableOpacity}  onPress = {()=>navigation.navigate('OpenS')}>
                     <Image source={require('../../../assets/images/loginWith.png')} style={styles.loginWith}/>

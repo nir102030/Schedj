@@ -30,7 +30,8 @@ const styles = StyleSheet.create({
     TouchableOpacity: {
         flexDirection:'row-reverse',
         flex:1,
-        alignSelf:'center'
+        alignSelf:'center',
+        marginBottom:80
     },
     backgroundimage: {
         height: 700,
