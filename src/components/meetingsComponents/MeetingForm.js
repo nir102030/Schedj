@@ -7,8 +7,9 @@ import FormHour from '../../components/genericComponents/FormHour';
 import TimePicker from "react-native-24h-timepicker";
 import FormSubmitButton from '../genericComponents/FormSubmitButton'; 
 import FormNotes from '../genericComponents/FormNotes'
+import FormMultiSelect from '../genericComponents/FormMultiSelect';
 
-const MeetingForm = ({oldMeeting, onSubmit, type}) => {
+const MeetingForm = ({project, oldMeeting, onSubmit, type}) => {
     const [meeting,setMeeting] = useState(oldMeeting);
 
     return (
@@ -46,9 +47,12 @@ const MeetingForm = ({oldMeeting, onSubmit, type}) => {
                             onChange={(place) => setMeeting({...meeting, 'place': place})} 
                             viewStyle = {styles.designSquare}
                         />
-                        <FormParticipantsList 
-                            participants = {meeting.participants}
-                            setParticipant = {(participants) => setMeeting({...meeting, "participants": participants})}
+                        <FormMultiSelect 
+                            list = {project.participants.map((participant) => {
+                                return {'id': participant, 'name': participant}
+                            })}
+                            addItemsToList = {(participants) => setMeeting({...meeting, "participants": participants})}
+                            type = 'Participants'
                         />
                         <Text  style={styles.note}>   Write your notes here!  </Text>
                         <FormNotes 
@@ -131,6 +135,7 @@ const styles = StyleSheet.create({
         alignSelf:'center'
     }
 });
+
 
 export default MeetingForm;
 

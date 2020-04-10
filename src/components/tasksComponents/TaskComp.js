@@ -2,32 +2,37 @@ import React, {useState} from 'react'
 import {Text, StyleSheet, View,CheckBox,Button,TouchableOpacity,Image } from 'react-native';
 import * as Progress from 'react-native-progress';
 import {withNavigation} from 'react-navigation';
-import { ProgressSteps, ProgressStep,ProgressButtons } from 'react-native-progress-steps';
+import TaskStatusSetter from './TaskStatusSetter';
 import { showMessage, hideMessage } from "react-native-flash-message";
 
 
 const TaskComp = ({navigation,task, deleteTask}) => {
-    // const [checked,setChecked]  = useState();
     const [progress,setProgress]  = useState(0.3);
     const [color,setColor]  = useState('red');
-
-    const f1 = ()=>{ setProgress(0.65)}
-    const f2 = ()=>{ setColor('#fccb00')}
-    const InProgress = ()=>{ f1(), f2()}
-    const f3 = ()=>{ setProgress(1)}
-    const f4 = ()=>{ setColor('#008B02')}
-    const Done = ()=>{ f3(), f4()}
-    const f5 = ()=>{ setProgress(0.3)}
-    const f6 = ()=>{ setColor('red')}
-    const Start = ()=>{ f5(), f6()}
-
-    const buttonTextStyle1 = {color: 'white'};
-    const buttonTextStyle2 = {color: '#263238'};
-    const buttonTextStyle3 = { display: 'none'};
-
     const [text,setText] = useState('Next Stage');
+    
+    const setStatusAndColor = (progress,color) => {
+        setProgress(progress);
+        setColor(color);
+    }
 
-
+    const setTaskStatus = (type) => {
+        switch(type) {
+            case 'next':
+                return(
+                    progress<0.65 && progress >=0.3?
+                    setStatusAndColor(0.65, '#fccb00')
+                    :progress >= 0.65 ? setStatusAndColor(1, '#008B02'):null
+                );
+            case 'previous':
+                return(
+                    progress>0.65?
+                    setStatusAndColor(0.65,'#fccb00'):
+                    setStatusAndColor(0.3,'red')
+                );
+        }
+    }
+    
     return (
         <View style={styles.progCheckRow}>
             <TouchableOpacity style={styles.prog}  onPress={() => {showMessage({message:task.name,description:task.description ,type: "info",color:"white",backgroundColor:'#455a64' })}} >
@@ -35,16 +40,9 @@ const TaskComp = ({navigation,task, deleteTask}) => {
             </TouchableOpacity>  
             <Progress.Bar style={styles.prog} progress={progress} width={150} height={30} animated={true} color={color} borderColor={'#99BAC9'} marginVertical={10}/>
                 <View style={styles.AAA}>
-                    <TouchableOpacity  style={{flexDirection:'row',marginRight:10,flex:1}}  onPress={() => {InProgress();setText(' Last Stage');}} >
-                        <Text style={styles.BBC}>  {text}</Text>
-                        <Image style={styles.statusStyle}  source={require('../../../assets/images/status.png')}/>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{flexDirection:'row',marginRight:10,flex:1}}  onPress={() => {Start();setText('Next Stage');}} >
-                        <Text style={styles.BBB}>  Previous Stage</Text>
-                        <Image style={styles.statusStyle}  source={require('../../../assets/images/status.png')}/>
-                    </TouchableOpacity>  
+                    <TaskStatusSetter onPress={() => {setTaskStatus('next')}} text = {'Next Stage'}/>
+                    <TaskStatusSetter onPress={() => {setTaskStatus('previous')}} text = {'Previous Stage'}/>
                 </View>
-
         </View>
     )
 };
@@ -75,19 +73,6 @@ const styles = StyleSheet.create({
         color:'white',
         fontSize: 16,
         flex:1
-    },
-    BBC:{
-        //paddingTop:3,
-        marginLeft:30.1,
-        fontWeight:'bold',
-        color:'white',
-        fontSize: 16,
-        flex:1
-
-    },
-    statusStyle:{
-        height:20,
-        width:20
     },
     task:{
         paddingTop:12,

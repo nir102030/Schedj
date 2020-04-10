@@ -10,15 +10,15 @@ const ProjectForm = ({oldProject, onSubmit, type}) => {
     const [project,setProject] = useState(oldProject);
 
     
-    // const validation = (project)=>{
-    //     if (project.name != '') {
-    //         alert('Success')
-    //         return project;
-    //     }
-    //     else {
-    //         alert('Please Enter Project Name');
-    //     }
-    // }
+    const validation = ()=>{
+        if (project.name != '') {
+            alert('New Project has Created');
+            onSubmit(project);
+        }
+        else {
+            alert('Please Enter Project Name');
+        }
+    }
 
     return (
             <View style= {styles.container}>
@@ -50,7 +50,7 @@ const ProjectForm = ({oldProject, onSubmit, type}) => {
                             setNotes = {(notes)=> setProject({...project, "notes": notes})}
                         />
                         <Text  style={styles.task}>   *Define your tasks later  </Text>
-                        <FormSubmitButton onSubmit = {() => onSubmit(project)} type = {type}/>
+                        <FormSubmitButton onSubmit = {() => validation()} type = {type}/>
                     </ScrollView>
             </View>
     );

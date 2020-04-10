@@ -10,7 +10,6 @@ const CreateTopic = ({addTopic, project, style}) => {
     const addNewTopic = (input)=>{
         const topic = {pid: project.id, name: input};
         if (topic.name != '') {
-            alert('Success')
             addTopic(topic);
             setShowDialog(false);
             }

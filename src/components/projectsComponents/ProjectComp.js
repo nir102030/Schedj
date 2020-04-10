@@ -7,44 +7,45 @@ import Swipeable from 'react-native-swipeable-row';
 
 
 const ProjectComponent = ({project, deleteProject}) => {
+    
+    {/* add pop-up: Delete project - You won't be able to restore your project! yes or no  */}
+
+    const Alert = () => {
+        alert(
+            title='Are you sure you want to delete this item?',
+            buttons =                   
+            [
+            {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+            {text: 'OK', onPress: () => deleteProject(project)}
+            ],
+            { cancelable: false }
+        )
+    };
+
     const rightButtons = [
         <TouchableHighlight>
-            <TouchableOpacity style = {styles.TouchableOpacity} onPress = {() => deleteProject(project)}>
+            <TouchableOpacity style = {styles.TouchableOpacity} onPress = {() => Alert()}>
                 <Image source={require('../../../assets/images/delete.png')} style={styles.image}/>
             </TouchableOpacity> 
         </TouchableHighlight>
     ];
     const leftButtons = [
         <TouchableHighlight>
-            <TouchableOpacity style = {styles.TouchableOpacity} onPress = {() => deleteProject(project)}>
+            <TouchableOpacity style = {styles.TouchableOpacity} onPress = {() => Alert()}>
                 <Image source={require('../../../assets/images/delete.png')} style={styles.image}/>
             </TouchableOpacity> 
         </TouchableHighlight>
     ];
 
 
-{/* add pop-up: Delete project - You won't be able to restore your project! yes or no  */}
-
-// const Alert = () => {
-//     Alert.alert(
-//         'Are you sure you want to delete this item?',                        
-//         [
-//           {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
-//           {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-//           {text: 'OK', onPress: () => deleteProject(project)},
-//         ],
-//         { cancelable: false }
-//     )
-// };
-
     return (
         <View style={styles.asd}>
-            <Swipeable leftButtons={leftButtons} rightButtons={rightButtons} bounceOnMount={true} >
+            <Swipeable rightButtons={rightButtons} leftButtons={leftButtons} bounceOnMount={true} >
                 <View style={styles.container}>
                     <View style={{flexDirection:'column'}}>
                         <Text style={styles.text}>{project.name}</Text>
                         <View style={styles.options}>                              
-                            <IndexDetail imageSrc={require('../../../assets/images/edit_logoTry.png')} navigationScreen= 'EditP' project={project}/>
+                            {/* <IndexDetail imageSrc={require('../../../assets/images/edit_logoTry.png')} navigationScreen= 'EditP' project={project}/> */}
                             <IndexDetail imageSrc={require('../../../assets/images/taskTry.png')} navigationScreen= 'Tasks' project={project}/>
                             <IndexDetail imageSrc={require('../../../assets/images/meetingTry.png')} navigationScreen= 'Meetings' project={project}/>
                             <IndexDetail imageSrc={require('../../../assets/images/calendarTry.png')} navigationScreen= 'Calendar' project={project}/>               

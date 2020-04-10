@@ -47,14 +47,7 @@ const SettingsScreen = ({pid}) => {
                 style={{placeholder:{color:'white'}}}
             />
             <Text style={styles.subHeader}> Rank our app </Text>
-            {/* <FormPickerSelect 
-                label1='1' value1='1'
-                // label2='2' value2='2' 
-                // label3='3' value3='3' 
-                // label4='4' value4='4' 
-                // label5='5' value5='5' 
-                // label6='-' value6='-' 
-            /> */}
+            {/* <FormPickerSelect /> */}
         </View>
     );
 };

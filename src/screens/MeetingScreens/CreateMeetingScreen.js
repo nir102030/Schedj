@@ -4,13 +4,13 @@ import * as actions from '../../actions';
 import { connect } from 'react-redux';
 
 const CreateMeetingScreen = ({navigation, addMeeting, meetings}) => {
-    const pid = navigation.getParam('project').id;
-    const projectMeetings = meetings.filter((meeting) => meeting.pid === pid);
+    const project = navigation.getParam('project');
+    const projectMeetings = meetings.filter((meeting) => meeting.pid === project.id);
     const maxMeetingIndx = 
             projectMeetings == ""
             ? 0 :
             Math.max.apply(Math, projectMeetings.map(function(meeting) { return meeting.mid; }))
-    const meeting = {pid:pid, mid:maxMeetingIndx + 1, date: '', from:'00:00', to: '00:00', place:'',participants: [], notes:['','',''] }
+    const meeting = {pid:project.id, mid:maxMeetingIndx + 1, date: '', from:'00:00', to: '00:00', place:'',participants: [], notes:['','',''] }
 
     const onSubmit = (meeting) => {
         addMeeting(meeting);
@@ -19,6 +19,7 @@ const CreateMeetingScreen = ({navigation, addMeeting, meetings}) => {
 
     return (
         <MeetingForm
+            project = {project}
             oldMeeting = {meeting}
             onSubmit = {(meeting) => onSubmit(meeting)}
             type = 'create'
