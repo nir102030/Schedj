@@ -1,51 +1,63 @@
-import React from 'react'
-import { Text, StyleSheet, View, TouchableOpacity,TouchableHighlight,Image} from 'react-native'
+import React,{useState} from 'react'
+import { Text, StyleSheet, View, TouchableOpacity,Alert,TouchableHighlight,Image} from 'react-native'
 import ProjectStatus from './ProjectStatus';
 import IndexDetail from './IndexDetail';
 import {AntDesign} from '@expo/vector-icons';
 import Swipeable from 'react-native-swipeable-row';
+import AwesomeAlert from 'react-native-awesome-alerts';
+import {withNavigation} from 'react-navigation';
 
 
-const ProjectComponent = ({project, deleteProject}) => {
-    
+const ProjectComp = ({project, deleteProject,navigation}) => {
+
     {/* add pop-up: Delete project - You won't be able to restore your project! yes or no  */}
 
-    const Alert = () => {
-        alert(
-            title='Are you sure you want to delete this item?',
-            buttons =                   
-            [
-            {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-            {text: 'OK', onPress: () => deleteProject(project)}
-            ],
-            { cancelable: false }
-        )
-    };
+    // const Alert = () => {
+    //     Alert.alert(
+    //         'Are you sure you want to delete this item?', 
+    //         '',
+    //         [
+    //         {text: 'Cancel', onPress: () => console.log('Cancel Pressed')},
+    //         {text: 'OK', onPress: () => deleteProject(project)}
+    //         ],
+    //         { cancelable: false }
+    //     )
+    // };
 
+    const [showAlert,setShowAlert] = useState(false);
+
+    const showAlertMessage = () => {
+        setShowAlert(true);
+       
+    };
+    
+    const hideAlertMessage = () => {
+        setShowAlert(false);
+    };
+   
     const rightButtons = [
         <TouchableHighlight>
-            <TouchableOpacity style = {styles.TouchableOpacity} onPress = {() => Alert()}>
+            <TouchableOpacity style = {styles.TouchableOpacityLeft} onPress = {showAlertMessage}>
                 <Image source={require('../../../assets/images/delete.png')} style={styles.image}/>
             </TouchableOpacity> 
         </TouchableHighlight>
     ];
     const leftButtons = [
         <TouchableHighlight>
-            <TouchableOpacity style = {styles.TouchableOpacity} onPress = {() => Alert()}>
-                <Image source={require('../../../assets/images/delete.png')} style={styles.image}/>
-            </TouchableOpacity> 
+            <TouchableOpacity style = {styles.TouchableOpacityRight} onPress = {() => navigation.navigate('EditP',{project})}>
+                <Image source = {require('../../../assets/images/edit_logoTry.png')} style={styles.image}/>
+            </TouchableOpacity>
         </TouchableHighlight>
     ];
 
 
     return (
         <View style={styles.asd}>
-            <Swipeable rightButtons={rightButtons} leftButtons={leftButtons} bounceOnMount={true} >
+            <Swipeable  leftButtons={leftButtons} rightButtons={rightButtons} >
                 <View style={styles.container}>
                     <View style={{flexDirection:'column'}}>
                         <Text style={styles.text}>{project.name}</Text>
                         <View style={styles.options}>                              
-                            {/* <IndexDetail imageSrc={require('../../../assets/images/edit_logoTry.png')} navigationScreen= 'EditP' project={project}/> */}
                             <IndexDetail imageSrc={require('../../../assets/images/taskTry.png')} navigationScreen= 'Tasks' project={project}/>
                             <IndexDetail imageSrc={require('../../../assets/images/meetingTry.png')} navigationScreen= 'Meetings' project={project}/>
                             <IndexDetail imageSrc={require('../../../assets/images/calendarTry.png')} navigationScreen= 'Calendar' project={project}/>               
@@ -54,8 +66,28 @@ const ProjectComponent = ({project, deleteProject}) => {
                     <ProjectStatus style={styles.status}/>
                 </View>
             </Swipeable>
-        </View>
 
+            <AwesomeAlert
+                show={showAlert}
+                showProgress={false}
+                title="Delete Project"
+                message="Are you sure you want to delete this item?"
+                closeOnTouchOutside={true}
+                closeOnHardwareBackPress={false}
+                showCancelButton={true}
+                showConfirmButton={true}
+                cancelText="No, cancel"
+                confirmText="Yes, delete it"
+                confirmButtonColor="#DD6B55"
+                onCancelPressed={() => {
+                    hideAlertMessage();
+                }}
+                onConfirmPressed={() => {
+                    deleteProject(project);
+                    hideAlertMessage();
+                }}
+            />
+    </View>
     )
 };
 
@@ -69,14 +101,25 @@ const styles = StyleSheet.create({
         justifyContent:'space-between',
         paddingBottom:20,
     },
-    TouchableOpacity:{
+    TouchableOpacityLeft:{
         marginVertical:20,
         paddingBottom:3,
         marginHorizontal:25,
         paddingTop:3,
         paddingHorizontal:5,
         borderRadius:10,
-        backgroundColor:'#cfd8dc',
+        backgroundColor:'white',
+        //borderRadius:10    
+    },
+    TouchableOpacityRight:{
+        marginVertical:20,
+        paddingBottom:3,
+        marginHorizontal:25,
+        paddingTop:3,
+        paddingHorizontal:5,
+        borderRadius:10,
+        backgroundColor:'white',
+        paddingRight:50
         //borderRadius:10    
     },
     text: {
@@ -98,4 +141,4 @@ const styles = StyleSheet.create({
     // }
 });
 
-export default ProjectComponent;
+export default withNavigation(ProjectComp);

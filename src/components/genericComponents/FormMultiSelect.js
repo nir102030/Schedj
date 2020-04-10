@@ -16,11 +16,12 @@ class FormMultiSelect extends Component {
         this.props.addItemsToList(selectedItems);
         //this.props.addTaskToMeeting(selectedItems);
     };
-    
+        
+           
     render() {
         const { selectedItems } = this.state;
         return (
-        <View style={{ flex: 1 }}>
+        <View style={{ flex:1 ,marginTop:10, borderBottomWidth: 3, borderBottomColor:'#d9e3f0', }}>
             <MultiSelect
                 hideTags
                 items={this.items}
@@ -33,13 +34,16 @@ class FormMultiSelect extends Component {
                 onChangeInput={ (text)=> console.log(text)}
                 //altFontFamily="ProximaNova-Light"
                 tagRemoveIconColor="#CCC"
-                tagBorderColor="#CCC"
-                tagTextColor="#CCC"
+                tagBorderColor="white"
+                tagTextColor="white"
+                fontSize= {18}
+                //itemFontSize= {}
+                //fixedHeight= {80}
                 selectedItemTextColor="#CCC"
                 selectedItemIconColor="#CCC"
-                itemTextColor="#000"
+                itemTextColor="black"
                 displayKey="name"
-                searchInputStyle={{ color: '#CCC' }}
+                searchInputStyle={{ color: '#CCC', fontSize: 20}}
                 submitButtonColor="#CCC"
                 submitButtonText="Submit"
             />

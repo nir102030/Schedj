@@ -31,6 +31,7 @@ const ProjectsScreen = ({navigation}) => {
     );
     
 };
+
 <HeaderC headerText = {'Projects Screen'} /> 
 
 
