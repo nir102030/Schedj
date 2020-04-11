@@ -6,9 +6,9 @@ const ProjectInvitation = ({pid,Owner,Inviter,List}) => {
 
     return (
         <View style = {styles.container}>
-            <View style={styles.header}>
+            {/* <View style={styles.header}>
                 <Text style={styles.header2}>New Project Invitation </Text>
-            </View>
+            </View> */}
             <ScrollView>
             <Text style={styles.Hello}>Hello {Owner}  </Text>
             <Text style={styles.freeText}>You have got a new invitation for : </Text>

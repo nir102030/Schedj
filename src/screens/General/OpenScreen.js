@@ -43,14 +43,11 @@ const styles = StyleSheet.create({
         height:150,
         width:430,
         alignSelf:'center',
-        //backgroundColor:'#749699',  
     },
     image: {
         height:120,
         width:200,
-        //marginRight:15
         marginBottom:20
-        
     },
     whiteHeadr: {
         height:120,

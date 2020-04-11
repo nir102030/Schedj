@@ -12,10 +12,10 @@ const ProjectCalendarScreen = ({navigation}) => {
     const project = navigation.getParam('project');
 
     return <View style = {styles.container}>
-                <View style={styles.header}>
+                {/* <View style={styles.header}>
                     <Text style={styles.text}>{project.name} Calendar </Text>
                     <Image source={require('../../../assets/images/calendar_icon1.png')} style={styles.image}/>
-                </View>
+                </View> */}
             <ScrollView>
             <View style = {{flexDirection: 'row-reverse'}}>
                     <Button onPress={() => {showMessage({message: "Green",description: "Green - Available",type: "info",color:"white",backgroundColor:'#388e3c' });

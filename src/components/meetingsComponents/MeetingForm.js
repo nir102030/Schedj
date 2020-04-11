@@ -47,7 +47,7 @@ const MeetingForm = ({project, oldMeeting, onSubmit, type}) => {
                             onChange={(place) => setMeeting({...meeting, 'place': place})} 
                             viewStyle = {styles.designSquare}
                         />
-                        <FormMultiSelect 
+                        <FormMultiSelect style={styles.addPart}
                             list = {project.participants.map((participant) => {
                                 return {'id': participant, 'name': participant}
                             })}

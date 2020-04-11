@@ -5,9 +5,9 @@ const MeetingInvitation = ({Owner,pid}) => {
 
     return (
         <View style = {styles.container}>
-            <View style={styles.header}>
+            {/* <View style={styles.header}>
                 <Text style={styles.header2}>New Meeting Invitation </Text>
-            </View>
+            </View> */}
             <Text style={styles.Hello}>Hello {Owner}  </Text>
             <Text style={styles.freeText}>New meeting has been scheduled! </Text>
             <Text style={styles.projName}>{pid} Project</Text>

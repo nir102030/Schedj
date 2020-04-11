@@ -72,5 +72,5 @@ export default ()=>{
   return <Provider store = { createStore (reducers) } >
     <App/>
     <FlashMessage position="top"/>
-  </Provider>
+    </Provider>
 }

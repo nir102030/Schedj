@@ -4,7 +4,7 @@ import {Text, StyleSheet, View } from 'react-native'
 const ShowMeetingScreen = ({id, pid}) => {
     return (
         <View style={styles.container}>
-                <Text style={styles.text}>{pid} project, meeting {id}</Text>
+                {/* <Text style={styles.text}>{pid} project, meeting {id}</Text> */}
         </View>    
     )
 };

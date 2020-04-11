@@ -41,6 +41,15 @@ const SettingsScreen = () => {
     );
 };
 
+SettingsScreen.navigationOptions = () => {
+    return{
+        headerRight:   
+            <View style={styles.header}>
+                <Text style={styles.headerStyle}> Settings </Text>
+            </View>
+    };
+};
+
 const styles = StyleSheet.create({
     container: {
         backgroundColor:'#607d8b',        
@@ -136,6 +145,18 @@ const styles = StyleSheet.create({
         paddingTop:150,
         flexDirection: 'row',
         alignSelf:'flex-end'
+    },
+    header: {
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+    },
+    headerStyle: {        
+        fontWeight:'bold',
+        fontSize: 30,
+        marginRight: 5,
+        alignSelf:'center',
+        color:'#263238',
+        textAlign:'left'
     },
 });
 
