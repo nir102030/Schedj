@@ -9,7 +9,7 @@ const TaskForm = ({oldTask,onSubmit,type}) => {
     return (
         <View style={styles.container}> 
             <View style={styles.header}>
-                <Text style={styles.headerStyle}>{task.pid} Project - New Task</Text>
+                {/* <Text style={styles.headerStyle}>{task.pid} Project - New Task</Text> */}
                 {/* <Picklist title='Topic' data={topics}  navigation=''/> */}
             </View>
             <FormInput title='Task Name ' value = {task.name} long={7} onChange={(name) => setTask({...task, "name":name})} viewStyle = {styles.task} />

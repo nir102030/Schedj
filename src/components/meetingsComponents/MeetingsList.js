@@ -18,8 +18,8 @@ const MeetingsList = ({meetings, project, style, deleteMeeting}) => {
         <View style = {style}>
             <ScrollView>
                 <View style={styles.header}>
-                    <Text style={styles.text}>{project.name} Meetings</Text>
-                    <Image source={require('../../../assets/images/meeting_logo.png')} style={styles.image}/>
+                    {/* <Text style={styles.text}>{project.name} Meetings</Text>
+                    <Image source={require('../../../assets/images/meeting_logo.png')} style={styles.image}/> */}
                 </View>
                 <FlatList
                     data = {meetingsList}

@@ -9,9 +9,9 @@ const TasksScreen = ({navigation}) => {
 
     return (
             <View style={styles.container}> 
-                <View style={styles.header}>
+                {/* <View style={styles.header}>
                     <Text style={styles.headerStyle}> {project.id} Project - Tasks</Text>
-                </View>
+                </View> */}
                 <TopicsList project = {project} style = {styles.list} />
                 <CreateTopic project = {project} style = {styles.TouchableOpacity}/>
             </View>
