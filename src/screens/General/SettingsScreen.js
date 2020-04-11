@@ -52,6 +52,15 @@ const SettingsScreen = ({pid}) => {
     );
 };
 
+SettingsScreen.navigationOptions = () =>{
+    return{
+        headerRight:   
+            <View style={styles.header}>
+                <Text style={styles.headerStyle}>Settings</Text>
+            </View>
+    };
+};
+
 const styles = StyleSheet.create({
     container: {
         backgroundColor:'#607d8b',        
@@ -147,6 +156,23 @@ const styles = StyleSheet.create({
         paddingTop:150,
         flexDirection: 'row',
         alignSelf:'flex-end'
+    },
+    header: {
+        flexDirection: 'row',
+        //backgroundColor:'#8aa9b9',
+        justifyContent: 'flex-end',
+        // borderBottomWidth:5,
+        // borderBottomColor:'#2d6886'
+    },
+    headerStyle: {        
+        fontWeight:'bold',
+        fontSize: 30,
+        //marginVertical: 10,
+        //marginHorizontal:34,
+        marginRight: 15,
+        alignSelf:'center',
+        color:'#263238',
+        textAlign:'left'
     },
 });
 

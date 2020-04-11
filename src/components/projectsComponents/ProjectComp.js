@@ -1,8 +1,7 @@
 import React,{useState} from 'react'
-import { Text, StyleSheet, View, TouchableOpacity,Alert,TouchableHighlight,Image} from 'react-native'
+import { Text, StyleSheet, View, TouchableOpacity,TouchableHighlight,Image} from 'react-native'
 import ProjectStatus from './ProjectStatus';
 import IndexDetail from './IndexDetail';
-import {AntDesign} from '@expo/vector-icons';
 import Swipeable from 'react-native-swipeable-row';
 import AwesomeAlert from 'react-native-awesome-alerts';
 import {withNavigation} from 'react-navigation';
@@ -10,49 +9,29 @@ import {withNavigation} from 'react-navigation';
 
 const ProjectComp = ({project, deleteProject,navigation}) => {
 
-    {/* add pop-up: Delete project - You won't be able to restore your project! yes or no  */}
-
-    // const Alert = () => {
-    //     Alert.alert(
-    //         'Are you sure you want to delete this item?', 
-    //         '',
-    //         [
-    //         {text: 'Cancel', onPress: () => console.log('Cancel Pressed')},
-    //         {text: 'OK', onPress: () => deleteProject(project)}
-    //         ],
-    //         { cancelable: false }
-    //     )
-    // };
-
     const [showAlert,setShowAlert] = useState(false);
+    const showAlertMessage = () => { setShowAlert(true);   };
+    const hideAlertMessage = () => { setShowAlert(false);  };
 
-    const showAlertMessage = () => {
-        setShowAlert(true);
-       
-    };
-    
-    const hideAlertMessage = () => {
-        setShowAlert(false);
-    };
-   
     const rightButtons = [
         <TouchableHighlight>
-            <TouchableOpacity style = {styles.TouchableOpacityLeft} onPress = {showAlertMessage}>
+            <TouchableOpacity style = {styles.TouchableOpacityLeftSide} onPress = {showAlertMessage}>
                 <Image source={require('../../../assets/images/delete.png')} style={styles.image}/>
             </TouchableOpacity> 
         </TouchableHighlight>
     ];
+
     const leftButtons = [
         <TouchableHighlight>
-            <TouchableOpacity style = {styles.TouchableOpacityRight} onPress = {() => navigation.navigate('EditP',{project})}>
-                <Image source = {require('../../../assets/images/edit_logoTry.png')} style={styles.image}/>
-            </TouchableOpacity>
+            <TouchableOpacity style = {styles.TouchableOpacityRightSide} onPress = {() => navigation.navigate('EditP',{project})}>
+                {/* <Image source={require('../../../assets/images/edit_logoTry.png')} style={styles.image}/> */}
+                <Text style={{fontWeight:'bold',fontSize:16}}>Edit</Text>
+           </TouchableOpacity>
         </TouchableHighlight>
     ];
 
-
     return (
-        <View style={styles.asd}>
+        <View style={styles.general}>
             <Swipeable  leftButtons={leftButtons} rightButtons={rightButtons} >
                 <View style={styles.container}>
                     <View style={{flexDirection:'column'}}>
@@ -63,7 +42,7 @@ const ProjectComp = ({project, deleteProject,navigation}) => {
                             <IndexDetail imageSrc={require('../../../assets/images/calendarTry.png')} navigationScreen= 'Calendar' project={project}/>               
                         </View>
                     </View>
-                    <ProjectStatus style={styles.status}/>
+                    <ProjectStatus/>
                 </View>
             </Swipeable>
 
@@ -92,7 +71,7 @@ const ProjectComp = ({project, deleteProject,navigation}) => {
 };
 
 const styles = StyleSheet.create({
-    asd: {
+    general: {
         borderBottomWidth:3,
         borderColor:'#d9e3f0',
     },
@@ -101,26 +80,23 @@ const styles = StyleSheet.create({
         justifyContent:'space-between',
         paddingBottom:20,
     },
-    TouchableOpacityLeft:{
+    TouchableOpacityLeftSide:{
         marginVertical:20,
         paddingBottom:3,
-        marginHorizontal:25,
+        marginHorizontal:20,
         paddingTop:3,
         paddingHorizontal:5,
         borderRadius:10,
         backgroundColor:'white',
-        //borderRadius:10    
     },
-    TouchableOpacityRight:{
+    TouchableOpacityRightSide:{
         marginVertical:20,
-        paddingBottom:3,
-        marginHorizontal:25,
-        paddingTop:3,
+        paddingBottom:12,
+        marginHorizontal:20,
+        paddingTop:12,
         paddingHorizontal:5,
         borderRadius:10,
         backgroundColor:'white',
-        paddingRight:50
-        //borderRadius:10    
     },
     text: {
         fontWeight:'bold',
@@ -136,9 +112,6 @@ const styles = StyleSheet.create({
         height:40,
         width:40,
     }
-    // status:{
-    //     paddingRight:20
-    // }
 });
 
 export default withNavigation(ProjectComp);
