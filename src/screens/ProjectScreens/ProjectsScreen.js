@@ -1,7 +1,6 @@
 import React from 'react'
 import { Text, StyleSheet, View, TouchableOpacity, Image} from 'react-native'
 import ProjectsList from '../../components/projectsComponents/ProjectsList'
-import HeaderC from '../../components/genericComponents/HeaderC'
 
 
 const ProjectsScreen = ({navigation}) => {    
@@ -31,8 +30,14 @@ const ProjectsScreen = ({navigation}) => {
     );
     
 };
-<HeaderC headerText = {'Projects Screen'} /> 
-
+ProjectsScreen.navigationOptions = () => {
+    return {
+        headerRight:
+            <View style={styles.header}>
+                <Text style={styles.headerStyle}>Projects</Text>
+            </View>
+    }
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -93,6 +98,23 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
         alignSelf:'center',
         //marginHorizontal:10,
+    },
+    header: {
+        flexDirection: 'row',
+        //backgroundColor:'#8aa9b9',
+        justifyContent: 'flex-end',
+        // borderBottomWidth:5,
+        // borderBottomColor:'#2d6886'
+    },
+    headerStyle: {        
+        fontWeight:'bold',
+        fontSize: 30,
+        //marginVertical: 10,
+        //marginHorizontal:34,
+        marginRight: 15,
+        alignSelf:'center',
+        color:'#263238',
+        textAlign:'left'
     },
 });
 

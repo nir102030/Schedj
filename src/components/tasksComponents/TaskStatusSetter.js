@@ -6,7 +6,7 @@ const TaskStatusSetter = ({onPress, text}) => {
 
     return (
         <TouchableOpacity  style={styles.TouchableOpacity}  onPress={onPress} >
-            <Text style={styles.text}>  {text}</Text>
+            <Text style={styles.text}>  {text} </Text>
             <Image style={styles.statusStyle}  source={require('../../../assets/images/status.png')}/>
         </TouchableOpacity>
     );
@@ -15,7 +15,7 @@ const TaskStatusSetter = ({onPress, text}) => {
 const styles = StyleSheet.create({
     TouchableOpacity : {
         flexDirection:'row',
-        marginRight:10,
+        marginRight:10
     },
 
     text:{

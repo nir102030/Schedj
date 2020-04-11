@@ -1,4 +1,4 @@
-export default (state = [{pid:'1', topic:'General', mid:'1', tid:'1', name:'Build DB', description:'Build our DB from Scretch'}], action) => {
+export default (state = [{pid:'1', topic:'General', mid:'1', tid:'1', name:'Build DB', description:'Build our DB from Scretch', 'status':0.3, 'color':'red'}], action) => {
     switch (action.type) {
         case 'add_task':
             return ( [
@@ -10,6 +10,8 @@ export default (state = [{pid:'1', topic:'General', mid:'1', tid:'1', name:'Buil
                 tid: Math.floor(Math.random()*99999),
                 name: action.payload.task.name,
                 description: action.payload.task.description,
+                status: action.payload.task.status,
+                color: action.payload.task.color
                 }
             ]
             );

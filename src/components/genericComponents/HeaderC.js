@@ -5,7 +5,7 @@ const HeaderC = () => {
  
 };
 
-HeaderC.navigationOptions = (props) =>{
+export default HeaderC.navigationOptions = (props) =>{
     return{
         headerRight:   
                     <View style={styles.header}>
@@ -33,5 +33,3 @@ const styles  = StyleSheet.create({
         textAlign:'left'
     },
 });
-
-export default HeaderC;

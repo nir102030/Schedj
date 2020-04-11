@@ -2,14 +2,16 @@ import React,{useState} from 'react';
 import {View, Text, StyleSheet,Picklist,TouchableOpacity,Image,TextInput} from 'react-native';
 import FormInput from '../../components/genericComponents/FormInput';
 import FormSubmitButton from '../genericComponents/FormSubmitButton';
+import {connect} from 'react-redux';
 
-const TaskForm = ({oldTask,onSubmit,type}) => {
+const TaskForm = ({oldTask,onSubmit,type, projects}) => {
     const [task,setTask]  = useState(oldTask);
+    const project = projects.find((project)=> project.id === task.pid);
 
     return (
         <View style={styles.container}> 
             <View style={styles.header}>
-                <Text style={styles.headerStyle}>{task.pid} Project - New Task</Text>
+                <Text style={styles.headerStyle}>{project.name} Project - New Task</Text>
                 {/* <Picklist title='Topic' data={topics}  navigation=''/> */}
             </View>
             <FormInput title='Task Name ' value = {task.name} long={7} onChange={(name) => setTask({...task, "name":name})} viewStyle = {styles.task} />
@@ -96,4 +98,8 @@ const styles = StyleSheet.create({
     },
 });
 
-export default TaskForm;
+const mapStateToProps = state => {
+    return {projects: state.projects};
+}
+
+export default connect(mapStateToProps,null)(TaskForm);

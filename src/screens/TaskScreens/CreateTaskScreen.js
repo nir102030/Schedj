@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 const CreateTaskScreen = ({navigation, addTask}) => {
     const topic = navigation.getParam('topic');
     
-    const task = {pid:topic.pid, topic:topic.name, mid: 0, tid: '', name:'', description:''}
+    const task = {pid:topic.pid, topic:topic.name, mid: 0, tid: '', name:'', description:'', status: 0.3, color:'red'}
 
     const onSubmit = (task) => {
         addTask(task);
