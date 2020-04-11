@@ -10,9 +10,9 @@ const LogInScreen = ({navigation}) => {
         <View style={styles.container}>
             <Image source={require('../../../assets/images/schedjWhiteTry.png')} style={styles.whiteHeadr}/>
             <View style={styles.container}>
-            <Text style={{fontSize:25,color:'white',textAlign:'center'}}>Ola Leocito ! Daddi and Mommy       is here sweatHeart</Text>
-            <Animatable.Text animation="pulse" easing="ease-out" iterationCount="infinite" style={{ textAlign: 'center',fontSize:70 }}>❤️</Animatable.Text>
-                <Image source={require('../../../assets/images/pp.png')} style={styles.backgroundimage}/>
+            <Text style={{fontSize:25,color:'white',textAlign:'center'}}>ירוק עולה</Text>
+            <Text style={{fontSize:25,color:'white',textAlign:'center'}}>כץ עם הכדור מוסר לסימוני רואה את ינוקא ברחבה מרים את הכדור וזה בקורה...נגיחה וזה ברשת....כץ מנצח את המשחק בדקה ה90 היסטוריה ...</Text>
+                <Image source={require('../../../assets/images/haifa.png')} style={styles.backgroundimage}/>
                 <TouchableOpacity style = {styles.TouchableOpacity}  onPress = {()=>navigation.navigate('OpenS')}>
                     <Image source={require('../../../assets/images/loginWith.png')} style={styles.loginWith}/>
                 </TouchableOpacity>
@@ -21,21 +21,6 @@ const LogInScreen = ({navigation}) => {
         </View>
     );
 };
-
-
-// make it work!!! should be home page button for all screens
-
-// LogInScreen.navigationOptions = ({navigation}) => {
-//     return{
-//         headerRight:(  
-//         <TouchableOpacity onPress = {()=>navigation.navigate('Projects')}>
-//              <Text> adasdasdas </Text>
-//         </TouchableOpacity>)  
-      
-//     };
-// };
-
-
 
 const styles = StyleSheet.create({
     container: {
@@ -51,7 +36,8 @@ const styles = StyleSheet.create({
         height:100,
         width:300,
         flex:1,
-        alignSelf:'center',  
+        alignSelf:'center',
+        borderRadius:35 
     },
     login: {
         height:120,
