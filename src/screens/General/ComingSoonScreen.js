@@ -12,6 +12,13 @@ const ComingSoonScreen = ({navigation}) => {
     );
 };
 
+ComingSoonScreen.navigationOptions = () => { 
+    return{ headerRight:   
+            <View>
+                <Text style={styles.headerStyle}> Coming Soon </Text>
+            </View>
+    };
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -24,12 +31,6 @@ const styles = StyleSheet.create({
         flexDirection:'row-reverse',
         paddingLeft:3,
     },
-    image: {
-        height:37,
-        width:37,
-        marginRight: 15,
-        alignSelf:'center'
-    },
     text: {
         fontSize:30,
         color:'oldlace',
@@ -37,6 +38,14 @@ const styles = StyleSheet.create({
         marginHorizontal:10,
         marginVertical:10
     },
+    headerStyle: { 
+        fontWeight:'bold',
+        fontSize: 30,
+        marginRight: 5,
+        alignSelf:'center',
+        color:'#263238',
+        textAlign:'left'
+    },  
 });
 
 export default ComingSoonScreen

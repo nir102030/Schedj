@@ -52,10 +52,9 @@ const SettingsScreen = ({pid}) => {
     );
 };
 
-SettingsScreen.navigationOptions = () => {
-    return{
-        headerRight:   
-            <View style={styles.header}>
+SettingsScreen.navigationOptions = () => { 
+    return{ headerRight:   
+            <View>
                 <Text style={styles.headerStyle}> Settings </Text>
             </View>
     };
@@ -65,18 +64,6 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor:'#607d8b',        
         flex:1
-    },
-    minMeet: {
-        flexDirection: 'row',
-        borderBottomWidth: 3,
-        borderBottomColor:'#d9e3f0',  
-        marginBottom:10 
-    },
-    editBox: {
-        flexDirection: 'row',
-        borderBottomWidth: 3,
-        borderBottomColor:'#d9e3f0',  
-        marginBottom:10 
     },
     changePic:{
         flexDirection: 'row',
@@ -128,40 +115,15 @@ const styles = StyleSheet.create({
         marginBottom:10,
         fontSize:16
     },
-
     imagePP:{
         height:60,
         width:60
-    },
-    imageRank:{
-        height:60,
-        width:150,
-        marginHorizontal:20
     },
     imageS:{
         height:60,
         width:150,
     },
-    rank:{
-        marginVertical:15,
-        marginHorizontal:15,
-        fontWeight:'bold',
-        fontSize: 22,
-        color:'#152d48',
-        borderBottomWidth: 3,
-        borderBottomColor:'#d9e3f0',
-        paddingRight:70
-    },
-    rankPic:{
-        paddingTop:150,
-        flexDirection: 'row',
-        alignSelf:'flex-end'
-    },
-    header: {
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
-    },
-    headerStyle: {        
+    headerStyle: { 
         fontWeight:'bold',
         fontSize: 30,
         marginRight: 5,

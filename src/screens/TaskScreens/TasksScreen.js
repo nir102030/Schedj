@@ -9,13 +9,18 @@ const TasksScreen = ({navigation}) => {
 
     return (
             <View style={styles.container}> 
-                {/* <View style={styles.header}>
-                    <Text style={styles.headerStyle}> {project.id} Project - Tasks</Text>
-                </View> */}
                 <TopicsList project = {project} style = {styles.list} />
                 <CreateTopic project = {project} style = {styles.TouchableOpacity}/>
             </View>
     );
+};
+
+TasksScreen.navigationOptions = () => { 
+    return{ headerRight:   
+            <View>
+                <Text style={styles.headerStyle}> Tasks </Text>
+            </View>
+    };
 };
 
 const styles = StyleSheet.create({
@@ -28,24 +33,6 @@ const styles = StyleSheet.create({
         flex:8,
         backgroundColor:'#607d8b'
     },
-    header: {
-        flex:1,
-        flexDirection: 'row',
-        backgroundColor:'#8aa9b9',
-        justifyContent: 'flex-end',
-        borderBottomWidth:5,
-        borderBottomColor:'#2d6886',
-        flex:1
-    },
-    headerStyle: {        
-        fontWeight:'bold',
-        fontSize: 30,
-        marginVertical: 10,
-        marginHorizontal:34,
-        alignSelf:'center',
-        color:'#263238',
-        textAlign:'left'
-    },
     TouchableOpacity: {
         backgroundColor:'#2b414b',
         flex:2,
@@ -53,7 +40,15 @@ const styles = StyleSheet.create({
         borderBottomWidth:1,
         borderBottomColor:'#d9e3f0',
         paddingTop: 5,
-    }
+    },
+    headerStyle: { 
+        fontWeight:'bold',
+        fontSize: 30,
+        marginRight: 5,
+        alignSelf:'center',
+        color:'#263238',
+        textAlign:'left'
+    },
 });
 
 export default TasksScreen;

@@ -16,6 +16,14 @@ const MeetingsScreen = ({navigation}) => {
     );
 };
 
+MeetingsScreen.navigationOptions = () => { 
+    return{ headerRight:   
+            <View>
+                <Text style={styles.headerStyle}> Meetings </Text>
+            </View>
+    };
+};
+
 const styles = StyleSheet.create({
     container: {
         height:'100%',
@@ -41,8 +49,15 @@ const styles = StyleSheet.create({
         color:'oldlace',
         alignSelf:'center',
         fontWeight:'bold'
-
-    }
+    },
+    headerStyle: { 
+        fontWeight:'bold',
+        fontSize: 30,
+        marginRight: 5,
+        alignSelf:'center',
+        color:'#263238',
+        textAlign:'left'
+    },
 });
 
 export default MeetingsScreen;

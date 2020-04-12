@@ -5,19 +5,15 @@ import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import {withNavigation} from 'react-navigation';
 import { showMessage, hideMessage } from "react-native-flash-message";
 import * as Animatable from 'react-native-animatable';
-
+import AppCalendar from './AppCalendar';
 
 
 const ProjectCalendarScreen = ({navigation}) => {
     const project = navigation.getParam('project');
 
     return <View style = {styles.container}>
-                {/* <View style={styles.header}>
-                    <Text style={styles.text}>{project.name} Calendar </Text>
-                    <Image source={require('../../../assets/images/calendar_icon1.png')} style={styles.image}/>
-                </View> */}
             <ScrollView>
-            <View style = {{flexDirection: 'row-reverse'}}>
+                <View style = {{flexDirection: 'row-reverse'}}>
                     <Button onPress={() => {showMessage({message: "Green",description: "Green - Available",type: "info",color:"white",backgroundColor:'#388e3c' });
                         }} title="Green" color="#388e3c"/>
                     <Button onPress={() => {showMessage({message: "Yellow",description: "Yellow - Waiting",type: "info",color:"white",backgroundColor:'#fcc400' });
@@ -26,10 +22,8 @@ const ProjectCalendarScreen = ({navigation}) => {
                         }} title="Red" color="#d32f2f"/> 
                     <Button onPress={() => {showMessage({message: "Grey",description: "Grey - Busy",type: "info",color:"white",backgroundColor:'#808080' });
                         }} title="Grey" color="#808080"/>                              
-            </View>
-            <Calendar />
-            
-                {/* the code below not going to be here in the future, just help to build the screens */}
+                </View>
+                <Calendar/>
                     <TouchableOpacity style={styles.TouchableOpacity}  onPress = {()=>navigation.navigate('InviteP')}>
                         <Animatable.Text animation="slideInLeft" iterationCount={3} direction="alternate">
                             <Text style={styles.test}> New Project Invitation</Text>
@@ -42,6 +36,14 @@ const ProjectCalendarScreen = ({navigation}) => {
                     </TouchableOpacity>
             </ScrollView>
     </View>
+};
+
+ProjectCalendarScreen.navigationOptions = () => { 
+    return{ headerRight:   
+            <View>
+                <Text style={styles.headerStyle}> Calendar </Text>
+            </View>
+    };
 };
 
 const styles = StyleSheet.create({
@@ -84,7 +86,15 @@ const styles = StyleSheet.create({
         backgroundColor:'#2b414b',
         flex:1,
         flexDirection:'row-reverse'
-    }
+    },
+    headerStyle: { 
+        fontWeight:'bold',
+        fontSize: 30,
+        marginRight: 5,
+        alignSelf:'center',
+        color:'#263238',
+        textAlign:'left'
+    },
 });
 
-export default withNavigation(ProjectCalendarScreen);
+export default ProjectCalendarScreen;

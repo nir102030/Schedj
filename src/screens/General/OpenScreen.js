@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, Image,TouchableOpacity} from 'react-native';
+import {View, StyleSheet, Image,TouchableOpacity,Text} from 'react-native';
 import {withNavigation} from 'react-navigation';
 import * as Animatable from 'react-native-animatable';
 
@@ -19,6 +19,14 @@ const OpenScreen = ({navigation}) => {
             </View>
         </View>
     );
+};
+
+OpenScreen.navigationOptions = () => { 
+    return{ headerRight:   
+            <View>
+                <Text style={styles.headerStyle}> Schedj </Text>
+            </View>
+    };
 };
 
 const styles = StyleSheet.create({
@@ -54,6 +62,14 @@ const styles = StyleSheet.create({
         width:350,
         alignSelf:'center',
         marginVertical:15
+    },
+    headerStyle: { 
+        fontWeight:'bold',
+        fontSize: 30,
+        marginRight: 5,
+        alignSelf:'center',
+        color:'#263238',
+        textAlign:'left'
     },
 });
 

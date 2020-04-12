@@ -8,10 +8,6 @@ const TaskForm = ({oldTask,onSubmit,type}) => {
 
     return (
         <View style={styles.container}> 
-            <View style={styles.header}>
-                {/* <Text style={styles.headerStyle}>{task.pid} Project - New Task</Text> */}
-                {/* <Picklist title='Topic' data={topics}  navigation=''/> */}
-            </View>
             <FormInput title='Task Name ' value = {task.name} long={7} onChange={(name) => setTask({...task, "name":name})} viewStyle = {styles.task} />
             <View style={styles.meetDesign}>
                 <TextInput style={styles.input} multiline={true} autoGrow='true' placeholder={task.description} value={task.description} onChangeText={(description) => setTask({...task, "description":description})}/>
@@ -27,22 +23,6 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor:'#607d8b',        
         flex:1
-    },
-    header: {
-        flexDirection: 'row',
-        backgroundColor:'#8aa9b9',
-        justifyContent: 'flex-end',
-        borderBottomWidth:5,
-        borderBottomColor:'#2d6886'
-    },
-    headerStyle: {        
-    fontWeight:'bold',
-    fontSize: 30,
-    marginVertical: 10,
-    marginHorizontal:34,
-    alignSelf:'center',
-    color:'#263238',
-    textAlign:'left'
     },
     meetDesign: {
         marginVertical: 2,
@@ -94,6 +74,7 @@ const styles = StyleSheet.create({
         marginBottom:10,
         color:'white',
     },
+ 
 });
 
 export default TaskForm;

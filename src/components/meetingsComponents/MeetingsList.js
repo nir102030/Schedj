@@ -38,8 +38,8 @@ const styles = StyleSheet.create({
     header:{
         flexDirection:'row', 
         flexWrap:'wrap',
-        borderBottomWidth:5,
-        borderBottomColor:'#2d6886',
+        // borderBottomWidth:5,
+        // borderBottomColor:'#2d6886',
         backgroundColor:'#8aa9b9',
     },
     text:{

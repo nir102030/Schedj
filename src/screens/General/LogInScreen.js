@@ -10,9 +10,6 @@ const LogInScreen = ({navigation}) => {
         <View style={styles.container}>
             <Image source={require('../../../assets/images/schedjWhiteTry.png')} style={styles.whiteHeadr}/>
             <View style={styles.container}>
-            <Text style={{fontSize:25,color:'white',textAlign:'center'}}>ירוק עולה</Text>
-            <Text style={{fontSize:25,color:'white',textAlign:'center'}}>כץ עם הכדור מוסר לסימוני רואה את ינוקא ברחבה מרים את הכדור וזה בקורה...נגיחה וזה ברשת....כץ מנצח את המשחק בדקה ה90 היסטוריה ...</Text>
-                <Image source={require('../../../assets/images/haifa.png')} style={styles.backgroundimage}/>
                 <TouchableOpacity style = {styles.TouchableOpacity}  onPress = {()=>navigation.navigate('OpenS')}>
                     <Image source={require('../../../assets/images/loginWith.png')} style={styles.loginWith}/>
                 </TouchableOpacity>
@@ -20,6 +17,14 @@ const LogInScreen = ({navigation}) => {
             </View>
         </View>
     );
+};
+
+LogInScreen.navigationOptions = () => { 
+    return{ headerRight:   
+            <View>
+                <Text style={styles.headerStyle}> Schedj </Text>
+            </View>
+    };
 };
 
 const styles = StyleSheet.create({
@@ -32,19 +37,6 @@ const styles = StyleSheet.create({
         flexDirection:'row-reverse',
         flex:1
     },
-    backgroundimage: {
-        height:100,
-        width:300,
-        flex:1,
-        alignSelf:'center',
-        borderRadius:35 
-    },
-    login: {
-        height:120,
-        width:450,
-        alignSelf:'center',
-        backgroundColor:'#749699',  
-    },
     loginWith: {
         height:200,
         width:450,
@@ -56,6 +48,14 @@ const styles = StyleSheet.create({
         width:350,
         alignSelf:'center',
         marginVertical:15
+    },
+    headerStyle: { 
+        fontWeight:'bold',
+        fontSize: 30,
+        marginRight: 5,
+        alignSelf:'center',
+        color:'#263238',
+        textAlign:'left'
     },
 });
 

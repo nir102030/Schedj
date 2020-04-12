@@ -7,24 +7,16 @@ import FormNotes from '../../components/genericComponents/FormNotes';
 
 
 const ProjectForm = ({oldProject, onSubmit, type}) => {
-    const [project,setProject] = useState(oldProject);
-
     
+    const [project,setProject] = useState(oldProject);
     const validation = ()=>{
-        if (project.name != '') {
-            alert('New Project has Created');
-            onSubmit(project);
-        }
-        else {
-            alert('Please Enter Project Name');
-        }
-    }
+        if (project.name != '') { alert('New Project has Created'); onSubmit(project);}
+        else { alert('Please Enter Project Name');}}
 
     return (
             <View style= {styles.container}>
                     <View style={styles.header}>
                         <Text style={styles.text}>{project.name}</Text>
-                        <Image source={require('../../../assets/images/project.png')} style={styles.image}/>
                     </View>
                     <ScrollView>
                         <Text  style={styles.fillRequired}>Please fill the required fields </Text>
@@ -78,15 +70,6 @@ const styles = StyleSheet.create({
         color:'#263238',
         flex:4
     },
-    image:{
-        marginVertical:10,
-        height:60,
-        width:60,
-        alignSelf: 'flex-end',
-        justifyContent: 'flex-end',
-        marginHorizontal:10,
-        flex:1
-    },
     fillRequired: {
         backgroundColor:'red',        
         flex:1
@@ -114,7 +97,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
         fontWeight:'bold',
         color:'white'
-    },
+    },    
 });
 
 export default ProjectForm;

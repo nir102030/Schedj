@@ -6,37 +6,26 @@ const ProjectInvitation = ({pid,Owner,Inviter,List}) => {
 
     return (
         <View style = {styles.container}>
-            {/* <View style={styles.header}>
-                <Text style={styles.header2}>New Project Invitation </Text>
-            </View> */}
             <ScrollView>
-            <Text style={styles.Hello}>Hello {Owner}  </Text>
-            <Text style={styles.freeText}>You have got a new invitation for : </Text>
-            <Text style={styles.projName}>{pid} Project</Text>
-            <Text style={styles.freeText}>Rest of the team includes : {List}</Text>
-            <Text style={styles.freeText}>Would you like to approve the invitation ? </Text>
-
-            <TouchableOpacity style = {styles.TouchableOpacity}>
-                <Image source={require('../../../assets/images/v.png')} style={styles.image} onPress = {()=>{}}/>
-                <Text style={styles.answer}>Yes, I'm willing to share my diary</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style = {styles.TouchableOpacity}>
-                <Image source={require('../../../assets/images/calendar_icon.png')} style={styles.image} onPress = {()=>{}}/>
-                <Text style={styles.answer}>I would like to change my schedule before</Text>
-            </TouchableOpacity>    
-            
-            <TouchableOpacity style = {styles.TouchableOpacity}>
-                <Image source={require('../../../assets/images/x.png')} style={styles.image} onPress = {()=>{}}/>
-                <Text style={styles.answer}>No, Reject the invitation</Text>
-            </TouchableOpacity>
-
-
-
+                <Text style={styles.Hello}>Hello {Owner}  </Text>
+                <Text style={styles.Text}>You have got a new invitation for : </Text>
+                <Text style={styles.projName}>{pid} Project</Text>
+                <Text style={styles.Text}>Rest of the team includes : {List}</Text>
+                <Text style={styles.Text}>Would you like to approve the invitation ? </Text>
+                <TouchableOpacity style = {styles.TouchableOpacity}>
+                    <Image source={require('../../../assets/images/v.png')} style={styles.image} onPress = {()=>{}}/>
+                    <Text style={styles.answer}>Yes, I'm willing to share my diary</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style = {styles.TouchableOpacity}>
+                    <Image source={require('../../../assets/images/calendar_icon.png')} style={styles.image} onPress = {()=>{}}/>
+                    <Text style={styles.answer}>I would like to change my schedule before</Text>
+                </TouchableOpacity>    
+                <TouchableOpacity style = {styles.TouchableOpacity}>
+                    <Image source={require('../../../assets/images/x.png')} style={styles.image} onPress = {()=>{}}/>
+                    <Text style={styles.answer}>No, Reject the invitation</Text>
+                </TouchableOpacity>
             </ScrollView>
-
         </View>
-
     );
 };
 
@@ -44,22 +33,6 @@ const styles = StyleSheet.create({
     container:{
         backgroundColor:'#607d8b',
         height:'100%'
-    },
-    header: {
-        flexDirection: 'row',
-        backgroundColor:'#8aa9b9',
-        justifyContent: 'flex-end',
-        borderBottomWidth:5,
-        borderBottomColor:'#2d6886'
-    },
-    header2: {
-        fontWeight:'bold',
-        fontSize: 30,
-        marginVertical: 10,
-        marginHorizontal:34,
-        alignSelf:'center',
-        color:'#263238',
-        textAlign:'left',
     },
     Hello: {
         fontWeight:'bold',
@@ -69,7 +42,7 @@ const styles = StyleSheet.create({
         color:'white',
         textAlign:'right',
     },
-    freeText: {
+    Text: {
         fontWeight:'bold',
         fontSize: 23,
         marginVertical: 10,
@@ -106,10 +79,6 @@ const styles = StyleSheet.create({
         color:'#0F3A3E',
         alignSelf:'center',
     },
-   
-
-   
-   
 });
 
 export default ProjectInvitation;

@@ -28,6 +28,14 @@ const ProjectsScreen = ({navigation}) => {
     );
 };
 
+ProjectsScreen.navigationOptions = () => { 
+    return{ headerRight:   
+            <View>
+                <Text style={styles.headerStyle}> Projects </Text>
+            </View>
+    };
+};
+
 const styles = StyleSheet.create({
     container: {
         height:'100%',
@@ -64,6 +72,14 @@ const styles = StyleSheet.create({
         color:'black',
         fontWeight:'bold',
         alignSelf:'center',
+    },
+    headerStyle: { 
+        fontWeight:'bold',
+        fontSize: 30,
+        marginRight: 5,
+        alignSelf:'center',
+        color:'#263238',
+        textAlign:'left'
     },
 });
 

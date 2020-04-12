@@ -10,6 +10,14 @@ const AboutUsScreen = () => {
     );
 };
 
+AboutUsScreen.navigationOptions = () => { 
+    return{ headerRight:   
+            <View>
+                <Text style={styles.headerStyle}> About Us </Text>
+            </View>
+    };
+};
+
 const styles = StyleSheet.create({
     container: {
         backgroundColor:'#d9d9d9',
@@ -22,6 +30,14 @@ const styles = StyleSheet.create({
         paddingBottom:20,
         alignSelf:'center'
     },
+    headerStyle: { 
+        fontWeight:'bold',
+        fontSize: 30,
+        marginRight: 5,
+        alignSelf:'center',
+        color:'#263238',
+        textAlign:'left'
+    },    
 });
 
 export default AboutUsScreen;
