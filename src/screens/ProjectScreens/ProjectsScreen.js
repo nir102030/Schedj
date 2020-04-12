@@ -73,10 +73,10 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
         alignSelf:'center',
     },
-    headerStyle: { 
+    headerStyle: {        
         fontWeight:'bold',
         fontSize: 30,
-        marginRight: 5,
+        marginRight: 15,
         alignSelf:'center',
         color:'#263238',
         textAlign:'left'

@@ -2,16 +2,19 @@ import React,{useState} from 'react';
 import {View, Text, StyleSheet,CheckBox,Image} from 'react-native';
 import FormInput from '../../components/genericComponents/FormInput';
 import FormPickerSelect from '../../components/genericComponents/FormPickerSelect';
-import RNPickerSelect from 'react-native-picker-select';
 
-const SettingsScreen = ({pid}) => {
+const SettingsScreen = () => {
     const [checked,setChecked]  = useState(checked);
     const [edit,setEdit] = useState('');
-    const placehol = {
-        label: '        Select Reminder...',
-        value: null,
-        color: '#9EA0A4',
-      };
+    const rankItems = [1,2,3,4,5].map((num) => {
+        const label = num === 1 ? `       ${num} Star`:`       ${num} Stars`;
+        return {'label': label, 'value':num, 'color': '#192C4D'}
+    });
+    const reminderItems = [48,24,12,3,1,'No Reminder'].map((rem) => {
+        const label = rem === 1 ? `       ${rem} Hour`:`       ${rem} Hours`;
+        const color = rem === 'No Reminder' ? 'red' : '#192C4D';
+        return {'label': label, 'value':rem, 'color': color}
+    });
 
     return (
         <View style={styles.container}> 
@@ -31,23 +34,9 @@ const SettingsScreen = ({pid}) => {
                 <Text style={styles.notification}>Mobile  </Text>
             </View>
             <Text style={styles.subHeader}> Reminder </Text>
-            <View  style={styles.Check}>
-            </View>
-            <RNPickerSelect 
-                placeholder={placehol}
-                onValueChange={() => {}}
-                items={[
-                    { label:'       48 Hours', value:'48 Hours',color:'#192C4D'},
-                    { label:'       24 Hours', value:'24 Hours',color:'#192C4D' },
-                    { label:'       12 Hours', value:'12 Hours',color:'#192C4D' },
-                    { label:'       3 Hours', value:'3 Hours',color:'#192C4D' },
-                    { label:'       1 Hour', value:'1 Hours',color:'#192C4D' },
-                    { label:'       No Reminder', value:'No Reminder',color:'red' },
-                ]}
-                style={{placeholder:{color:'white'}}}
-            />
+            <FormPickerSelect items = {reminderItems} label = {'Reminder'}/>
             <Text style={styles.subHeader}> Rank our app </Text>
-            {/* <FormPickerSelect /> */}
+            <FormPickerSelect items = {rankItems} label = {'Rank'}/> 
         </View>
     );
 };

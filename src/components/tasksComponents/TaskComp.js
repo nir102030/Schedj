@@ -4,29 +4,28 @@ import * as Progress from 'react-native-progress';
 import {withNavigation} from 'react-navigation';
 import TaskStatusSetter from './TaskStatusSetter';
 import { showMessage, hideMessage } from "react-native-flash-message";
+import {connect} from 'react-redux';
+import * as actions from '../../actions';
 
 
-const TaskComp = ({navigation,task, deleteTask}) => {
-    const [progress,setProgress]  = useState(0.3);
-    const [color,setColor]  = useState('red');
-    const [text,setText] = useState('Next Stage');
-    
+const TaskComp = ({navigation,task, deleteTask, editTask}) => {
+
     const setStatusAndColor = (progress,color) => {
-        setProgress(progress);
-        setColor(color);
+        editTask({...task, 'status': progress, 'color': color});   
+        console.log(task);
     }
 
     const setTaskStatus = (type) => {
         switch(type) {
             case 'next':
                 return(
-                    progress<0.65 && progress >=0.3?
+                    task.status<0.65 && task.status >=0.3?
                     setStatusAndColor(0.65, '#fccb00')
-                    :progress >= 0.65 ? setStatusAndColor(1, '#008B02'):null
+                    :task.status >= 0.65 ? setStatusAndColor(1, '#008B02'):null
                 );
             case 'previous':
                 return(
-                    progress>0.65?
+                    task.status>0.65?
                     setStatusAndColor(0.65,'#fccb00'):
                     setStatusAndColor(0.3,'red')
                 );
@@ -38,7 +37,7 @@ const TaskComp = ({navigation,task, deleteTask}) => {
             <TouchableOpacity style={styles.prog}  onPress={() => {showMessage({message:task.name,description:task.description ,type: "info",color:"white",backgroundColor:'#455a64' })}} >
                 <Text style={styles.task}>{task.name}</Text>
             </TouchableOpacity>  
-            <Progress.Bar style={styles.prog} progress={progress} width={150} height={30} animated={true} color={color} borderColor={'#99BAC9'} marginVertical={10}/>
+            <Progress.Bar style={styles.prog} progress={task.status} width={150} height={30} animated={true} color={task.color} borderColor={'#99BAC9'} marginVertical={10}/>
                 <View style={styles.AAA}>
                     <TaskStatusSetter onPress={() => {setTaskStatus('next')}} text = {'Next Stage'}/>
                     <TaskStatusSetter onPress={() => {setTaskStatus('previous')}} text = {'Previous Stage'}/>
@@ -101,4 +100,4 @@ const styles = StyleSheet.create({
     }, 
 });
 
-export default withNavigation(TaskComp);
+export default connect(null,actions)(withNavigation(TaskComp));
