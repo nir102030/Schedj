@@ -1,6 +1,6 @@
+import React from 'react';
 import { createAppContainer} from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import React from 'react';
 import { YellowBox } from 'react-native'
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
@@ -21,10 +21,10 @@ import EditTaskScreen from './src/screens/TaskScreens/EditTaskScreen';
 import AboutUsScreen from './src/screens/General/AboutUsScreen'
 import SettingsScreen from './src/screens/General/SettingsScreen'
 import OpenScreen from './src/screens/General/OpenScreen'
-import LogInScreen from './src/screens/General/LogInScreen'
+//import LogInScreen from './src/screens/General/LogInScreen'
 import GanttScreen from './src/screens/General/GanttScreen'
 import ComingSoonScreen from './src/screens/General/ComingSoonScreen'
-
+import SignInGoogleScreen from './src/screens/General/SignInGoogleScreen'
 
 //This function ignores unresolved warnings
 YellowBox.ignoreWarnings([
@@ -47,12 +47,14 @@ const navigator = createStackNavigator({
     AboutUs: AboutUsScreen,
     Settings: SettingsScreen,
     OpenS:OpenScreen,
-    LogIn:LogInScreen,
+    //LogIn:LogInScreen,
     Gantt:GanttScreen,
-    ComeSoon:ComingSoonScreen
+    ComeSoon:ComingSoonScreen,
+    SignInG:SignInGoogleScreen,
+
   },
   {
-    initialRouteName: 'LogIn',
+    initialRouteName: 'SignInG',
     defaultNavigationOptions: {
       title: '',
       headerTitleStyle:{

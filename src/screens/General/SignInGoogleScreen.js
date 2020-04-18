@@ -1,8 +1,10 @@
 import React from "react"
 import { StyleSheet, Text, View, Image, Button } from "react-native"
-import Expo from "expo"
+//import Expo from "expo";
+import * as Google from 'expo-google-app-auth'
+// import firebase from 'firebase';
 
-export default class SignIn extends React.Component {
+export default class SignInGoogleScreen extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -13,9 +15,9 @@ export default class SignIn extends React.Component {
   }
   signIn = async () => {
     try {
-      const result = await Expo.Google.logInAsync({
+      const result = await Google.logInAsync({
         androidClientId:
-          "191398892218-duutn225hmcfb6l4rvqskhgbc076p132.apps.googleusercontent.com",
+          "191398892218-afnfptov13nj42jr1h7irsgq5l50jn9g.apps.googleusercontent.com",
         scopes: ["profile", "email"]
       })
 
@@ -59,6 +61,9 @@ const LoggedInPage = props => {
     <View style={styles.container}>
       <Text style={styles.header}>Welcome:{props.name}</Text>
       <Image style={styles.image} source={{ uri: props.photoUrl }} />
+      <TouchableOpacity style = {styles.TouchableOpacity}  onPress = {()=>navigation.navigate('OpenS')}>
+          <Image source={require('../../../assets/images/loginWith.png')} style={styles.loginWith}/>
+      </TouchableOpacity>
     </View>
   )
 }
@@ -80,5 +85,15 @@ const styles = StyleSheet.create({
     borderColor: "rgba(0,0,0,0.2)",
     borderWidth: 3,
     borderRadius: 150
-  }
+  },
+  TouchableOpacity: {
+    flexDirection:'row-reverse',
+    flex:1
+  }, 
+  loginWith: {
+    height:200,
+    width:450,
+    marginVertical:28,
+    marginRight:30,
+    }
 });
