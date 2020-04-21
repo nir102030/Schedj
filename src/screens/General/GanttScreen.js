@@ -4,9 +4,9 @@ import { View,ScrollView,StyleSheet,Text,Image } from 'react-native'
 
 const GanttScreen = () => {
     const tasks = [
-        { _id: "1", name: "Task 1", "start": new Date(2020, 0, 1), "end": new Date(2020, 0, 5), progress: 0.7 },
-        { _id: "2", name: "Task 2", "start": new Date(2020, 0, 1), "end": new Date(2020, 0, 5), progress: 1 },
-        { _id: "3", name: "Task 3", "start": new Date(2020, 0, 1), "end": new Date(2020, 0, 5), progress: 0.3 }
+        { _id: "1", name: "Task 1", "start": new Date(2020, 1, 1), "end": new Date(2020, 2, 5), progress: 0.7 },
+        { _id: "2", name: "Task 2", "start": new Date(2020, 1, 1), "end": new Date(2020, 3, 5), progress: 1 },
+        { _id: "3", name: "Task 3", "start": new Date(2020, 1, 1), "end": new Date(2020, 4, 5), progress: 0.3 }
         ];
     
 
@@ -23,7 +23,7 @@ const GanttScreen = () => {
                             numberOfTicks={5}
                             onPressTask={task => alert(task.name)}
                             gridMin={new Date(2020, 0, 1).getTime()}
-                            gridMax={new Date(3000, 0, 20).getTime()}
+                            gridMax={new Date(2080, 0, 20).getTime()}
                             colors={{
                                 barColorPrimary: '#0c2461',
                                 barColorSecondary: '#4a69bd',

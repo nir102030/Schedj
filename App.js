@@ -54,7 +54,7 @@ const navigator = createStackNavigator({
 
   },
   {
-    initialRouteName: 'SignInG',
+    initialRouteName: 'OpenS',
     defaultNavigationOptions: {
       title: '',
       headerTitleStyle:{
