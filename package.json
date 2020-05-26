@@ -16,7 +16,6 @@
     "feather-icons": "^4.28.0",
     "firebase": "^7.14.2",
     "glamorous-native": "^2.0.0",
-    "prettier": "^2.0.5",
     "react": "~16.9.0",
     "react-datepicker": "^2.14.0",
     "react-dom": "~16.9.0",
@@ -55,7 +54,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
-    "babel-preset-expo": "~8.0.0"
+    "babel-preset-expo": "~8.0.0",
+    "prettier": "2.0.5"
   },
   "private": true
 }
