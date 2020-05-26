@@ -1,9 +1,10 @@
 import * as firebase from 'firebase';
 import * as Permissions from 'expo-permissions';
 import { Notifications } from 'expo';
+import { editUserInDb } from '../firebase/usersAPI';
 
 //Show the user a pop up to allow the notifications and if he allows it store the token in the user db
-export const registerForPushNotifications = async () => {
+export const registerForPushNotifications = async (user) => {
 	// Check for existing permissions
 	const { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
 	let finalStatus = status;
@@ -21,12 +22,28 @@ export const registerForPushNotifications = async () => {
 
 	//Get push notification token
 	let token = await Notifications.getExpoPushTokenAsync();
-	console.log(token);
 
 	//Add token to firebase
-	let uid = firebase.auth().currentUser.uid;
-	console.log(uid);
-	firebase.database.ref('users').child(uid).update({
-		expoPushToken: token,
+	editUserInDb(user, token);
+};
+
+export const sendPushNotification = async (user) => {
+	const token = user.token;
+	const message = {
+		to: token,
+		sound: 'default',
+		title: 'Original Title',
+		body: 'And here is the body!',
+		data: { data: 'goes here' },
+		_displayInForeground: true,
+	};
+	let response = fetch('https://exp.host/--/api/v2/push/send', {
+		method: 'POST',
+		headers: {
+			Accept: 'application/json',
+			'Accept-encoding': 'gzip, deflate',
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(message),
 	});
 };

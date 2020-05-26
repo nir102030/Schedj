@@ -1,17 +1,15 @@
-import { useEffect } from 'react';
 import firebase from 'firebase';
 import { firebaseInit } from '../../firebase/config';
-import { registerForPushNotifications } from '../../firebase/notifications';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
+import { addUserToDb } from '../../firebase/usersAPI';
 
-const ResolveAuthScreen = ({ navigation }) => {
+const ResolveAuthScreen = ({ navigation, addUser }) => {
 	firebaseInit();
-	useEffect(() => {
-		registerForPushNotifications();
-	}, []);
 	firebase.auth().onAuthStateChanged(function (user) {
 		if (user) {
+			addUser(user.uid, user.email);
+			addUserToDb(user.uid, user.email);
 			navigation.navigate('OpenS');
 		} else {
 			console.log('user is not signed in');
