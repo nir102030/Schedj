@@ -6,12 +6,11 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
 const TaskList = ({ tasks, topic, style, addTask }) => {
-	console.log(tasks);
-	const taskList = tasks.filter((task) => task.pid == topic.pid && task.topic == topic.name);
-
 	useEffect(() => {
 		getAllTasksFromDb(topic, tasks, addTask);
-	});
+	}, []);
+
+	const taskList = tasks.filter((task) => task.pid == topic.pid && task.topic == topic.name);
 
 	function Item({ item }) {
 		return (

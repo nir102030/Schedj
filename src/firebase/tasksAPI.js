@@ -7,12 +7,7 @@ export const getAllTasksFromDb = (topic, tasks, addTask) => {
 	ref.once('value', (snapshot) => {
 		snapshot.forEach((childSnapShot) => {
 			const isExsitInState =
-				tasks.find(
-					(task) =>
-						task.tid == childSnapShot.child('tid').val() && task.pid == childSnapShot.child('pid').val()
-				) == null
-					? false
-					: true;
+				tasks.find((task) => task.tid == childSnapShot.child('tid').val()) == null ? false : true;
 			!isExsitInState ? addTask(childSnapShot.val()) : null;
 		});
 	});
