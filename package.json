@@ -13,6 +13,7 @@
     "expo": "~36.0.0",
     "expo-app-auth": "^8.0.0",
     "expo-google-app-auth": "^8.1.0",
+    "expo-permissions": "~8.0.0",
     "feather-icons": "^4.28.0",
     "firebase": "^7.14.2",
     "glamorous-native": "^2.0.0",
