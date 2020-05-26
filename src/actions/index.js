@@ -89,3 +89,24 @@ export const signIn = (uid) => {
 		payload: { uid },
 	};
 };
+
+export const addUser = (uid, email) => {
+	return {
+		type: 'add_user',
+		payload: { uid, email },
+	};
+};
+
+export const editUser = (user) => {
+	return {
+		type: 'edit_user',
+		payload: { user },
+	};
+};
+
+export const deleteUser = (user) => {
+	return {
+		type: 'delete_user',
+		payload: user,
+	};
+};
