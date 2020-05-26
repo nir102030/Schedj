@@ -15,14 +15,7 @@ export const editProject = (project) => {
 export const deleteProject = (project) => {
 	return {
 		type: 'delete_project',
-		payload: { project },
-	};
-};
-
-export const getAllProjectsFromDb = (user) => {
-	return {
-		type: 'get_all_projects',
-		payload: user,
+		payload: project,
 	};
 };
 

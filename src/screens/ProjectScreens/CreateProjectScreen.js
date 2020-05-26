@@ -2,7 +2,7 @@ import React from 'react';
 import ProjectForm from '../../components/projectsComponents/ProjectForm';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
-import { addProjectToDb } from '../../firebase/config';
+import { addProjectToDb } from '../../firebase/projectsAPI';
 import firebase from 'firebase';
 
 const CreateProjectScreen = ({ navigation, addProject }) => {

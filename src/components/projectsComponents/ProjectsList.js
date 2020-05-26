@@ -4,18 +4,17 @@ import ProjectComp from './ProjectComp';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import firebase from 'firebase';
-import { getAllProjectsFromDb } from '../../firebase/config';
+import { getAllProjectsFromDb } from '../../firebase/projectsAPI';
 
 const ProjectList = ({ projects, style, deleteProject, addProject }) => {
 	const uid = firebase.auth().currentUser.uid;
-	//console.log(projects);
 	useEffect(() => {
 		getAllProjectsFromDb(uid, projects, addProject);
 	}, [uid]);
 	function Item({ item }) {
 		return (
 			<View style={styles.item}>
-				<ProjectComp project={item} deleteProject={(project) => deleteProject(project)} />
+				<ProjectComp project={item} deleteProject={(project) => deleteProject({ project })} />
 			</View>
 		);
 	}

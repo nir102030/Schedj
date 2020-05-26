@@ -8,11 +8,16 @@ import FormNotes from '../../components/genericComponents/FormNotes';
 const ProjectForm = ({ oldProject, onSubmit, type }) => {
 	const [project, setProject] = useState(oldProject);
 	const validation = () => {
-		if (project.name != '') {
-			alert('New Project has Created');
+		if (project.name == '') {
+			alert('Please Enter Project Name');
+		} else if (project.participants.length == 0) {
+			alert('It has to be at least one participant!');
+		} else if (type == 'create') {
+			alert('New Project has been Created');
 			onSubmit(project);
 		} else {
-			alert('Please Enter Project Name');
+			alert(`${project.name} was edited`);
+			onSubmit(project);
 		}
 	};
 

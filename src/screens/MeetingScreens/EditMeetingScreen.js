@@ -1,29 +1,20 @@
 import React from 'react';
-import MeetingForm from '../../components/meetingsComponents/MeetingForm'
+import MeetingForm from '../../components/meetingsComponents/MeetingForm';
+import { editMeetingInDb } from '../../firebase/meetingsAPI';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
 
-const EditMeetingScreen = ({navigation,meetings,editMeeting}) => {
-    const mid = navigation.getParam('meeting').mid;
-    const pid = navigation.getParam('meeting').pid;
-    const meeting = meetings.find((meeting) => meeting.pid === pid && meeting.mid === mid);
+const EditMeetingScreen = ({ navigation, editMeeting }) => {
+	const meeting = navigation.getParam('meeting');
+	const project = navigation.getParam('project');
 
-    const onSubmit = (meeting) => {
-        editMeeting(meeting);
-        navigation.pop();
-    }
-    
-    return (
-        <MeetingForm 
-            oldMeeting = {meeting}
-            onSubmit = {(meeting) => onSubmit(meeting)}
-            type = 'edit'
-        />
-    );
+	const onSubmit = (meeting) => {
+		editMeeting(meeting);
+		editMeetingInDb(meeting);
+		navigation.pop();
+	};
+
+	return <MeetingForm project={project} oldMeeting={meeting} onSubmit={(meeting) => onSubmit(meeting)} type="edit" />;
 };
 
-const mapStateToProps = state => {
-    return { meetings: state.meetings };
-};
-
-export default connect(mapStateToProps,actions)(EditMeetingScreen);
+export default connect(null, actions)(EditMeetingScreen);

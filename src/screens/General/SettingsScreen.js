@@ -5,18 +5,12 @@ import FormInput from '../../components/genericComponents/FormInput';
 import FormPickerSelect from '../../components/genericComponents/FormPickerSelect';
 import { withNavigation } from 'react-navigation';
 import firebase from 'firebase';
-import AwesomeAlert from 'react-native-awesome-alerts';
+import Alert from '../../components/genericComponents/Alert';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
 const SettingsScreen = ({ navigation, deleteProject, projects }) => {
 	const [showAlert, setShowAlert] = useState(false);
-	const showAlertMessage = () => {
-		setShowAlert(true);
-	};
-	const hideAlertMessage = () => {
-		setShowAlert(false);
-	};
 	const [checked, setChecked] = useState(checked);
 	const [edit, setEdit] = useState('');
 	const rankItems = [1, 2, 3, 4, 5].map((num) => {
@@ -70,25 +64,16 @@ const SettingsScreen = ({ navigation, deleteProject, projects }) => {
 			<FormPickerSelect items={reminderItems} label={'Reminder'} />
 			<Text style={styles.subHeader}> Rank our app </Text>
 			<FormPickerSelect items={rankItems} label={'Rank'} />
-			<Button title="Sign Out" onPress={showAlertMessage} />
-			<AwesomeAlert
-				show={showAlert}
-				showProgress={false}
-				//title="Sign Out"
+			<Button title="Sign Out" onPress={() => setShowAlert(true)} />
+			<Alert
+				showAlert={showAlert}
 				message="Are you sure you want to sign out?"
-				closeOnTouchOutside={true}
-				closeOnHardwareBackPress={false}
-				showCancelButton={true}
-				showConfirmButton={true}
-				cancelText="Yes, sign out"
-				confirmText="No, stay signed in!"
-				confirmButtonColor="#DD6B55"
-				onCancelPressed={() => {
-					signOut();
-					hideAlertMessage();
+				onCancel={() => {
+					() => setShowAlert(false);
 				}}
-				onConfirmPressed={() => {
-					hideAlertMessage();
+				onConfirm={() => {
+					signOut();
+					() => setShowAlert(false);
 				}}
 			/>
 		</View>
