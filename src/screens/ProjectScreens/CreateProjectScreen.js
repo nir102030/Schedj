@@ -4,6 +4,7 @@ import * as actions from '../../actions';
 import { connect } from 'react-redux';
 import { addProjectToDb } from '../../firebase/projectsAPI';
 import firebase from 'firebase';
+import { sendPushNotification } from '../../firebase/notifications';
 
 const CreateProjectScreen = ({ navigation, addProject, users }) => {
 	const uid = firebase.auth().currentUser.uid;
@@ -17,16 +18,21 @@ const CreateProjectScreen = ({ navigation, addProject, users }) => {
 		notes: ['', '', ''],
 	};
 
+	const addParticipantToProject = (user, project) => {
+		addProjectToDb(user.uid, project);
+		const msgTitle = 'New Project Invetation';
+		const msgBody = `You have been added to ${project.name} project`;
+		sendPushNotification(user, msgTitle, msgBody);
+	};
+
 	const onSubmit = (project) => {
 		addProject(project);
 		addProjectToDb(uid, project);
 		const participants = project.participants;
 		users.map((user) => {
-			participants.find((participant) => {
-				participant == user.email;
-			})
-				? sendPushNotification(user)
-				: console.log('participant was not found');
+			participants.map((participant) => {
+				participant == user.email ? addParticipantToProject(user, project) : null;
+			});
 		});
 		navigation.pop();
 	};

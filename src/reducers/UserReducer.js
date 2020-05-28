@@ -1,17 +1,17 @@
 export default (state = [], action) => {
 	switch (action.type) {
 		case 'add_user':
-			console.log(action.payload.uid);
-			console.log(action.payload.email);
+			console.log(action.payload.user.email);
 			return [
 				...state,
 				{
-					uid: action.payload.uid,
-					email: action.payload.email,
-					profileName: '',
-					profilePic: '',
-					reminder: '',
-					rank: '',
+					uid: action.payload.user.uid,
+					email: action.payload.user.email,
+					profileName: action.payload.user.profileName,
+					profilePic: action.payload.user.profilePic,
+					reminder: action.payload.user.reminder,
+					rank: action.payload.user.rank,
+					token: action.payload.user.token,
 				},
 			];
 		case 'edit_user':

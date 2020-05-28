@@ -1,11 +1,20 @@
 import firebase from 'firebase';
 
-export const addUserToDb = (uid, email) => {
+export const getAllUsersFromDb = (addUser) => {
+	const ref = firebase.database().ref('users/');
+	ref.once('value', (snapshot) => {
+		snapshot.forEach((childSnapShot) => {
+			addUser(childSnapShot.val());
+		});
+	});
+};
+
+export const addUserToDb = (user) => {
 	firebase
 		.database()
-		.ref('users/' + uid)
+		.ref('users/' + user.uid)
 		.set({
-			email: email,
+			email: user.email,
 			token: '',
 			profileName: '',
 			profilePic: '',

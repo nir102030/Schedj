@@ -27,13 +27,13 @@ export const registerForPushNotifications = async (user) => {
 	editUserInDb(user, token);
 };
 
-export const sendPushNotification = async (user) => {
+export const sendPushNotification = async (user, title, body) => {
 	const token = user.token;
 	const message = {
 		to: token,
-		sound: 'default',
-		title: 'Original Title',
-		body: 'And here is the body!',
+		sound: 'true',
+		title: title,
+		body: body,
 		data: { data: 'goes here' },
 		_displayInForeground: true,
 	};
