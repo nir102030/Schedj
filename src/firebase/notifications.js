@@ -36,14 +36,14 @@ export const registerForPushNotifications = async (user) => {
 	}
 };
 
-export const sendPushNotification = async (user, msgTitle, msgBody) => {
+export const sendPushNotification = async (user, msgTitle, msgBody, project) => {
 	const token = user.token;
 	const message = {
 		to: token,
 		sound: 'default',
 		title: msgTitle,
 		body: msgBody,
-		data: { data: 'goes here' },
+		data: { project },
 		_displayInForeground: true,
 	};
 	let response = fetch('https://exp.host/--/api/v2/push/send', {

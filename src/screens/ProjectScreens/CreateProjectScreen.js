@@ -19,10 +19,9 @@ const CreateProjectScreen = ({ navigation, addProject, users }) => {
 	};
 
 	const addParticipantToProject = (user, project) => {
-		addProjectToDb(user.uid, project);
 		const msgTitle = 'New Project Invetation';
 		const msgBody = `You have been added to ${project.name} project`;
-		sendPushNotification(user, msgTitle, msgBody);
+		sendPushNotification(user, msgTitle, msgBody, project);
 	};
 
 	const onSubmit = (project) => {
