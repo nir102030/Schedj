@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, View, TouchableOpacity, Image } from 'react-native';
 import { Text } from 'react-native-elements';
 import ProjectsList from '../../components/projectsComponents/ProjectsList';
+
 import { connect } from 'react-redux';
 import firebase from 'firebase';
 
