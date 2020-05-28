@@ -14,7 +14,7 @@ const ProjectForm = ({ oldProject, onSubmit, type, users }) => {
 		if (project.name == '') {
 			alert('Please Enter Project Name');
 		} else if (project.participants.length == 0) {
-			alert('It has to be at least one participant!');
+			alert('You must add at least one participant!');
 		} else if (type == 'create') {
 			alert('New Project has been Created');
 			onSubmit(project);

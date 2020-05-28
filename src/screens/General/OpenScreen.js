@@ -5,14 +5,26 @@ import { registerForPushNotifications } from '../../firebase/notifications';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
+import { Notifications } from 'expo';
+import { addProjectToDb } from '../../firebase/projectsAPI';
 
-const OpenScreen = ({ navigation, users }) => {
+const OpenScreen = ({ navigation, users, addProject }) => {
 	const uid = firebase.auth().currentUser.uid;
-	console.log(users);
 	const user = users.find((user) => user.uid == uid);
+
 	useEffect(() => {
 		registerForPushNotifications(user);
+		_notificationSubscription = Notifications.addListener(handleNotification);
 	}, []);
+
+	const handleNotification = (notification) => {
+		const project = notification.data.project;
+		if (uid !== project.uid) {
+			console.log('notifi');
+			addProject(project);
+			navigation.navigate('Projects');
+		}
+	};
 
 	return (
 		<View style={styles.container}>
