@@ -8,6 +8,7 @@ import firebase from 'firebase';
 
 const OpenScreen = ({ navigation, users }) => {
 	const uid = firebase.auth().currentUser.uid;
+	console.log(users);
 	const user = users.find((user) => user.uid == uid);
 	useEffect(() => {
 		registerForPushNotifications(user);

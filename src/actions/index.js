@@ -90,10 +90,10 @@ export const signIn = (uid) => {
 	};
 };
 
-export const addUser = (uid, email) => {
+export const addUser = (user) => {
 	return {
 		type: 'add_user',
-		payload: { uid, email },
+		payload: { user },
 	};
 };
 

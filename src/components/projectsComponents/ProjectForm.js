@@ -4,8 +4,11 @@ import FormInput from '../genericComponents/FormInput';
 import FormParticipantsList from '../genericComponents/FormParticipantsList';
 import FormSubmitButton from '../genericComponents/FormSubmitButton';
 import FormNotes from '../../components/genericComponents/FormNotes';
+import FormMultiSelect from '../genericComponents/FormMultiSelect';
+import * as actions from '../../actions';
+import { connect } from 'react-redux';
 
-const ProjectForm = ({ oldProject, onSubmit, type }) => {
+const ProjectForm = ({ oldProject, onSubmit, type, users }) => {
 	const [project, setProject] = useState(oldProject);
 	const validation = () => {
 		if (project.name == '') {
@@ -34,9 +37,17 @@ const ProjectForm = ({ oldProject, onSubmit, type }) => {
 					onChange={(name) => setProject({ ...project, name: name })}
 					viewStyle={styles.projectName}
 				/>
-				<FormParticipantsList
+				{/* <FormParticipantsList
 					participants={project.participants}
 					setParticipant={(participants) => setProject({ ...project, participants: participants })}
+				/> */}
+				<FormMultiSelect
+					style={styles.addPart}
+					list={users.map((user) => {
+						return { id: user.email, name: user.email };
+					})}
+					addItemsToList={(participants) => setProject({ ...project, participants: participants })}
+					type="Participants"
 				/>
 				<FormInput
 					title="Min Participants For Meeting"
@@ -105,4 +116,7 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default ProjectForm;
+const mapStateToProps = (state) => {
+	return { users: state.users };
+};
+export default connect(mapStateToProps, actions)(ProjectForm);

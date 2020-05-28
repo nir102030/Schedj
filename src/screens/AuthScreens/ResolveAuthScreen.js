@@ -1,15 +1,28 @@
+import { useEffect } from 'react';
 import firebase from 'firebase';
 import { firebaseInit } from '../../firebase/config';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
-import { addUserToDb } from '../../firebase/usersAPI';
+import { addUserToDb, getAllUsersFromDb } from '../../firebase/usersAPI';
 
 const ResolveAuthScreen = ({ navigation, addUser }) => {
 	firebaseInit();
+	useEffect(() => {
+		getAllUsersFromDb(addUser);
+	});
 	firebase.auth().onAuthStateChanged(function (user) {
 		if (user) {
-			addUser(user.uid, user.email);
-			addUserToDb(user.uid, user.email);
+			const newUser = {
+				uid: user.uid,
+				email: user.email,
+				profileName: '',
+				profilePic: '',
+				reminder: '',
+				rank: '',
+				token: '',
+			};
+			addUser(newUser);
+			addUserToDb(newUser);
 			navigation.navigate('OpenS');
 		} else {
 			console.log('user is not signed in');
@@ -19,7 +32,4 @@ const ResolveAuthScreen = ({ navigation, addUser }) => {
 	return null;
 };
 
-const mapStateToProps = (state) => {
-	return { projects: state.projects };
-};
-export default connect(mapStateToProps, actions)(ResolveAuthScreen);
+export default connect(null, actions)(ResolveAuthScreen);
