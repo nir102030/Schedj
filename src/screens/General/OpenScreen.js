@@ -8,7 +8,7 @@ import firebase from 'firebase';
 import { Notifications } from 'expo';
 import { addProjectToDb } from '../../firebase/projectsAPI';
 
-const OpenScreen = ({ navigation, users, addProject }) => {
+const OpenScreen = ({ navigation, users, addProject, projects }) => {
 	const uid = firebase.auth().currentUser.uid;
 	const user = users.find((user) => user.uid == uid);
 
@@ -19,11 +19,8 @@ const OpenScreen = ({ navigation, users, addProject }) => {
 
 	const handleNotification = (notification) => {
 		const project = notification.data.project;
-		if (uid !== project.uid) {
-			console.log('notifi');
-			addProject(project);
-			navigation.navigate('Projects');
-		}
+		navigation.navigate('Projects');
+		getAllProjectsFromDb(uid, projects, addProject);
 	};
 
 	return (
@@ -102,7 +99,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-	return { users: state.users };
+	return { users: state.users, projects: state.projects };
 };
 
 export default connect(mapStateToProps, actions)(OpenScreen);
