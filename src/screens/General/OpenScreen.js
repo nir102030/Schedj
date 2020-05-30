@@ -8,7 +8,7 @@ import firebase from 'firebase';
 import { Notifications } from 'expo';
 import { getAllProjectsFromDb } from '../../firebase/projectsAPI';
 
-const OpenScreen = ({ navigation, users, addProject }) => {
+const OpenScreen = ({ navigation, projects, addProject }) => {
 	const user = firebase.auth().currentUser;
 
 	useEffect(() => {
@@ -17,8 +17,9 @@ const OpenScreen = ({ navigation, users, addProject }) => {
 	}, []);
 
 	const handleNotification = (notification) => {
-		const project = notification.data.project;
-		navigation.navigate('Projects');
+		//const project = notification.data.project;
+		console.log(notification);
+		//navigation.navigate('InviteP');
 		getAllProjectsFromDb(user, projects, addProject);
 	};
 
