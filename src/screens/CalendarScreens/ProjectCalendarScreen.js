@@ -69,7 +69,10 @@ const ProjectCalendarScreen = ({ navigation }) => {
 					/>
 				</View>
 				<Calendar />
-				<TouchableOpacity style={styles.TouchableOpacity} onPress={() => sendPushNotification()}>
+				<TouchableOpacity
+					style={styles.TouchableOpacity}
+					onPress={() => navigation.navigate('InviteP', { project })}
+				>
 					<Animatable.Text animation="slideInLeft" iterationCount={3} direction="alternate">
 						<Text style={styles.test}> New Project Invitation</Text>
 					</Animatable.Text>

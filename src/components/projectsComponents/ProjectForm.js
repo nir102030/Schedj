@@ -13,7 +13,6 @@ const ProjectForm = ({ oldProject, onSubmit, type, users }) => {
 	const [project, setProject] = useState(oldProject);
 	const currentUser = firebase.auth().currentUser;
 	const participantsList = users.filter((user) => user.uid !== currentUser.uid);
-	console.log(project.participants);
 	const validation = () => {
 		if (project.name == '') {
 			alert('Please Enter Project Name');
