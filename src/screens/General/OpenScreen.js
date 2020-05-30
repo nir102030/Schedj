@@ -6,7 +6,7 @@ import * as actions from '../../actions';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
 import { Notifications } from 'expo';
-import { addProjectToDb } from '../../firebase/projectsAPI';
+import { getAllProjectsFromDb } from '../../firebase/projectsAPI';
 
 const OpenScreen = ({ navigation, users, addProject }) => {
 	const user = firebase.auth().currentUser;
