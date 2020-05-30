@@ -43,7 +43,7 @@ export const sendPushNotification = async (user, msgTitle, msgBody, project) => 
 		sound: 'default',
 		title: msgTitle,
 		body: msgBody,
-		data: { project },
+		data: { data: project },
 		_displayInForeground: true,
 	};
 	let response = fetch('https://exp.host/--/api/v2/push/send', {

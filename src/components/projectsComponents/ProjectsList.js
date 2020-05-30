@@ -10,7 +10,7 @@ const ProjectList = ({ projects, style, deleteProject, addProject }) => {
 	const uid = firebase.auth().currentUser.uid;
 	useEffect(() => {
 		getAllProjectsFromDb(uid, projects, addProject);
-	}, [uid]);
+	}, []);
 	function Item({ item }) {
 		return (
 			<View style={styles.item}>
