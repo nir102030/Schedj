@@ -36,7 +36,6 @@ const styles = StyleSheet.create({
 		backgroundColor: '#c3dadd',
 		borderRadius: 5,
 		flex: 1,
-		fontSize: 16,
 		fontWeight: 'bold',
 	},
 });

@@ -33,7 +33,7 @@ const ProjectComp = ({ project, deleteProject, navigation }) => {
 		<View style={styles.general}>
 			<Swipeable leftButtons={leftButtons} rightButtons={rightButtons}>
 				<View style={styles.container}>
-					<View style={{ flexDirection: 'column' }}>
+					<View style={{ flexDirection: 'column'}}>
 						<Text style={styles.text}>{project.name}</Text>
 						<View style={styles.options}>
 							<IndexDetail
@@ -78,12 +78,11 @@ const styles = StyleSheet.create({
 	container: {
         backgroundColor:'#53a6af',
         borderRadius:10,
-        //paddingRight:30,
         alignSelf:'center',
         paddingRight:3,
 		flexDirection: 'row-reverse',
 		justifyContent: 'space-between',
-		paddingBottom: 20,
+		paddingBottom: 15,
 	},
 	TouchableOpacityLeftSide: {
 		marginVertical: 20,
@@ -112,8 +111,9 @@ const styles = StyleSheet.create({
 	},
 	options: {
 		flexDirection: 'row',
-		marginHorizontal: 50,
-
+		//justifyContent: '',
+		marginHorizontal: 100,
+		marginRight:0
 	},
 	image: {
 		height: 40,

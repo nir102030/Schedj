@@ -28,7 +28,7 @@ const TopicsComp = ({ navigation, project, topic, editTopic, deleteTopic }) => {
 					style={styles.TouchableOpacity}
 					onPress={() => navigation.navigate('CreateT', { topic })}
 				>
-					<Image source={require('../../../assets/images/add.png')} style={styles.image} />
+					<Image source={require('../../../assets/images/add.png')} style={styles.image1} />
 				</TouchableOpacity>
 				<TouchableOpacity style={styles.TouchableOpacity} onPress={() => setShowAlert(true)}>
 					<Image source={require('../../../assets/images/delete.png')} style={styles.image} />
@@ -81,8 +81,13 @@ const styles = StyleSheet.create({
 		paddingRight:3
 	},
 	image: {
-		height: 37,
-		width: 37,
+		height: 25,
+		width: 25,
+		marginRight: 7,
+	},
+	image1: {
+		height: 30,
+		width: 30,
 		marginRight: 7,
 	},
 });

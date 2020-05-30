@@ -5,12 +5,11 @@ const MeetingInvitation = ({Owner,pid}) => {
 
     return (
         <View style = {styles.container}>
-            <Text style={styles.Hello}>Hello {Owner}  </Text>
+            <Text style={styles.Hello}>Hello {Owner}</Text>
             <Text style={styles.Text}>New meeting has been scheduled! </Text>
-            <Text style={styles.projName}>{pid} Project</Text>
+            <Text style={styles.projName}>{pid}Project</Text>
             <TouchableOpacity style = {styles.TouchableOpacity}>
-                <Image source={require('../../../assets/images/calendar_icon.png')} style={styles.image} onPress = {()=>{}}/>
-                <Text style={styles.Text2}>Check it out here !!</Text>
+                <Text style={styles.Text2}> Check it out here !!</Text>
             </TouchableOpacity>   
             <Image source={require('../../../assets/images/schedjTry.png')} style={styles.schedj}/> 
         </View>
@@ -19,7 +18,7 @@ const MeetingInvitation = ({Owner,pid}) => {
 
 const styles = StyleSheet.create({
     container:{
-        backgroundColor:'#607d8b',
+        backgroundColor:'#e8f1f9',
         height:'100%'
     },
     Hello: {
@@ -27,13 +26,13 @@ const styles = StyleSheet.create({
         fontSize:30,
         marginVertical:10,
         marginHorizontal:10,
-        color:'white',
+        color:'#263238',
         textAlign:'right',
     },
     Text: {
         fontSize: 23,
         marginVertical: 10,
-        color:'white',
+        color:'#263238',
         paddingLeft:10,
     },
     projName: {
@@ -41,11 +40,10 @@ const styles = StyleSheet.create({
         fontSize: 35,
         marginVertical: 10,
         paddingLeft:10,
-        color:'#40b1bf',
-        backgroundColor:'#375360',
+        color:'#263238',
     },
     TouchableOpacity: {
-        backgroundColor:'#5ca9b1',
+        backgroundColor:'#a1cfd5',
         flexDirection:'row-reverse',
         marginVertical:10,
     },

@@ -1,19 +1,15 @@
 import React from 'react'
-import { View,ScrollView,StyleSheet,Text,Image,TouchableOpacity } from 'react-native'
-
+import { View,StyleSheet,Text,TouchableOpacity } from 'react-native'
+import Spacer from '../../components/genericComponents/Spacer'
 
 const ComingSoonScreen = ({navigation}) => {
     return(
         <View style={styles.container}>
             <TouchableOpacity style={styles.TouchableOpacity}  onPress = {()=>navigation.navigate('Gantt')}>
-                <Text style={styles.text}>1. Gantt</Text>
+                <Text style={styles.text}>Gantt</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.TouchableOpacity}  onPress = {()=>navigation.navigate('')}>
-                <Text style={styles.text}>.2</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.TouchableOpacity}  onPress = {()=>navigation.navigate('')}>
-                <Text style={styles.text}>.3</Text>
-            </TouchableOpacity>
+            <Spacer/>
+
         </View>
     );
 };
@@ -36,8 +32,6 @@ const styles = StyleSheet.create({
     TouchableOpacity: {
         backgroundColor:'#e8f1f9',
         flexDirection:'row-reverse',
-        borderBottomWidth: 5,
-		borderBottomColor: '#2d6886',
         paddingLeft:3,
     },
     text: {

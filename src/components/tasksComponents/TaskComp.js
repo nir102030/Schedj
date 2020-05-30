@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { Text, StyleSheet, View, CheckBox, Button, TouchableOpacity, Image } from 'react-native';
+import { Text, StyleSheet, View, TouchableOpacity, Image } from 'react-native';
 import * as Progress from 'react-native-progress';
 import { withNavigation } from 'react-navigation';
 import TaskStatusSetter from './TaskStatusSetter';
 import { showMessage, hideMessage } from 'react-native-flash-message';
 import { connect } from 'react-redux';
+import Alert from '../../components/genericComponents/Alert';
 import * as actions from '../../actions';
 
 const TaskComp = ({ task, deleteTask, editTask }) => {
+	const [showAlert, setShowAlert] = useState(false);
 	const setStatusAndColor = (progress, color) => {
 		editTask({ ...task, status: progress, color: color });
 	};
@@ -45,7 +47,7 @@ const TaskComp = ({ task, deleteTask, editTask }) => {
 				style={styles.prog}
 				progress={task.status}
 				width={150}
-				height={30}
+				height={35}
 				animated={true}
 				color={task.color}
 				borderColor={'#99BAC9'}
@@ -65,6 +67,19 @@ const TaskComp = ({ task, deleteTask, editTask }) => {
 					text={'Previous Stage'}
 				/>
 			</View>
+			<TouchableOpacity onPress={() => setShowAlert(true)}>
+				<Image source={require('../../../assets/images/delete.png')} style={styles.image} />
+			</TouchableOpacity>
+			<Alert
+				showAlert={showAlert}
+				message="delete this task?"
+				onCancel={() => setShowAlert(false)}
+				onConfirm={() => {
+					deleteTask(task);
+					//deleteTasktFromDb(task) @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+					() => setShowAlert(false);
+				}}
+			/>
 		</View>
 	);
 };
@@ -99,7 +114,7 @@ const styles = StyleSheet.create({
 		paddingTop: 12,
 		marginLeft: 10,
 		fontWeight: 'bold',
-		fontSize: 20,
+		fontSize: 11,
 		color: 'black',
 		flex: 1,
 	},
@@ -119,6 +134,12 @@ const styles = StyleSheet.create({
 		flexDirection: 'row-reverse',
 		paddingLeft: 20,
 	},
+	image:{
+		//marginTop:40,
+		paddingTop:20,
+		width:20,
+		height:20
+	}
 });
 
 export default connect(null, actions)(withNavigation(TaskComp));

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Text, StyleSheet, View, Image, ScrollView, FlatList } from 'react-native';
 import FormInput from '../genericComponents/FormInput';
-import FormParticipantsList from '../genericComponents/FormParticipantsList';
 import FormSubmitButton from '../genericComponents/FormSubmitButton';
 import FormNotes from '../../components/genericComponents/FormNotes';
 import FormMultiSelect from '../genericComponents/FormMultiSelect';
@@ -88,6 +87,14 @@ const styles = StyleSheet.create({
 		alignSelf: 'center',
 		color: '#263238',
 		flex: 4,
+	},
+	headerStyle: {
+		fontWeight: 'bold',
+		fontSize: 30,
+		marginRight: 5,
+		alignSelf: 'center',
+		color: '#263238',
+		textAlign: 'left',
 	},
 	fillRequired: {
 		backgroundColor: '#ffccbc',

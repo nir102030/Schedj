@@ -23,7 +23,7 @@ const ProjectStatus = ({project,style}) => {
 };
 const styles = StyleSheet.create({
     top:{
-        paddingTop:35,
+        paddingTop:44,
         
         
     },

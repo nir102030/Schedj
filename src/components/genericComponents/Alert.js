@@ -7,7 +7,7 @@ const Alert = ({ showAlert, message, onConfirm, onCancel }) => {
 			show={showAlert}
 			showProgress={false}
 			message={message}
-			closeOnTouchOutside={true}
+			closeOnTouchOutside={false}
 			closeOnHardwareBackPress={false}
 			showCancelButton={true}
 			showConfirmButton={true}

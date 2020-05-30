@@ -15,14 +15,14 @@ const TaskStatusSetter = ({onPress, text}) => {
 const styles = StyleSheet.create({
     TouchableOpacity : {
         flexDirection:'row',
-        marginRight:10
+        marginRight:10,
     },
 
     text:{
         marginLeft:30.1,
         fontWeight:'bold',
-        color:'white',
-        fontSize: 16,
+        color:'black',
+        fontSize: 14,
         flex:1
     },
 

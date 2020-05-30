@@ -96,7 +96,7 @@ ProjectCalendarScreen.navigationOptions = () => {
 
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: '#607d8b',
+		backgroundColor: '#e8f1f9',
 		height: '100%',
 	},
 	image: {
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
 		borderBottomColor: '#2d6886',
 	},
 	TouchableOpacity: {
-		backgroundColor: '#2b414b',
+		backgroundColor: '#a1cfd5',
 		flex: 1,
 		flexDirection: 'row-reverse',
 	},
