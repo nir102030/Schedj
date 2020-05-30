@@ -1,7 +1,6 @@
 export default (state = [], action) => {
 	switch (action.type) {
 		case 'add_user':
-			console.log(action.payload.user.email);
 			return [
 				...state,
 				{

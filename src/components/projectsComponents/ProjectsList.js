@@ -7,9 +7,9 @@ import firebase from 'firebase';
 import { getAllProjectsFromDb } from '../../firebase/projectsAPI';
 
 const ProjectList = ({ projects, style, deleteProject, addProject }) => {
-	const uid = firebase.auth().currentUser.uid;
+	const user = firebase.auth().currentUser;
 	useEffect(() => {
-		getAllProjectsFromDb(uid, projects, addProject);
+		getAllProjectsFromDb(user, projects, addProject);
 	}, []);
 	function Item({ item }) {
 		return (
