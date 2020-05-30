@@ -8,9 +8,8 @@ import firebase from 'firebase';
 import { Notifications } from 'expo';
 import { addProjectToDb } from '../../firebase/projectsAPI';
 
-const OpenScreen = ({ navigation, users, addProject, projects }) => {
-	const uid = firebase.auth().currentUser.uid;
-	const user = users.find((user) => user.uid == uid);
+const OpenScreen = ({ navigation, users, addProject }) => {
+	const user = firebase.auth().currentUser;
 
 	useEffect(() => {
 		registerForPushNotifications(user);
@@ -20,7 +19,7 @@ const OpenScreen = ({ navigation, users, addProject, projects }) => {
 	const handleNotification = (notification) => {
 		const project = notification.data.project;
 		navigation.navigate('Projects');
-		getAllProjectsFromDb(uid, projects, addProject);
+		getAllProjectsFromDb(user, projects, addProject);
 	};
 
 	return (

@@ -1,12 +1,17 @@
 import firebase from 'firebase';
 
-export const getAllProjectsFromDb = (uid, projects, addProject) => {
+export const getAllProjectsFromDb = (user, projects, addProject) => {
 	const ref = firebase.database().ref('projects/');
 	ref.once('value', (snapshot) => {
 		snapshot.forEach((childSnapShot) => {
 			const isExsitInState =
 				projects.find((project) => project.id == childSnapShot.child('id').val()) == null ? false : true;
-			childSnapShot.child('uid').val() == uid && !isExsitInState ? addProject(childSnapShot.val()) : null;
+			const participants = childSnapShot.child('participants').val();
+			participants.map((participant) => {
+				console.log(participant);
+				console.log(user.email);
+				participant == user.email && !isExsitInState ? addProject(childSnapShot.val()) : null;
+			});
 		});
 	});
 };
