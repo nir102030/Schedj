@@ -7,10 +7,18 @@ import { connect } from 'react-redux';
 const TaskForm = ({ oldTask, onSubmit, type }) => {
 	const [task, setTask] = useState(oldTask);
 
+	const validation = () => {
+		if (task.name.length == 0) {
+			alert('You must enter task name!');
+		} else {
+			onSubmit(task);
+		}
+	};
+
 	return (
 		<View style={styles.container}>
 			<FormInput
-				title="Task Name "
+				title=" Task Name "
 				value={task.name}
 				onChange={(name) => setTask({ ...task, name: name })}
 				viewStyle={styles.task}
@@ -20,20 +28,20 @@ const TaskForm = ({ oldTask, onSubmit, type }) => {
 					style={styles.input}
 					multiline={true}
 					autoGrow="true"
-					placeholder={task.description}
+					placeholder=" Description"
+					placeholderTextColor='#3b696e'
 					value={task.description}
 					onChangeText={(description) => setTask({ ...task, description: description })}
 				/>
-				<Text style={styles.text}>Description </Text>
 			</View>
-			<FormSubmitButton onSubmit={() => onSubmit(task)} type={type} />
+			<FormSubmitButton onSubmit={() => validation()} type={type} />
 		</View>
 	);
 };
 
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: '#607d8b',
+		backgroundColor: '#e8f1f9',
 		flex: 1,
 	},
 	meetDesign: {
@@ -51,11 +59,11 @@ const styles = StyleSheet.create({
 	input: {
 		marginTop: 7,
 		marginBottom: 7,
-		marginRight: 5,
-		marginLeft: 10,
+		marginRight: 15,
+		marginLeft: 20,
 		borderWidth: 1,
 		borderColor: 'white',
-		backgroundColor: '#b1c2ca',
+		backgroundColor: '#c3dadd',
 		borderRadius: 5,
 		flex: 1,
 		fontSize: 16,
@@ -83,7 +91,7 @@ const styles = StyleSheet.create({
 		marginRight: 10,
 		marginTop: 8,
 		marginBottom: 10,
-		color: 'white',
+		color: 'black',
 	},
 });
 

@@ -1,12 +1,14 @@
 import React from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
+import { Input } from 'react-native-elements';
 
 const FormInput = ({ title, value, onChange, viewStyle, long }) => {
 	return (
 		<View style={viewStyle}>
-			<TextInput
-				style={styles.input}
-				placeholder={value}
+			<Input
+				inputContainerStyle={styles.input}
+				placeholder={title}
+				placeholderTextColor={'#3b696e'}
 				value={value}
 				onChangeText={onChange}
 				maxLength={long}
@@ -22,7 +24,7 @@ const styles = StyleSheet.create({
 		marginRight: 10,
 		marginTop: 8,
 		marginBottom: 10,
-		color: 'white',
+		color: 'black',
 	},
 	input: {
 		marginTop: 7,
@@ -31,7 +33,7 @@ const styles = StyleSheet.create({
 		marginLeft: 10,
 		borderWidth: 1,
 		borderColor: 'white',
-		backgroundColor: '#b1c2ca',
+		backgroundColor: '#c3dadd',
 		borderRadius: 5,
 		flex: 1,
 		fontSize: 16,

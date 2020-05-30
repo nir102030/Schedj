@@ -13,7 +13,7 @@ const FormPickerSelect = ({items,label}) => {
                 }}
                 onValueChange={() => {}}
                 items={items}
-                style={{placeholder: {color:'white'}}}
+                style={{placeholder: {color:'black'}}}
             />
         </View>
     );   

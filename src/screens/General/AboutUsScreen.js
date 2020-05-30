@@ -20,7 +20,7 @@ AboutUsScreen.navigationOptions = () => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor:'#d9d9d9',
+        backgroundColor:'#e8f1f9',
         height:'100%',
         width:'100%',
     },

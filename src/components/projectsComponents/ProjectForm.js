@@ -7,6 +7,7 @@ import FormNotes from '../../components/genericComponents/FormNotes';
 import FormMultiSelect from '../genericComponents/FormMultiSelect';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
+import Spacer from '../genericComponents/Spacer'
 
 const ProjectForm = ({ oldProject, onSubmit, type, users }) => {
 	const [project, setProject] = useState(oldProject);
@@ -32,31 +33,33 @@ const ProjectForm = ({ oldProject, onSubmit, type, users }) => {
 			<ScrollView>
 				<Text style={styles.fillRequired}>Please fill the required fields </Text>
 				<FormInput
-					title="Project Name"
+					title=" Project Name"
 					value={project.name}
 					onChange={(name) => setProject({ ...project, name: name })}
 					viewStyle={styles.projectName}
 				/>
+				<Spacer/>
 				{/* <FormParticipantsList
 					participants={project.participants}
 					setParticipant={(participants) => setProject({ ...project, participants: participants })}
 				/> */}
 				<FormMultiSelect
-					style={styles.addPart}
 					list={users.map((user) => {
 						return { id: user.email, name: user.email };
 					})}
 					addItemsToList={(participants) => setProject({ ...project, participants: participants })}
 					type="Participants"
 				/>
+				<Spacer/>
 				<FormInput
-					title="Min Participants For Meeting"
+					title=" Min Participants For Meeting"
 					value={project.minForMeeting}
 					onChange={(minForMeeting) => setProject({ ...project, minForMeeting: minForMeeting })}
 					viewStyle={styles.minMeet}
 				/>
+				<Spacer/>
 				<Text style={styles.note}> Write your notes here! </Text>
-				<FormNotes notes={project.notes} setNotes={(notes) => setProject({ ...project, notes: notes })} />
+				<FormNotes title=' ' notes={project.notes} setNotes={(notes) => setProject({ ...project, notes: notes })} />
 				<Text style={styles.task}> *Define your tasks later </Text>
 				<FormSubmitButton onSubmit={() => validation()} type={type} />
 			</ScrollView>
@@ -66,7 +69,7 @@ const ProjectForm = ({ oldProject, onSubmit, type, users }) => {
 
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: '#607d8b',
+		backgroundColor: '#e8f1f9',
 		height: '100%',
 	},
 	header: {
@@ -74,7 +77,7 @@ const styles = StyleSheet.create({
 		flexWrap: 'wrap',
 		borderBottomWidth: 5,
 		borderBottomColor: '#2d6886',
-		backgroundColor: '#8aa9b9',
+		backgroundColor: '#e8f1f9',
 		justifyContent: 'flex-end',
 	},
 	text: {
@@ -87,24 +90,20 @@ const styles = StyleSheet.create({
 		flex: 4,
 	},
 	fillRequired: {
-		backgroundColor: 'red',
+		backgroundColor: '#ffccbc',
 		flex: 1,
 	},
 	projectName: {
 		flexDirection: 'row',
-		borderBottomWidth: 3,
-		borderBottomColor: '#d9e3f0',
 	},
 	minMeet: {
 		flexDirection: 'row',
-		borderBottomWidth: 3,
-		borderBottomColor: '#d9e3f0',
-		marginBottom: 10,
 	},
 	note: {
+		marginVertical: 10,
 		alignSelf: 'center',
 		fontWeight: 'bold',
-		color: 'white',
+		color: 'black',
 	},
 	notes: {
 		flexDirection: 'row',
@@ -112,7 +111,7 @@ const styles = StyleSheet.create({
 	task: {
 		marginTop: 20,
 		fontWeight: 'bold',
-		color: 'white',
+		color: 'black',
 	},
 });
 
