@@ -8,7 +8,7 @@ import firebase from 'firebase';
 import { Notifications } from 'expo';
 import { getAllProjectsFromDb } from '../../firebase/projectsAPI';
 
-const OpenScreen = ({ navigation, users, addProject }) => {
+const OpenScreen = ({ navigation, projects, addProject }) => {
 	const user = firebase.auth().currentUser;
 
 	useEffect(() => {

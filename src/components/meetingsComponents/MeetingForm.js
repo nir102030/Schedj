@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import FormDatePicker from '../../components/genericComponents/FormDatePicker';
 import FormInput from '../../components/genericComponents/FormInput';
-import FormParticipantsList from '../../components/genericComponents/FormParticipantsList';
 import FormHour from '../../components/genericComponents/FormHour';
 import TimePicker from 'react-native-24h-timepicker';
+import FormNewDatePicker from '../genericComponents/FormNewDatePicker';
 import FormSubmitButton from '../genericComponents/FormSubmitButton';
 import FormNotes from '../genericComponents/FormNotes';
 import FormMultiSelect from '../genericComponents/FormMultiSelect';
@@ -12,6 +12,7 @@ import Spacer from '../genericComponents/Spacer';
 
 const MeetingForm = ({ project, oldMeeting, onSubmit, type }) => {
 	const [meeting, setMeeting] = useState(oldMeeting);
+	console.log(meeting.date);
 
 	const validation = () => {
 		if (meeting.participants.length == 0) {
@@ -29,23 +30,7 @@ const MeetingForm = ({ project, oldMeeting, onSubmit, type }) => {
 			<ScrollView>
 				<Text style={styles.fillRequired}>Please fill the required fields </Text>
 				<View style={styles.designSquare}>
-					<FormDatePicker date={meeting.date} setDate={(date) => setMeeting({ ...meeting, date: date })} />
-					<Text style={styles.input}>Meeting Date</Text>
-				</View>
-				<Text style={styles.input}>Meeting Hours</Text>
-				<View style={styles.hours}>
-					<FormHour
-						TimePicker={TimePicker}
-						time={meeting.to}
-						setTime={(time) => setMeeting({ ...meeting, to: time })}
-					/>
-					<Text style={styles.hour}>Until</Text>
-					<FormHour
-						TimePicker={TimePicker}
-						time={meeting.from}
-						setTime={(time) => setMeeting({ ...meeting, from: time })}
-					/>
-					<Text style={styles.hour}>From</Text>
+					<FormNewDatePicker date={meeting.date} setDate = {(date) => setMeeting({ ...meeting, date: date })}/>
 				</View>
 				<FormInput
 					title=" Place Of Meeting"
