@@ -17,9 +17,8 @@ const OpenScreen = ({ navigation, projects, addProject }) => {
 	}, []);
 
 	const handleNotification = (notification) => {
-		//const project = notification.data.project;
-		console.log(notification);
-		//navigation.navigate('InviteP');
+		const project = notification.data.project;
+		navigation.navigate('InviteP', { project });
 		getAllProjectsFromDb(user, projects, addProject);
 	};
 
