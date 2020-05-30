@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, CheckBox, Image } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import { Button } from 'react-native-elements';
 import FormInput from '../../components/genericComponents/FormInput';
 import FormPickerSelect from '../../components/genericComponents/FormPickerSelect';
@@ -8,10 +8,13 @@ import firebase from 'firebase';
 import Alert from '../../components/genericComponents/Alert';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
+import Spacer from '../../components/genericComponents/Spacer';
+import { CheckBox } from 'react-native-elements';
 
 const SettingsScreen = ({ navigation, deleteProject, projects }) => {
 	const [showAlert, setShowAlert] = useState(false);
-	const [checked, setChecked] = useState(checked);
+	const [MobileChecked, setMobileChecked] = useState(false);
+	const [EmailChecked, setEmailChecked] = useState(false);
 	const [edit, setEdit] = useState('');
 	const rankItems = [1, 2, 3, 4, 5].map((num) => {
 		const label = num === 1 ? `       ${num} Star` : `       ${num} Stars`;
@@ -53,18 +56,16 @@ const SettingsScreen = ({ navigation, deleteProject, projects }) => {
 			</View>
 			<Text style={styles.subHeader}> Notifications </Text>
 			<View style={styles.Check}>
-				<CheckBox title="Email" checked={setChecked} style={styles.CheckBox1} value={true} />
-				<Text style={styles.notification}>Email </Text>
-			</View>
-			<View style={styles.Check}>
-				<CheckBox title="Mobile" checked={setChecked} style={styles.CheckBox2} value={true} />
-				<Text style={styles.notification}>Mobile </Text>
+			<CheckBox title="Email" containerStyle={styles.check} checkedColor="green" checked={EmailChecked} onPress={() => setEmailChecked(!EmailChecked)}/>
+			<CheckBox title="Mobile" containerStyle={styles.check}  checkedColor="green" checked={MobileChecked} onPress={() => setMobileChecked(!MobileChecked)}/>
 			</View>
 			<Text style={styles.subHeader}> Reminder </Text>
 			<FormPickerSelect items={reminderItems} label={'Reminder'} />
 			<Text style={styles.subHeader}> Rank our app </Text>
 			<FormPickerSelect items={rankItems} label={'Rank'} />
+			<Spacer/>
 			<Button title="Sign Out" onPress={() => setShowAlert(true)} />
+			<Spacer/>
 			<Alert
 				showAlert={showAlert}
 				message="Are you sure you want to sign out?"
@@ -92,8 +93,12 @@ SettingsScreen.navigationOptions = () => {
 
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: '#607d8b',
+		backgroundColor: '#e8f1f9',
 		flex: 1,
+	},
+	check:{
+		backgroundColor:'white',
+		borderRadius:10
 	},
 	changePic: {
 		flexDirection: 'row',
@@ -113,33 +118,19 @@ const styles = StyleSheet.create({
 		marginVertical: 10,
 		fontSize: 20,
 		marginHorizontal: 15,
-		color: 'white',
+		color: 'black',
 	},
 	notification: {
 		marginVertical: 10,
 		fontSize: 20,
 		marginHorizontal: 15,
-		color: 'white',
+		color: 'black',
 		alignSelf: 'center',
 	},
 	Check: {
-		flexDirection: 'row',
-		justifyContent: 'flex-end',
+		flexDirection: 'row-reverse',
 	},
-	CheckBox1: {
-		backgroundColor: 'white',
-		marginVertical: 10,
-		marginHorizontal: 21,
-		fontSize: 20,
-		justifyContent: 'flex-start',
-	},
-	CheckBox2: {
-		backgroundColor: 'white',
-		marginVertical: 10,
-		marginHorizontal: 10,
-		fontSize: 20,
-		justifyContent: 'flex-start',
-	},
+	
 	Pname: {
 		flexDirection: 'row',
 		marginBottom: 10,

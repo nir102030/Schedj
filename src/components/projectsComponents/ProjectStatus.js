@@ -11,8 +11,8 @@ const ProjectStatus = ({project,style}) => {
         <View style={styles.top}>
             <View style={styles.container}>
                 <View style={{marginLeft:5,marginRight:5}}>
-                    <Text style={{fontSize:18,color:'white',fontWeight:'bold',paddingLeft:3}}>Status</Text>
-                    <Text style={{fontSize:14,alignSelf:'center',paddingLeft:5,color:'#FCDC00',fontWeight:'bold',paddingBottom:2}}>{status[0]}</Text>
+                    {/* <Text style={{fontSize:18,color:'black',fontWeight:'bold',paddingLeft:3}}>Status</Text> */}
+                    <Text style={{fontSize:14,marginVertical: 8,alignSelf:'center',paddingLeft:5,color:'#a37f11',fontWeight:'bold',paddingBottom:2}}>{status[0]}</Text>
                 </View>
                 <TouchableOpacity style={{alignSelf:'center'}} onPress={() => {showMessage({message: "Status: Waiting",description: "Not all members approved the invitation",type: "info",color:"black",backgroundColor:'#c2dbe6' })}}>
                     <Image style={styles.statusStyle}  source={require('../../../assets/images/status.png')}/>
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     },
     container:{
         flexDirection:'row-reverse',
-        backgroundColor:'#607d8b',
+        backgroundColor:'#bedadc',
         borderRadius:10,
         //paddingRight:30,
         alignSelf:'center',

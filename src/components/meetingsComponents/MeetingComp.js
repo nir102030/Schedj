@@ -1,14 +1,17 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { Text, StyleSheet, View, TouchableOpacity, Image } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
+import Alert from '../genericComponents/Alert';
 import FormSectionedMultiSelect from '../genericComponents/FormSectionedMultiSelect';
 import { deleteMeetingFromDb } from '../../firebase/meetingsAPI';
 
 const MeetingComp = ({ project, tasks, topics, navigation, meeting, deleteMeeting, editTask }) => {
 	const taskList = tasks.filter((task) => task.pid === meeting.pid);
 	const topicsList = topics.filter((topic) => topic.pid === meeting.pid);
+	const [showAlert, setShowAlert] = useState(false);
+
 
 	const taskChoices = topicsList.map((topic) => {
 		const children = taskList
@@ -27,15 +30,15 @@ const MeetingComp = ({ project, tasks, topics, navigation, meeting, deleteMeetin
 		});
 	};
 
-	const onDeletePress = () => {
-		deleteMeeting(meeting);
-		deleteMeetingFromDb(meeting);
-	};
+	// const onDeletePress = () => {
+	// 	deleteMeeting(meeting);
+	// 	deleteMeetingFromDb(meeting);
+	// };
 
 	return (
 		<View style={styles.container}>
 			<View style={{ flex: 6, flexDirection: 'row' }}>
-				<TouchableOpacity style={styles.button} onPress={() => onDeletePress()}>
+				<TouchableOpacity style={styles.button} onPress={() => setShowAlert(true)}>
 					<Image source={require('../../../assets/images/delete.png')} style={styles.image} />
 				</TouchableOpacity>
 				<TouchableOpacity
@@ -54,16 +57,28 @@ const MeetingComp = ({ project, tasks, topics, navigation, meeting, deleteMeetin
 			<View style={styles.multiSelect}>
 				<FormSectionedMultiSelect taskChoices={taskChoices} addTasksToMeeting={addTasksToMeeting} />
 			</View>
+			<Alert
+				showAlert={showAlert}
+				message="Are you sure you want to delete this meeting?"
+				onCancel={() => setShowAlert(false)}
+				onConfirm={() => {
+					deleteMeeting(meeting);
+					deleteMeetingFromDb(meeting);
+					() => setShowAlert(false);
+				}}
+			/>
 		</View>
 	);
 };
 
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: '#607d8b',
-		borderBottomWidth: 3,
-		borderBottomColor: '#d9e3f0',
-		// flexDirection:'row'
+		marginVertical:5,
+		backgroundColor:'#53a6af',
+        borderRadius:10,
+        paddingRight:3,
+		flexDirection: 'column',
+		marginHorizontal: 10,
 	},
 	header: {
 		marginVertical: 5,
@@ -114,7 +129,7 @@ const styles = StyleSheet.create({
 		marginTop: 5,
 	},
 	multiSelect: {
-		marginHorizontal: 10,
+		marginHorizontal: 0,
 	},
 });
 

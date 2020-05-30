@@ -8,13 +8,14 @@ import TimePicker from 'react-native-24h-timepicker';
 import FormSubmitButton from '../genericComponents/FormSubmitButton';
 import FormNotes from '../genericComponents/FormNotes';
 import FormMultiSelect from '../genericComponents/FormMultiSelect';
+import Spacer from '../genericComponents/Spacer';
 
 const MeetingForm = ({ project, oldMeeting, onSubmit, type }) => {
 	const [meeting, setMeeting] = useState(oldMeeting);
 
 	const validation = () => {
 		if (meeting.participants.length == 0) {
-			alert('It has to be at least one participant!');
+			alert('You must add at least one participant!');
 		} else {
 			onSubmit(meeting);
 		}
@@ -47,7 +48,7 @@ const MeetingForm = ({ project, oldMeeting, onSubmit, type }) => {
 					<Text style={styles.hour}>From</Text>
 				</View>
 				<FormInput
-					title="Place Of Meeting"
+					title=" Place Of Meeting"
 					value={meeting.place}
 					onChange={(place) => setMeeting({ ...meeting, place: place })}
 					viewStyle={styles.designSquare}
@@ -60,6 +61,7 @@ const MeetingForm = ({ project, oldMeeting, onSubmit, type }) => {
 					addItemsToList={(participants) => setMeeting({ ...meeting, participants: participants })}
 					type="Participants"
 				/>
+				<Spacer/>
 				<Text style={styles.note}> Write your notes here! </Text>
 				<FormNotes notes={meeting.notes} setNotes={(notes) => setMeeting({ ...meeting, notes: notes })} />
 				<FormSubmitButton onSubmit={() => validation()} type={type} />
@@ -70,12 +72,12 @@ const MeetingForm = ({ project, oldMeeting, onSubmit, type }) => {
 
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: '#607d8b',
+		backgroundColor: '#e8f1f9',
 		flex: 1,
 	},
 	header: {
 		flexDirection: 'row',
-		backgroundColor: '#8aa9b9',
+		backgroundColor: '#e8f1f9',
 		justifyContent: 'flex-end',
 		borderBottomWidth: 5,
 		borderBottomColor: '#2d6886',
@@ -90,13 +92,13 @@ const styles = StyleSheet.create({
 		marginHorizontal: 10,
 	},
 	fillRequired: {
-		backgroundColor: 'red',
+		backgroundColor: '#ffccbc',
 		flex: 1,
 	},
 	note: {
 		alignSelf: 'center',
 		fontWeight: 'bold',
-		color: 'white',
+		color: 'black',
 	},
 	designSquare: {
 		flexDirection: 'row',
@@ -107,13 +109,13 @@ const styles = StyleSheet.create({
 		marginVertical: 15,
 		marginHorizontal: 10,
 		fontSize: 22,
-		color: 'white',
+		color: 'black',
 		flex: 1,
 	},
 	hour: {
 		marginHorizontal: 10,
 		fontSize: 22,
-		color: 'white',
+		color: 'black',
 		flex: 1,
 	},
 	hours: {

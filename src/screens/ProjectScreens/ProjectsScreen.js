@@ -11,7 +11,7 @@ const ProjectsScreen = ({ navigation }) => {
 
 	return (
 		<View style={styles.container}>
-			<Text h4>Hello {user.email.substring(0, user.email.indexOf('@'))}</Text>
+			{/* <Text h4>Hello {user.email.substring(0, user.email.indexOf('@'))}</Text> */}
 			<ProjectsList style={styles.list} />
 			<View style={styles.straight}>
 				<TouchableOpacity style={styles.TouchableOpacitySC} onPress={() => navigation.navigate('ComeSoon')}>
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
 	container: {
 		height: '100%',
 		width: '100%',
-		backgroundColor: '#607d8b',
+		backgroundColor: '#e8f1f9',
 	},
 	straight: {
 		flexDirection: 'row',
@@ -58,14 +58,14 @@ const styles = StyleSheet.create({
 		flex: 9,
 	},
 	TouchableOpacityA: {
-		backgroundColor: '#cfd8dc',
+		backgroundColor: '#bbdde1',
 		flex: 2.5,
 		flexDirection: 'column',
 		borderBottomWidth: 0.6,
 		borderBottomColor: 'white',
 	},
 	TouchableOpacitySC: {
-		backgroundColor: '#90a4ae',
+		backgroundColor: 'white',
 		flex: 2.5,
 		flexDirection: 'column',
 		borderBottomWidth: 0.6,

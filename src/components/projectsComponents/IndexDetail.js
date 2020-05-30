@@ -15,7 +15,7 @@ const IndexDetail = ({navigation, imageSrc, navigationScreen, project}) => {
 
 const styles = StyleSheet.create({
     TouchableOpacity: {
-        marginRight:10
+        marginRight:10,
     },
     image: {
         height:47,

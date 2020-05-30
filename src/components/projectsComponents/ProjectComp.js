@@ -24,7 +24,6 @@ const ProjectComp = ({ project, deleteProject, navigation }) => {
 				style={styles.TouchableOpacityRightSide}
 				onPress={() => navigation.navigate('EditP', { project })}
 			>
-				{/* <Image source={require('../../../assets/images/edit_logoTry.png')} style={styles.image}/> */}
 				<Text style={{ fontWeight: 'bold', fontSize: 16 }}>Edit</Text>
 			</TouchableOpacity>
 		</TouchableHighlight>,
@@ -57,7 +56,6 @@ const ProjectComp = ({ project, deleteProject, navigation }) => {
 					<ProjectStatus />
 				</View>
 			</Swipeable>
-
 			<Alert
 				showAlert={showAlert}
 				message="Are you sure you want to delete this project?"
@@ -73,11 +71,16 @@ const ProjectComp = ({ project, deleteProject, navigation }) => {
 };
 
 const styles = StyleSheet.create({
-	general: {
-		borderBottomWidth: 3,
-		borderColor: '#d9e3f0',
-	},
+	// general: {
+	// 	borderBottomWidth: 3,
+	// 	borderColor: 'black',
+	// },
 	container: {
+        backgroundColor:'#53a6af',
+        borderRadius:10,
+        //paddingRight:30,
+        alignSelf:'center',
+        paddingRight:3,
 		flexDirection: 'row-reverse',
 		justifyContent: 'space-between',
 		paddingBottom: 20,
@@ -89,7 +92,7 @@ const styles = StyleSheet.create({
 		paddingTop: 3,
 		paddingHorizontal: 5,
 		borderRadius: 10,
-		backgroundColor: 'white',
+		backgroundColor: '#bedadc',
 	},
 	TouchableOpacityRightSide: {
 		marginVertical: 20,
@@ -98,17 +101,19 @@ const styles = StyleSheet.create({
 		paddingTop: 12,
 		paddingHorizontal: 5,
 		borderRadius: 10,
-		backgroundColor: 'white',
+		backgroundColor: '#bedadc',
 	},
 	text: {
 		fontWeight: 'bold',
 		fontSize: 20,
-		color: 'oldlace',
+		color: 'white',
 		marginBottom: 10,
 		marginRight: 10,
 	},
 	options: {
 		flexDirection: 'row',
+		marginHorizontal: 50,
+
 	},
 	image: {
 		height: 40,

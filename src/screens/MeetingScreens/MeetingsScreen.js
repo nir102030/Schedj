@@ -31,10 +31,10 @@ const styles = StyleSheet.create({
     },
     list: {
         flex:9,
-        backgroundColor:'#607d8b'
+        backgroundColor:'#e8f1f9'
     },
     TouchableOpacity: {
-        backgroundColor:'#2b414b',
+        backgroundColor:'#bbdde1',
         flex:1,
         flexDirection:'row-reverse'
     },
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize:20,
-        color:'oldlace',
+        color:'#263238',
         alignSelf:'center',
         fontWeight:'bold'
     },

@@ -21,7 +21,7 @@ class FormMultiSelect extends Component {
     render() {
         const { selectedItems } = this.state;
         return (
-        <View style={{ flex:1 ,marginTop:10, borderBottomWidth: 3, borderBottomColor:'#d9e3f0', }}>
+        <View style={{ flex:1 ,marginTop:10}}>
             <MultiSelect
                 hideTags
                 items={this.items}
@@ -34,8 +34,8 @@ class FormMultiSelect extends Component {
                 onChangeInput={ (text)=> console.log(text)}
                 //altFontFamily="ProximaNova-Light"
                 tagRemoveIconColor="#CCC"
-                tagBorderColor="white"
-                tagTextColor="white"
+                tagBorderColor="#53a6af"
+                tagTextColor="black"
                 fontSize= {18}
                 //itemFontSize= {}
                 //fixedHeight= {80}
@@ -44,7 +44,7 @@ class FormMultiSelect extends Component {
                 itemTextColor="black"
                 displayKey="name"
                 searchInputStyle={{ color: '#CCC', fontSize: 20}}
-                submitButtonColor="#CCC"
+                submitButtonColor="#53a6af"
                 submitButtonText="Submit"
             />
             <View>

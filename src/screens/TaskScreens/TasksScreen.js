@@ -35,11 +35,11 @@ const styles = StyleSheet.create({
 	container: {
 		height: '100%',
 		width: '100%',
-		backgroundColor: '#607d8b',
+		backgroundColor: '#e8f1f9',
 	},
 	list: {
 		flex: 8,
-		backgroundColor: '#607d8b',
+		backgroundColor: '#e8f1f9',
 	},
 	TouchableOpacity: {
 		backgroundColor: '#2b414b',

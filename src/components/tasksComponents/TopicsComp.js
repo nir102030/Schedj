@@ -50,17 +50,21 @@ const TopicsComp = ({ navigation, project, topic, editTopic, deleteTopic }) => {
 
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: '#607d8b',
 		flex: 1,
+		backgroundColor:'#53a6af',
+        borderRadius:10,
+        //paddingRight:30,
+		justifyContent: 'space-between',
+		paddingBottom: 20,
+		paddingRight:4,
+		paddingLeft:4
 	},
 	list: {
 		flex: 9,
-		backgroundColor: '#607d8b',
 	},
 	topic: {
 		flexDirection: 'row-reverse',
-		borderBottomWidth: 3,
-		borderBottomColor: '#d9e3f0',
+	
 	},
 	subHeader: {
 		fontSize: 22,
@@ -74,6 +78,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'row-reverse',
 		justifyContent: 'flex-start',
 		alignItems: 'center',
+		paddingRight:3
 	},
 	image: {
 		height: 37,

@@ -6,7 +6,13 @@ const ComingSoonScreen = ({navigation}) => {
     return(
         <View style={styles.container}>
             <TouchableOpacity style={styles.TouchableOpacity}  onPress = {()=>navigation.navigate('Gantt')}>
-                <Text style={styles.text}>Gantt</Text>
+                <Text style={styles.text}>1. Gantt</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.TouchableOpacity}  onPress = {()=>navigation.navigate('')}>
+                <Text style={styles.text}>.2</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.TouchableOpacity}  onPress = {()=>navigation.navigate('')}>
+                <Text style={styles.text}>.3</Text>
             </TouchableOpacity>
         </View>
     );
@@ -24,16 +30,19 @@ const styles = StyleSheet.create({
     container: {
         height:'100%',
         width:'100%',
-        backgroundColor: '#607d8b',
+        backgroundColor: '#e8f1f9',
+       
     },
     TouchableOpacity: {
-        backgroundColor:'#375360',
+        backgroundColor:'#e8f1f9',
         flexDirection:'row-reverse',
+        borderBottomWidth: 5,
+		borderBottomColor: '#2d6886',
         paddingLeft:3,
     },
     text: {
         fontSize:30,
-        color:'oldlace',
+        color:'#263238',
         fontWeight:'bold',
         marginHorizontal:10,
         marginVertical:10

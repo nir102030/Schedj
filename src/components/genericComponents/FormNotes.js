@@ -13,19 +13,16 @@ const FormNotes = ({notes, setNotes}) => {
     return (
         <View>
             <FormInput 
-                title='1.' 
                 value = {notes[0]} 
                 onChange={(note) => handleNoteList(note,0)} 
                 viewStyle = {styles.notes}
             />
             <FormInput 
-                title='2.' 
                 value = {notes[1]} 
                 onChange={(note) => handleNoteList(note,1)} 
                 viewStyle = {styles.notes}
             />
             <FormInput 
-                title='3.' 
                 value = {notes[2]} 
                 onChange={(note) => handleNoteList(note,2)} 
                 viewStyle = {styles.notes}

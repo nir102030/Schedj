@@ -39,7 +39,7 @@ const TaskComp = ({ task, deleteTask, editTask }) => {
 					});
 				}}
 			>
-				<Text style={styles.task}>{task.name}</Text>
+			<Text style={styles.task}>{task.name}</Text>
 			</TouchableOpacity>
 			<Progress.Bar
 				style={styles.prog}
@@ -84,9 +84,6 @@ const TaskComp = ({ task, deleteTask, editTask }) => {
 }
 
 const styles = StyleSheet.create({
-	container: {
-		backgroundColor: '#607d8b',
-	},
 	prog: {
 		flex: 1,
 	},
@@ -103,7 +100,7 @@ const styles = StyleSheet.create({
 		marginLeft: 10,
 		fontWeight: 'bold',
 		fontSize: 20,
-		color: 'white',
+		color: 'black',
 		flex: 1,
 	},
 	AAA: {
@@ -116,12 +113,11 @@ const styles = StyleSheet.create({
 		flexDirection: 'column',
 	},
 	progCheckRow: {
+		flex: 1,
+		backgroundColor:'#bbdde1',
+        borderRadius:10,
 		flexDirection: 'row-reverse',
-		borderBottomWidth: 1,
-		borderBottomColor: '#d9e3f0',
-		//justifyContent:'space-between',
 		paddingLeft: 20,
-		alignSelf: 'center',
 	},
 });
 

@@ -15,6 +15,9 @@ const FormDatePicker = ({date, setDate}) =>{
                 confirmBtnText="Confirm"
                 cancelBtnText="Cancel"
                 customStyles={{
+                    placeholderText:{
+                        color:'black'
+                    },
                     dateTouchBody: {
                         marginTop: 12,
                     },
