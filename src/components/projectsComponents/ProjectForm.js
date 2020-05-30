@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import { Text, StyleSheet, View, Image, ScrollView, FlatList } from 'react-native';
 import FormInput from '../genericComponents/FormInput';
-import FormParticipantsList from '../genericComponents/FormParticipantsList';
 import FormSubmitButton from '../genericComponents/FormSubmitButton';
 import FormNotes from '../../components/genericComponents/FormNotes';
 import FormMultiSelect from '../genericComponents/FormMultiSelect';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
-import Spacer from '../genericComponents/Spacer'
+import Spacer from '../genericComponents/Spacer';
+import firebase from 'firebase';
 
 const ProjectForm = ({ oldProject, onSubmit, type, users }) => {
 	const [project, setProject] = useState(oldProject);
+	const currentUser = firebase.auth().currentUser;
+	const participantsList = users.filter((user) => user.uid !== currentUser.uid);
+	console.log(project.participants);
 	const validation = () => {
 		if (project.name == '') {
 			alert('Please Enter Project Name');
@@ -38,28 +41,31 @@ const ProjectForm = ({ oldProject, onSubmit, type, users }) => {
 					onChange={(name) => setProject({ ...project, name: name })}
 					viewStyle={styles.projectName}
 				/>
-				<Spacer/>
-				{/* <FormParticipantsList
-					participants={project.participants}
-					setParticipant={(participants) => setProject({ ...project, participants: participants })}
-				/> */}
+				<Spacer />
 				<FormMultiSelect
-					list={users.map((user) => {
-						return { id: user.email, name: user.email };
+					list={participantsList.map((participant) => {
+						return { id: participant.email, name: participant.email };
 					})}
-					addItemsToList={(participants) => setProject({ ...project, participants: participants })}
+					addItemsToList={(participants) => {
+						setProject({ ...project, participants: [...participants, currentUser.email] });
+					}}
 					type="Participants"
+					selectedItems={project.participants.filter((participant) => participant !== currentUser.email)}
 				/>
-				<Spacer/>
+				<Spacer />
 				<FormInput
 					title=" Min Participants For Meeting"
 					value={project.minForMeeting}
 					onChange={(minForMeeting) => setProject({ ...project, minForMeeting: minForMeeting })}
 					viewStyle={styles.minMeet}
 				/>
-				<Spacer/>
+				<Spacer />
 				<Text style={styles.note}> Write your notes here! </Text>
-				<FormNotes title=' ' notes={project.notes} setNotes={(notes) => setProject({ ...project, notes: notes })} />
+				<FormNotes
+					title=" "
+					notes={project.notes}
+					setNotes={(notes) => setProject({ ...project, notes: notes })}
+				/>
 				<Text style={styles.task}> *Define your tasks later </Text>
 				<FormSubmitButton onSubmit={() => validation()} type={type} />
 			</ScrollView>

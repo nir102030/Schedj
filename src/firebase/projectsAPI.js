@@ -8,20 +8,18 @@ export const getAllProjectsFromDb = (user, projects, addProject) => {
 				projects.find((project) => project.id == childSnapShot.child('id').val()) == null ? false : true;
 			const participants = childSnapShot.child('participants').val();
 			participants.map((participant) => {
-				console.log(participant);
-				console.log(user.email);
 				participant == user.email && !isExsitInState ? addProject(childSnapShot.val()) : null;
 			});
 		});
 	});
 };
 
-export const addProjectToDb = (uid, project) => {
+export const addProjectToDb = (user, project) => {
 	firebase
 		.database()
 		.ref('projects/' + project.id)
 		.set({
-			uid: uid,
+			uid: user.uid,
 			id: project.id,
 			name: project.name,
 			participants: project.participants,

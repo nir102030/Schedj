@@ -7,9 +7,9 @@ import firebase from 'firebase';
 import { sendPushNotification } from '../../firebase/notifications';
 
 const CreateProjectScreen = ({ navigation, addProject, users }) => {
-	const uid = firebase.auth().currentUser.uid;
+	const user = firebase.auth().currentUser;
 	const project = {
-		uid: uid,
+		uid: user.uid,
 		id: Math.floor(Math.random() * 99999),
 		name: '',
 		minForMeeting: '',
@@ -26,8 +26,9 @@ const CreateProjectScreen = ({ navigation, addProject, users }) => {
 
 	const onSubmit = (project) => {
 		addProject(project);
-		addProjectToDb(uid, project);
+		addProjectToDb(user, project);
 		const participants = project.participants;
+		console.log(participants);
 		users.map((user) => {
 			participants.map((participant) => {
 				participant == user.email ? addParticipantToProject(user, project) : null;
