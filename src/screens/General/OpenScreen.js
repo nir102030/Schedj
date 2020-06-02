@@ -22,7 +22,7 @@ const OpenScreen = ({ navigation, addProject, addMeeting, addCalendar }) => {
 
 	const handleNotification = (notification) => {
 		Vibration.vibrate();
-		const type = notification.data.type;
+		const type = String(notification.data.type);
 		switch (type) {
 			case 'add_project':
 				const project = notification.data.project;
@@ -30,14 +30,14 @@ const OpenScreen = ({ navigation, addProject, addMeeting, addCalendar }) => {
 					getProjectFromDb(project.id, addProject);
 				}
 				navigation.navigate('InviteP', { project });
+				break;
 			case 'add_meeting':
-				console.log(type);
 				const meeting = notification.data.meeting;
-				console.log(meeting);
 				if (user.uid != meeting.creator) {
 					getMeetingFromDb(meeting, addMeeting);
 				}
 				navigation.navigate('InviteM', { meeting });
+				break;
 			default:
 				console.log('no data');
 		}

@@ -9,7 +9,6 @@ import { connect } from 'react-redux';
 
 const ProjectCalendarScreen = ({ navigation, calendars }) => {
 	const project = navigation.getParam('project');
-	console.log(calendars);
 	return (
 		<View style={styles.container}>
 			<ScrollView>
