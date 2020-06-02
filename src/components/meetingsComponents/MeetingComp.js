@@ -29,12 +29,6 @@ const MeetingComp = ({ project, tasks, topics, navigation, meeting, deleteMeetin
 			editTask(editedTask);
 		});
 	};
-
-	// const onDeletePress = () => {
-	// 	deleteMeeting(meeting);
-	// 	deleteMeetingFromDb(meeting);
-	// };
-
 	return (
 		<View style={styles.container}>
 			<View style={{ flex: 6, flexDirection: 'row' }}>
@@ -50,7 +44,7 @@ const MeetingComp = ({ project, tasks, topics, navigation, meeting, deleteMeetin
 				<View style={{ flex: 6 }}>
 					<View style={{ flexDirection: 'row-reverse' }}>
 						<Text style={styles.header}>Meeting {meeting.mid + 1}</Text>
-						<Text style={styles.date}>{meeting.date}</Text>
+						<Text style={styles.date}>{meeting.date.toString().substring(0,15)}</Text>
 					</View>
 				</View>
 			</View>
@@ -91,11 +85,10 @@ const styles = StyleSheet.create({
 		flexDirection: 'row-reverse',
 	},
 	date: {
-		marginVertical: 10,
-		marginHorizontal: 12,
+		marginVertical: 12,
+		marginHorizontal: 10,
 		height: 30,
-		fontWeight: 'bold',
-		fontSize: 18,
+		fontSize: 15,
 		color: 'white',
 		flex: 1,
 		flexDirection: 'row-reverse',

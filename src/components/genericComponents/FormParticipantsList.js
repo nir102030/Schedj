@@ -54,8 +54,14 @@ const styles = StyleSheet.create({
     },
     participants:{
         borderBottomWidth: 3,
-        borderBottomColor:'#d9e3f0',
         marginVertical: 5,
+        backgroundColor:'#53a6af',
+        borderRadius:10,
+        alignSelf:'center',
+        paddingRight:3,
+		flexDirection: 'row-reverse',
+		justifyContent: 'space-between',
+		paddingBottom: 15,
     },
     allinonerow:{
         flexDirection: 'row',

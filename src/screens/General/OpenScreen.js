@@ -45,10 +45,10 @@ const OpenScreen = ({ navigation, addProject, addMeeting, addCalendar }) => {
 
 	return (
 		<View style={styles.container}>
-			<Image source={require('../../../assets/images/schedjWhiteTry.png')} style={styles.whiteHeadr} />
+			<Image source={require('../../../assets/images/schedjTorqTry.png')} style={styles.whiteHeadr} />
 			<View style={styles.container}>
 				<Image source={require('../../../assets/images/gif.png')} style={styles.backgroundimage} />
-				<Image source={require('../../../assets/images/smallHeader.png')} style={styles.smallHeader} />
+				<Image source={require('../../../assets/images/smallHeaderTorq.png')} style={styles.smallHeader} />
 				<TouchableOpacity style={styles.TouchableOpacity} onPress={() => navigation.navigate('Projects')}>
 					<Animatable.Text
 						animation="pulse"
@@ -78,13 +78,13 @@ const styles = StyleSheet.create({
 	container: {
 		height: '100%',
 		width: '100%',
-		backgroundColor: '#3b687d',
+        backgroundColor:'#e8f1f9',
 	},
 	TouchableOpacity: {
 		flexDirection: 'row-reverse',
 		flex: 1,
 		alignSelf: 'center',
-		marginBottom: 80,
+		marginBottom: 100,
 	},
 	backgroundimage: {
 		height: 700,
@@ -100,13 +100,14 @@ const styles = StyleSheet.create({
 	image: {
 		height: 120,
 		width: 200,
-		marginBottom: 20,
+		marginBottom: 10,
 	},
 	whiteHeadr: {
 		height: 120,
 		width: 350,
 		alignSelf: 'center',
-		marginVertical: 35,
+		marginVertical: 40,
+		marginRight:30
 	},
 	headerStyle: {
 		fontWeight: 'bold',

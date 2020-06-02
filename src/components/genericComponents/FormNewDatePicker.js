@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, View,Image, TouchableOpacity, Text } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
-const FormNewDatePicker = ({date,setDate}) => {
+const FormNewDatePicker = ({date,onConfirm,type, imageSrc, startIndex, endIndex}) => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
   const showDatePicker = () => {
@@ -14,40 +14,56 @@ const FormNewDatePicker = ({date,setDate}) => {
   };
 
   const handleConfirm = (date) => {
-    setDate(date);
+    console.log(date)
     hideDatePicker();
+    onConfirm(date);
   };
 
   return (
     <View>
-      <TouchableOpacity style={styles.TouchableOpacity} onPress={showDatePicker}>
-		<Image source={require('../../../assets/images/Cal.png')} style={styles.image} />
-    <Text style={styles.dateTime}>{date.toString()}</Text>
-	  </TouchableOpacity>
-      <DateTimePickerModal
-        isVisible={isDatePickerVisible}
-        mode="datetime"
-        onConfirm={(date)=>handleConfirm(date)}
-        onCancel={hideDatePicker}
-      />
+      <View style={styles.row}>
+        <Text style={styles.dateTime}>{date.toString().substring(startIndex,endIndex)}</Text>
+        <TouchableOpacity style={styles.TouchableOpacity} onPress={showDatePicker}>
+          <Image source={imageSrc} style={styles.image} />
+        </TouchableOpacity>
+        <DateTimePickerModal
+          isVisible={isDatePickerVisible}
+          mode={type}
+          onConfirm={(date)=>handleConfirm(date)}
+          onCancel={hideDatePicker}
+        />
+      </View>
     </View>
   );
 };
 const styles = StyleSheet.create({
 	TouchableOpacity: {
     backgroundColor: '#e8f1f9',
+  },
+  row:{
     flexDirection: 'row',
-    },
+  },
     image:{
         height:40,
         width:40,
         marginVertical:10,
-        marginHorizontal:10
+        marginHorizontal:20
     },
     dateTime:{
-      marginVertical:23,
-      marginHorizontal:30
-
+      marginVertical:10,
+      fontSize:15,
+      marginRight: 5,
+      marginLeft: 10,
+      paddingBottom:10,
+      paddingTop:10,
+      paddingRight:10,
+      paddingLeft:10,
+      borderWidth: 1,
+      borderColor: 'white',
+      backgroundColor: '#c3dadd',
+      borderRadius: 5,
+      fontWeight: 'bold',
+      alignSelf:'center',
     }
 })
 

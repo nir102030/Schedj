@@ -71,10 +71,6 @@ const ProjectComp = ({ project, deleteProject, navigation }) => {
 };
 
 const styles = StyleSheet.create({
-	// general: {
-	// 	borderBottomWidth: 3,
-	// 	borderColor: 'black',
-	// },
 	container: {
         backgroundColor:'#53a6af',
         borderRadius:10,

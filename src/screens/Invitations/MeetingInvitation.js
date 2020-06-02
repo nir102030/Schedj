@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
         marginVertical: 20,
         paddingLeft:10,
         color:'#263238',
+        textAlign:'center',
     },
     TouchableOpacity: {
         backgroundColor:'#a1cfd5',

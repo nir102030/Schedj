@@ -12,7 +12,6 @@ import Spacer from '../genericComponents/Spacer';
 
 const MeetingForm = ({ project, oldMeeting, onSubmit, type }) => {
 	const [meeting, setMeeting] = useState(oldMeeting);
-	console.log(meeting.date);
 
 	const validation = () => {
 		if (meeting.participants.length == 0) {
@@ -30,8 +29,31 @@ const MeetingForm = ({ project, oldMeeting, onSubmit, type }) => {
 			<ScrollView>
 				<Text style={styles.fillRequired}>Please fill the required fields </Text>
 				<View style={styles.designSquare}>
-					<FormNewDatePicker date={meeting.date} 
-						setDate = {(date) => setMeeting({ ...meeting, date: date })}/>
+					<View style={styles.sameRow1}>
+						<FormNewDatePicker date={meeting.date} 
+							onConfirm = {(date) => setMeeting({ ...meeting, date: date })}
+							type = 'date'
+							imageSrc = {require('../../../assets/images/Cal.png')}
+							startIndex = {0}
+							endIndex = {15}
+						/>
+					</View>
+					<View style={styles.sameRow}>
+						<FormNewDatePicker date={meeting.to} 
+							onConfirm = {(to) => setMeeting({ ...meeting, to: to })}
+							type = 'time'
+							imageSrc = {require('../../../assets/images/clockTo.png')}
+							startIndex = {15}
+							endIndex = {21}
+						/>
+						<FormNewDatePicker date={meeting.from} 
+							onConfirm = {(from) => setMeeting({ ...meeting, from: from })}
+							type = 'time'
+							imageSrc = {require('../../../assets/images/clockFrom.png')}
+							startIndex = {15}
+							endIndex = {21}
+						/>
+					</View>
 				</View>
 				<FormInput
 					title=" Place Of Meeting"
@@ -40,7 +62,6 @@ const MeetingForm = ({ project, oldMeeting, onSubmit, type }) => {
 					viewStyle={styles.designSquare}
 				/>
 				<FormMultiSelect
-					style={styles.addPart}
 					list={project.participants.map((participant) => {
 						return { id: participant, name: participant };
 					})}
@@ -79,15 +100,26 @@ const styles = StyleSheet.create({
 	},
 	fillRequired: {
 		backgroundColor: '#ffccbc',
+		color: '#263238',
+
 		flex: 1,
+	},
+	sameRow:{
+		flexDirection: 'row',
+		alignSelf: 'flex-end',
+	},
+	sameRow1:{
+		flexDirection: 'row',
+		alignSelf: 'flex-end',
 	},
 	note: {
 		alignSelf: 'center',
 		fontWeight: 'bold',
-		color: 'black',
+		color: '#263238',
 	},
 	designSquare: {
-		flexDirection: 'row',
+		flexDirection: 'column',
+	
 		borderBottomWidth: 3,
 		borderBottomColor: '#d9e3f0',
 	},
@@ -123,7 +155,7 @@ const styles = StyleSheet.create({
 		width: 150,
 		borderRadius: 10,
 		alignSelf: 'center',
-	},
+	}
 });
 
 export default MeetingForm;

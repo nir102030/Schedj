@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View,StyleSheet } from 'react-native';
 import MultiSelect from 'react-native-multiple-select';
 
 class FormMultiSelect extends Component {
@@ -18,7 +18,7 @@ class FormMultiSelect extends Component {
 	render() {
 		const { selectedItems } = this.state;
 		return (
-			<View style={{ flex: 1, marginTop: 10 }}>
+			<View style={styles.container}>
 				<MultiSelect
 					hideTags
 					items={this.items}
@@ -32,7 +32,7 @@ class FormMultiSelect extends Component {
 					searchInputPlaceholderText={`Search ${this.props.type} ...`}
 					onChangeInput={(text) => console.log(text)}
 					//altFontFamily="ProximaNova-Light"
-					tagRemoveIconColor="#CCC"
+					tagRemoveIconColor="black"
 					tagBorderColor="#53a6af"
 					tagTextColor="black"
 					fontSize={18}
@@ -51,5 +51,24 @@ class FormMultiSelect extends Component {
 		);
 	}
 }
+
+const styles = StyleSheet.create({
+	container: {
+        backgroundColor:'#c3dadd',
+		borderRadius:5,
+		borderColor:'white',
+		borderWidth:1,
+        alignSelf:'center',
+		paddingBottom: 10,
+		paddingTop:20,
+		paddingLeft:10,
+		paddingRight:10,
+		width: 357,
+		marginTop: 10,
+		marginLeft:4,
+		marginBottom:7
+	}
+})
+
 
 export default FormMultiSelect;

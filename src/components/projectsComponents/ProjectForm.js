@@ -51,7 +51,7 @@ const ProjectForm = ({ oldProject, onSubmit, type, users }) => {
 					type="Participants"
 					selectedItems={project.participants.filter((participant) => participant !== currentUser.email)}
 				/>
-				<Spacer />
+				<Spacer/>
 				<FormInput
 					title=" Min Participants For Meeting"
 					value={project.minForMeeting}
