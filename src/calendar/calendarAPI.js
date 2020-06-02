@@ -32,9 +32,17 @@ export const createCalendar = async (addCalendar, user) => {
 	const calendarIds = calendars.map((calendar) => {
 		return calendar.id;
 	});
-	const startDate = new Date('December 17, 2019 03:24:00');
-	const endDate = new Date('December 17, 2020 03:24:00');
-	const events = await Calendar.getEventsAsync(calendarIds, startDate, endDate);
+	const startDate = new Date('June 1, 2020 00:00:00');
+	const endDate = new Date('June 31, 2021 00:00:00');
+	let events = await Calendar.getEventsAsync(calendarIds, startDate, endDate);
+	events = events.map((event) => {
+		return {
+			id: event.id,
+			startDate: event.startDate,
+			endDate: event.endDate,
+			title: event.title,
+		};
+	});
 	const calendar = { cid: newCalendarID, uid: user.uid, name: user.email, events: events };
 	addCalendar(calendar);
 };
