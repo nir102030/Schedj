@@ -14,6 +14,13 @@ export const getAllProjectsFromDb = (user, projects, addProject) => {
 	});
 };
 
+export const getProjectFromDb = (pid, addProject) => {
+	const ref = firebase.database().ref('projects/' + pid);
+	ref.once('value', (snapshot) => {
+		addProject(snapshot.val());
+	});
+};
+
 export const addProjectToDb = (user, project) => {
 	firebase
 		.database()

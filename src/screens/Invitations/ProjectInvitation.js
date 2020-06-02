@@ -2,16 +2,17 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { withNavigation } from 'react-navigation';
+import firebase from 'firebase';
 
-const ProjectInvitation = ({ navigation, pid, Owner, Inviter, List }) => {
+const ProjectInvitation = ({ navigation, pid, Owner, Inviter }) => {
 	const project = navigation.getParam('project');
+	const currentUser = firebase.auth().currentUser;
 	return (
 		<View style={styles.container}>
 			<ScrollView>
-				<Text style={styles.Hello}>Hello {Owner} </Text>
-				<Text style={styles.Text}>You got a new invitation for : </Text>
-				<Text style={styles.projName}>{project.name} Project</Text>
-				<Text style={styles.Text}>Rest of the team includes : {List}</Text>
+				<Text style={styles.Hello}>Hello {currentUser.email}</Text>
+				<Text style={styles.Text}>You got a new invitation for : {project.name} project</Text>
+				<Text style={styles.Text}>Rest of the team includes : </Text>
 				<Text style={styles.Text}>Would you like to approve the invitation ? </Text>
 				<TouchableOpacity style={styles.TouchableOpacity}>
 					<Image source={require('../../../assets/images/v.png')} style={styles.image} onPress={() => {}} />

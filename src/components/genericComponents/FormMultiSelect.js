@@ -10,7 +10,6 @@ class FormMultiSelect extends Component {
 	items = this.props.list;
 
 	onSelectedItemsChange = (selectedItems) => {
-		console.log(selectedItems);
 		this.setState({ selectedItems });
 		this.props.addItemsToList(selectedItems);
 		//this.props.addTaskToMeeting(selectedItems);

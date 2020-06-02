@@ -1,25 +1,46 @@
 import React, { useEffect } from 'react';
-import { View, StyleSheet, Image, TouchableOpacity, Text } from 'react-native';
+import { View, StyleSheet, Image, TouchableOpacity, Text, Vibration } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { registerForPushNotifications } from '../../firebase/notifications';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
 import { Notifications } from 'expo';
-import { getAllProjectsFromDb } from '../../firebase/projectsAPI';
+import { getProjectFromDb } from '../../firebase/projectsAPI';
+import { getMeetingFromDb } from '../../firebase/meetingsAPI';
+import { getCalendarPermission, createCalendar } from '../../calendar/calendarAPI';
 
-const OpenScreen = ({ navigation, projects, addProject }) => {
+const OpenScreen = ({ navigation, addProject, addMeeting, addCalendar }) => {
 	const user = firebase.auth().currentUser;
 
 	useEffect(() => {
 		registerForPushNotifications(user);
+		getCalendarPermission();
+		createCalendar(addCalendar, user);
 		_notificationSubscription = Notifications.addListener(handleNotification);
 	}, []);
 
 	const handleNotification = (notification) => {
-		const project = notification.data.project;
-		navigation.navigate('InviteP', { project });
-		getAllProjectsFromDb(user, projects, addProject);
+		Vibration.vibrate();
+		const type = notification.data.type;
+		switch (type) {
+			case 'add_project':
+				const project = notification.data.project;
+				if (user.uid != project.uid) {
+					getProjectFromDb(project.id, addProject);
+				}
+				navigation.navigate('InviteP', { project });
+			case 'add_meeting':
+				console.log(type);
+				const meeting = notification.data.meeting;
+				console.log(meeting);
+				if (user.uid != meeting.creator) {
+					getMeetingFromDb(meeting, addMeeting);
+				}
+				navigation.navigate('InviteM', { meeting });
+			default:
+				console.log('no data');
+		}
 	};
 
 	return (
@@ -97,8 +118,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-const mapStateToProps = (state) => {
-	return { users: state.users, projects: state.projects };
-};
-
-export default connect(mapStateToProps, actions)(OpenScreen);
+export default connect(null, actions)(OpenScreen);

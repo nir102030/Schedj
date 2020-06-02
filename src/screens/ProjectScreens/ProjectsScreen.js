@@ -2,13 +2,9 @@ import React, { useEffect } from 'react';
 import { StyleSheet, View, TouchableOpacity, Image } from 'react-native';
 import { Text } from 'react-native-elements';
 import ProjectsList from '../../components/projectsComponents/ProjectsList';
-
 import { connect } from 'react-redux';
-import firebase from 'firebase';
 
 const ProjectsScreen = ({ navigation }) => {
-	const user = firebase.auth().currentUser;
-
 	return (
 		<View style={styles.container}>
 			{/* <Text h4>Hello {user.email.substring(0, user.email.indexOf('@'))}</Text> */}

@@ -1,16 +1,15 @@
 import React from 'react';
-import { Text, StyleSheet, View, ImageBackground, Button, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { Text, StyleSheet, View, Button, TouchableOpacity, ScrollView } from 'react-native';
 //import ApiCalendar from 'react-google-calendar-api';
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
-import { withNavigation } from 'react-navigation';
-import { showMessage, hideMessage } from 'react-native-flash-message';
+import { showMessage } from 'react-native-flash-message';
 import * as Animatable from 'react-native-animatable';
-import AppCalendar from './AppCalendar';
-import { sendPushNotification } from '../../firebase/notifications';
+import * as actions from '../../actions';
+import { connect } from 'react-redux';
 
-const ProjectCalendarScreen = ({ navigation }) => {
+const ProjectCalendarScreen = ({ navigation, calendars }) => {
 	const project = navigation.getParam('project');
-
+	console.log(calendars);
 	return (
 		<View style={styles.container}>
 			<ScrollView>
@@ -148,4 +147,8 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default ProjectCalendarScreen;
+const mapStateToProps = (state) => {
+	return { calendars: state.calendars };
+};
+
+export default connect(mapStateToProps, actions)(ProjectCalendarScreen);

@@ -110,3 +110,10 @@ export const deleteUser = (user) => {
 		payload: user,
 	};
 };
+
+export const addCalendar = (calendar) => {
+	return {
+		type: 'add_calendar',
+		payload: { calendar },
+	};
+};

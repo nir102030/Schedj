@@ -21,14 +21,14 @@ const CreateProjectScreen = ({ navigation, addProject, users }) => {
 	const addParticipantToProject = (user, project) => {
 		const msgTitle = 'New Project Invetation';
 		const msgBody = `You have been added to ${project.name} project`;
-		sendPushNotification(user, msgTitle, msgBody, project);
+		const data = { type: 'add_project', project: project };
+		sendPushNotification(user, msgTitle, msgBody, data);
 	};
 
 	const onSubmit = (project) => {
 		addProject(project);
 		addProjectToDb(user, project);
 		const participants = project.participants;
-		console.log(participants);
 		users.map((user) => {
 			participants.map((participant) => {
 				participant == user.email ? addParticipantToProject(user, project) : null;

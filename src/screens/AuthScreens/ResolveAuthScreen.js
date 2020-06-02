@@ -9,7 +9,8 @@ const ResolveAuthScreen = ({ navigation, addUser }) => {
 	firebaseInit();
 	useEffect(() => {
 		getAllUsersFromDb(addUser);
-	});
+	}, []);
+
 	firebase.auth().onAuthStateChanged(function (user) {
 		if (user) {
 			navigation.navigate('OpenS');

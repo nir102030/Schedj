@@ -18,6 +18,15 @@ export const getAllMeetingsFromDb = (project, meetings, addMeeting) => {
 	});
 };
 
+export const getMeetingFromDb = (meeting, addMeeting) => {
+	const pid = meeting.pid;
+	const mid = meeting.mid;
+	const ref = firebase.database().ref('projects/' + pid + '/meetings/' + mid);
+	ref.once('value', (snapshot) => {
+		addMeeting(snapshot.val());
+	});
+};
+
 export const addMeetingToDb = (meeting) => {
 	const pid = meeting.pid;
 	const mid = meeting.mid;
