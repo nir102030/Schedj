@@ -22,8 +22,8 @@ const FormNewDatePicker = ({date,setDate}) => {
     <View>
       <TouchableOpacity style={styles.TouchableOpacity} onPress={showDatePicker}>
 		<Image source={require('../../../assets/images/Cal.png')} style={styles.image} />
+    <Text style={styles.dateTime}>{date.toString()}</Text>
 	  </TouchableOpacity>
-      {/* <Text>{date}</Text> */}
       <DateTimePickerModal
         isVisible={isDatePickerVisible}
         mode="datetime"
@@ -35,11 +35,19 @@ const FormNewDatePicker = ({date,setDate}) => {
 };
 const styles = StyleSheet.create({
 	TouchableOpacity: {
-		backgroundColor: '#e8f1f9',
+    backgroundColor: '#e8f1f9',
+    flexDirection: 'row',
     },
     image:{
         height:40,
-        width:40
+        width:40,
+        marginVertical:10,
+        marginHorizontal:10
+    },
+    dateTime:{
+      marginVertical:23,
+      marginHorizontal:30
+
     }
 })
 

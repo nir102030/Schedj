@@ -28,7 +28,6 @@ export const createCalendar = async (addCalendar, user) => {
 		ownerAccount: 'personal',
 		accessLevel: Calendar.CalendarAccessLevel.OWNER,
 	});
-	console.log(`Your new calendar ID is: ${newCalendarID}`);
 	const calendars = await Calendar.getCalendarsAsync();
 	const calendarIds = calendars.map((calendar) => {
 		return calendar.id;

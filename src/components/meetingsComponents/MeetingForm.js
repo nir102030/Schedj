@@ -30,7 +30,8 @@ const MeetingForm = ({ project, oldMeeting, onSubmit, type }) => {
 			<ScrollView>
 				<Text style={styles.fillRequired}>Please fill the required fields </Text>
 				<View style={styles.designSquare}>
-					<FormNewDatePicker date={meeting.date} setDate = {(date) => setMeeting({ ...meeting, date: date })}/>
+					<FormNewDatePicker date={meeting.date} 
+						setDate = {(date) => setMeeting({ ...meeting, date: date })}/>
 				</View>
 				<FormInput
 					title=" Place Of Meeting"

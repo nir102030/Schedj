@@ -19,7 +19,7 @@ const CreateProjectScreen = ({ navigation, addProject, users }) => {
 	};
 
 	const addParticipantToProject = (user, project) => {
-		const msgTitle = 'New Project Invetation';
+		const msgTitle = 'New Project Invitation';
 		const msgBody = `You have been added to ${project.name} project`;
 		const data = { type: 'add_project', project: project };
 		sendPushNotification(user, msgTitle, msgBody, data);

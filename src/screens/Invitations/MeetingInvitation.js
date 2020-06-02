@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     projName: {
         fontWeight:'bold',
         fontSize: 35,
-        marginVertical: 10,
+        marginVertical: 20,
         paddingLeft:10,
         color:'#263238',
     },
@@ -65,7 +65,8 @@ const styles = StyleSheet.create({
         height:400,
         width:370,
         borderRadius:10,
-        alignSelf:'center'
+        alignSelf:'center',
+        marginVertical: 35,
     },
 });
 
