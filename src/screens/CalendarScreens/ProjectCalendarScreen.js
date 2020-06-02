@@ -1,86 +1,23 @@
-import React from 'react';
-import { Text, StyleSheet, View, Button, TouchableOpacity, ScrollView } from 'react-native';
-//import ApiCalendar from 'react-google-calendar-api';
+import React, { useState } from 'react';
+import { Text, StyleSheet, View } from 'react-native';
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
-import { showMessage } from 'react-native-flash-message';
-import * as Animatable from 'react-native-animatable';
+import ColorMessageComp from '../../components/calendarComponents/ColorMessageComp';
+import firebase from 'firebase';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
 
 const ProjectCalendarScreen = ({ navigation, calendars }) => {
-	const project = navigation.getParam('project');
+	const user = firebase.auth().currentUser;
+	const userCalendar = calendars.find((calendar) => calendar.uid == user.uid);
 	return (
 		<View style={styles.container}>
-			<ScrollView>
-				<View style={{ flexDirection: 'row-reverse' }}>
-					<Button
-						onPress={() => {
-							showMessage({
-								message: 'Green',
-								description: 'Green - Available',
-								type: 'info',
-								color: 'white',
-								backgroundColor: '#388e3c',
-							});
-						}}
-						title="Green"
-						color="#388e3c"
-					/>
-					<Button
-						onPress={() => {
-							showMessage({
-								message: 'Yellow',
-								description: 'Yellow - Waiting',
-								type: 'info',
-								color: 'white',
-								backgroundColor: '#fcc400',
-							});
-						}}
-						title="Yellow"
-						color="#fcc400"
-					/>
-					<Button
-						onPress={() => {
-							showMessage({
-								message: 'Red',
-								description: 'Red - Scheduled',
-								type: 'info',
-								color: 'white',
-								backgroundColor: '#d32f2f',
-							});
-						}}
-						title="Red"
-						color="#d32f2f"
-					/>
-					<Button
-						onPress={() => {
-							showMessage({
-								message: 'Grey',
-								description: 'Grey - Busy',
-								type: 'info',
-								color: 'white',
-								backgroundColor: '#808080',
-							});
-						}}
-						title="Grey"
-						color="#808080"
-					/>
-				</View>
-				<Calendar />
-				<TouchableOpacity
-					style={styles.TouchableOpacity}
-					onPress={() => navigation.navigate('InviteP', { project })}
-				>
-					<Animatable.Text animation="slideInLeft" iterationCount={3} direction="alternate">
-						<Text style={styles.test}> New Project Invitation</Text>
-					</Animatable.Text>
-				</TouchableOpacity>
-				<TouchableOpacity style={styles.TouchableOpacity} onPress={() => navigation.navigate('InviteM')}>
-					<Animatable.Text animation="slideInRight" iterationCount={3} direction="alternate">
-						<Text style={styles.test}> New Meeting Invitation</Text>
-					</Animatable.Text>
-				</TouchableOpacity>
-			</ScrollView>
+			<View style={{ flexDirection: 'row-reverse' }}>
+				<ColorMessageComp colorCode="#388e3c" colorName="Green" description="Green - Available" />
+				<ColorMessageComp colorCode="#fcc400" colorName="Yellow" description="Yellow - Waiting" />
+				<ColorMessageComp colorCode="#d32f2f" colorName="Red" description="Red - Scheduled" />
+				<ColorMessageComp colorCode="#808080" colorName="Grey" description="Grey - Busy" />
+			</View>
+			<Calendar onDayPress={(date) => navigation.navigate('DailyCalendar', { date })} />
 		</View>
 	);
 };

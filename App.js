@@ -27,6 +27,7 @@ import ComingSoonScreen from './src/screens/General/ComingSoonScreen';
 import SignInGoogleScreen from './src/screens/General/SignInGoogleScreen';
 import SignupScreen from './src/screens/AuthScreens/SignupScreen';
 import ResolveAuthScreen from './src/screens/AuthScreens/ResolveAuthScreen';
+import DailyCalendarScreen from './src/screens/CalendarScreens/DailyCalendarScreen';
 
 //This function ignores unresolved warnings
 YellowBox.ignoreWarnings([
@@ -45,6 +46,7 @@ const navigator = createSwitchNavigator({
 			{
 				Projects: ProjectsScreen,
 				Calendar: ProjectCalendarScreen,
+				DailyCalendar: DailyCalendarScreen,
 				CreateP: CreateProjectScreen,
 				EditP: EditProjectScreen,
 				InviteP: ProjectInvitation,
