@@ -9,13 +9,28 @@ export const getAllUsersFromDb = (addUser) => {
 	});
 };
 
-export const addUserToDb = (user) => {
+export const getUserFromDb = (user) => {
+	const ref = firebase.database().ref('users/' + user.uid);
+	ref.once('value', (snapshot) => {
+		return snapshot.val();
+	});
+};
+
+export const addUserToDbAsync = async (user, token) => {
+	let promise = new Promise((resolve, reject) => {
+		setTimeout(() => resolve(addUserToDb(user, token), 1000));
+	});
+	let result = await promise;
+};
+
+export const addUserToDb = (user, token) => {
 	firebase
 		.database()
 		.ref('users/' + user.uid)
 		.set({
+			uid: user.uid,
 			email: user.email,
-			token: '',
+			token: token,
 			profileName: '',
 			profilePic: '',
 			reminder: '',
@@ -23,10 +38,13 @@ export const addUserToDb = (user) => {
 		});
 };
 
-export const editUserInDb = (user, token) => {
-	const uid = user.uid;
-	const dbUser = { ...user, token: token };
+export const editUserInDbAsync = async (user) => {
+	console.log('edit is working');
+	const dbUser = getUserFromDb(user);
+	console.log(dbUser);
+	const editedDbUser = { ...dbUser, isNewUser: isNewUser };
+	console.log(editedDbUser);
 	var updates = {};
-	updates['users/' + uid] = dbUser;
+	updates['users/' + uid] = editedDbUser;
 	firebase.database().ref().update(updates);
 };

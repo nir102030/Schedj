@@ -1,6 +1,6 @@
 import * as Permissions from 'expo-permissions';
 import { Notifications } from 'expo';
-import { editUserInDb } from '../firebase/usersAPI';
+import { addUserToDbAsync } from '../firebase/usersAPI';
 import { Platform, Vibration } from 'react-native';
 
 //Show the user a pop up to allow the notifications and if he allows it store the token in the user db
@@ -24,7 +24,7 @@ export const registerForPushNotifications = async (user) => {
 	let token = await Notifications.getExpoPushTokenAsync();
 
 	//Add token to firebase
-	editUserInDb(user, token);
+	addUserToDbAsync(user, token);
 
 	if (Platform.OS === 'android') {
 		Notifications.createChannelAndroidAsync('default', {

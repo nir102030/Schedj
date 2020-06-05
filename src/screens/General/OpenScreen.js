@@ -1,22 +1,28 @@
 import React, { useEffect } from 'react';
 import { View, StyleSheet, Image, TouchableOpacity, Text, Vibration } from 'react-native';
 import * as Animatable from 'react-native-animatable';
-import { registerForPushNotifications } from '../../firebase/notifications';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
 import { Notifications } from 'expo';
 import { getProjectFromDb } from '../../firebase/projectsAPI';
 import { getMeetingFromDb } from '../../firebase/meetingsAPI';
-import { getCalendarPermission, createCalendar } from '../../calendar/calendarAPI';
+import { editCalendarInDb } from '../../firebase/calendarAPI';
+import { createCalendar } from '../../calendar/calendarAPI';
+import { getUserFromDb } from '../../firebase/calendarAPI';
 
 const OpenScreen = ({ navigation, addProject, addMeeting, addCalendar }) => {
 	const user = firebase.auth().currentUser;
+	//we need to add the real user from the db
+	const editCalendarAsync = async () => {
+		let promise = new Promise((resolve, reject) => {
+			setTimeout(() => resolve(createCalendar(addCalendar, user), 1000));
+		});
+		const result = await promise;
+	};
 
 	useEffect(() => {
-		registerForPushNotifications(user);
-		getCalendarPermission();
-		createCalendar(addCalendar, user);
+		editCalendarAsync();
 		_notificationSubscription = Notifications.addListener(handleNotification);
 	}, []);
 
@@ -78,7 +84,7 @@ const styles = StyleSheet.create({
 	container: {
 		height: '100%',
 		width: '100%',
-        backgroundColor:'#e8f1f9',
+		backgroundColor: '#e8f1f9',
 	},
 	TouchableOpacity: {
 		flexDirection: 'row-reverse',
@@ -107,7 +113,7 @@ const styles = StyleSheet.create({
 		width: 350,
 		alignSelf: 'center',
 		marginVertical: 40,
-		marginRight:30
+		marginRight: 30,
 	},
 	headerStyle: {
 		fontWeight: 'bold',

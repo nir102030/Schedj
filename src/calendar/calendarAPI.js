@@ -1,11 +1,10 @@
 import * as Calendar from 'expo-calendar';
+import { addCalendarToDb, editCalendarInDb } from '../firebase/calendarAPI';
 
-export const getCalendarPermission = async () => {
+export const getCalendarPermission = async (addCalendar, user, isNewUser) => {
 	const { status } = await Calendar.requestCalendarPermissionsAsync();
 	if (status === 'granted') {
-		// const calendars = await Calendar.getCalendarsAsync();
-		// console.log('Here are all your calendars:');
-		// console.log({ calendars });
+		createCalendar(addCalendar, user, type);
 	}
 };
 
@@ -15,19 +14,8 @@ async function getDefaultCalendarSource() {
 	return defaultCalendars[0].source;
 }
 
-export const createCalendar = async (addCalendar, user) => {
-	const defaultCalendarSource =
-		Platform.OS === 'ios' ? await getDefaultCalendarSource() : { isLocalAccount: true, name: 'My Calendar' };
-	const newCalendarID = await Calendar.createCalendarAsync({
-		title: 'My Calendar',
-		color: 'blue',
-		entityType: Calendar.EntityTypes.EVENT,
-		sourceId: defaultCalendarSource.id,
-		source: defaultCalendarSource,
-		name: 'MyProjectCalendar',
-		ownerAccount: 'personal',
-		accessLevel: Calendar.CalendarAccessLevel.OWNER,
-	});
+export const createCalendarObject = async (user) => {
+	console.log('new calendar obj');
 	const calendars = await Calendar.getCalendarsAsync();
 	const calendarIds = calendars.map((calendar) => {
 		return calendar.id;
@@ -43,6 +31,20 @@ export const createCalendar = async (addCalendar, user) => {
 			title: event.title,
 		};
 	});
-	const calendar = { cid: newCalendarID, uid: user.uid, name: user.email, events: events };
-	addCalendar(calendar);
+	const cid = Math.floor(Math.random() * 99999);
+	const calendar = { cid: cid, uid: user.uid, name: user.email, events: events };
+	return calendar;
+};
+
+export const createCalendar = async (addCalendar, user, type) => {
+	const calendar = await createCalendarObject(user);
+	if (type === 'sign_up') {
+		console.log('createCalendar signup');
+		addCalendar(calendar);
+		addCalendarToDb(calendar);
+	} else if (type === 'logged_in') {
+		console.log('createCalendar logged in');
+		addCalendar(calendar);
+		editCalendarInDb(calendar);
+	}
 };
