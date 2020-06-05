@@ -8,7 +8,6 @@ import { withNavigation } from 'react-navigation';
 
 const DailyCalendar = ({ navigation, calendars }) => {
 	const initialDate = navigation.getParam('date').dateString;
-	console.log(initialDate);
 	let { width } = Dimensions.get('window');
 	const user = firebase.auth().currentUser;
 	const userCalendar = calendars.find((calendar) => calendar.uid == user.uid);
@@ -55,13 +54,14 @@ const DailyCalendar = ({ navigation, calendars }) => {
 			summary: '',
 		};
 	});
-	console.log(filteredEvents);
 	return (
 		<EventCalendar
 			//eventTapped={this._eventTapped.bind(this)}
 			events={filteredEvents}
 			width={width}
 			initDate={initialDate}
+			scrollToFirst={true}
+			size={1}
 		/>
 	);
 };
