@@ -24,22 +24,19 @@ export const getProjectFromDb = (pid, addProject) => {
 export const addCalendarToDb = (calendar) => {
 	firebase
 		.database()
-		.ref('users/' + calendar.uid + '/calendar/' + calendar.cid)
+		.ref('users/' + calendar.uid + '/calendar')
 		.set({
-			cid: calendar.cid,
 			uid: calendar.uid,
 			name: calendar.name,
 			events: calendar.events,
 		});
 };
 
-export const editCalendarInDb = (calendar) => {
-	const cid = calendar.cid;
-	const uid = calendar.uid;
+export const editCalendarInDb = (uid) => {
 	var updates = {};
-	console.log(cid);
 	console.log(uid);
-	updates['users/' + uid + '/calendar/' + cid] = calendar;
+	console.log(calendar);
+	updates['users/' + uid + '/calendar'] = calendar;
 	firebase.database().ref().update(updates);
 };
 

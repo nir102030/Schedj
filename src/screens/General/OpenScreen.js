@@ -13,10 +13,9 @@ import { getUserFromDb } from '../../firebase/calendarAPI';
 
 const OpenScreen = ({ navigation, addProject, addMeeting, addCalendar }) => {
 	const user = firebase.auth().currentUser;
-	//we need to add the real user from the db
 	const editCalendarAsync = async () => {
 		let promise = new Promise((resolve, reject) => {
-			setTimeout(() => resolve(createCalendar(addCalendar, user), 1000));
+			setTimeout(() => resolve(createCalendar(addCalendar, user)), 1000);
 		});
 		const result = await promise;
 	};
