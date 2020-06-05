@@ -66,7 +66,7 @@ const SettingsScreen = ({ navigation, deleteProject, projects }) => {
 				<Text style={styles.subHeader}> Rank our app </Text>
 				<FormPickerSelect items={rankItems} label={'Rank'} />
 				<Spacer/>
-				<Button title="Sign Out" onPress={() => setShowAlert(true)} color={'#c3dadd'} />
+				<Button title="Sign Out" onPress={() => setShowAlert(true)} color={'black'} containerStyle={{width: 380,alignSelf:'center'}} />
 				<Spacer/>
 				<Alert
 					showAlert={showAlert}
