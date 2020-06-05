@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import AuthForm from '../../components/AuthComponenets/AuthForm';
+import { View, StyleSheet,Image } from 'react-native';
 import firebase from 'firebase';
 
 const LoginScreen = ({ navigation }) => {
@@ -29,7 +30,28 @@ const LoginScreen = ({ navigation }) => {
 			});
 	};
 
-	return <AuthForm type="Sign In" onSubmit={(email, password) => signIn(email, password)} loading={loading} />;
+	return(
+		<View style={styles.background}>
+		<AuthForm type="Sign In" onSubmit={(email, password) => signIn(email, password)} loading={loading} />
+		<Image source={require('../../../assets/images/yaelle.png')} style={styles.smallHeader} />
+		</View>
+	)
 };
-
+	
+	
 export default LoginScreen;
+
+const styles = StyleSheet.create({
+	background:{
+		backgroundColor:'#e8f1f9',
+		height:'100%'
+	},
+	smallHeader:{
+		width:350,
+		height:300,
+		alignSelf:'center',
+		marginVertical:60,	
+	}
+
+});
+

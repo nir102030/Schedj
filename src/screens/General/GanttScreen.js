@@ -39,7 +39,7 @@ const GanttScreen = () => {
    
 const styles = StyleSheet.create({
         container:{
-            backgroundColor:'#607d8b',
+            backgroundColor:'#e8f1f9',
             height:'100%'
         },
         gantt: {
