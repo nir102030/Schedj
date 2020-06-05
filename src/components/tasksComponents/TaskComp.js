@@ -51,7 +51,7 @@ const TaskComp = ({ task, deleteTask, editTask }) => {
 				animated={true}
 				color={task.color}
 				borderColor={'#99BAC9'}
-				marginVertical={10}
+				marginVertical={7}
 			/>
 			<View style={styles.AAA}>
 				<TaskStatusSetter
@@ -100,10 +100,9 @@ const TaskComp = ({ task, deleteTask, editTask }) => {
 
 const styles = StyleSheet.create({
 	prog: {
-		flex: 1,
+		flex: 1,		
 	},
 	BBB: {
-		//paddingTop:3,
 		marginLeft: 0,
 		fontWeight: 'bold',
 		color: 'white',

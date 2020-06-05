@@ -33,7 +33,7 @@ const ProjectForm = ({ oldProject, onSubmit, type, users }) => {
 				<Text style={styles.text}>{project.name}</Text>
 			</View>
 			<ScrollView>
-				<Text style={styles.fillRequired}>Please fill the required fields </Text>
+				<Text style={styles.fillRequired}>  Please fill the required fields </Text>
 				<FormInput
 					title=" Project Name"
 					value={project.name}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image,TouchableOpacity } from 'react-native';
 import { Button } from 'react-native-elements';
 import FormInput from '../../components/genericComponents/FormInput';
 import FormPickerSelect from '../../components/genericComponents/FormPickerSelect';
@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import Spacer from '../../components/genericComponents/Spacer';
 import { CheckBox } from 'react-native-elements';
-import { TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
+import { ScrollView } from 'react-native-gesture-handler';
 import PickImage from '../../components/genericComponents/PickImage'
 
 const SettingsScreen = ({ navigation, deleteProject, projects }) => {
@@ -84,20 +84,29 @@ const SettingsScreen = ({ navigation, deleteProject, projects }) => {
 	);
 };
 
-SettingsScreen.navigationOptions = () => {
-	return {
-		headerRight: (
-			<View>
+SettingsScreen.navigationOptions = ({navigation}) => { 
+    return{ headerRight:   
+            <View style={styles.navigator}>
 				<Text style={styles.headerStyle}> Settings </Text>
-			</View>
-		),
-	};
+                <TouchableOpacity onPress={() => navigation.navigate('Projects')}>
+                    <Image source={require('../../../assets/images/home.png')} style={styles.home}/>
+                </TouchableOpacity>
+            </View>
+    };
 };
 
 const styles = StyleSheet.create({
 	container: {
 		backgroundColor: '#e8f1f9',
 		flex: 1,
+	},
+	navigator:{
+        flexDirection: 'row',
+	},
+	home: {
+		height: 35,
+        width: 35,
+        marginRight:10
 	},
 	check:{
 		backgroundColor:'white',
