@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, StyleSheet, View,TouchableOpacity,Image } from 'react-native';
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import ColorMessageComp from '../../components/calendarComponents/ColorMessageComp';
@@ -9,23 +9,28 @@ import { connect } from 'react-redux';
 const ProjectCalendarScreen = ({ navigation, users }) => {
 	const project = navigation.getParam('project');
 	const participants = project.participants;
-	let events = [];
+	const [events, setEvents] = useState([]);
+
 	const createEventsArray = () => {
 		const projectUsers = participants.map((participant) => {
 			return users.find((user) => participant === user.email);
 		});
-		//console.log(projectUsers);
-		const eventsArr = () =>
-			projectUsers.map((user) => {
-				console.log(user);
+		let newEvents = [];
+		projectUsers.map((user) => {
+			const userEvents = user.calendar.events;
+			//console.log(userEvents);
+			return userEvents.map((event) => {
+				//console.log(event);
+				newEvents = [...newEvents, event];
 			});
-		eventsArr();
+		});
+		setEvents(newEvents);
 	};
 
 	useEffect(() => {
 		createEventsArray();
 	}, []);
-
+	//console.log(events);
 	return (
 		<View style={styles.container}>
 			<View style={{ flexDirection: 'row-reverse' }}>
