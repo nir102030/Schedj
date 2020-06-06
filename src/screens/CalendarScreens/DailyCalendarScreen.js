@@ -5,7 +5,6 @@ import * as actions from '../../actions';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
 import { withNavigation } from 'react-navigation';
-import Flying from 'react-element-flying';
 
 
 const DailyCalendar = ({ navigation, calendars }) => {
@@ -24,8 +23,6 @@ const DailyCalendar = ({ navigation, calendars }) => {
 
 	let { width } = Dimensions.get('window');
 	const filteredEvents = events.filter((event) => event.start.substring(0, 10) === initialDate);
-	//console.log(filteredEvents);
-	console.log(events);
 	return (
 		<>
 		<EventCalendar
@@ -47,20 +44,6 @@ const mapStateToProps = (state) => {
 	return { calendars: state.calendars };
 };
 
-const styles = StyleSheet.create({
-	TouchableOpacityA: {
-		backgroundColor: '#bbdde1',
-		flex: 2.5,
-		flexDirection: 'column',
-		borderBottomWidth: 0.6,
-		borderBottomColor: 'white',
-	},
-	image: {
-		height: 37,
-		width: 37,
-		alignSelf: 'center',
-	},
-});
 
 export default connect(mapStateToProps, actions)(withNavigation(DailyCalendar));
 
@@ -78,5 +61,17 @@ const styles = StyleSheet.create({
 		position: 'absolute',
 		marginTop:'150%'
 		// alignItems:'flex-end'
-	}
+	},
+	TouchableOpacityA: {
+		backgroundColor: '#bbdde1',
+		flex: 2.5,
+		flexDirection: 'column',
+		borderBottomWidth: 0.6,
+		borderBottomColor: 'white',
+	},
+	image: {
+		height: 37,
+		width: 37,
+		alignSelf: 'center',
+	},
 })

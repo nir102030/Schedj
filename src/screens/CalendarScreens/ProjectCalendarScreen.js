@@ -13,17 +13,17 @@ const ProjectCalendarScreen = ({ navigation, users }) => {
 	const participants = project.participants;
 	const [events, setEvents] = useState([]);
 	const [timeSlots, setTimeSlots] = useState([]);
+	const [freeTimeSlots, setFreeTimeSlots] = useState([]);
 	const moment = extendMoment(Moment);
+
 	const createTimeSlots = () => {
 		let timeSlots = [];
-		const timeInterval = '2020-06-01T08:00:00+00:00/2020-06-30T20:00:00+00:00';
+		const timeInterval = '2020-06-07T08:00:00+00:00/2020-06-08T20:00:00+00:00';
 		const range = moment.range(timeInterval);
 		const hours = Array.from(range.by('hour', { excludeEnd: true }));
 		timeSlots = hours.map((m) => m);
-		setTimeSlots(timeSlots);
+		return timeSlots
 	};
-
-	const [freeTimeSlots, setFreeTimeSlots] = useState([]);
 
 	const createEventsArray = () => {
 		const projectUsers = participants.map((participant) => {
@@ -32,28 +32,47 @@ const ProjectCalendarScreen = ({ navigation, users }) => {
 		let newEvents = [];
 		projectUsers.map((user) => {
 			const userEvents = user.calendar.events;
-			//console.log(userEvents);
 			return userEvents.map((event) => {
-				//console.log(event);
 				newEvents = [...newEvents, event];
 			});
 		});
-		setEvents(newEvents);
+		return newEvents;
 	};
 
-	// const findFreeTimeSlots = () => {
-	// 	const freeTimeSlots = timeSlots.filter((timeSlot)=>{
-	// 		events.map((event)=>{
-	// 			timeSlot < event.start || timeSlot > event.end ?
-	// 		})
-	// 	})
-	// };
+	const timeCondition = (timeSlot)=>{
+		return !events.find((event)=>moment.range(event.start,event.end).contains(timeSlot))
+	}
 
+	const findFreeTimeSlots = (timeSlots) => {
+		const freeTimeSlotsArr = timeSlots.filter((timeSlot)=>timeCondition(timeSlot))
+		return freeTimeSlotsArr
+	}
+
+	const initiateArraysAsync = async ()=>{
+		let promise1 = new Promise((resolve, reject) => {
+			setTimeout(() => resolve(createTimeSlots()), 1000);
+		});
+		const result1 = await promise1;
+		//console.log(result1);
+
+		let promise2 = new Promise((resolve, reject) => {
+			setTimeout(() => resolve(createEventsArray()), 1000);
+		});
+		const result2 = await promise2;
+		//console.log(result2)
+		setEvents(result2);
+
+		let promise3 = new Promise((resolve, reject) => {
+			setTimeout(() => resolve(findFreeTimeSlots(result1)), 1000);
+		});
+		const result3 = await promise3;
+		setFreeTimeSlots(result3);
+	}
+	//console.log(moment.range("2020-06-07T05:00:00.000Z","2020-06-07T06:00:00.000Z").contains(moment('2020-06-07T06:00:00.000Z')))
 	useEffect(() => {
-		createEventsArray();
-		createTimeSlots();
+		initiateArraysAsync();
 	}, []);
-	console.log(events);
+	console.log(freeTimeSlots);
 	return (
 		<View style={styles.container}>
 			<View style={{ flexDirection: 'row-reverse' }}>
