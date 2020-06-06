@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { Text, StyleSheet, View } from 'react-native';
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import ColorMessageComp from '../../components/calendarComponents/ColorMessageComp';
@@ -9,26 +9,33 @@ import { connect } from 'react-redux';
 const ProjectCalendarScreen = ({ navigation, users }) => {
 	const project = navigation.getParam('project');
 	const participants = project.participants;
-	const projectUsers = participants.map((participant) => {
-		return users.find((user) => participant === user.email);
-	});
+	let events = [];
+	const createEventsArray = () => {
+		const projectUsers = participants.map((participant) => {
+			return users.find((user) => participant === user.email);
+		});
 
-	const getDateFormat = (dateString) => {
-		const date = dateString.substring(0, dateString.indexOf('T'));
-		const hour = dateString.substring(dateString.indexOf('T') + 1, dateString.indexOf('.'));
-		return `${date} ${hour}`;
+		let eventsArr = [];
+		projectUsers.map((user) => {
+			eventsArr = eventsArr.concat(user.calendar.events);
+		});
+		console.log(eventsArr);
+		const getDateFormat = (dateString) => {
+			const date = dateString.substring(0, dateString.indexOf('T'));
+			const hour = dateString.substring(dateString.indexOf('T') + 1, dateString.indexOf('.'));
+			return `${date} ${hour}`;
+		};
+
+		events = eventsArr.map((event) => {
+			const startDate = getDateFormat(event.startDate);
+			const endDate = getDateFormat(event.endDate);
+			return { start: startDate, end: endDate, title: event.title, summary: '' };
+		});
 	};
 
-	let eventsArr = [];
-	const events = projectUsers.map((user) => {
-		eventsArr = [...eventsArr, ...user.calendar.events];
-	});
-	console.log(eventsArr);
-	// return user.calendar.events.map((event) => {
-	// 	const startDate = getDateFormat(event.startDate);
-	// 	const endDate = getDateFormat(event.endDate);
-	// 	return { start: startDate, end: endDate, title: event.title, summary: '' };
-	// });
+	useEffect(() => {
+		createEventsArray();
+	}, []);
 
 	return (
 		<View style={styles.container}>
@@ -38,7 +45,7 @@ const ProjectCalendarScreen = ({ navigation, users }) => {
 				<ColorMessageComp colorCode="#d32f2f" colorName="Red" description="Red - Scheduled" />
 				<ColorMessageComp colorCode="#808080" colorName="Grey" description="Grey - Busy" />
 			</View>
-			<Calendar onDayPress={(date) => navigation.navigate('DailyCalendar', { date: date, events: eventsArr })} />
+			<Calendar onDayPress={(date) => navigation.navigate('DailyCalendar', { date, events })} />
 		</View>
 	);
 };
