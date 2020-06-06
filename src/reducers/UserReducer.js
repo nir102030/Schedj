@@ -11,6 +11,7 @@ export default (state = [], action) => {
 					reminder: action.payload.user.reminder,
 					rank: action.payload.user.rank,
 					token: action.payload.user.token,
+					calendar: action.payload.user.calendar,
 				},
 			];
 		case 'edit_user':

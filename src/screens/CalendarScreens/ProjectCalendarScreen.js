@@ -6,9 +6,30 @@ import firebase from 'firebase';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
 
-const ProjectCalendarScreen = ({ navigation, calendars }) => {
-	const user = firebase.auth().currentUser;
-	const userCalendar = calendars.find((calendar) => calendar.uid == user.uid);
+const ProjectCalendarScreen = ({ navigation, users }) => {
+	const project = navigation.getParam('project');
+	const participants = project.participants;
+	const projectUsers = participants.map((participant) => {
+		return users.find((user) => participant === user.email);
+	});
+
+	const getDateFormat = (dateString) => {
+		const date = dateString.substring(0, dateString.indexOf('T'));
+		const hour = dateString.substring(dateString.indexOf('T') + 1, dateString.indexOf('.'));
+		return `${date} ${hour}`;
+	};
+
+	let eventsArr = [];
+	const events = projectUsers.map((user) => {
+		eventsArr = [...eventsArr, ...user.calendar.events];
+	});
+	console.log(eventsArr);
+	// return user.calendar.events.map((event) => {
+	// 	const startDate = getDateFormat(event.startDate);
+	// 	const endDate = getDateFormat(event.endDate);
+	// 	return { start: startDate, end: endDate, title: event.title, summary: '' };
+	// });
+
 	return (
 		<View style={styles.container}>
 			<View style={{ flexDirection: 'row-reverse' }}>
@@ -17,7 +38,7 @@ const ProjectCalendarScreen = ({ navigation, calendars }) => {
 				<ColorMessageComp colorCode="#d32f2f" colorName="Red" description="Red - Scheduled" />
 				<ColorMessageComp colorCode="#808080" colorName="Grey" description="Grey - Busy" />
 			</View>
-			<Calendar onDayPress={(date) => navigation.navigate('DailyCalendar', { date })} />
+			<Calendar onDayPress={(date) => navigation.navigate('DailyCalendar', { date: date, events: eventsArr })} />
 		</View>
 	);
 };
@@ -84,7 +105,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-	return { calendars: state.calendars };
+	return { calendars: state.calendars, users: state.users };
 };
 
 export default connect(mapStateToProps, actions)(ProjectCalendarScreen);
