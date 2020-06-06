@@ -1,5 +1,6 @@
 import React from 'react';
 import MeetingForm from '../../components/meetingsComponents/MeetingForm';
+import { View,StyleSheet,Text,TouchableOpacity,Image } from 'react-native'
 import { addMeetingToDb } from '../../firebase/meetingsAPI';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
@@ -59,4 +60,36 @@ const mapStateToProps = (state) => {
 	return { meetings: state.meetings, users: state.users };
 };
 
+CreateMeetingScreen.navigationOptions = ({navigation}) => { 
+    return{ headerRight:   
+            <View style={styles.navigator}>
+                <Text style={styles.headerStyle}> Add New Meeting </Text>
+                <TouchableOpacity onPress={() => navigation.navigate('Projects')}>
+                    <Image source={require('../../../assets/images/home.png')} style={styles.home}/>
+                </TouchableOpacity>
+            </View>
+	};
+	
+};
+
 export default connect(mapStateToProps, actions)(CreateMeetingScreen);
+
+
+const styles = StyleSheet.create({
+    navigator:{
+        flexDirection: 'row',
+	},
+	headerStyle: { 
+        fontWeight:'bold',
+        fontSize: 30,
+        marginRight: 5,
+        alignSelf:'center',
+        color:'#263238',
+        textAlign:'left'
+    },  
+	home: {
+		height: 35,
+        width: 35,
+        marginRight:10
+	}
+});

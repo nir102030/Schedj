@@ -51,7 +51,10 @@ const styles = StyleSheet.create({
 		height: 35,
         width: 35,
         marginRight:10
-	},
+    },
+    navigator:{
+        flexDirection: 'row',
+    },
     headerStyle: { 
         fontWeight:'bold',
         fontSize: 30,

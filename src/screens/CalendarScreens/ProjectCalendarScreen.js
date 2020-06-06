@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Text, StyleSheet, View } from 'react-native';
+import { Text, StyleSheet, View,TouchableOpacity,Image } from 'react-native';
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import ColorMessageComp from '../../components/calendarComponents/ColorMessageComp';
 import firebase from 'firebase';
@@ -39,14 +39,15 @@ const ProjectCalendarScreen = ({ navigation, users }) => {
 	);
 };
 
-ProjectCalendarScreen.navigationOptions = () => {
-	return {
-		headerRight: (
-			<View>
-				<Text style={styles.headerStyle}> Calendar </Text>
-			</View>
-		),
-	};
+ProjectCalendarScreen.navigationOptions = ({navigation}) => { 
+    return{ headerRight:   
+            <View style={styles.navigator}>
+                <Text style={styles.headerStyle1}> Calendar </Text>
+                <TouchableOpacity onPress={() => navigation.navigate('Projects')}>
+                    <Image source={require('../../../assets/images/home.png')} style={styles.home}/>
+                </TouchableOpacity>
+            </View>
+    };
 };
 
 const styles = StyleSheet.create({
@@ -60,6 +61,9 @@ const styles = StyleSheet.create({
 		marginRight: 15,
 		alignSelf: 'center',
 	},
+    navigator:{
+        flexDirection: 'row',
+    },
 	text: {
 		fontWeight: 'bold',
 		fontSize: 30,
@@ -98,6 +102,19 @@ const styles = StyleSheet.create({
 		color: '#263238',
 		textAlign: 'left',
 	},
+	home: {
+		height: 35,
+        width: 35,
+        marginRight:10
+	},
+    headerStyle1: { 
+        fontWeight:'bold',
+        fontSize: 30,
+        marginRight: 5,
+        alignSelf:'center',
+        color:'#263238',
+        textAlign:'left'
+    },  
 });
 
 const mapStateToProps = (state) => {

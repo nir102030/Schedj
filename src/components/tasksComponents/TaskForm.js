@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Picklist, TouchableOpacity, Image, TextInput } from 'react-native';
+import { View, StyleSheet,TextInput } from 'react-native';
 import FormInput from '../../components/genericComponents/FormInput';
 import FormSubmitButton from '../genericComponents/FormSubmitButton';
 import { connect } from 'react-redux';
+import { Input } from 'react-native-elements';
 
 const TaskForm = ({ oldTask, onSubmit, type }) => {
 	const [task, setTask] = useState(oldTask);
@@ -67,10 +68,7 @@ const styles = StyleSheet.create({
 		borderRadius: 5,
 		flex: 1,
 		fontSize: 20,
-		//fontWeight: 'bold',
-		//lineHeight: 10,
 		height: 200,
-		//textAlign:'center',
 		alignSelf: 'center',
 		textAlignVertical: 'top',
 	},

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet,Image,TouchableOpacity } from 'react-native';
 import TopicsList from '../../components/tasksComponents/TopicsList';
 import CreateTopic from '../../components/tasksComponents/CreateTopic';
 import { getAllTopicsFromDb } from '../../firebase/topicsAPI';
@@ -21,15 +21,23 @@ const TasksScreen = ({ navigation, topics, addTopic }) => {
 	);
 };
 
-TasksScreen.navigationOptions = () => {
-	return {
-		headerRight: (
-			<View>
-				<Text style={styles.headerStyle}> Tasks </Text>
-			</View>
-		),
-	};
+TasksScreen.navigationOptions = ({navigation}) => { 
+    return{ headerRight:   
+            <View style={styles.navigator}>
+                <Text style={styles.headerStyle}> Tasks </Text>
+                <TouchableOpacity onPress={() => navigation.navigate('Projects')}>
+                    <Image source={require('../../../assets/images/home.png')} style={styles.home}/>
+                </TouchableOpacity>
+            </View>
+    };
 };
+
+const mapStateToProps = (state) => {
+	return { topics: state.topics, tasks: state.tasks };
+};
+
+export default connect(mapStateToProps, actions)(TasksScreen);
+
 
 const styles = StyleSheet.create({
 	container: {
@@ -49,18 +57,22 @@ const styles = StyleSheet.create({
 		borderBottomColor: '#d9e3f0',
 		paddingTop: 5,
 	},
-	headerStyle: {
-		fontWeight: 'bold',
-		fontSize: 30,
-		marginRight: 5,
-		alignSelf: 'center',
-		color: '#263238',
-		textAlign: 'left',
-	},
+	home: {
+		height: 35,
+        width: 35,
+        marginRight:10
+    },
+    navigator:{
+        flexDirection: 'row',
+    },
+    headerStyle: { 
+        fontWeight:'bold',
+        fontSize: 30,
+        marginRight: 5,
+        alignSelf:'center',
+        color:'#263238',
+        textAlign:'left'
+    },  
+	
 });
 
-const mapStateToProps = (state) => {
-	return { topics: state.topics, tasks: state.tasks };
-};
-
-export default connect(mapStateToProps, actions)(TasksScreen);

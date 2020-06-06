@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import AwesomeAlert from 'react-native-awesome-alerts';
 
+
 const Alert = ({ showAlert, message, onConfirm, onCancel }) => {
 	return (
 		<AwesomeAlert
@@ -16,6 +17,11 @@ const Alert = ({ showAlert, message, onConfirm, onCancel }) => {
 			confirmButtonColor="#DD6B55"
 			onCancelPressed={onCancel}
 			onConfirmPressed={onConfirm}
+			// contentContainerStyle ={{height: '100%', width: '100%'}}
+			// overlayStyle={{	height: '400%', width: '300%'}}
+			// contentStyle={{height: '100%', width: '100%'}}
+			// alertContainerStyle={{height: '100%', width: '100%'}}
+			// actionContainerStyle={{height: '50%', width: '100%'}}
 		/>
 	);
 };

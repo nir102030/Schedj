@@ -1,5 +1,6 @@
 import React from 'react';
 import ProjectForm from '../../components/projectsComponents/ProjectForm';
+import { Text, StyleSheet, View, Image, ScrollView,TouchableOpacity } from 'react-native';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
 import { addProjectToDb } from '../../firebase/projectsAPI';
@@ -44,4 +45,35 @@ const mapStateToProps = (state) => {
 	return { users: state.users };
 };
 
+CreateProjectScreen.navigationOptions = ({navigation}) => { 
+    return{ headerRight:   
+            <View style={styles.navigator}>
+                <Text style={styles.headerStyle}> Add New Project </Text>
+                <TouchableOpacity onPress={() => navigation.navigate('Projects')}>
+                    <Image source={require('../../../assets/images/home.png')} style={styles.home}/>
+                </TouchableOpacity>
+            </View>
+    };
+};
 export default connect(mapStateToProps, actions)(CreateProjectScreen);
+
+
+const styles = StyleSheet.create({
+    navigator:{
+        flexDirection: 'row',
+	},
+	headerStyle: { 
+        fontWeight:'bold',
+        fontSize: 30,
+        marginRight: 5,
+        alignSelf:'center',
+        color:'#263238',
+        textAlign:'left'
+    },  
+	home: {
+		height: 35,
+        width: 35,
+        marginRight:10
+	}
+});
+

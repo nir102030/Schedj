@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
-import { Text, Button, Input,Image,View } from 'react-native-elements';
+import { Text, Button, Input} from 'react-native-elements';
 import Spacer from '../genericComponents/Spacer';
 import Spinner from '../genericComponents/Spinner';
 

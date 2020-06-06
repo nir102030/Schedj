@@ -4,9 +4,9 @@ import { View,ScrollView,StyleSheet,Text,Image } from 'react-native'
 
 const GanttScreen = () => {
     const tasks = [
-        { _id: "1", name: "Task 1", "start": new Date(2020, 1, 1), "end": new Date(2020, 2, 5), progress: 0.7 },
-        { _id: "2", name: "Task 2", "start": new Date(2020, 1, 1), "end": new Date(2020, 3, 5), progress: 1 },
-        { _id: "3", name: "Task 3", "start": new Date(2020, 1, 1), "end": new Date(2020, 4, 5), progress: 0.3 }
+        { _id: "1", name: "", "start": new Date(2020, 0, 1), "end": new Date(2020, 1, 15), progress: 0.7 },
+        { _id: "2", name: "", "start": new Date(2020, 1, 1), "end": new Date(2020, 2, 5), progress: 0.6 },
+        { _id: "3", name: "", "start": new Date(2020, 2, 1), "end": new Date(2020, 3, 15), progress: 0.3 }
         ];
     
 
@@ -23,12 +23,12 @@ const GanttScreen = () => {
                             numberOfTicks={5}
                             onPressTask={task => alert(task.name)}
                             gridMin={new Date(2020, 0, 1).getTime()}
-                            gridMax={new Date(2080, 0, 20).getTime()}
+                            gridMax={new Date(2020, 0, 30).getTime()}
                             colors={{
-                                barColorPrimary: '#0c2461',
-                                barColorSecondary: '#4a69bd',
-                                textColor: '#fff',
-                                backgroundColor: '#607d8b'
+                                barColorPrimary: '#53a6af',
+                                barColorSecondary: '#93bfc1',
+                                textColor: '#416f71',
+                                backgroundColor: '#e8f1f9'
                             }}
                         />
                     </ScrollView>
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
         },
         header: {
             flexDirection: 'row',
-            backgroundColor:'#8aa9b9',
+            backgroundColor:'#e8f1f9',
             justifyContent: 'flex-end',
             borderBottomWidth:5,
             borderBottomColor:'#2d6886'

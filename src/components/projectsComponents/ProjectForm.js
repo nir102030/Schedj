@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, StyleSheet, View, Image, ScrollView, FlatList } from 'react-native';
+import { Text, StyleSheet, View, ScrollView } from 'react-native';
 import FormInput from '../genericComponents/FormInput';
 import FormSubmitButton from '../genericComponents/FormSubmitButton';
 import FormNotes from '../../components/genericComponents/FormNotes';
@@ -86,8 +86,8 @@ const styles = StyleSheet.create({
 		justifyContent: 'flex-end',
 	},
 	text: {
-		fontWeight: 'bold',
-		fontSize: 30,
+		//fontWeight: 'bold',
+		fontSize: 28,
 		marginVertical: 10,
 		marginHorizontal: 34,
 		alignSelf: 'center',

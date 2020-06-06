@@ -16,10 +16,13 @@ const MeetingsScreen = ({navigation}) => {
     );
 };
 
-MeetingsScreen.navigationOptions = () => { 
+MeetingsScreen.navigationOptions = ({navigation}) => { 
     return{ headerRight:   
-            <View>
+            <View style={styles.navigator}>
                 <Text style={styles.headerStyle}> Meetings </Text>
+                <TouchableOpacity onPress={() => navigation.navigate('Projects')}>
+                    <Image source={require('../../../assets/images/home.png')} style={styles.home}/>
+                </TouchableOpacity>
             </View>
     };
 };
@@ -50,6 +53,14 @@ const styles = StyleSheet.create({
         alignSelf:'center',
         fontWeight:'bold'
     },
+    home: {
+		height: 35,
+        width: 35,
+        marginRight:10
+    },
+    navigator:{
+        flexDirection: 'row',
+    },
     headerStyle: { 
         fontWeight:'bold',
         fontSize: 30,
@@ -57,7 +68,7 @@ const styles = StyleSheet.create({
         alignSelf:'center',
         color:'#263238',
         textAlign:'left'
-    },
+    },  
 });
 
 export default MeetingsScreen;
