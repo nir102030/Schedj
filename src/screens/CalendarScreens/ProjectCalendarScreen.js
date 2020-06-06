@@ -39,7 +39,7 @@ const ProjectCalendarScreen = ({ navigation, users }) => {
 				<ColorMessageComp colorCode="#d32f2f" colorName="Red" description="Red - Scheduled" />
 				<ColorMessageComp colorCode="#808080" colorName="Grey" description="Grey - Busy" />
 			</View>
-			<Calendar onDayPress={(date) => navigation.navigate('DailyCalendar', { date, events })} />
+			<Calendar onDayPress={(date) => navigation.navigate('DailyCalendar', { date, events,project })} />
 		</View>
 	);
 };
