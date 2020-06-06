@@ -14,23 +14,12 @@ const ProjectCalendarScreen = ({ navigation, users }) => {
 		const projectUsers = participants.map((participant) => {
 			return users.find((user) => participant === user.email);
 		});
-
-		let eventsArr = [];
-		projectUsers.map((user) => {
-			eventsArr = eventsArr.concat(user.calendar.events);
-		});
-		console.log(eventsArr);
-		const getDateFormat = (dateString) => {
-			const date = dateString.substring(0, dateString.indexOf('T'));
-			const hour = dateString.substring(dateString.indexOf('T') + 1, dateString.indexOf('.'));
-			return `${date} ${hour}`;
-		};
-
-		events = eventsArr.map((event) => {
-			const startDate = getDateFormat(event.startDate);
-			const endDate = getDateFormat(event.endDate);
-			return { start: startDate, end: endDate, title: event.title, summary: '' };
-		});
+		//console.log(projectUsers);
+		const eventsArr = () =>
+			projectUsers.map((user) => {
+				console.log(user);
+			});
+		eventsArr();
 	};
 
 	useEffect(() => {

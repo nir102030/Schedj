@@ -8,11 +8,11 @@ export const getCalendarPermission = async (addCalendar, user) => {
 	}
 };
 
-async function getDefaultCalendarSource() {
-	const calendars = await Calendar.getCalendarsAsync();
-	const defaultCalendars = calendars.filter((each) => each.source.name === 'Default');
-	return defaultCalendars[0].source;
-}
+export const createCalendar = async (addCalendar, user) => {
+	const calendar = await createCalendarObject(user);
+	addCalendar(calendar);
+	addCalendarToDb(calendar);
+};
 
 export const createCalendarObject = async (user) => {
 	const calendars = await Calendar.getCalendarsAsync();
@@ -30,12 +30,18 @@ export const createCalendarObject = async (user) => {
 			title: event.title,
 		};
 	});
+	const getDateFormat = (dateString) => {
+		const date = dateString.substring(0, dateString.indexOf('T'));
+		const hour = dateString.substring(dateString.indexOf('T') + 1, dateString.indexOf('.'));
+		return `${date} ${hour}`;
+	};
+
+	events = events.map((event) => {
+		const startDate = getDateFormat(event.startDate);
+		const endDate = getDateFormat(event.endDate);
+		return { start: startDate, end: endDate, title: event.title, summary: '' };
+	});
+	console.log(events);
 	const calendar = { uid: user.uid, name: user.email, events: events };
 	return calendar;
-};
-
-export const createCalendar = async (addCalendar, user) => {
-	const calendar = await createCalendarObject(user);
-	addCalendar(calendar);
-	addCalendarToDb(calendar);
 };
