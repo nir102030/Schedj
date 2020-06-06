@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Text, StyleSheet, View,TouchableOpacity,Image } from 'react-native';
+import { Text, StyleSheet, View, TouchableOpacity, Image } from 'react-native';
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import ColorMessageComp from '../../components/calendarComponents/ColorMessageComp';
+import Moment from 'moment';
+import { extendMoment } from 'moment-range';
 import firebase from 'firebase';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
@@ -10,6 +12,18 @@ const ProjectCalendarScreen = ({ navigation, users }) => {
 	const project = navigation.getParam('project');
 	const participants = project.participants;
 	const [events, setEvents] = useState([]);
+	const [timeSlots, setTimeSlots] = useState([]);
+	const moment = extendMoment(Moment);
+	const createTimeSlots = () => {
+		let timeSlots = [];
+		const timeInterval = '2020-06-01T08:00:00+00:00/2020-06-30T20:00:00+00:00';
+		const range = moment.range(timeInterval);
+		const hours = Array.from(range.by('hour', { excludeEnd: true }));
+		timeSlots = hours.map((m) => m);
+		setTimeSlots(timeSlots);
+	};
+
+	const [freeTimeSlots, setFreeTimeSlots] = useState([]);
 
 	const createEventsArray = () => {
 		const projectUsers = participants.map((participant) => {
@@ -27,10 +41,19 @@ const ProjectCalendarScreen = ({ navigation, users }) => {
 		setEvents(newEvents);
 	};
 
+	// const findFreeTimeSlots = () => {
+	// 	const freeTimeSlots = timeSlots.filter((timeSlot)=>{
+	// 		events.map((event)=>{
+	// 			timeSlot < event.start || timeSlot > event.end ?
+	// 		})
+	// 	})
+	// };
+
 	useEffect(() => {
 		createEventsArray();
+		createTimeSlots();
 	}, []);
-	//console.log(events);
+	console.log(events);
 	return (
 		<View style={styles.container}>
 			<View style={{ flexDirection: 'row-reverse' }}>
@@ -44,15 +67,17 @@ const ProjectCalendarScreen = ({ navigation, users }) => {
 	);
 };
 
-ProjectCalendarScreen.navigationOptions = ({navigation}) => { 
-    return{ headerRight:   
-            <View style={styles.navigator}>
-                <Text style={styles.headerStyle1}> Calendar </Text>
-                <TouchableOpacity onPress={() => navigation.navigate('Projects')}>
-                    <Image source={require('../../../assets/images/home.png')} style={styles.home}/>
-                </TouchableOpacity>
-            </View>
-    };
+ProjectCalendarScreen.navigationOptions = ({ navigation }) => {
+	return {
+		headerRight: (
+			<View style={styles.navigator}>
+				<Text style={styles.headerStyle1}> Calendar </Text>
+				<TouchableOpacity onPress={() => navigation.navigate('Projects')}>
+					<Image source={require('../../../assets/images/home.png')} style={styles.home} />
+				</TouchableOpacity>
+			</View>
+		),
+	};
 };
 
 const styles = StyleSheet.create({
@@ -66,9 +91,9 @@ const styles = StyleSheet.create({
 		marginRight: 15,
 		alignSelf: 'center',
 	},
-    navigator:{
-        flexDirection: 'row',
-    },
+	navigator: {
+		flexDirection: 'row',
+	},
 	text: {
 		fontWeight: 'bold',
 		fontSize: 30,
@@ -109,17 +134,17 @@ const styles = StyleSheet.create({
 	},
 	home: {
 		height: 35,
-        width: 35,
-        marginRight:10
+		width: 35,
+		marginRight: 10,
 	},
-    headerStyle1: { 
-        fontWeight:'bold',
-        fontSize: 30,
-        marginRight: 5,
-        alignSelf:'center',
-        color:'#263238',
-        textAlign:'left'
-    },  
+	headerStyle1: {
+		fontWeight: 'bold',
+		fontSize: 30,
+		marginRight: 5,
+		alignSelf: 'center',
+		color: '#263238',
+		textAlign: 'left',
+	},
 });
 
 const mapStateToProps = (state) => {
