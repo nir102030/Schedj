@@ -20,28 +20,26 @@ export const createCalendarObject = async (user) => {
 		return calendar.id;
 	});
 	const startDate = new Date('June 7, 2020 00:00:00');
-	const endDate = new Date('June 7, 2020 23:00:00');
+	const endDate = new Date('June 30, 2020 23:00:00');
+	const events = await createEvents(calendarIds, startDate, endDate);
+	const calendar = { uid: user.uid, name: user.email, events: events };
+	return calendar;
+};
+
+const createEvents = async (calendarIds, startDate, endDate) => {
 	let events = await Calendar.getEventsAsync(calendarIds, startDate, endDate);
-	events = events.map((event) => {
-		return {
-			id: event.id,
-			startDate: event.startDate,
-			endDate: event.endDate,
-			title: event.title,
-		};
-	});
 	const getDateFormat = (dateString) => {
 		const date = dateString.substring(0, dateString.indexOf('T'));
 		const hour = dateString.substring(dateString.indexOf('T') + 1, dateString.indexOf('.'));
 		return `${date} ${hour}`;
 	};
-
 	events = events.map((event) => {
-		const startDate = getDateFormat(event.startDate);
-		const endDate = getDateFormat(event.endDate);
-		return { start: startDate, end: endDate, title: event.title, summary: '' };
+		return {
+			id: event.id,
+			start: getDateFormat(event.startDate),
+			end: getDateFormat(event.endDate),
+			title: event.title,
+		};
 	});
-	console.log(events);
-	const calendar = { uid: user.uid, name: user.email, events: events };
-	return calendar;
+	return events;
 };
