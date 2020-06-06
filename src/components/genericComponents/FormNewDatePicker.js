@@ -22,7 +22,9 @@ const FormNewDatePicker = ({date,onConfirm,type, imageSrc, startIndex, endIndex}
   return (
     <View>
       <View style={styles.row}>
-        <Text style={styles.dateTime}>{date.toString().substring(startIndex,endIndex)}</Text>
+        <TouchableOpacity onPress={showDatePicker}>
+          <Text style={styles.dateTime}>{date.toString().substring(startIndex,endIndex)}</Text>
+        </TouchableOpacity>
         <TouchableOpacity style={styles.TouchableOpacity} onPress={showDatePicker}>
           <Image source={imageSrc} style={styles.image} />
         </TouchableOpacity>

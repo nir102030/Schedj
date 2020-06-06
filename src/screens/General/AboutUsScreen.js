@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, Image,Text} from 'react-native';
+import {View, StyleSheet, Image,Text,TouchableOpacity} from 'react-native';
 
 const AboutUsScreen = () => {
 
@@ -10,10 +10,13 @@ const AboutUsScreen = () => {
     );
 };
 
-AboutUsScreen.navigationOptions = () => { 
+AboutUsScreen.navigationOptions = ({navigation}) => { 
     return{ headerRight:   
-            <View>
+            <View style={styles.navigator} >
                 <Text style={styles.headerStyle}> About Us </Text>
+                <TouchableOpacity onPress={() => navigation.navigate('Projects')}>
+                    <Image source={require('../../../assets/images/home.png')} style={styles.home}/>
+                </TouchableOpacity>
             </View>
     };
 };
@@ -24,6 +27,14 @@ const styles = StyleSheet.create({
         height:'100%',
         width:'100%',
     },
+    navigator:{
+        flexDirection: 'row',
+    },
+    home: {
+		height: 35,
+        width: 35,
+        marginRight:10
+	},
     image: {
         height:'100%',
         width:'100%',

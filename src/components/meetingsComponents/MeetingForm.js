@@ -27,7 +27,7 @@ const MeetingForm = ({ project, oldMeeting, onSubmit, type }) => {
 				<Text style={styles.headerStyle}>Meeting {meeting.mid + 1}</Text>
 			</View>
 			<ScrollView>
-				<Text style={styles.fillRequired}>Please fill the required fields </Text>
+				<Text style={styles.fillRequired}>  Please fill the required fields </Text>
 				<View style={styles.designSquare}>
 					<View style={styles.sameRow1}>
 						<FormNewDatePicker date={meeting.date} 

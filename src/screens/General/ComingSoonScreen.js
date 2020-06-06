@@ -1,5 +1,5 @@
 import React from 'react'
-import { View,StyleSheet,Text,TouchableOpacity } from 'react-native'
+import { View,StyleSheet,Text,TouchableOpacity,Image } from 'react-native'
 import Spacer from '../../components/genericComponents/Spacer'
 
 const ComingSoonScreen = ({navigation}) => {
@@ -14,10 +14,13 @@ const ComingSoonScreen = ({navigation}) => {
     );
 };
 
-ComingSoonScreen.navigationOptions = () => { 
+ComingSoonScreen.navigationOptions = ({navigation}) => { 
     return{ headerRight:   
-            <View>
+            <View style={styles.navigator}>
                 <Text style={styles.headerStyle}> Coming Soon </Text>
+                <TouchableOpacity onPress={() => navigation.navigate('Projects')}>
+                    <Image source={require('../../../assets/images/home.png')} style={styles.home}/>
+                </TouchableOpacity>
             </View>
     };
 };
@@ -34,6 +37,9 @@ const styles = StyleSheet.create({
         flexDirection:'row-reverse',
         paddingLeft:3,
     },
+    navigator:{
+        flexDirection: 'row',
+    },
     text: {
         fontSize:30,
         color:'#263238',
@@ -41,6 +47,11 @@ const styles = StyleSheet.create({
         marginHorizontal:10,
         marginVertical:10
     },
+    home: {
+		height: 35,
+        width: 35,
+        marginRight:10
+	},
     headerStyle: { 
         fontWeight:'bold',
         fontSize: 30,

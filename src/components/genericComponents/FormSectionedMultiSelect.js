@@ -22,7 +22,7 @@ export default class FormSectionedMultiSelect extends Component {
                     items={this.items}
                     uniqueKey="id"
                     subKey="children"
-                    selectText="Add Tasks"
+                    selectText="Attach Tasks"
                     showDropDowns={true}
                     showCancelButton={true}
                     searchPlaceholderText=' Search Tasks'	
