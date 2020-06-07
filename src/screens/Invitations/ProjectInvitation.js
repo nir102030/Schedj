@@ -15,10 +15,10 @@ const ProjectInvitation = ({ navigation, pid, Owner, Inviter }) => {
 				<Text style={styles.Text}>You got a new invitation for:</Text>
 				<Spacer/>
 				<Text style={styles.Text1}>{project.name} project</Text>
-				<Spacer/>
+				{/* <Spacer/>
 				<Text style={styles.Text2}>Rest of the team includes : </Text>
-				<Spacer/>
-				<Text style={styles.Text4}>Put Participants</Text>
+				<Spacer/> */}
+				{/* <Text style={styles.Text4}>Put Participants</Text> */}
 				<Spacer/>
 				<Text style={styles.Text}>Would you like to approve the invitation ? </Text>
 				<TouchableOpacity style={styles.TouchableOpacity}>
