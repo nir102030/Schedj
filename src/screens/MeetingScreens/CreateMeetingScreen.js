@@ -42,7 +42,8 @@ const CreateMeetingScreen = ({ navigation, addMeeting, meetings, users }) => {
 	const onSubmit = (meeting) => {
 		addMeeting(meeting);
 		addMeetingToDb(meeting);
-		const participants = meeting.participants;
+		const participants = meeting.participants.filter((participant) => participant !== user.email)
+		console.log(participants);
 		users.map((user) => {
 			participants.map((participant) => {
 				participant == user.email ? addParticipantToMeeting(user, meeting) : null;

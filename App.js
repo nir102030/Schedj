@@ -32,6 +32,7 @@ import DailyCalendarScreen from './src/screens/CalendarScreens/DailyCalendarScre
 //This function ignores unresolved warnings
 YellowBox.ignoreWarnings([
 	'VirtualizedLists should never be nested', //This warning will be ignored.
+	'Setting a timer for a long period of time'
 ]);
 
 const navigator = createSwitchNavigator({
