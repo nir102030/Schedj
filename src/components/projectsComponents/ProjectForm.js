@@ -65,7 +65,7 @@ const ProjectForm = ({ oldProject, onSubmit, type, users }) => {
 					notes={project.notes}
 					setNotes={(notes) => setProject({ ...project, notes: notes })}
 				/>
-				<Text style={styles.task}> *Define your tasks later </Text>
+				<Text style={styles.task}> 			*Define your tasks later </Text>
 				<FormSubmitButton onSubmit={() => validation()} type={type} />
 			</ScrollView>
 		</View>
