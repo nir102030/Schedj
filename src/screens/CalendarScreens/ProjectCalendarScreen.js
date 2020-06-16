@@ -22,7 +22,7 @@ const ProjectCalendarScreen = ({ navigation, users }) => {
 		const range = moment.range(timeInterval);
 		const hours = Array.from(range.by('hour', { excludeEnd: true }));
 		timeSlots = hours.map((m) => m);
-		return timeSlots
+		return timeSlots;
 	};
 
 	const createEventsArray = () => {
@@ -39,40 +39,42 @@ const ProjectCalendarScreen = ({ navigation, users }) => {
 		return newEvents;
 	};
 
-	const timeCondition = (timeSlot)=>{
-		return !events.find((event)=>moment.range(event.start,event.end).contains(timeSlot))
-	}
+	const timeCondition = (timeSlot) => {
+		return !events.find((event) => moment.range(event.start, event.end).contains(timeSlot));
+	};
 
 	const findFreeTimeSlots = (timeSlots) => {
-		const freeTimeSlotsArr = timeSlots.filter((timeSlot)=>timeCondition(timeSlot))
-		return freeTimeSlotsArr
-	}
+		const freeTimeSlotsArr = timeSlots.filter((timeSlot) => timeCondition(timeSlot));
+		const freeTimeSlotObj = freeTimeSlotsArr.map((timeSlot) => {
+			return timeSlot.format('YYYY-MM-DD');
+		});
+		return freeTimeSlotObj.filter((item, index) => freeTimeSlotObj.indexOf(item) === index);
+	};
 
-	const initiateArraysAsync = async ()=>{
+	const initiateArraysAsync = async () => {
 		let promise1 = new Promise((resolve, reject) => {
-			setTimeout(() => resolve(createTimeSlots()), 1000);
+			resolve(createTimeSlots());
 		});
 		const result1 = await promise1;
-		//console.log(result1);
 
 		let promise2 = new Promise((resolve, reject) => {
-			setTimeout(() => resolve(createEventsArray()), 1000);
+			resolve(createEventsArray());
 		});
 		const result2 = await promise2;
-		//console.log(result2)
 		setEvents(result2);
 
 		let promise3 = new Promise((resolve, reject) => {
-			setTimeout(() => resolve(findFreeTimeSlots(result1)), 1000);
+			resolve(findFreeTimeSlots(result1));
 		});
 		const result3 = await promise3;
 		setFreeTimeSlots(result3);
-	}
+	};
 	//console.log(moment.range("2020-06-07T05:00:00.000Z","2020-06-07T06:00:00.000Z").contains(moment('2020-06-07T06:00:00.000Z')))
 	useEffect(() => {
 		initiateArraysAsync();
 	}, []);
-	console.log(freeTimeSlots);
+	//console.log(freeTimeSlots);
+	console.log(events);
 	return (
 		<View style={styles.container}>
 			<View style={{ flexDirection: 'row-reverse' }}>
@@ -81,7 +83,13 @@ const ProjectCalendarScreen = ({ navigation, users }) => {
 				<ColorMessageComp colorCode="#d32f2f" colorName="Red" description="Red - Scheduled" />
 				<ColorMessageComp colorCode="#808080" colorName="Grey" description="Grey - Busy" />
 			</View>
-			<Calendar onDayPress={(date) => navigation.navigate('DailyCalendar', { date, events,project })} />
+			<Calendar
+				onDayPress={(date) => navigation.navigate('DailyCalendar', { date, events, project })}
+				// markedDates={freeTimeSlots.map((timeSlot) => {
+				// 	const key = `${timeSlot}`;
+				// 	return { key: { selected: true, marked: true, selectedColor: 'green' } };
+				// })}
+			/>
 		</View>
 	);
 };

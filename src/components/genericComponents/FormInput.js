@@ -12,9 +12,9 @@ const FormInput = ({ title, value, onChange, viewStyle, long }) => {
 				value={value}
 				onChangeText={onChange}
 				maxLength={long}
-				inputStyle={{marginHorizontal:3}}
+				inputStyle={{ marginHorizontal: 3 }}
 			/>
-			<Text style={styles.text}>{title} </Text>
+			{/* <Text style={styles.text}>{title} </Text> */}
 		</View>
 	);
 };

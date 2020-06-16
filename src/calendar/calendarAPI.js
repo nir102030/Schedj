@@ -19,8 +19,8 @@ export const createCalendarObject = async (user) => {
 	const calendarIds = calendars.map((calendar) => {
 		return calendar.id;
 	});
-	const startDate = new Date('June 7, 2020 00:00:00');
-	const endDate = new Date('June 8, 2020 23:00:00');
+	const startDate = new Date('June 1, 2020 00:00:00');
+	const endDate = new Date('June 30, 2020 23:00:00');
 	const events = await createEvents(calendarIds, startDate, endDate);
 	const calendar = { uid: user.uid, name: user.email, events: events };
 	return calendar;
@@ -34,7 +34,7 @@ const createEvents = async (calendarIds, startDate, endDate) => {
 			id: event.id,
 			start: event.startDate,
 			end: event.endDate,
-			title: event.title,
+			title: event.title.toString(),
 		};
 	});
 	return events;
