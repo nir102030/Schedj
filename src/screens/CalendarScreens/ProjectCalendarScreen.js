@@ -4,7 +4,6 @@ import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import ColorMessageComp from '../../components/calendarComponents/ColorMessageComp';
 import Moment from 'moment';
 import { extendMoment } from 'moment-range';
-import firebase from 'firebase';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
 
@@ -12,13 +11,12 @@ const ProjectCalendarScreen = ({ navigation, users }) => {
 	const project = navigation.getParam('project');
 	const participants = project.participants;
 	const [events, setEvents] = useState([]);
-	const [timeSlots, setTimeSlots] = useState([]);
 	const [freeTimeSlots, setFreeTimeSlots] = useState([]);
 	const moment = extendMoment(Moment);
 
 	const createTimeSlots = () => {
 		let timeSlots = [];
-		const timeInterval = '2020-06-07T08:00:00+00:00/2020-06-08T20:00:00+00:00';
+		const timeInterval = '2020-06-01T08:00:00+00:00/2020-06-30T20:00:00+00:00';
 		const range = moment.range(timeInterval);
 		const hours = Array.from(range.by('hour', { excludeEnd: true }));
 		timeSlots = hours.map((m) => m);
@@ -40,15 +38,15 @@ const ProjectCalendarScreen = ({ navigation, users }) => {
 	};
 
 	const timeCondition = (timeSlot) => {
-		return !events.find((event) => moment.range(event.start, event.end).contains(timeSlot));
+		return !events.find((event) => moment.range(event.start, event.end).contains(timeSlot)); //the condition is that the
 	};
 
 	const findFreeTimeSlots = (timeSlots) => {
-		const freeTimeSlotsArr = timeSlots.filter((timeSlot) => timeCondition(timeSlot));
+		const freeTimeSlotsArr = timeSlots.filter((timeSlot) => timeCondition(timeSlot)); //filter to find only the time slots that answer to the condition
 		const freeTimeSlotObj = freeTimeSlotsArr.map((timeSlot) => {
-			return timeSlot.format('YYYY-MM-DD');
+			return timeSlot; //.format('YYYY-MM-DD');
 		});
-		return freeTimeSlotObj.filter((item, index) => freeTimeSlotObj.indexOf(item) === index);
+		return freeTimeSlotObj; //.filter((item, index) => freeTimeSlotObj.indexOf(item) === index);
 	};
 
 	const initiateArraysAsync = async () => {
@@ -67,14 +65,19 @@ const ProjectCalendarScreen = ({ navigation, users }) => {
 			resolve(findFreeTimeSlots(result1));
 		});
 		const result3 = await promise3;
-		setFreeTimeSlots(result3);
+		//console.log(result3);
+		setFreeTimeSlots(
+			result3.filter(
+				(timeSlot) =>
+					timeSlot.toString().substring(16, 24) > '08:00:00' &&
+					timeSlot.toString().substring(16, 24) < '20:00:00'
+			)
+		);
 	};
-	//console.log(moment.range("2020-06-07T05:00:00.000Z","2020-06-07T06:00:00.000Z").contains(moment('2020-06-07T06:00:00.000Z')))
 	useEffect(() => {
 		initiateArraysAsync();
 	}, []);
-	//console.log(freeTimeSlots);
-	console.log(events);
+	console.log(freeTimeSlots);
 	return (
 		<View style={styles.container}>
 			<View style={{ flexDirection: 'row-reverse' }}>

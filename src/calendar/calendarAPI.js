@@ -30,10 +30,14 @@ const createEvents = async (calendarIds, startDate, endDate) => {
 	let events = await Calendar.getEventsAsync(calendarIds, startDate, endDate);
 
 	events = events.map((event) => {
+		const start = new Date(event.startDate);
+		const end = new Date(event.endDate);
+		start.setTime(start.getTime() + 3 * 60 * 60 * 1000);
+		end.setTime(end.getTime() + 3 * 60 * 60 * 1000);
 		return {
 			id: event.id,
-			start: event.startDate,
-			end: event.endDate,
+			start: start.toJSON(),
+			end: end.toJSON(),
 			title: event.title.toString(),
 		};
 	});

@@ -4,7 +4,7 @@ import { Text } from 'react-native-elements';
 import ProjectsList from '../../components/projectsComponents/ProjectsList';
 import { connect } from 'react-redux';
 
-const ProjectsScreen = ({ navigation }) => {
+const ProjectsScreen = ({ navigation, users }) => {
 	return (
 		<View style={styles.container}>
 			{/* <Text h4>Hello {user.email.substring(0, user.email.indexOf('@'))}</Text> */}
@@ -89,6 +89,6 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-	return { projects: state.projects };
+	return { projects: state.projects, users: state.users };
 };
 export default connect(mapStateToProps)(ProjectsScreen);
