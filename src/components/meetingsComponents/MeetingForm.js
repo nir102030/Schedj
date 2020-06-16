@@ -9,8 +9,9 @@ import FormSubmitButton from '../genericComponents/FormSubmitButton';
 import FormNotes from '../genericComponents/FormNotes';
 import FormMultiSelect from '../genericComponents/FormMultiSelect';
 import Spacer from '../genericComponents/Spacer';
+import FormSectionedMultiSelectHours from '../genericComponents/FormSectionedMultiSelectHours';
 
-const MeetingForm = ({ project, oldMeeting, onSubmit, type }) => {
+const MeetingForm = ({ project, oldMeeting, onSubmit, type, freeTimeSlots }) => {
 	const [meeting, setMeeting] = useState(oldMeeting);
 
 	const validation = () => {
@@ -21,37 +22,56 @@ const MeetingForm = ({ project, oldMeeting, onSubmit, type }) => {
 		}
 	};
 
+	const freeTimesListChildren = freeTimeSlots.map((timeSlot) => {
+		const time = `${timeSlot.from}-${timeSlot.to}`;
+		return { name: time, id: time };
+	});
+
+	const freeTimesList = [{ name: 'Pick Hours', id: 'Pick Hours', children: freeTimesListChildren }];
+
+	const addHoursToMeeting = (selectedItems) => {
+		selectedItems.map((selectedItem) => {
+			console.log(selectedItem);
+		});
+	};
+
 	return (
 		<View style={styles.container}>
 			<View style={styles.header}>
 				<Text style={styles.headerStyle}>Meeting {meeting.mid + 1}</Text>
 			</View>
 			<ScrollView>
-				<Text style={styles.fillRequired}>  Please fill the required fields </Text>
+				<Text style={styles.fillRequired}> Please fill the required fields </Text>
+				<View style={styles.multiSelect}>
+					<FormSectionedMultiSelectHours hours={freeTimesList} addHoursToMeeting={addHoursToMeeting} />
+				</View>
 				<View style={styles.designSquare}>
 					<View style={styles.sameRow1}>
-						<FormNewDatePicker date={meeting.date} 
-							onConfirm = {(date) => setMeeting({ ...meeting, date: date })}
-							type = 'date'
-							imageSrc = {require('../../../assets/images/Cal.png')}
-							startIndex = {0}
-							endIndex = {15}
+						<FormNewDatePicker
+							date={meeting.date}
+							onConfirm={(date) => setMeeting({ ...meeting, date: date })}
+							type="date"
+							imageSrc={require('../../../assets/images/Cal.png')}
+							startIndex={0}
+							endIndex={15}
 						/>
 					</View>
 					<View style={styles.sameRow}>
-						<FormNewDatePicker date={meeting.to} 
-							onConfirm = {(to) => setMeeting({ ...meeting, to: to })}
-							type = 'time'
-							imageSrc = {require('../../../assets/images/clockTo.png')}
-							startIndex = {15}
-							endIndex = {21}
+						<FormNewDatePicker
+							date={meeting.to}
+							onConfirm={(to) => setMeeting({ ...meeting, to: to })}
+							type="time"
+							imageSrc={require('../../../assets/images/clockTo.png')}
+							startIndex={15}
+							endIndex={21}
 						/>
-						<FormNewDatePicker date={meeting.from} 
-							onConfirm = {(from) => setMeeting({ ...meeting, from: from })}
-							type = 'time'
-							imageSrc = {require('../../../assets/images/clockFrom.png')}
-							startIndex = {15}
-							endIndex = {21}
+						<FormNewDatePicker
+							date={meeting.from}
+							onConfirm={(from) => setMeeting({ ...meeting, from: from })}
+							type="time"
+							imageSrc={require('../../../assets/images/clockFrom.png')}
+							startIndex={15}
+							endIndex={21}
 						/>
 					</View>
 				</View>
@@ -68,7 +88,7 @@ const MeetingForm = ({ project, oldMeeting, onSubmit, type }) => {
 					addItemsToList={(participants) => setMeeting({ ...meeting, participants: participants })}
 					type="Participants"
 				/>
-				<Spacer/>
+				<Spacer />
 				<Text style={styles.note}> Write your notes here! </Text>
 				<FormNotes notes={meeting.notes} setNotes={(notes) => setMeeting({ ...meeting, notes: notes })} />
 				<FormSubmitButton onSubmit={() => validation()} type={type} />
@@ -103,11 +123,11 @@ const styles = StyleSheet.create({
 
 		flex: 1,
 	},
-	sameRow:{
+	sameRow: {
 		flexDirection: 'row',
 		alignSelf: 'flex-end',
 	},
-	sameRow1:{
+	sameRow1: {
 		flexDirection: 'row',
 		alignSelf: 'flex-end',
 	},
@@ -118,7 +138,7 @@ const styles = StyleSheet.create({
 	},
 	designSquare: {
 		flexDirection: 'column',
-	
+
 		borderBottomWidth: 3,
 		borderBottomColor: '#d9e3f0',
 	},
@@ -154,7 +174,10 @@ const styles = StyleSheet.create({
 		width: 150,
 		borderRadius: 10,
 		alignSelf: 'center',
-	}
+	},
+	multiSelect: {
+		marginHorizontal: 0,
+	},
 });
 
 export default MeetingForm;

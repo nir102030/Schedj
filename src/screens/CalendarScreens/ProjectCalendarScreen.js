@@ -12,6 +12,7 @@ const ProjectCalendarScreen = ({ navigation, users }) => {
 	const participants = project.participants;
 	const [events, setEvents] = useState([]);
 	const [freeTimeSlots, setFreeTimeSlots] = useState([]);
+	const [markedDates, setMarkedDates] = useState([]);
 	const moment = extendMoment(Moment);
 
 	const createTimeSlots = () => {
@@ -65,19 +66,60 @@ const ProjectCalendarScreen = ({ navigation, users }) => {
 			resolve(findFreeTimeSlots(result1));
 		});
 		const result3 = await promise3;
-		//console.log(result3);
-		setFreeTimeSlots(
-			result3.filter(
-				(timeSlot) =>
-					timeSlot.toString().substring(16, 24) > '08:00:00' &&
-					timeSlot.toString().substring(16, 24) < '20:00:00'
-			)
-		);
+		const filtredTimeSlots = await result3.filter((timeSlot) => {
+			const newTimeSlot = timeSlot.toString().substring(16, 24);
+			const startHour = '10:00:00';
+			const endHour = '24:00:00';
+			return newTimeSlot > startHour && newTimeSlot < endHour;
+		});
+		setFreeTimeSlots(filtredTimeSlots);
+
+		let promise4 = new Promise((resolve, reject) => {
+			resolve(createMarkedDates(filtredTimeSlots));
+		});
+		const result4 = await promise4;
+		setMarkedDates(result4);
 	};
 	useEffect(() => {
 		initiateArraysAsync();
 	}, []);
-	console.log(freeTimeSlots);
+
+	const createMarkedDates = (freeTimeSlots) => {
+		let day = '01';
+		let count = 1;
+		let currentTimeSlot;
+		let markedDates = freeTimeSlots.map((timeSlot) => {
+			let timeSlotDay = timeSlot.toString().substring(8, 10);
+			if (day != timeSlotDay) {
+				day = timeSlotDay;
+				currentTimeSlot = currentTimeSlot.toJSON().substring(0, 10);
+				const timeSlotObj = { timeSlot: currentTimeSlot, count: count };
+				count = 1;
+				return timeSlotObj;
+			}
+			count = count + 1;
+			currentTimeSlot = timeSlot;
+			return null;
+		});
+		markedDates = markedDates.filter((dateObj) => dateObj != null);
+		markedDates = markedDates.map((markDate) => {
+			let color = '';
+			if (markDate.count <= 2) {
+				color = 'red';
+			} else if (markDate.count > 2 && markDate.count <= 4) {
+				color = '#ffc107';
+			} else {
+				color = '#81c784';
+			}
+			var date = markDate.timeSlot;
+			var markDatesObj = {};
+			markDatesObj[date] = { customStyles: { container: { borderWidth: 1, borderColor: color } } };
+			return markDatesObj;
+		});
+
+		return Object.assign({}, ...markedDates);
+	};
+
 	return (
 		<View style={styles.container}>
 			<View style={{ flexDirection: 'row-reverse' }}>
@@ -87,11 +129,18 @@ const ProjectCalendarScreen = ({ navigation, users }) => {
 				<ColorMessageComp colorCode="#808080" colorName="Grey" description="Grey - Busy" />
 			</View>
 			<Calendar
-				onDayPress={(date) => navigation.navigate('DailyCalendar', { date, events, project })}
-				// markedDates={freeTimeSlots.map((timeSlot) => {
-				// 	const key = `${timeSlot}`;
-				// 	return { key: { selected: true, marked: true, selectedColor: 'green' } };
-				// })}
+				onDayPress={(date) => {
+					navigation.navigate('DailyCalendar', {
+						date,
+						events,
+						project,
+						freeTimeSlots: freeTimeSlots.filter(
+							(timeSlot) => timeSlot.toJSON().substring(0, 10) == date.dateString
+						),
+					});
+				}}
+				markedDates={markedDates}
+				markingType={'custom'}
 			/>
 		</View>
 	);
@@ -111,6 +160,7 @@ ProjectCalendarScreen.navigationOptions = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
+	calendarMark: {},
 	container: {
 		backgroundColor: '#e8f1f9',
 		height: '100%',

@@ -6,11 +6,17 @@ import { connect } from 'react-redux';
 import firebase from 'firebase';
 import { withNavigation } from 'react-navigation';
 
-
 const DailyCalendar = ({ navigation, calendars }) => {
 	const initialDate = navigation.getParam('date').dateString;
 	const project = navigation.getParam('project');
-
+	const freeTimeSlots = navigation.getParam('freeTimeSlots').map((freeTimeSlot) => {
+		const to = new Date(freeTimeSlot);
+		to.setTime(to.getTime() - 2 * 60 * 60 * 1000);
+		return {
+			from: freeTimeSlot.toJSON().substring(11, 16),
+			to: to.toString().substring(16, 21),
+		};
+	});
 	const getDateFormat = (dateString) => {
 		const date = dateString.substring(0, dateString.indexOf('T'));
 		const hour = dateString.substring(dateString.indexOf('T') + 1, dateString.indexOf('.'));
@@ -25,17 +31,20 @@ const DailyCalendar = ({ navigation, calendars }) => {
 	const filteredEvents = events.filter((event) => event.start.substring(0, 10) === initialDate);
 	return (
 		<>
-		<EventCalendar
-			eventTapped={()=>{}}
-			events={filteredEvents}
-			width={width}
-			initDate={initialDate}
-			scrollToFirst={true}
-			size={1}
-		/>
-		<TouchableOpacity style={styles.touch} onPress={() => navigation.navigate('CreateM',{ project })}>
-			<Image source={require('../../../assets/images/add.png')} style={styles.home}/>
-		</TouchableOpacity>
+			<EventCalendar
+				eventTapped={() => {}}
+				events={filteredEvents}
+				width={width}
+				initDate={initialDate}
+				scrollToFirst={true}
+				size={1}
+			/>
+			<TouchableOpacity
+				style={styles.touch}
+				onPress={() => navigation.navigate('CreateM', { project, freeTimeSlots })}
+			>
+				<Image source={require('../../../assets/images/add.png')} style={styles.home} />
+			</TouchableOpacity>
 		</>
 	);
 };
@@ -44,22 +53,21 @@ const mapStateToProps = (state) => {
 	return { calendars: state.calendars };
 };
 
-
 export default connect(mapStateToProps, actions)(withNavigation(DailyCalendar));
 
 const styles = StyleSheet.create({
-    home: {
+	home: {
 		height: 50,
 		width: 50,
-		
-        // marginRight:10
+
+		// marginRight:10
 	},
-	touch:{
+	touch: {
 		// alignSelf:'flex-start',
-		marginHorizontal:65,
-		paddingTop:60,
+		marginHorizontal: 65,
+		paddingTop: 60,
 		position: 'absolute',
-		marginTop:'150%'
+		marginTop: '150%',
 		// alignItems:'flex-end'
 	},
 	TouchableOpacityA: {
@@ -74,4 +82,4 @@ const styles = StyleSheet.create({
 		width: 37,
 		alignSelf: 'center',
 	},
-})
+});
