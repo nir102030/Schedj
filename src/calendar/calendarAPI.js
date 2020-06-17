@@ -43,3 +43,44 @@ const createEvents = async (calendarIds, startDate, endDate) => {
 	});
 	return events;
 };
+
+const createTimeSlots = async (moment) => {
+	let timeSlots = [];
+	const timeInterval = '2020-06-01T08:00:00+00:00/2020-06-30T20:00:00+00:00';
+	const range = moment.range(timeInterval);
+	const hours = Array.from(range.by('hour', { excludeEnd: true }));
+	timeSlots = hours.map((m) => m);
+	return timeSlots;
+};
+
+export const createEventsArray = async (participants, users) => {
+	const projectUsers = participants.map((participant) => {
+		return users.find((user) => participant === user.email);
+	});
+	let newEvents = [];
+	projectUsers.map((user) => {
+		const userEvents = user.calendar.events;
+		return userEvents.map((event) => {
+			newEvents = [...newEvents, event];
+		});
+	});
+	return newEvents;
+};
+
+const timeCondition = (timeSlot, events, moment) => {
+	return !events.find((event) => moment.range(event.start, event.end).contains(timeSlot)); //the condition is that the
+};
+
+export const findFreeTimeSlots = async (events, moment) => {
+	const timeSlots = await createTimeSlots(moment);
+	const freeTimeSlotsArr = timeSlots.filter((timeSlot) => timeCondition(timeSlot, events, moment)); //filter to find only the time slots that answer to the condition
+	const freeTimeSlotObj = freeTimeSlotsArr.map((timeSlot) => {
+		return timeSlot;
+	});
+	return freeTimeSlotObj.filter((timeSlot) => {
+		const newTimeSlot = timeSlot.toString().substring(16, 24);
+		const startHour = '10:00:00';
+		const endHour = '24:00:00';
+		return newTimeSlot > startHour && newTimeSlot < endHour;
+	});
+};

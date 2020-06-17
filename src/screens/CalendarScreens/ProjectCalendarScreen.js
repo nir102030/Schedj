@@ -4,6 +4,7 @@ import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import ColorMessageComp from '../../components/calendarComponents/ColorMessageComp';
 import Moment from 'moment';
 import { extendMoment } from 'moment-range';
+import { createEventsArray, findFreeTimeSlots } from '../../calendar/calendarAPI';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
 
@@ -13,69 +14,29 @@ const ProjectCalendarScreen = ({ navigation, users }) => {
 	const [events, setEvents] = useState([]);
 	const [freeTimeSlots, setFreeTimeSlots] = useState([]);
 	const [markedDates, setMarkedDates] = useState([]);
-	const moment = extendMoment(Moment);
-
-	const createTimeSlots = () => {
-		let timeSlots = [];
-		const timeInterval = '2020-06-01T08:00:00+00:00/2020-06-30T20:00:00+00:00';
-		const range = moment.range(timeInterval);
-		const hours = Array.from(range.by('hour', { excludeEnd: true }));
-		timeSlots = hours.map((m) => m);
-		return timeSlots;
-	};
-
-	const createEventsArray = () => {
-		const projectUsers = participants.map((participant) => {
-			return users.find((user) => participant === user.email);
-		});
-		let newEvents = [];
-		projectUsers.map((user) => {
-			const userEvents = user.calendar.events;
-			return userEvents.map((event) => {
-				newEvents = [...newEvents, event];
-			});
-		});
-		return newEvents;
-	};
-
-	const timeCondition = (timeSlot) => {
-		return !events.find((event) => moment.range(event.start, event.end).contains(timeSlot)); //the condition is that the
-	};
-
-	const findFreeTimeSlots = (timeSlots) => {
-		const freeTimeSlotsArr = timeSlots.filter((timeSlot) => timeCondition(timeSlot)); //filter to find only the time slots that answer to the condition
-		const freeTimeSlotObj = freeTimeSlotsArr.map((timeSlot) => {
-			return timeSlot; //.format('YYYY-MM-DD');
-		});
-		return freeTimeSlotObj; //.filter((item, index) => freeTimeSlotObj.indexOf(item) === index);
-	};
 
 	const initiateArraysAsync = async () => {
-		let promise1 = new Promise((resolve, reject) => {
-			resolve(createTimeSlots());
-		});
-		const result1 = await promise1;
-
+		const moment = extendMoment(Moment);
 		let promise2 = new Promise((resolve, reject) => {
-			resolve(createEventsArray());
+			resolve(createEventsArray(participants, users));
 		});
 		const result2 = await promise2;
 		setEvents(result2);
 
 		let promise3 = new Promise((resolve, reject) => {
-			resolve(findFreeTimeSlots(result1));
+			resolve(findFreeTimeSlots(result2, moment));
 		});
 		const result3 = await promise3;
-		const filtredTimeSlots = await result3.filter((timeSlot) => {
-			const newTimeSlot = timeSlot.toString().substring(16, 24);
-			const startHour = '10:00:00';
-			const endHour = '24:00:00';
-			return newTimeSlot > startHour && newTimeSlot < endHour;
-		});
-		setFreeTimeSlots(filtredTimeSlots);
+		// const filtredTimeSlots = await result3.filter((timeSlot) => {
+		// 	const newTimeSlot = timeSlot.toString().substring(16, 24);
+		// 	const startHour = '10:00:00';
+		// 	const endHour = '24:00:00';
+		// 	return newTimeSlot > startHour && newTimeSlot < endHour;
+		// });
+		setFreeTimeSlots(result3);
 
 		let promise4 = new Promise((resolve, reject) => {
-			resolve(createMarkedDates(filtredTimeSlots));
+			resolve(createMarkedDates(result3));
 		});
 		const result4 = await promise4;
 		setMarkedDates(result4);

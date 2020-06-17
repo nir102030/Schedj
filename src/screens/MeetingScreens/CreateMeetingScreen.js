@@ -9,8 +9,7 @@ import firebase from 'firebase';
 
 const CreateMeetingScreen = ({ navigation, addMeeting, meetings, users }) => {
 	const project = navigation.getParam('project');
-	const freeTimeSlots = navigation.getParam('freeTimeSlots') ? navigation.getParam('freeTimeSlots') : null;
-	console.log(freeTimeSlots);
+	//const freeTimeSlots = navigation.getParam('freeTimeSlots') ? navigation.getParam('freeTimeSlots') : null;
 	const projectMeetings = meetings.filter((meeting) => meeting.pid === project.id);
 	const user = firebase.auth().currentUser;
 	const maxMeetingIndx =
@@ -26,9 +25,9 @@ const CreateMeetingScreen = ({ navigation, addMeeting, meetings, users }) => {
 		creator: user.uid,
 		pid: project.id,
 		mid: maxMeetingIndx + 1,
-		date: 'Day Mon DD Year HH:MM:SS GMT +0300 (IDT)',
-		from: 'Day Mon DD Year HH:MM:SS GMT +0300 (IDT)',
-		to: 'Day Mon DD Year HH:MM:SS GMT +0300 (IDT)',
+		date: 'YYYY-MM-DD',
+		from: '           HH:MM',
+		to: '           HH:MM',
 		place: '',
 		participants: [],
 		notes: ['', '', ''],
@@ -45,7 +44,6 @@ const CreateMeetingScreen = ({ navigation, addMeeting, meetings, users }) => {
 		addMeeting(meeting);
 		addMeetingToDb(meeting);
 		const participants = meeting.participants.filter((participant) => participant !== user.email);
-		console.log(participants);
 		users.map((user) => {
 			participants.map((participant) => {
 				participant == user.email ? addParticipantToMeeting(user, meeting) : null;
@@ -60,7 +58,7 @@ const CreateMeetingScreen = ({ navigation, addMeeting, meetings, users }) => {
 			oldMeeting={meeting}
 			onSubmit={(meeting) => onSubmit(meeting)}
 			type="create"
-			freeTimeSlots={freeTimeSlots}
+			users={users}
 		/>
 	);
 };

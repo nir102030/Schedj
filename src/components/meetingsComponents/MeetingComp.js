@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import { Text, StyleSheet, View, TouchableOpacity, Image } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
@@ -11,8 +11,7 @@ const MeetingComp = ({ project, tasks, topics, navigation, meeting, deleteMeetin
 	const taskList = tasks.filter((task) => task.pid === meeting.pid);
 	const topicsList = topics.filter((topic) => topic.pid === meeting.pid);
 	const [showAlert, setShowAlert] = useState(false);
-
-
+	//console.log(meeting.date);
 	const taskChoices = topicsList.map((topic) => {
 		const children = taskList
 			.filter((task) => task.topic === topic.name)
@@ -44,7 +43,7 @@ const MeetingComp = ({ project, tasks, topics, navigation, meeting, deleteMeetin
 				<View style={{ flex: 6 }}>
 					<View style={{ flexDirection: 'row-reverse' }}>
 						<Text style={styles.header}>Meeting {meeting.mid + 1}</Text>
-						<Text style={styles.date}>{meeting.date.toString().substring(0,15)}</Text>
+						<Text style={styles.date}>{meeting.date.toString().substring(0, 10)}</Text>
 					</View>
 				</View>
 			</View>
@@ -67,10 +66,10 @@ const MeetingComp = ({ project, tasks, topics, navigation, meeting, deleteMeetin
 
 const styles = StyleSheet.create({
 	container: {
-		marginVertical:5,
-		backgroundColor:'#53a6af',
-        borderRadius:10,
-        paddingRight:3,
+		marginVertical: 5,
+		backgroundColor: '#53a6af',
+		borderRadius: 10,
+		paddingRight: 3,
 		flexDirection: 'column',
 		marginHorizontal: 10,
 	},

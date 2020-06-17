@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import FormDatePicker from '../../components/genericComponents/FormDatePicker';
 import FormInput from '../../components/genericComponents/FormInput';
@@ -10,9 +10,13 @@ import FormNotes from '../genericComponents/FormNotes';
 import FormMultiSelect from '../genericComponents/FormMultiSelect';
 import Spacer from '../genericComponents/Spacer';
 import FormSectionedMultiSelectHours from '../genericComponents/FormSectionedMultiSelectHours';
+import { createEventsArray, findFreeTimeSlots } from '../../calendar/calendarAPI';
+import Moment from 'moment';
+import { extendMoment } from 'moment-range';
 
-const MeetingForm = ({ project, oldMeeting, onSubmit, type, freeTimeSlots }) => {
+const MeetingForm = ({ project, oldMeeting, onSubmit, type, users }) => {
 	const [meeting, setMeeting] = useState(oldMeeting);
+	const [freeTimesList, setFreeTimesList] = useState([]);
 
 	const validation = () => {
 		if (meeting.participants.length == 0) {
@@ -22,18 +26,55 @@ const MeetingForm = ({ project, oldMeeting, onSubmit, type, freeTimeSlots }) => 
 		}
 	};
 
-	const freeTimesListChildren = freeTimeSlots.map((timeSlot) => {
-		const time = `${timeSlot.from}-${timeSlot.to}`;
-		return { name: time, id: time };
-	});
+	const renderFreeTimeSlots = () => {
+		return freeTimeSlots ? (
+			<FormSectionedMultiSelectHours hours={freeTimesList} addHoursToMeeting={addHoursToMeeting} />
+		) : null;
+	};
 
-	const freeTimesList = [{ name: 'Pick Hours', id: 'Pick Hours', children: freeTimesListChildren }];
+	const initiateFreeTimesListChildren = (freeTimeSlots) => {
+		return freeTimeSlots.map((timeSlot) => {
+			let to = new Date(timeSlot);
+			to.setTime(to.getTime() - 2 * 60 * 60 * 1000);
+			const from = timeSlot.toJSON().substring(11, 16);
+			to = to.toString().substring(16, 21);
+			const time = `${from}-${to}`;
+			return { name: time, id: time };
+		});
+	};
 
 	const addHoursToMeeting = (selectedItems) => {
 		selectedItems.map((selectedItem) => {
 			console.log(selectedItem);
 		});
 	};
+
+	const initiateArraysAsync = async () => {
+		const moment = extendMoment(Moment);
+		let promise2 = new Promise((resolve, reject) => {
+			resolve(createEventsArray(project.participants, users));
+		});
+		const result2 = await promise2;
+
+		let promise3 = new Promise((resolve, reject) => {
+			resolve(findFreeTimeSlots(result2, moment));
+		});
+		const result3 = await promise3;
+		console.log(
+			result3.filter((timeSlot) => {
+				timeSlot.toJSON().substring(0, 10);
+			})
+		);
+		let promise4 = new Promise((resolve, reject) => {
+			resolve(initiateFreeTimesListChildren(result3));
+		});
+		const result4 = await promise4;
+		setFreeTimesList([{ name: 'Pick Hours', id: 'Pick Hours', children: result4 }]);
+	};
+	//console.log(freeTimesList);
+	useEffect(() => {
+		initiateArraysAsync();
+	}, []);
 
 	return (
 		<View style={styles.container}>
@@ -53,7 +94,7 @@ const MeetingForm = ({ project, oldMeeting, onSubmit, type, freeTimeSlots }) => 
 							type="date"
 							imageSrc={require('../../../assets/images/Cal.png')}
 							startIndex={0}
-							endIndex={15}
+							endIndex={10}
 						/>
 					</View>
 					<View style={styles.sameRow}>
@@ -62,16 +103,16 @@ const MeetingForm = ({ project, oldMeeting, onSubmit, type, freeTimeSlots }) => 
 							onConfirm={(to) => setMeeting({ ...meeting, to: to })}
 							type="time"
 							imageSrc={require('../../../assets/images/clockTo.png')}
-							startIndex={15}
-							endIndex={21}
+							startIndex={11}
+							endIndex={16}
 						/>
 						<FormNewDatePicker
 							date={meeting.from}
 							onConfirm={(from) => setMeeting({ ...meeting, from: from })}
 							type="time"
 							imageSrc={require('../../../assets/images/clockFrom.png')}
-							startIndex={15}
-							endIndex={21}
+							startIndex={11}
+							endIndex={16}
 						/>
 					</View>
 				</View>
