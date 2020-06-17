@@ -32,7 +32,7 @@ const FormSectionedMultiSelectHours = ({ addHoursToMeeting, hours }) => {
 				expandDropDowns={true}
 				hideSearch={true}
 				colors={{
-					selectToggleTextColor: 'white',
+					selectToggleTextColor: 'black',
 					primary: '#455a64',
 					itemBackground: '#a8cfd3',
 					subItemBackground: '#ffffff',

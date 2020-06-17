@@ -87,11 +87,8 @@ const MeetingForm = ({ project, oldMeeting, onSubmit, type, users }) => {
 			</View>
 			<ScrollView>
 				<Text style={styles.fillRequired}> Please fill the required fields </Text>
-				<View style={styles.multiSelect}>
-					<FormSectionedMultiSelectHours hours={freeTimesList} addHoursToMeeting={addHoursToMeeting} />
-				</View>
 				<View style={styles.designSquare}>
-					<View style={styles.sameRow1}>
+					{/* <View style={styles.sameRow1}> */}
 						<FormNewDatePicker
 							date={meeting.date}
 							onConfirm={(date) => {
@@ -103,7 +100,10 @@ const MeetingForm = ({ project, oldMeeting, onSubmit, type, users }) => {
 							startIndex={0}
 							endIndex={10}
 						/>
-					</View>
+						<View style={styles.multiSelect}>
+							<FormSectionedMultiSelectHours hours={freeTimesList} addHoursToMeeting={addHoursToMeeting} />
+						</View>
+					{/* </View> */}
 					<View style={styles.sameRow}>
 						<FormNewDatePicker
 							date={meeting.to}
@@ -178,6 +178,7 @@ const styles = StyleSheet.create({
 	sameRow1: {
 		flexDirection: 'row',
 		alignSelf: 'flex-end',
+		// flex:2
 	},
 	note: {
 		alignSelf: 'center',
@@ -225,6 +226,7 @@ const styles = StyleSheet.create({
 	},
 	multiSelect: {
 		marginHorizontal: 0,
+		marginVertical:10
 	},
 });
 
