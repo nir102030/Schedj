@@ -16,6 +16,7 @@ import { extendMoment } from 'moment-range';
 
 const MeetingForm = ({ project, oldMeeting, onSubmit, type, users }) => {
 	const [meeting, setMeeting] = useState(oldMeeting);
+	const [freeTimeSlots, setFreeTimeSlots] = useState([]);
 	const [freeTimesList, setFreeTimesList] = useState([]);
 
 	const validation = () => {
@@ -32,8 +33,11 @@ const MeetingForm = ({ project, oldMeeting, onSubmit, type, users }) => {
 		) : null;
 	};
 
-	const initiateFreeTimesListChildren = (freeTimeSlots) => {
-		return freeTimeSlots.map((timeSlot) => {
+	const initiateFreeTimesListChildren = (freeTimeSlots, date) => {
+		const filteredTimeSlots = freeTimeSlots.filter(
+			(timeSlot) => timeSlot.toJSON().substring(0, 10) == date.substring(0, 10)
+		);
+		const childrenList = filteredTimeSlots.map((timeSlot) => {
 			let to = new Date(timeSlot);
 			to.setTime(to.getTime() - 2 * 60 * 60 * 1000);
 			const from = timeSlot.toJSON().substring(11, 16);
@@ -41,11 +45,18 @@ const MeetingForm = ({ project, oldMeeting, onSubmit, type, users }) => {
 			const time = `${from}-${to}`;
 			return { name: time, id: time };
 		});
+		setFreeTimesList([{ name: 'Pick Hours', id: 'Pick Hours', children: childrenList }]);
 	};
 
 	const addHoursToMeeting = (selectedItems) => {
 		selectedItems.map((selectedItem) => {
-			console.log(selectedItem);
+			let from = selectedItem.substring(0, 5);
+			let to = selectedItem.substring(6, 11);
+			from = `${meeting.date.substring(0, 10)}T${from}:00:000`;
+			to = `${meeting.date.substring(0, 10)}T${to}:00:000`;
+			console.log(from);
+			console.log(to);
+			setMeeting({ ...meeting, from: from, to: to });
 		});
 	};
 
@@ -60,18 +71,11 @@ const MeetingForm = ({ project, oldMeeting, onSubmit, type, users }) => {
 			resolve(findFreeTimeSlots(result2, moment));
 		});
 		const result3 = await promise3;
-		console.log(
-			result3.filter((timeSlot) => {
-				timeSlot.toJSON().substring(0, 10);
-			})
-		);
+		setFreeTimeSlots(result3);
 		let promise4 = new Promise((resolve, reject) => {
-			resolve(initiateFreeTimesListChildren(result3));
+			resolve(initiateFreeTimesListChildren(result3, meeting.date));
 		});
-		const result4 = await promise4;
-		setFreeTimesList([{ name: 'Pick Hours', id: 'Pick Hours', children: result4 }]);
 	};
-	//console.log(freeTimesList);
 	useEffect(() => {
 		initiateArraysAsync();
 	}, []);
@@ -90,7 +94,10 @@ const MeetingForm = ({ project, oldMeeting, onSubmit, type, users }) => {
 					<View style={styles.sameRow1}>
 						<FormNewDatePicker
 							date={meeting.date}
-							onConfirm={(date) => setMeeting({ ...meeting, date: date })}
+							onConfirm={(date) => {
+								setMeeting({ ...meeting, date: date });
+								initiateFreeTimesListChildren(freeTimeSlots, date);
+							}}
 							type="date"
 							imageSrc={require('../../../assets/images/Cal.png')}
 							startIndex={0}

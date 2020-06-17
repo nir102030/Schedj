@@ -9,6 +9,7 @@ import firebase from 'firebase';
 
 const CreateMeetingScreen = ({ navigation, addMeeting, meetings, users }) => {
 	const project = navigation.getParam('project');
+	const date = navigation.getParam('date') ? navigation.getParam('date') : 'YYYY-MM-DD';
 	//const freeTimeSlots = navigation.getParam('freeTimeSlots') ? navigation.getParam('freeTimeSlots') : null;
 	const projectMeetings = meetings.filter((meeting) => meeting.pid === project.id);
 	const user = firebase.auth().currentUser;
@@ -25,7 +26,7 @@ const CreateMeetingScreen = ({ navigation, addMeeting, meetings, users }) => {
 		creator: user.uid,
 		pid: project.id,
 		mid: maxMeetingIndx + 1,
-		date: 'YYYY-MM-DD',
+		date: date,
 		from: '           HH:MM',
 		to: '           HH:MM',
 		place: '',

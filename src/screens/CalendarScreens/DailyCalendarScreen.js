@@ -41,7 +41,7 @@ const DailyCalendar = ({ navigation, calendars }) => {
 			/>
 			<TouchableOpacity
 				style={styles.touch}
-				onPress={() => navigation.navigate('CreateM', { project, freeTimeSlots })}
+				onPress={() => navigation.navigate('CreateM', { project, date: initialDate })}
 			>
 				<Image source={require('../../../assets/images/add.png')} style={styles.home} />
 			</TouchableOpacity>
