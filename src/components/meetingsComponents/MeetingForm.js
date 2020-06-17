@@ -54,8 +54,6 @@ const MeetingForm = ({ project, oldMeeting, onSubmit, type, users }) => {
 			let to = selectedItem.substring(6, 11);
 			from = `${meeting.date.substring(0, 10)}T${from}:00:000`;
 			to = `${meeting.date.substring(0, 10)}T${to}:00:000`;
-			console.log(from);
-			console.log(to);
 			setMeeting({ ...meeting, from: from, to: to });
 		});
 	};

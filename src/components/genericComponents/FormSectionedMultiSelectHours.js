@@ -68,6 +68,7 @@ const FormSectionedMultiSelectHours = ({ addHoursToMeeting, hours }) => {
 						alignItems: 'flex-end',
 					},
 				}}
+				single={true}
 			/>
 		</View>
 	);
