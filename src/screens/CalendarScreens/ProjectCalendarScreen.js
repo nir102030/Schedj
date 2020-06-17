@@ -6,7 +6,7 @@ import Moment from 'moment';
 import { extendMoment } from 'moment-range';
 import { createEventsArray, findFreeTimeSlots } from '../../calendar/calendarAPI';
 import Spacer from '../../components/genericComponents/Spacer';
-import Spinner from '.././genericComponents/Spinner';
+import Spinner from '../../components/genericComponents/Spinner';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
 
@@ -83,7 +83,8 @@ const ProjectCalendarScreen = ({ navigation, users }) => {
 		return Object.assign({}, ...markedDates);
 	};
 
-	const redenrCalendar = markedDates ? (
+	const redenrCalendar = () => {
+		markedDates ? (
 		<Calendar
 			onDayPress={(date) => {
 				navigation.navigate('DailyCalendar', {
@@ -100,7 +101,7 @@ const ProjectCalendarScreen = ({ navigation, users }) => {
 		/>
 	) : (
 		<Spinner />
-	);
+	);}
 
 	return (
 		<View style={styles.container}>
