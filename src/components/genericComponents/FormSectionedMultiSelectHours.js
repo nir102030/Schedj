@@ -41,6 +41,8 @@ const FormSectionedMultiSelectHours = ({ addHoursToMeeting, hours }) => {
 				styles={{
 					selectToggleText: {
 						fontSize: 16,
+						// marginLeft: 10,
+						// paddingLeft: 10,
 						fontWeight: 'bold',
 					},
 					selectToggle: {

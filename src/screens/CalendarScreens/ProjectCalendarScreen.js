@@ -6,7 +6,7 @@ import Moment from 'moment';
 import { extendMoment } from 'moment-range';
 import { createEventsArray, findFreeTimeSlots } from '../../calendar/calendarAPI';
 import Spacer from '../../components/genericComponents/Spacer';
-import Spinner from '.././genericComponents/Spinner';
+import Spinner from '../../components/genericComponents/Spinner';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
 

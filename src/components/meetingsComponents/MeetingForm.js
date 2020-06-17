@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import FormDatePicker from '../../components/genericComponents/FormDatePicker';
 import FormInput from '../../components/genericComponents/FormInput';
 import FormHour from '../../components/genericComponents/FormHour';
@@ -13,11 +13,13 @@ import FormSectionedMultiSelectHours from '../genericComponents/FormSectionedMul
 import { createEventsArray, findFreeTimeSlots } from '../../calendar/calendarAPI';
 import Moment from 'moment';
 import { extendMoment } from 'moment-range';
+import Spinner from '../../components/genericComponents/Spinner';
 
 const MeetingForm = ({ project, oldMeeting, onSubmit, type, users }) => {
 	const [meeting, setMeeting] = useState(oldMeeting);
 	const [freeTimeSlots, setFreeTimeSlots] = useState([]);
 	const [freeTimesList, setFreeTimesList] = useState([]);
+	const [loading, setLoading] = useState([]);
 
 	const validation = () => {
 		if (meeting.participants.length == 0) {
@@ -45,7 +47,7 @@ const MeetingForm = ({ project, oldMeeting, onSubmit, type, users }) => {
 			const time = `${from}-${to}`;
 			return { name: time, id: time };
 		});
-		setFreeTimesList([{ name: 'Pick Hours', id: 'Pick Hours', children: childrenList }]);
+		setFreeTimesList([{ name: '  Pick Hours', id: '  Pick Hours', children: childrenList }]);
 	};
 
 	const addHoursToMeeting = (selectedItems) => {
@@ -73,74 +75,87 @@ const MeetingForm = ({ project, oldMeeting, onSubmit, type, users }) => {
 		let promise4 = new Promise((resolve, reject) => {
 			resolve(initiateFreeTimesListChildren(result3, meeting.date));
 		});
+		setLoading(false);
 	};
 	useEffect(() => {
 		initiateArraysAsync();
 	}, []);
 
-	return (
-		<View style={styles.container}>
-			<View style={styles.header}>
-				<Text style={styles.headerStyle}>Meeting {meeting.mid + 1}</Text>
-			</View>
-			<ScrollView>
-				<Text style={styles.fillRequired}> Please fill the required fields </Text>
-				<View style={styles.designSquare}>
-					{/* <View style={styles.sameRow1}> */}
-						<FormNewDatePicker
-							date={meeting.date}
-							onConfirm={(date) => {
-								setMeeting({ ...meeting, date: date });
-								initiateFreeTimesListChildren(freeTimeSlots, date);
-							}}
-							type="date"
-							imageSrc={require('../../../assets/images/Cal.png')}
-							startIndex={0}
-							endIndex={10}
-						/>
-						<View style={styles.multiSelect}>
-							<FormSectionedMultiSelectHours hours={freeTimesList} addHoursToMeeting={addHoursToMeeting} />
-						</View>
-					{/* </View> */}
-					<View style={styles.sameRow}>
-						<FormNewDatePicker
-							date={meeting.to}
-							onConfirm={(to) => setMeeting({ ...meeting, to: to })}
-							type="time"
-							imageSrc={require('../../../assets/images/clockTo.png')}
-							startIndex={11}
-							endIndex={16}
-						/>
-						<FormNewDatePicker
-							date={meeting.from}
-							onConfirm={(from) => setMeeting({ ...meeting, from: from })}
-							type="time"
-							imageSrc={require('../../../assets/images/clockFrom.png')}
-							startIndex={11}
-							endIndex={16}
-						/>
-					</View>
+	const renderForm = () => {
+		return loading ? (
+			<Spinner />
+		) : (
+			<View>
+				<View style={styles.header}>
+					<Text style={styles.headerStyle}>Meeting {meeting.mid + 1}</Text>
 				</View>
-				<FormInput
-					title=" Place Of Meeting"
-					value={meeting.place}
-					onChange={(place) => setMeeting({ ...meeting, place: place })}
-					viewStyle={styles.designSquare}
-				/>
-				<FormMultiSelect
-					list={project.participants.map((participant) => {
-						return { id: participant, name: participant };
-					})}
-					addItemsToList={(participants) => setMeeting({ ...meeting, participants: participants })}
-					type="Participants"
-				/>
-				<Spacer />
-				<Text style={styles.note}> Write your notes here! </Text>
-				<FormNotes notes={meeting.notes} setNotes={(notes) => setMeeting({ ...meeting, notes: notes })} />
-				<FormSubmitButton onSubmit={() => validation()} type={type} />
-			</ScrollView>
-		</View>
-	);
+				<ScrollView>
+					<Text style={styles.fillRequired}> Please fill the required fields </Text>
+					<View style={styles.designSquare}>
+						<View style={styles.sameRow1}>
+							<View style={{ flex: 1, paddingRight: 15 }}>
+								<FormNewDatePicker
+									date={meeting.date}
+									onConfirm={(date) => {
+										setMeeting({ ...meeting, date: date });
+										initiateFreeTimesListChildren(freeTimeSlots, date);
+									}}
+									type="date"
+									imageSrc={require('../../../assets/images/Cal.png')}
+									startIndex={0}
+									endIndex={10}
+								/>
+							</View>
+							<TouchableOpacity style={styles.multiSelect}>
+								<FormSectionedMultiSelectHours
+									hours={freeTimesList}
+									addHoursToMeeting={addHoursToMeeting}
+								/>
+							</TouchableOpacity>
+						</View>
+
+						<View style={styles.sameRow}>
+							<FormNewDatePicker
+								date={meeting.to}
+								onConfirm={(to) => setMeeting({ ...meeting, to: to })}
+								type="time"
+								imageSrc={require('../../../assets/images/clockTo.png')}
+								startIndex={11}
+								endIndex={16}
+							/>
+							<FormNewDatePicker
+								date={meeting.from}
+								onConfirm={(from) => setMeeting({ ...meeting, from: from })}
+								type="time"
+								imageSrc={require('../../../assets/images/clockFrom.png')}
+								startIndex={11}
+								endIndex={16}
+							/>
+						</View>
+					</View>
+					<FormInput
+						title=" Place Of Meeting"
+						value={meeting.place}
+						onChange={(place) => setMeeting({ ...meeting, place: place })}
+						viewStyle={styles.designSquare}
+					/>
+					<FormMultiSelect
+						list={project.participants.map((participant) => {
+							return { id: participant, name: participant };
+						})}
+						addItemsToList={(participants) => setMeeting({ ...meeting, participants: participants })}
+						type="Participants"
+					/>
+					<Spacer />
+					<Text style={styles.note}> Write your notes here! </Text>
+					<FormNotes notes={meeting.notes} setNotes={(notes) => setMeeting({ ...meeting, notes: notes })} />
+					<FormSubmitButton onSubmit={() => validation()} type={type} />
+				</ScrollView>
+			</View>
+		);
+	};
+
+	return <View style={styles.container}>{renderForm()}</View>;
 };
 
 const styles = StyleSheet.create({
@@ -166,7 +181,6 @@ const styles = StyleSheet.create({
 	fillRequired: {
 		backgroundColor: '#ffccbc',
 		color: '#263238',
-
 		flex: 1,
 	},
 	sameRow: {
@@ -174,9 +188,10 @@ const styles = StyleSheet.create({
 		alignSelf: 'flex-end',
 	},
 	sameRow1: {
-		flexDirection: 'row',
+		flexDirection: 'row-reverse',
 		alignSelf: 'flex-end',
-		// flex:2
+		marginLeft: 10,
+		marginRight: 10,
 	},
 	note: {
 		alignSelf: 'center',
@@ -223,8 +238,14 @@ const styles = StyleSheet.create({
 		alignSelf: 'center',
 	},
 	multiSelect: {
-		marginHorizontal: 0,
-		marginVertical:10
+		flex: 1,
+		marginVertical: 10,
+		marginLeft: 10,
+		backgroundColor: '#c3dadd',
+		borderWidth: 1,
+		borderColor: 'white',
+		paddingTop: 5,
+		borderRadius: 5,
 	},
 });
 
