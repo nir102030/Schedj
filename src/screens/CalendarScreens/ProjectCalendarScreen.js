@@ -5,6 +5,8 @@ import ColorMessageComp from '../../components/calendarComponents/ColorMessageCo
 import Moment from 'moment';
 import { extendMoment } from 'moment-range';
 import { createEventsArray, findFreeTimeSlots } from '../../calendar/calendarAPI';
+import Spacer from '../../components/genericComponents/Spacer';
+import Spinner from '.././genericComponents/Spinner';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
 
@@ -81,30 +83,54 @@ const ProjectCalendarScreen = ({ navigation, users }) => {
 		return Object.assign({}, ...markedDates);
 	};
 
+	const redenrCalendar = markedDates ? (
+		<Calendar
+			onDayPress={(date) => {
+				navigation.navigate('DailyCalendar', {
+					date,
+					events,
+					project,
+					freeTimeSlots: freeTimeSlots.filter(
+						(timeSlot) => timeSlot.toJSON().substring(0, 10) == date.dateString
+					),
+				});
+			}}
+			markedDates={markedDates}
+			markingType={'custom'}
+		/>
+	) : (
+		<Spinner />
+	);
+
 	return (
 		<View style={styles.container}>
-			<View style={{ flexDirection: 'row-reverse',marginLeft:5,marginTop:5,marginBottom:5 }}>
-				<ColorMessageComp style={styles.col} colorCode="#388e3c" colorTitle="Green" colorName="G" description="The whole is available for meetings" />
-				<Text>   </Text>
-				<ColorMessageComp style={styles.col} colorCode="#fcc400" colorTitle="Yellow" colorName="Y" description="Most of the day is available for meetings" />
-				<Text>   </Text>
-				<ColorMessageComp style={styles.col} colorCode="#d32f2f" colorTitle="Red" colorName="R" description="Couple hours left for meetings - hurry up!" />
+			<View style={{ flexDirection: 'row-reverse', marginLeft: 5, marginTop: 5, marginBottom: 5 }}>
+				<ColorMessageComp
+					style={styles.col}
+					colorCode="#388e3c"
+					colorTitle="Green"
+					colorName="G"
+					description="The whole is available for meetings"
+				/>
+				<Text> </Text>
+				<ColorMessageComp
+					style={styles.col}
+					colorCode="#fcc400"
+					colorTitle="Yellow"
+					colorName="Y"
+					description="Most of the day is available for meetings"
+				/>
+				<Text> </Text>
+				<ColorMessageComp
+					style={styles.col}
+					colorCode="#d32f2f"
+					colorTitle="Red"
+					colorName="R"
+					description="Couple hours left for meetings - hurry up!"
+				/>
 				{/* <ColorMessageComp colorCode="#808080" colorName="Grey" description="Grey - Busy" /> */}
 			</View>
-			<Calendar
-				onDayPress={(date) => {
-					navigation.navigate('DailyCalendar', {
-						date,
-						events,
-						project,
-						freeTimeSlots: freeTimeSlots.filter(
-							(timeSlot) => timeSlot.toJSON().substring(0, 10) == date.dateString
-						),
-					});
-				}}
-				markedDates={markedDates}
-				markingType={'custom'}
-			/>
+			<Spacer>{redenrCalendar()}</Spacer>
 			{/* <Image source={require('../../../assets/images/animat-calendar-color1.gif')} style={styles.backgroundimage} /> */}
 		</View>
 	);
@@ -129,10 +155,10 @@ const styles = StyleSheet.create({
 		backgroundColor: '#e8f1f9',
 		height: '100%',
 	},
-	col:{
-		marginHorizontal:10,
-		marginVertical:10,
-		paddingVertical:20,
+	col: {
+		marginHorizontal: 10,
+		marginVertical: 10,
+		paddingVertical: 20,
 	},
 	image: {
 		height: 50,
