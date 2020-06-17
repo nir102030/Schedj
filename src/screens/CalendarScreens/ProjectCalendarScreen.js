@@ -5,7 +5,6 @@ import ColorMessageComp from '../../components/calendarComponents/ColorMessageCo
 import Moment from 'moment';
 import { extendMoment } from 'moment-range';
 import { createEventsArray, findFreeTimeSlots } from '../../calendar/calendarAPI';
-import Spacer from '../../components/genericComponents/Spacer';
 import Spinner from '../../components/genericComponents/Spinner';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
@@ -16,6 +15,7 @@ const ProjectCalendarScreen = ({ navigation, users }) => {
 	const [events, setEvents] = useState([]);
 	const [freeTimeSlots, setFreeTimeSlots] = useState([]);
 	const [markedDates, setMarkedDates] = useState([]);
+	const [loading, setLoading] = useState(true);
 
 	const initiateArraysAsync = async () => {
 		const moment = extendMoment(Moment);
@@ -29,12 +29,6 @@ const ProjectCalendarScreen = ({ navigation, users }) => {
 			resolve(findFreeTimeSlots(result2, moment));
 		});
 		const result3 = await promise3;
-		// const filtredTimeSlots = await result3.filter((timeSlot) => {
-		// 	const newTimeSlot = timeSlot.toString().substring(16, 24);
-		// 	const startHour = '10:00:00';
-		// 	const endHour = '24:00:00';
-		// 	return newTimeSlot > startHour && newTimeSlot < endHour;
-		// });
 		setFreeTimeSlots(result3);
 
 		let promise4 = new Promise((resolve, reject) => {
@@ -42,6 +36,7 @@ const ProjectCalendarScreen = ({ navigation, users }) => {
 		});
 		const result4 = await promise4;
 		setMarkedDates(result4);
+		setLoading(false);
 	};
 	useEffect(() => {
 		initiateArraysAsync();
@@ -79,32 +74,12 @@ const ProjectCalendarScreen = ({ navigation, users }) => {
 			markDatesObj[date] = { customStyles: { container: { borderWidth: 1, borderColor: color } } };
 			return markDatesObj;
 		});
-
 		return Object.assign({}, ...markedDates);
 	};
 
 	const redenrCalendar = () => {
-		markedDates ? (
-		<Calendar
-			onDayPress={(date) => {
-				navigation.navigate('DailyCalendar', {
-					date,
-					events,
-					project,
-					freeTimeSlots: freeTimeSlots.filter(
-						(timeSlot) => timeSlot.toJSON().substring(0, 10) == date.dateString
-					),
-				});
-			}}
-			markedDates={markedDates}
-			markingType={'custom'}
-		/>
-	) : (
-		<Spinner />
-	);}
-
-	return (
-		<View style={styles.container}>
+		return loading ? <Spinner/>  : 
+		<View>
 			<View style={{ flexDirection: 'row-reverse', marginLeft: 5, marginTop: 5, marginBottom: 5 }}>
 				<ColorMessageComp
 					style={styles.col}
@@ -129,10 +104,27 @@ const ProjectCalendarScreen = ({ navigation, users }) => {
 					colorName="R"
 					description="Couple hours left for meetings - hurry up!"
 				/>
-				{/* <ColorMessageComp colorCode="#808080" colorName="Grey" description="Grey - Busy" /> */}
 			</View>
-			<Spacer>{redenrCalendar()}</Spacer>
-			{/* <Image source={require('../../../assets/images/animat-calendar-color1.gif')} style={styles.backgroundimage} /> */}
+			<Calendar
+				onDayPress={(date) => {
+					navigation.navigate('DailyCalendar', {
+						date,
+						events,
+						project,
+						freeTimeSlots: freeTimeSlots.filter(
+							(timeSlot) => timeSlot.toJSON().substring(0, 10) == date.dateString
+						),
+					});
+				}}
+				markedDates={markedDates}
+				markingType={'custom'}
+			/>
+		</View>
+	}
+
+	return (
+		<View style={styles.container}>
+			{redenrCalendar()}
 		</View>
 	);
 };
@@ -174,7 +166,8 @@ const styles = StyleSheet.create({
 		height: 100,
 		width: 400,
 		flex: 1,
-		alignSelf: 'center',
+		justifyContent: 'center',
+		alignItems: 'center',
 	},
 	text: {
 		fontWeight: 'bold',
