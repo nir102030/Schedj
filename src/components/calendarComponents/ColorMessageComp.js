@@ -1,23 +1,24 @@
 import React from 'react';
-import { Button } from 'react-native';
+import { Button,StyleSheet, TouchableOpacity, Text } from 'react-native';
 import { showMessage } from 'react-native-flash-message';
 
-const ColorMessageComp = ({ colorCode, colorName, description }) => {
+const ColorMessageComp = ({ colorCode, colorName,colorTitle, description }) => {
 	return (
-		<Button
+		<TouchableOpacity 
 			onPress={() => {
-				showMessage({
-					message: colorName,
-					description: description,
-					type: 'info',
-					color: 'white',
-					backgroundColor: colorCode,
+			showMessage({
+				message: colorTitle,
+				description: description,
+				type: 'info',
+				color: 'white',
+				backgroundColor: colorCode,
 				});
 			}}
-			title={colorName}
-			color={colorCode}
-		/>
+			style={{borderRadius:100,paddingHorizontal:12,paddingVertical:6.5,borderColor:colorCode,borderWidth:2}}>
+			<Text>{colorName}</Text>
+		</TouchableOpacity>
 	);
 };
 
 export default ColorMessageComp;
+

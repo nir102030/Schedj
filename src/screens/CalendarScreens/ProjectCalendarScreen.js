@@ -83,11 +83,13 @@ const ProjectCalendarScreen = ({ navigation, users }) => {
 
 	return (
 		<View style={styles.container}>
-			<View style={{ flexDirection: 'row-reverse' }}>
-				<ColorMessageComp colorCode="#388e3c" colorName="Green" description="Green - Available" />
-				<ColorMessageComp colorCode="#fcc400" colorName="Yellow" description="Yellow - Waiting" />
-				<ColorMessageComp colorCode="#d32f2f" colorName="Red" description="Red - Scheduled" />
-				<ColorMessageComp colorCode="#808080" colorName="Grey" description="Grey - Busy" />
+			<View style={{ flexDirection: 'row-reverse',marginLeft:5,marginTop:5,marginBottom:5 }}>
+				<ColorMessageComp style={styles.col} colorCode="#388e3c" colorTitle="Green" colorName="G" description="The whole is available for meetings" />
+				<Text>   </Text>
+				<ColorMessageComp style={styles.col} colorCode="#fcc400" colorTitle="Yellow" colorName="Y" description="Most of the day is available for meetings" />
+				<Text>   </Text>
+				<ColorMessageComp style={styles.col} colorCode="#d32f2f" colorTitle="Red" colorName="R" description="Couple hours left for meetings - hurry up!" />
+				{/* <ColorMessageComp colorCode="#808080" colorName="Grey" description="Grey - Busy" /> */}
 			</View>
 			<Calendar
 				onDayPress={(date) => {
@@ -103,6 +105,7 @@ const ProjectCalendarScreen = ({ navigation, users }) => {
 				markedDates={markedDates}
 				markingType={'custom'}
 			/>
+			{/* <Image source={require('../../../assets/images/animat-calendar-color1.gif')} style={styles.backgroundimage} /> */}
 		</View>
 	);
 };
@@ -126,6 +129,11 @@ const styles = StyleSheet.create({
 		backgroundColor: '#e8f1f9',
 		height: '100%',
 	},
+	col:{
+		marginHorizontal:10,
+		marginVertical:10,
+		paddingVertical:20,
+	},
 	image: {
 		height: 50,
 		width: 50,
@@ -134,6 +142,12 @@ const styles = StyleSheet.create({
 	},
 	navigator: {
 		flexDirection: 'row',
+	},
+	backgroundimage: {
+		height: 100,
+		width: 400,
+		flex: 1,
+		alignSelf: 'center',
 	},
 	text: {
 		fontWeight: 'bold',

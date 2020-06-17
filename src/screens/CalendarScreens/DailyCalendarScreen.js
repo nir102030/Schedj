@@ -32,7 +32,7 @@ const DailyCalendar = ({ navigation, calendars }) => {
 	return (
 		<>
 			<EventCalendar
-				eventTapped={() => {}}
+				eventTapped={() => {}}       /// Send flash message as project ststus
 				events={filteredEvents}
 				width={width}
 				initDate={initialDate}
@@ -59,13 +59,12 @@ const styles = StyleSheet.create({
 	home: {
 		height: 50,
 		width: 50,
-
 		// marginRight:10
 	},
 	touch: {
 		// alignSelf:'flex-start',
 		marginHorizontal: 65,
-		paddingTop: 60,
+		// paddingTop: 60,
 		position: 'absolute',
 		marginTop: '150%',
 		// alignItems:'flex-end'
