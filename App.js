@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useKeepAwake } from 'expo-keep-awake';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { YellowBox } from 'react-native';
@@ -85,6 +86,7 @@ const navigator = createSwitchNavigator({
 const App = createAppContainer(navigator);
 
 export default () => {
+	useKeepAwake();
 	return (
 		<Provider store={createStore(reducers)}>
 			<App />

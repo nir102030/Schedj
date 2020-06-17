@@ -41,7 +41,7 @@ const DailyCalendar = ({ navigation, calendars }) => {
 			/>
 			<TouchableOpacity
 				style={styles.touch}
-				onPress={() => navigation.navigate('CreateM', { project, freeTimeSlots })}
+				onPress={() => navigation.navigate('CreateM', { project, date: initialDate })}
 			>
 				<Image source={require('../../../assets/images/add.png')} style={styles.home} />
 			</TouchableOpacity>
@@ -65,7 +65,6 @@ const styles = StyleSheet.create({
 	touch: {
 		// alignSelf:'flex-start',
 		marginHorizontal: 65,
-		paddingTop: 60,
 		position: 'absolute',
 		marginTop: '150%',
 		// alignItems:'flex-end'
