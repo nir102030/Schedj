@@ -83,7 +83,8 @@ const ProjectCalendarScreen = ({ navigation, users }) => {
 		return Object.assign({}, ...markedDates);
 	};
 
-	const redenrCalendar = markedDates ? (
+	const redenrCalendar = () => {
+		markedDates ? (
 		<Calendar
 			onDayPress={(date) => {
 				navigation.navigate('DailyCalendar', {
@@ -100,7 +101,7 @@ const ProjectCalendarScreen = ({ navigation, users }) => {
 		/>
 	) : (
 		<Spinner />
-	);
+	);}
 
 	return (
 		<View style={styles.container}>
