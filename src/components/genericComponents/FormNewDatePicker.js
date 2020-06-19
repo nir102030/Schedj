@@ -42,6 +42,7 @@ const FormNewDatePicker = ({ date, onConfirm, type, imageSrc, startIndex, endInd
 const styles = StyleSheet.create({
 	TouchableOpacity: {
 		backgroundColor: '#e8f1f9',
+		// marginRight: 20,
 	},
 	row: {
 		flexDirection: 'row',

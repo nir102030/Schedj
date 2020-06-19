@@ -6,6 +6,10 @@ import { getProjectFromDbEdit } from '../../firebase/projectsAPI';
 
 const ProjectStatus = ({ project, style }) => {
 	const status = project.status;
+	const header = status == 'Waiting' ? 'Waiting...' : 'Approved';
+	const description = status == 'Waiting' ? 'Not all members approve the invitation' : 'All members approve the invitation';
+	const color = status == 'Waiting' ? '#A37F11' : '#194d33';
+
 
 	return (
 		<View style={styles.top}>
@@ -15,7 +19,7 @@ const ProjectStatus = ({ project, style }) => {
 						onPress={() => {
 							showMessage({
 								message: `Status: ${status}`,
-								description: status,
+								description: description,
 								type: 'info',
 								color: 'black',
 								backgroundColor: '#c2dbe6',
@@ -28,12 +32,12 @@ const ProjectStatus = ({ project, style }) => {
 								marginVertical: 8,
 								alignSelf: 'center',
 								paddingLeft: 5,
-								color: '#a37f11',
+								color: color,
 								fontWeight: 'bold',
 								paddingBottom: 2,
 							}}
 						>
-							{status}
+							{header}
 						</Text>
 					</TouchableOpacity>
 				</View>
@@ -42,7 +46,7 @@ const ProjectStatus = ({ project, style }) => {
 					onPress={() => {
 						showMessage({
 							message: `Status: ${status}`,
-							description: status,
+							description: `${description}`,	//	${project.participants}`,
 							type: 'info',
 							color: 'black',
 							backgroundColor: '#c2dbe6',

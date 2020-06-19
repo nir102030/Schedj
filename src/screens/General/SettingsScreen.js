@@ -52,7 +52,7 @@ const SettingsScreen = ({ navigation, deleteProject, projects }) => {
 		<View style={styles.container}>
 			<ScrollView>
 				<Text style={styles.subHeader}> Edit Profile </Text>
-				<FormInput title={" Profile Name"}  value={edit} onChange={setEdit} viewStyle={styles.Pname} />
+				<FormInput title={" "}  value={edit} onChange={setEdit} viewStyle={styles.Pname} />
 				<View style={styles.changePic}>
 					<PickImage/>
 				</View>

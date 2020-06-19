@@ -41,7 +41,7 @@ const ProjectInvitation = ({ navigation, pid, Owner, Inviter, editProject }) => 
 				<Spacer />
 				<Text style={styles.Text}>Would you like to approve the invitation ? </Text>
 				<TouchableOpacity style={styles.TouchableOpacity} onPress={approveProject}>
-					<Image source={require('../../../assets/images/v.png')} style={styles.image} onPress={() => {}} />
+					<Image source={require('../../../assets/images/vv.png')} style={styles.image} onPress={() => {}} />
 					<Text style={styles.answer}>Yes, I'm willing to share my schedule</Text>
 				</TouchableOpacity>
 				<TouchableOpacity style={styles.TouchableOpacity}>
@@ -50,10 +50,10 @@ const ProjectInvitation = ({ navigation, pid, Owner, Inviter, editProject }) => 
 						style={styles.image}
 						onPress={() => {}}
 					/>
-					<Text style={styles.answer}>I would like to change my schedule first</Text>
+					<Text style={styles.answer}>I would like to change my schedule </Text>
 				</TouchableOpacity>
 				<TouchableOpacity style={styles.TouchableOpacity}>
-					<Image source={require('../../../assets/images/x.png')} style={styles.image} onPress={() => {}} />
+					<Image source={require('../../../assets/images/xx.png')} style={styles.image} onPress={() => {}} />
 					<Text style={styles.answer}>No, Reject the invitation</Text>
 				</TouchableOpacity>
 			</ScrollView>
@@ -120,8 +120,8 @@ const styles = StyleSheet.create({
 		backgroundColor: '#a1cfd5',
 	},
 	image: {
-		height: 25,
-		width: 25,
+		height: 24,
+		width: 24,
 		marginRight: 15,
 		alignSelf: 'center',
 	},
