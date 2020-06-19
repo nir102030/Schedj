@@ -63,10 +63,10 @@ const styles = StyleSheet.create({
 	},
 	touch: {
 		// alignSelf:'flex-start',
-		marginHorizontal: 65,
+		marginHorizontal: 320,
 		// paddingTop: 60,
 		position: 'absolute',
-		marginTop: '150%',
+		marginTop: '160%',
 		// alignItems:'flex-end'
 	},
 	TouchableOpacityA: {

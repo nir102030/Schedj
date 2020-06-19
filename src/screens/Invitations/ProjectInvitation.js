@@ -14,13 +14,16 @@ const ProjectInvitation = ({ navigation, pid, Owner, Inviter, editProject }) => 
 
 	const approveProject = () => {
 		const editedParticipantsStatus = project.participantsStatus.map((participantStatus) => {
-			return participantStatus.participant == currentUser
+			return participantStatus.participant == currentUser.email
 				? { ...participantStatus, status: true }
 				: participantStatus;
 		});
+		// console.log(currentUser)
+		// console.log(editedParticipantsStatus)
 		const editedProject = { ...project, participantsStatus: editedParticipantsStatus };
 		editProject(editedProject);
-		editProjectInDb(editedProject);
+		editProjectInDb(editedProject, []);
+		navigation.navigate('Projects')
 	};
 
 	return (
@@ -46,7 +49,7 @@ const ProjectInvitation = ({ navigation, pid, Owner, Inviter, editProject }) => 
 						style={styles.image}
 						onPress={() => {}}
 					/>
-					<Text style={styles.answer}>I would like to change my schedule before</Text>
+					<Text style={styles.answer}>I would like to change my schedule first</Text>
 				</TouchableOpacity>
 				<TouchableOpacity style={styles.TouchableOpacity}>
 					<Image source={require('../../../assets/images/x.png')} style={styles.image} onPress={() => {}} />

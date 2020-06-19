@@ -16,6 +16,7 @@ const ProjectCalendarScreen = ({ navigation, users }) => {
 	const [freeTimeSlots, setFreeTimeSlots] = useState([]);
 	const [markedDates, setMarkedDates] = useState([]);
 	const [loading, setLoading] = useState(true);
+	console.log(project.participantsStatus)
 
 	const initiateArraysAsync = async () => {
 		const moment = extendMoment(Moment);
