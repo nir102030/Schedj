@@ -1,6 +1,6 @@
 import React from 'react';
 import ProjectForm from '../../components/projectsComponents/ProjectForm';
-import { Text, StyleSheet, View, Image, ScrollView,TouchableOpacity } from 'react-native';
+import { Text, StyleSheet, View, Image, ScrollView, TouchableOpacity } from 'react-native';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
 import { addProjectToDb } from '../../firebase/projectsAPI';
@@ -17,6 +17,7 @@ const CreateProjectScreen = ({ navigation, addProject, users }) => {
 		participants: [],
 		reminder: '',
 		notes: ['', '', ''],
+		participantsStatus: [],
 	};
 
 	const addParticipantToProject = (user, project) => {
@@ -29,7 +30,7 @@ const CreateProjectScreen = ({ navigation, addProject, users }) => {
 	const onSubmit = (project) => {
 		addProject(project);
 		addProjectToDb(user, project);
-		const participants = project.participants.filter((participant) => participant !== user.email)
+		const participants = project.participants.filter((participant) => participant !== user.email);
 		console.log(participants);
 		users.map((user) => {
 			participants.map((participant) => {
@@ -46,35 +47,35 @@ const mapStateToProps = (state) => {
 	return { users: state.users };
 };
 
-CreateProjectScreen.navigationOptions = ({navigation}) => { 
-    return{ headerRight:   
-            <View style={styles.navigator}>
-                <Text style={styles.headerStyle}> Add New Project </Text>
-                <TouchableOpacity onPress={() => navigation.navigate('Projects')}>
-                    <Image source={require('../../../assets/images/home.png')} style={styles.home}/>
-                </TouchableOpacity>
-            </View>
-    };
+CreateProjectScreen.navigationOptions = ({ navigation }) => {
+	return {
+		headerRight: (
+			<View style={styles.navigator}>
+				<Text style={styles.headerStyle}> Add New Project </Text>
+				<TouchableOpacity onPress={() => navigation.navigate('Projects')}>
+					<Image source={require('../../../assets/images/home.png')} style={styles.home} />
+				</TouchableOpacity>
+			</View>
+		),
+	};
 };
 export default connect(mapStateToProps, actions)(CreateProjectScreen);
 
-
 const styles = StyleSheet.create({
-    navigator:{
-        flexDirection: 'row',
+	navigator: {
+		flexDirection: 'row',
 	},
-	headerStyle: { 
-        fontWeight:'bold',
-        fontSize: 30,
-        marginRight: 5,
-        alignSelf:'center',
-        color:'#263238',
-        textAlign:'left'
-    },  
+	headerStyle: {
+		fontWeight: 'bold',
+		fontSize: 30,
+		marginRight: 5,
+		alignSelf: 'center',
+		color: '#263238',
+		textAlign: 'left',
+	},
 	home: {
 		height: 35,
-        width: 35,
-        marginRight:10
-	}
+		width: 35,
+		marginRight: 10,
+	},
 });
-

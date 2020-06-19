@@ -4,24 +4,39 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { withNavigation } from 'react-navigation';
 import firebase from 'firebase';
 import Spacer from '../../components/genericComponents/Spacer';
+import * as actions from '../../actions';
+import { connect } from 'react-redux';
+import { editProjectInDb } from '../../firebase/projectsAPI';
 
-const ProjectInvitation = ({ navigation, pid, Owner, Inviter }) => {
+const ProjectInvitation = ({ navigation, pid, Owner, Inviter, editProject }) => {
 	const project = navigation.getParam('project');
 	const currentUser = firebase.auth().currentUser;
+
+	const approveProject = () => {
+		const editedParticipantsStatus = project.participantsStatus.map((participantStatus) => {
+			return participantStatus.participant == currentUser
+				? { ...participantStatus, status: true }
+				: participantStatus;
+		});
+		const editedProject = { ...project, participantsStatus: editedParticipantsStatus };
+		editProject(editedProject);
+		editProjectInDb(editedProject);
+	};
+
 	return (
 		<View style={styles.container}>
 			<ScrollView>
-				<Text style={styles.Hello}>Hello  {currentUser.email}</Text>
+				<Text style={styles.Hello}>Hello {currentUser.email}</Text>
 				<Text style={styles.Text}>You got a new invitation for:</Text>
-				<Spacer/>
+				<Spacer />
 				<Text style={styles.Text1}>{project.name} project</Text>
 				{/* <Spacer/>
 				<Text style={styles.Text2}>Rest of the team includes : </Text>
 				<Spacer/> */}
 				{/* <Text style={styles.Text4}>Put Participants</Text> */}
-				<Spacer/>
+				<Spacer />
 				<Text style={styles.Text}>Would you like to approve the invitation ? </Text>
-				<TouchableOpacity style={styles.TouchableOpacity}>
+				<TouchableOpacity style={styles.TouchableOpacity} onPress={approveProject}>
 					<Image source={require('../../../assets/images/v.png')} style={styles.image} onPress={() => {}} />
 					<Text style={styles.answer}>Yes, I'm willing to share my schedule</Text>
 				</TouchableOpacity>
@@ -44,7 +59,7 @@ const ProjectInvitation = ({ navigation, pid, Owner, Inviter }) => {
 
 const styles = StyleSheet.create({
 	container: {
-        backgroundColor:'#e8f1f9',
+		backgroundColor: '#e8f1f9',
 		height: '100%',
 	},
 	Hello: {
@@ -71,7 +86,7 @@ const styles = StyleSheet.create({
 		paddingLeft: 10,
 		flex: 1,
 		alignSelf: 'center',
-		fontSize:25,
+		fontSize: 25,
 	},
 	Text2: {
 		fontWeight: 'bold',
@@ -81,8 +96,8 @@ const styles = StyleSheet.create({
 		paddingLeft: 10,
 		flex: 1,
 	},
-	Text4:{
-		paddingBottom:140
+	Text4: {
+		paddingBottom: 140,
 	},
 	projName: {
 		fontWeight: 'bold',
@@ -98,7 +113,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'row-reverse',
 		borderBottomWidth: 3,
 		borderBottomColor: 'white',
-		backgroundColor:'#a1cfd5',
+		backgroundColor: '#a1cfd5',
 	},
 	image: {
 		height: 25,
@@ -116,4 +131,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default withNavigation(ProjectInvitation);
+export default connect(null, actions)(withNavigation(ProjectInvitation));

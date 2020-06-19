@@ -33,6 +33,7 @@ export const addProjectToDb = (user, project) => {
 			minForMeeting: project.minForMeeting,
 			reminder: project.reminder,
 			notes: project.notes,
+			participantsStatus: project.participantsStatus,
 		});
 };
 

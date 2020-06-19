@@ -93,7 +93,7 @@ const MeetingForm = ({ project, oldMeeting, onSubmit, type, users }) => {
 					<Text style={styles.fillRequired}> Please fill the required fields </Text>
 					<View style={styles.designSquare}>
 						<View style={styles.sameRow1}>
-							<View style={{ flex: 1, paddingRight: 15 }}>
+							<View style={{ flex: 1 }}>
 								<FormNewDatePicker
 									date={meeting.date}
 									onConfirm={(date) => {
@@ -190,6 +190,7 @@ const styles = StyleSheet.create({
 	sameRow1: {
 		flexDirection: 'row-reverse',
 		alignSelf: 'flex-end',
+		// flex: 1,
 		marginLeft: 10,
 		marginRight: 10,
 	},

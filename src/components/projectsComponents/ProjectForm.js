@@ -26,6 +26,27 @@ const ProjectForm = ({ oldProject, onSubmit, type, users }) => {
 			onSubmit(project);
 		}
 	};
+	console.log(project.participantsStatus);
+	//console.log(project.participants);
+
+	const getParticipantsStatus = (participants, oldParticipants) => {
+		return participants.map((participant) => {
+			if (type == 'create') {
+				return { participant: participant, status: false };
+			} else {
+				const isNewParticipant = oldParticipants.find((oldParticipant) => oldParticipant == participant)
+					? false
+					: true;
+				if (isNewParticipant) {
+					return { participant: participant, status: false };
+				} else {
+					return project.participantsStatus.find(
+						(participantStatus) => participantStatus.participant == participant
+					);
+				}
+			}
+		});
+	};
 
 	return (
 		<View style={styles.container}>
@@ -33,7 +54,7 @@ const ProjectForm = ({ oldProject, onSubmit, type, users }) => {
 				<Text style={styles.text}>{project.name}</Text>
 			</View>
 			<ScrollView>
-				<Text style={styles.fillRequired}>  Please fill the required fields </Text>
+				<Text style={styles.fillRequired}> Please fill the required fields </Text>
 				<FormInput
 					title=" Project Name"
 					value={project.name}
@@ -46,12 +67,21 @@ const ProjectForm = ({ oldProject, onSubmit, type, users }) => {
 						return { id: participant.email, name: participant.email };
 					})}
 					addItemsToList={(participants) => {
-						setProject({ ...project, participants: [...participants, currentUser.email] });
+						const oldParticipants = project.participants;
+						const participantsStatus = getParticipantsStatus(participants, oldParticipants);
+						setProject({
+							...project,
+							participants: [...participants, currentUser.email],
+							participantsStatus: [
+								...participantsStatus,
+								{ participant: currentUser.email, status: true },
+							],
+						});
 					}}
 					type="Participants"
 					selectedItems={project.participants.filter((participant) => participant !== currentUser.email)}
 				/>
-				<Spacer/>
+				<Spacer />
 				<FormInput
 					title=" Min Participants For Meeting"
 					value={project.minForMeeting}
@@ -65,7 +95,7 @@ const ProjectForm = ({ oldProject, onSubmit, type, users }) => {
 					notes={project.notes}
 					setNotes={(notes) => setProject({ ...project, notes: notes })}
 				/>
-				<Text style={styles.task}> 			*Define your tasks later </Text>
+				<Text style={styles.task}> *Define your tasks later </Text>
 				<FormSubmitButton onSubmit={() => validation()} type={type} />
 			</ScrollView>
 		</View>
