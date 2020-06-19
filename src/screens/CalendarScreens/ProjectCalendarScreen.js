@@ -62,9 +62,9 @@ const ProjectCalendarScreen = ({ navigation, users }) => {
 		markedDates = markedDates.filter((dateObj) => dateObj != null);
 		markedDates = markedDates.map((markDate) => {
 			let color = '';
-			if (markDate.count <= 2) {
+			if (markDate.count == 0) {
 				color = 'red';
-			} else if (markDate.count > 2 && markDate.count <= 4) {
+			} else if (markDate.count > 0 && markDate.count <= 4) {
 				color = '#ffc107';
 			} else {
 				color = '#81c784';
@@ -86,7 +86,7 @@ const ProjectCalendarScreen = ({ navigation, users }) => {
 					colorCode="#388e3c"
 					colorTitle="Green"
 					colorName="G"
-					description="The whole is available for meetings"
+					description="The entire day is available for meetings"
 				/>
 				<Text> </Text>
 				<ColorMessageComp
@@ -94,7 +94,7 @@ const ProjectCalendarScreen = ({ navigation, users }) => {
 					colorCode="#fcc400"
 					colorTitle="Yellow"
 					colorName="Y"
-					description="Most of the day is available for meetings"
+					description="Just a few hours left for meetings - hurry up!"
 				/>
 				<Text> </Text>
 				<ColorMessageComp
@@ -102,7 +102,7 @@ const ProjectCalendarScreen = ({ navigation, users }) => {
 					colorCode="#d32f2f"
 					colorTitle="Red"
 					colorName="R"
-					description="Couple hours left for meetings - hurry up!"
+					description="The whole day is busy, try a different day"
 				/>
 			</View>
 			<Calendar
