@@ -15,7 +15,7 @@ import Moment from 'moment';
 import { extendMoment } from 'moment-range';
 import Spinner from '../../components/genericComponents/Spinner';
 
-const MeetingForm = ({ project, oldMeeting, onSubmit, type, users }) => {
+const MeetingForm = ({ project, oldMeeting, onSubmit, type, users, meetings }) => {
 	const [meeting, setMeeting] = useState(oldMeeting);
 	const [freeTimeSlots, setFreeTimeSlots] = useState([]);
 	const [freeTimesList, setFreeTimesList] = useState([]);
@@ -63,7 +63,7 @@ const MeetingForm = ({ project, oldMeeting, onSubmit, type, users }) => {
 	const initiateArraysAsync = async () => {
 		const moment = extendMoment(Moment);
 		let promise2 = new Promise((resolve, reject) => {
-			resolve(createEventsArray(project.participants, users));
+			resolve(createEventsArray(project, project.participants, users, meetings));
 		});
 		const result2 = await promise2;
 

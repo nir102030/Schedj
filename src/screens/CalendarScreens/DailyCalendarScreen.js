@@ -23,7 +23,13 @@ const DailyCalendar = ({ navigation, calendars }) => {
 		return `${date} ${hour}`;
 	};
 	const dailyEvents = navigation.getParam('events').map((event) => {
-		return { start: getDateFormat(event.start), end: getDateFormat(event.end), title: 'Busy', summary: '' };
+		return {
+			start: getDateFormat(event.start),
+			end: getDateFormat(event.end),
+			title: 'Busy',
+			summary: '',
+			type: event.type,
+		};
 	});
 	const [events, setEvents] = useState(dailyEvents);
 
@@ -32,7 +38,7 @@ const DailyCalendar = ({ navigation, calendars }) => {
 	return (
 		<>
 			<EventCalendar
-				eventTapped={() => {}}       /// Send flash message as project ststus
+				eventTapped={() => {}} /// Send flash message as project ststus
 				events={filteredEvents}
 				width={width}
 				initDate={initialDate}

@@ -6,9 +6,9 @@ import firebase from 'firebase';
 import Spacer from '../../components/genericComponents/Spacer';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
-import { editProjectInDb } from '../../firebase/projectsAPI';
+import { editProjectInDb, getProjectFromDb } from '../../firebase/projectsAPI';
 
-const ProjectInvitation = ({ navigation, pid, Owner, Inviter, editProject }) => {
+const ProjectInvitation = ({ navigation, addProject }) => {
 	const project = navigation.getParam('project');
 	const currentUser = firebase.auth().currentUser;
 
@@ -22,7 +22,17 @@ const ProjectInvitation = ({ navigation, pid, Owner, Inviter, editProject }) => 
 			? 'Waiting'
 			: 'Approved';
 		const editedProject = { ...project, participantsStatus: editedParticipantsStatus, status: projectStatus }; //the same project object with the updated status
-		editProject(editedProject);
+		editProjectInDb(editedProject, []);
+		getProjectFromDb(project.id, addProject);
+		navigation.navigate('Projects');
+	};
+
+	const removeParticipantFromProject = () => {
+		const newParticipants = project.participants.filter((participant) => participant != currentUser.email);
+		const newParticipantsStatus = project.participantsStatus.filter(
+			(participantStatus) => participantStatus.participant != currentUser.email
+		);
+		const editedProject = { ...project, participants: newParticipants, participantsStatus: newParticipantsStatus };
 		editProjectInDb(editedProject, []);
 		navigation.navigate('Projects');
 	};
@@ -52,7 +62,7 @@ const ProjectInvitation = ({ navigation, pid, Owner, Inviter, editProject }) => 
 					/>
 					<Text style={styles.answer}>I would like to change my schedule </Text>
 				</TouchableOpacity>
-				<TouchableOpacity style={styles.TouchableOpacity}>
+				<TouchableOpacity style={styles.TouchableOpacity} onPress={removeParticipantFromProject}>
 					<Image source={require('../../../assets/images/xx.png')} style={styles.image} onPress={() => {}} />
 					<Text style={styles.answer}>No, Reject the invitation</Text>
 				</TouchableOpacity>

@@ -4,12 +4,12 @@ import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import ColorMessageComp from '../../components/calendarComponents/ColorMessageComp';
 import Moment from 'moment';
 import { extendMoment } from 'moment-range';
-import { createEventsArray, findFreeTimeSlots } from '../../calendar/calendarAPI';
+import { createEventsArray, findFreeTimeSlots, createMarkedDates } from '../../calendar/calendarAPI';
 import Spinner from '../../components/genericComponents/Spinner';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
 
-const ProjectCalendarScreen = ({ navigation, users }) => {
+const ProjectCalendarScreen = ({ navigation, users, meetings }) => {
 	const project = navigation.getParam('project');
 	const participants = project.participants;
 	const [events, setEvents] = useState([]);
@@ -21,7 +21,7 @@ const ProjectCalendarScreen = ({ navigation, users }) => {
 	const initiateArraysAsync = async () => {
 		const moment = extendMoment(Moment);
 		let promise2 = new Promise((resolve, reject) => {
-			resolve(createEventsArray(participants, users));
+			resolve(createEventsArray(project, participants, users, meetings));
 		});
 		const result2 = await promise2;
 		setEvents(result2);
@@ -43,91 +43,55 @@ const ProjectCalendarScreen = ({ navigation, users }) => {
 		initiateArraysAsync();
 	}, []);
 
-	const createMarkedDates = (freeTimeSlots) => {
-		let day = '01';
-		let count = 1;
-		let currentTimeSlot;
-		let markedDates = freeTimeSlots.map((timeSlot) => {
-			let timeSlotDay = timeSlot.toString().substring(8, 10);
-			if (day != timeSlotDay) {
-				day = timeSlotDay;
-				currentTimeSlot = currentTimeSlot.toJSON().substring(0, 10);
-				const timeSlotObj = { timeSlot: currentTimeSlot, count: count };
-				count = 1;
-				return timeSlotObj;
-			}
-			count = count + 1;
-			currentTimeSlot = timeSlot;
-			return null;
-		});
-		markedDates = markedDates.filter((dateObj) => dateObj != null);
-		markedDates = markedDates.map((markDate) => {
-			let color = '';
-			if (markDate.count == 0) {
-				color = 'red';
-			} else if (markDate.count > 0 && markDate.count <= 4) {
-				color = '#ffc107';
-			} else {
-				color = '#81c784';
-			}
-			var date = markDate.timeSlot;
-			var markDatesObj = {};
-			markDatesObj[date] = { customStyles: { container: { borderWidth: 1, borderColor: color } } };
-			return markDatesObj;
-		});
-		return Object.assign({}, ...markedDates);
-	};
-
 	const redenrCalendar = () => {
-		return loading ? <Spinner/>  : 
-		<View>
-			<View style={{ flexDirection: 'row-reverse', marginLeft: 5, marginTop: 5, marginBottom: 5 }}>
-				<ColorMessageComp
-					style={styles.col}
-					colorCode="#388e3c"
-					colorTitle="Green"
-					colorName="G"
-					description="The entire day is available for meetings"
-				/>
-				<Text> </Text>
-				<ColorMessageComp
-					style={styles.col}
-					colorCode="#fcc400"
-					colorTitle="Yellow"
-					colorName="Y"
-					description="Just a few hours left for meetings - hurry up!"
-				/>
-				<Text> </Text>
-				<ColorMessageComp
-					style={styles.col}
-					colorCode="#d32f2f"
-					colorTitle="Red"
-					colorName="R"
-					description="The whole day is busy, try a different day"
+		return loading ? (
+			<Spinner />
+		) : (
+			<View>
+				<View style={{ flexDirection: 'row-reverse', marginLeft: 5, marginTop: 5, marginBottom: 5 }}>
+					<ColorMessageComp
+						style={styles.col}
+						colorCode="#388e3c"
+						colorTitle="Green"
+						colorName="G"
+						description="The entire day is available for meetings"
+					/>
+					<Text> </Text>
+					<ColorMessageComp
+						style={styles.col}
+						colorCode="#fcc400"
+						colorTitle="Yellow"
+						colorName="Y"
+						description="Just a few hours left for meetings - hurry up!"
+					/>
+					<Text> </Text>
+					<ColorMessageComp
+						style={styles.col}
+						colorCode="#d32f2f"
+						colorTitle="Red"
+						colorName="R"
+						description="The whole day is busy, try a different day"
+					/>
+				</View>
+				<Calendar
+					onDayPress={(date) => {
+						navigation.navigate('DailyCalendar', {
+							date,
+							events,
+							project,
+							freeTimeSlots: freeTimeSlots.filter(
+								(timeSlot) => timeSlot.toJSON().substring(0, 10) == date.dateString
+							),
+						});
+					}}
+					markedDates={markedDates}
+					markingType={'custom'}
 				/>
 			</View>
-			<Calendar
-				onDayPress={(date) => {
-					navigation.navigate('DailyCalendar', {
-						date,
-						events,
-						project,
-						freeTimeSlots: freeTimeSlots.filter(
-							(timeSlot) => timeSlot.toJSON().substring(0, 10) == date.dateString
-						),
-					});
-				}}
-				markedDates={markedDates}
-				markingType={'custom'}
-			/>
-		</View>
-	}
+		);
+	};
 
-	return (
-		<View style={styles.container}>
-			{redenrCalendar()}
-		</View>
-	);
+	return <View style={styles.container}>{redenrCalendar()}</View>;
 };
 
 ProjectCalendarScreen.navigationOptions = ({ navigation }) => {
@@ -224,7 +188,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-	return { calendars: state.calendars, users: state.users };
+	return { calendars: state.calendars, users: state.users, meetings: state.meetings };
 };
 
 export default connect(mapStateToProps, actions)(ProjectCalendarScreen);

@@ -60,6 +60,7 @@ const CreateMeetingScreen = ({ navigation, addMeeting, meetings, users }) => {
 			onSubmit={(meeting) => onSubmit(meeting)}
 			type="create"
 			users={users}
+			meetings={meetings}
 		/>
 	);
 };
