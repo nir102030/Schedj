@@ -6,6 +6,8 @@ import * as actions from '../../actions';
 import Alert from '../genericComponents/Alert';
 import FormSectionedMultiSelect from '../genericComponents/FormSectionedMultiSelect';
 import { deleteMeetingFromDb } from '../../firebase/meetingsAPI';
+import MeetingStatus from './MeetingStatus';
+
 
 const MeetingComp = ({ project, tasks, topics, navigation, meeting, deleteMeeting, editTask }) => {
 	const taskList = tasks.filter((task) => task.pid === meeting.pid);
@@ -48,7 +50,12 @@ const MeetingComp = ({ project, tasks, topics, navigation, meeting, deleteMeetin
 				</View>
 			</View>
 			<View style={styles.multiSelect}>
+				<View style={styles.aaa}>
 				<FormSectionedMultiSelect taskChoices={taskChoices} addTasksToMeeting={addTasksToMeeting} />
+				</View>
+				<View style={styles.bbb}>
+				<MeetingStatus meeting={meeting}/>
+				</View>
 			</View>
 			<Alert
 				showAlert={showAlert}
@@ -122,7 +129,21 @@ const styles = StyleSheet.create({
 	},
 	multiSelect: {
 		marginHorizontal: 0,
+		flexDirection: 'row-reverse',
+		alignItems:'flex-start'
 	},
+	aaa:{
+		flex: 1,
+		borderColor:'black',
+		borderWidth:1,
+		
+	},
+	bbb:{
+		flex: 1,
+		borderColor:'black',
+		borderWidth:1,
+		alignSelf:'flex-end'
+	}
 });
 
 const mapStateToProps = (state) => {
