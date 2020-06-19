@@ -14,13 +14,14 @@ const ProjectInvitation = ({ navigation, pid, Owner, Inviter, editProject }) => 
 
 	const approveProject = () => {
 		const editedParticipantsStatus = project.participantsStatus.map((participantStatus) => {
-			return participantStatus.participant == currentUser
+			return participantStatus.participant == currentUser.email
 				? { ...participantStatus, status: true }
 				: participantStatus;
 		});
-		const editedProject = { ...project, participantsStatus: editedParticipantsStatus };
+		const editedProject = { ...project, participantsStatus: editedParticipantsStatus }; //the same project object with the updated status
 		editProject(editedProject);
-		editProjectInDb(editedProject);
+		editProjectInDb(editedProject, []);
+		navigation.navigate('Projects');
 	};
 
 	return (
