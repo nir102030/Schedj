@@ -18,6 +18,7 @@ const CreateProjectScreen = ({ navigation, addProject, users }) => {
 		reminder: '',
 		notes: ['', '', ''],
 		participantsStatus: [],
+		status: 'Waiting',
 	};
 
 	const addParticipantToProject = (user, project) => {

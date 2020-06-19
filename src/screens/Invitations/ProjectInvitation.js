@@ -18,7 +18,10 @@ const ProjectInvitation = ({ navigation, pid, Owner, Inviter, editProject }) => 
 				? { ...participantStatus, status: true }
 				: participantStatus;
 		});
-		const editedProject = { ...project, participantsStatus: editedParticipantsStatus }; //the same project object with the updated status
+		const projectStatus = editedParticipantsStatus.find((participantStatus) => participantStatus.status == false)
+			? 'Waiting'
+			: 'Approved';
+		const editedProject = { ...project, participantsStatus: editedParticipantsStatus, status: projectStatus }; //the same project object with the updated status
 		editProject(editedProject);
 		editProjectInDb(editedProject, []);
 		navigation.navigate('Projects');

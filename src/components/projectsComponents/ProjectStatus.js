@@ -5,9 +5,7 @@ import { showMessage, hideMessage } from 'react-native-flash-message';
 import { getProjectFromDbEdit } from '../../firebase/projectsAPI';
 
 const ProjectStatus = ({ project, style }) => {
-	const status = project.participantsStatus.find((participantStatus) => participantStatus.status == false)
-		? 'Waiting'
-		: 'Approved';
+	const status = project.status;
 
 	return (
 		<View style={styles.top}>
