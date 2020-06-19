@@ -32,7 +32,6 @@ const CreateProjectScreen = ({ navigation, addProject, users }) => {
 		addProject(project);
 		addProjectToDb(user, project);
 		const participants = project.participants.filter((participant) => participant !== user.email);
-		console.log(participants);
 		users.map((user) => {
 			participants.map((participant) => {
 				participant == user.email ? addParticipantToProject(user, project) : null;

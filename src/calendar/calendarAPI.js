@@ -39,6 +39,7 @@ const createEvents = async (calendarIds, startDate, endDate) => {
 			start: start.toJSON(),
 			end: end.toJSON(),
 			title: event.title.toString(),
+			type: 'calendar',
 		};
 	});
 	return events;
@@ -46,14 +47,26 @@ const createEvents = async (calendarIds, startDate, endDate) => {
 
 const createTimeSlots = async (moment) => {
 	let timeSlots = [];
-	const timeInterval = '2020-06-01T08:00:00+00:00/2020-06-30T20:00:00+00:00';
+	const timeInterval = '2020-06-01T08:00:00+00:00/2020-07-01T20:00:00+00:00';
 	const range = moment.range(timeInterval);
 	const hours = Array.from(range.by('hour', { excludeEnd: true }));
 	timeSlots = hours.map((m) => m);
 	return timeSlots;
 };
 
-export const createEventsArray = async (participants, users) => {
+export const createEventsArray = async (project, participants, users, meetings) => {
+	const meetingsEvents = meetings
+		.filter((meeting) => meeting.pid == project.id)
+		.map((meeting) => {
+			return {
+				id: meeting.mid,
+				start: `${meeting.from.substring(0, 19)}.000Z`,
+				end: `${meeting.to.substring(0, 19)}.000Z`,
+				title: `${meeting.mid + 1}`,
+				type: 'meeting',
+			};
+		});
+
 	const projectUsers = participants.map((participant) => {
 		return users.find((user) => participant === user.email);
 	});
@@ -64,7 +77,14 @@ export const createEventsArray = async (participants, users) => {
 			newEvents = [...newEvents, event];
 		});
 	});
-	return newEvents;
+
+	let eventsArray = [...newEvents, ...meetingsEvents];
+	eventsArray = eventsArray.sort((firstEvent, secondEvent) => {
+		const firstDate = firstEvent.start.substring(0, 10);
+		const secondDate = secondEvent.start.substring(0, 10);
+		return firstDate < secondDate ? -1 : firstDate > secondDate ? 1 : 0;
+	});
+	return eventsArray;
 };
 
 const timeCondition = (timeSlot, events, moment) => {
@@ -79,8 +99,44 @@ export const findFreeTimeSlots = async (events, moment) => {
 	});
 	return freeTimeSlotObj.filter((timeSlot) => {
 		const newTimeSlot = timeSlot.toString().substring(16, 24);
-		const startHour = '10:00:00';
+		const startHour = '11:00:00';
 		const endHour = '24:00:00';
-		return newTimeSlot > startHour && newTimeSlot < endHour;
+		return newTimeSlot >= startHour && newTimeSlot < endHour;
 	});
+};
+
+export const createMarkedDates = (freeTimeSlots) => {
+	let day = '01';
+	let count = 1;
+	let currentTimeSlot;
+	let markedDates = freeTimeSlots.map((timeSlot) => {
+		let timeSlotDay = timeSlot.toString().substring(8, 10);
+		if (day != timeSlotDay) {
+			day = timeSlotDay;
+			currentTimeSlot = currentTimeSlot.substring(0, 10);
+			const timeSlotObj = { timeSlot: currentTimeSlot, count: count };
+			count = 1;
+			return timeSlotObj;
+		}
+		count = count + 1;
+		currentTimeSlot = timeSlot.toJSON();
+		return null;
+	});
+	markedDates = markedDates.filter((dateObj) => dateObj != null);
+	markedDates = markedDates.map((markDate) => {
+		let color = '';
+		if (markDate.count <= 2) {
+			color = 'red';
+		} else if (markDate.count > 2 && markDate.count <= 4) {
+			color = '#ffc107'; //yellow
+		} else {
+			color = '#81c784'; //green
+		}
+		var date = markDate.timeSlot;
+		var markDatesObj = {};
+		markDatesObj[date] = { customStyles: { container: { borderWidth: 1, borderColor: color } } };
+		return markDatesObj;
+	});
+
+	return Object.assign({}, ...markedDates);
 };

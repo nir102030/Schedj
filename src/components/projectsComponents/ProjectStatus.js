@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, StyleSheet, View, TouchableOpacity, Image } from 'react-native';
 import DialogInput from '../../../node_modules/react-native-dialog-input';
 import { showMessage, hideMessage } from 'react-native-flash-message';

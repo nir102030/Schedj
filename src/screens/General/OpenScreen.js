@@ -31,9 +31,6 @@ const OpenScreen = ({ navigation, addProject, addMeeting, addCalendar }) => {
 		switch (type) {
 			case 'add_project':
 				const project = notification.data.project;
-				if (user.uid != project.uid) {
-					getProjectFromDb(project.id, addProject);
-				}
 				navigation.navigate('InviteP', { project });
 				break;
 			case 'add_meeting':
