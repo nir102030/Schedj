@@ -26,8 +26,6 @@ const ProjectForm = ({ oldProject, onSubmit, type, users }) => {
 			onSubmit(project);
 		}
 	};
-	console.log(project.participantsStatus);
-	//console.log(project.participants);
 
 	const getParticipantsStatus = (participants, oldParticipants) => {
 		return participants.map((participant) => {

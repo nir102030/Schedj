@@ -12,6 +12,7 @@ export default (state = [], action) => {
 					reminder: action.payload.project.reminder,
 					notes: action.payload.project.notes,
 					participantsStatus: action.payload.project.participantsStatus,
+					status: action.payload.project.status,
 				},
 			];
 		case 'edit_project':
