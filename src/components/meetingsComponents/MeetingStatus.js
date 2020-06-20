@@ -8,7 +8,6 @@ const MeetingStatus = ({ meeting, style }) => {
 	const description =
 		status == 'Waiting' ? 'Not all members approve the invitation' : 'All members approve the invitation';
 	const color = status == 'Waiting' ? '#A37F11' : '#194d33';
-	console.log(status);
 
 	return (
 		<View style={styles.top}>
