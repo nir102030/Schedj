@@ -13,7 +13,7 @@ const AboutUsScreen = () => {
 AboutUsScreen.navigationOptions = ({navigation}) => { 
     return{ headerRight:   
             <View style={styles.navigator} >
-                <Text style={styles.headerStyle}> About Us </Text>
+                <Text style={styles.headerStyle}> About Us © </Text>
                 <TouchableOpacity onPress={() => navigation.navigate('Projects')}>
                     <Image source={require('../../../assets/images/home.png')} style={styles.home}/>
                 </TouchableOpacity>

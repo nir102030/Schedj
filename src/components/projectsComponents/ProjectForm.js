@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'flex-end',
 	},
 	dueDate:{
-		fontSize: 20,
+		fontSize: 18,
 		alignSelf:'center',
 		marginRight:15,
 		marginLeft: 10,

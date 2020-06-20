@@ -109,8 +109,8 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 	},
 	image: {
-		height: 50,
-		width: 50,
+		height: 35,
+		width: 35,
 		marginRight: 15,
 		alignSelf: 'center',
 	},
