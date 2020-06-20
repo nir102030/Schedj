@@ -183,7 +183,9 @@ const MeetingForm = ({ project, oldMeeting, onSubmit, type, users, meetings }) =
 					<Spacer />
 					<Text style={styles.note}> Write your notes here! </Text>
 					<FormNotes notes={meeting.notes} setNotes={(notes) => setMeeting({ ...meeting, notes: notes })} />
-					<FormSubmitButton onSubmit={() => validation()} type={type} />
+					<View style={styles.space}>
+						<FormSubmitButton onSubmit={() => validation()} type={type} />
+					</View>
 				</ScrollView>
 			</View>
 		);
@@ -196,6 +198,11 @@ const styles = StyleSheet.create({
 	container: {
 		backgroundColor: '#e8f1f9',
 		flex: 1,
+	},
+	space:{
+		marginVertical: 20,
+		paddingBottom:20,
+		marginBottom:20
 	},
 	header: {
 		flexDirection: 'row',

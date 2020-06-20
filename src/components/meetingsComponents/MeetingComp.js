@@ -44,7 +44,8 @@ const MeetingComp = ({ project, tasks, topics, navigation, meeting, deleteMeetin
 				<View style={{ flex: 6 }}>
 					<View style={{ flexDirection: 'row-reverse' }}>
 						<Text style={styles.header}>Meeting {meeting.mid + 1}</Text>
-						<Text style={styles.date}>{meeting.date.toString().substring(0, 10)}</Text>
+						<Text style={styles.date}>{meeting.date.toString().substring(5, 10)}</Text>
+						<Text style={styles.date}>{meeting.from.toString().substring(11, 16)}-{meeting.to.toString().substring(11, 16)}</Text>
 					</View>
 				</View>
 			</View>
@@ -52,6 +53,9 @@ const MeetingComp = ({ project, tasks, topics, navigation, meeting, deleteMeetin
 				<View style={styles.aaa}>
 					<FormSectionedMultiSelect taskChoices={taskChoices} addTasksToMeeting={addTasksToMeeting} />
 				</View>
+				{/* <View style={styles.ccc}> */}
+					{/* <Text style={styles.date2}>{meeting.from.toString().substring(11, 16)}-{meeting.to.toString().substring(11, 16)}</Text> */}
+				{/* </View> */}
 				<View style={styles.bbb}>
 					<MeetingStatus meeting={meeting} />
 				</View>
@@ -131,8 +135,12 @@ const styles = StyleSheet.create({
 		flexDirection: 'row-reverse',
 	},
 	aaa: {
-		flex: 3,
+		flex: 1.5,
 	},
+	// ccc:{
+	// 	flex: 1,
+	// 	marginLeft:26,
+	// },
 	bbb: {
 		flex: 1,
 		alignSelf: 'flex-start',

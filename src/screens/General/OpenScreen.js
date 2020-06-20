@@ -35,9 +35,6 @@ const OpenScreen = ({ navigation, addProject, addMeeting, addCalendar }) => {
 				break;
 			case 'add_meeting':
 				const meeting = notification.data.meeting;
-				if (user.uid != meeting.creator) {
-					getMeetingFromDb(meeting, addMeeting);
-				}
 				navigation.navigate('InviteM', { meeting });
 				break;
 			default:
