@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import { addMeeting } from '../../actions';
+import * as actions from '../../actions';
+import { connect } from 'react-redux';
+import firebase from 'firebase';
 
 const MeetingInvitation = ({ Owner, pid, navigation, addMeeting }) => {
 	const meeting = navigation.getParam('meeting');
@@ -127,4 +129,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default MeetingInvitation;
+export default connect(null, actions)(MeetingInvitation);
