@@ -29,7 +29,6 @@ const OpenScreen = ({ navigation, addProject, addMeeting, addCalendar }) => {
 		Vibration.vibrate();
 		const type = String(notification.data.type);
 		const project = notification.data.project;
-		console.log(project);
 		switch (type) {
 			case 'add_project':
 				navigation.navigate('InviteP', { project });

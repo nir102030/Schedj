@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image, FlatList } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { withNavigation } from 'react-navigation';
 import firebase from 'firebase';
@@ -44,11 +44,14 @@ const ProjectInvitation = ({ navigation, addProject }) => {
 				<Text style={styles.Text}>You got a new invitation for:</Text>
 				<Spacer />
 				<Text style={styles.Text1}>{project.name} project</Text>
-				{/* <Spacer/>
-				<Text style={styles.Text2}>Rest of the team includes : </Text>
-				<Spacer/> */}
-				{/* <Text style={styles.Text4}>Put Participants</Text> */}
 				<Spacer />
+				{/* <Text style={styles.Text2}>Rest of the team includes : </Text>
+				<FlatList
+					data={project.participants}
+					keyExtractor={(participant) => participant}
+					renderItem={({ participant }) => <Text>{participant}</Text>}
+				/>
+				<Spacer /> */}
 				<Text style={styles.Text}>Would you like to approve the invitation ? </Text>
 				<TouchableOpacity style={styles.TouchableOpacity} onPress={approveProject}>
 					<Image source={require('../../../assets/images/vv.png')} style={styles.image} onPress={() => {}} />
