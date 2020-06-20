@@ -223,10 +223,7 @@ const styles = StyleSheet.create({
 	},
 	sameRow1: {
 		flexDirection: 'row-reverse',
-		alignSelf: 'flex-end',
-		// flex: 1,
-		marginLeft: 10,
-		marginRight: 10,
+		marginRight:55
 	},
 	note: {
 		alignSelf: 'center',
@@ -273,7 +270,7 @@ const styles = StyleSheet.create({
 		alignSelf: 'center',
 	},
 	multiSelect: {
-		flex: 1,
+		flex: 0.6,
 		marginVertical: 10,
 		marginLeft: 10,
 		backgroundColor: '#c3dadd',

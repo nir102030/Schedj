@@ -44,6 +44,7 @@ const FormSectionedMultiSelectHours = ({ addHoursToMeeting, hours }) => {
 						// marginLeft: 10,
 						// paddingLeft: 10,
 						fontWeight: 'bold',
+						alignSelf: 'center',
 					},
 					selectToggle: {
 						height: 35,
