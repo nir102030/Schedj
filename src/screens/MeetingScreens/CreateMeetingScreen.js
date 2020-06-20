@@ -36,20 +36,20 @@ const CreateMeetingScreen = ({ navigation, addMeeting, meetings, users }) => {
 		status: 'Waiting',
 	};
 
-	const addParticipantToMeeting = (user, meeting) => {
+	const addParticipantToMeeting = (user, meeting, project) => {
 		const msgTitle = 'New Meeting Invetation';
 		const msgBody = `You have been added to meeting #${meeting.mid} in ${project.name} project`;
-		const data = { type: 'add_meeting', meeting: meeting };
+		const data = { type: 'add_meeting', meeting: meeting, project: project };
 		sendPushNotification(user, msgTitle, msgBody, data);
 	};
 
-	const onSubmit = (meeting) => {
+	const onSubmit = (meeting, project) => {
 		addMeeting(meeting);
 		addMeetingToDb(meeting);
 		const participants = meeting.participants.filter((participant) => participant !== user.email);
 		users.map((user) => {
 			participants.map((participant) => {
-				participant == user.email ? addParticipantToMeeting(user, meeting) : null;
+				participant == user.email ? addParticipantToMeeting(user, meeting, project) : null;
 			});
 		});
 		navigation.pop();
@@ -59,7 +59,7 @@ const CreateMeetingScreen = ({ navigation, addMeeting, meetings, users }) => {
 		<MeetingForm
 			project={project}
 			oldMeeting={meeting}
-			onSubmit={(meeting) => onSubmit(meeting)}
+			onSubmit={(meeting) => onSubmit(meeting, project)}
 			type="create"
 			users={users}
 			meetings={meetings}

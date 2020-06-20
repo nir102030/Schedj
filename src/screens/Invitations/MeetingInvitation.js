@@ -3,9 +3,11 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
+import { editMeetingInDb, getMeetingFromDb } from '../../firebase/meetingsAPI';
 
 const MeetingInvitation = ({ Owner, pid, navigation, addMeeting }) => {
 	const meeting = navigation.getParam('meeting');
+	const project = navigation.getParam('project');
 	const currentUser = firebase.auth().currentUser;
 
 	const approveMeeting = () => {
@@ -20,7 +22,7 @@ const MeetingInvitation = ({ Owner, pid, navigation, addMeeting }) => {
 		const editedMeeting = { ...meeting, participantsStatus: editedParticipantsStatus, status: meetingStatus }; //the same project object with the updated status
 		editMeetingInDb(editedMeeting);
 		getMeetingFromDb(meeting, addMeeting);
-		navigation.navigate('Meetings');
+		navigation.navigate('Meetings', { project });
 	};
 
 	const removeParticipantFromMeeting = () => {
