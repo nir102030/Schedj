@@ -14,12 +14,14 @@ import { createEventsArray, findFreeTimeSlots } from '../../calendar/calendarAPI
 import Moment from 'moment';
 import { extendMoment } from 'moment-range';
 import Spinner from '../../components/genericComponents/Spinner';
+import firebase from 'firebase';
 
 const MeetingForm = ({ project, oldMeeting, onSubmit, type, users, meetings }) => {
 	const [meeting, setMeeting] = useState(oldMeeting);
 	const [freeTimeSlots, setFreeTimeSlots] = useState([]);
 	const [freeTimesList, setFreeTimesList] = useState([]);
 	const [loading, setLoading] = useState([]);
+	const currentUser = firebase.auth().currentUser;
 
 	const validation = () => {
 		if (meeting.participants.length == 0) {
@@ -27,6 +29,30 @@ const MeetingForm = ({ project, oldMeeting, onSubmit, type, users, meetings }) =
 		} else {
 			onSubmit(meeting);
 		}
+	};
+
+	const getParticipantsStatus = (participants, oldParticipants) => {
+		return participants
+			? participants.map((participant) => {
+					const isCurrentUser = participant == currentUser.email;
+					if (isCurrentUser) {
+						return { participant: participant, status: true };
+					} else if (type == 'create') {
+						return { participant: participant, status: false };
+					} else {
+						const isNewParticipant = oldParticipants.find((oldParticipant) => oldParticipant == participant)
+							? false
+							: true;
+						if (isNewParticipant) {
+							return { participant: participant, status: false };
+						} else {
+							return project.participantsStatus.find(
+								(participantStatus) => participantStatus.participant == participant
+							);
+						}
+					}
+			  })
+			: [];
 	};
 
 	const renderFreeTimeSlots = () => {
@@ -143,7 +169,15 @@ const MeetingForm = ({ project, oldMeeting, onSubmit, type, users, meetings }) =
 						list={project.participants.map((participant) => {
 							return { id: participant, name: participant };
 						})}
-						addItemsToList={(participants) => setMeeting({ ...meeting, participants: participants })}
+						addItemsToList={(participants) => {
+							const oldParticipants = meeting.participants;
+							const participantsStatus = getParticipantsStatus(participants, oldParticipants);
+							setMeeting({
+								...meeting,
+								participants: participants,
+								participantsStatus: participantsStatus,
+							});
+						}}
 						type="Participants"
 					/>
 					<Spacer />

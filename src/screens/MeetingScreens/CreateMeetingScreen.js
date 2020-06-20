@@ -32,6 +32,8 @@ const CreateMeetingScreen = ({ navigation, addMeeting, meetings, users }) => {
 		place: '',
 		participants: [],
 		notes: ['', '', ''],
+		participantsStatus: [],
+		status: 'Waiting',
 	};
 
 	const addParticipantToMeeting = (user, meeting) => {

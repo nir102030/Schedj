@@ -5,9 +5,10 @@ import { showMessage, hideMessage } from 'react-native-flash-message';
 const MeetingStatus = ({ meeting, style }) => {
 	const status = meeting.status;
 	const header = status == 'Waiting' ? 'Waiting...' : 'Approved';
-	const description = status == 'Waiting' ? 'Not all members approve the invitation' : 'All members approve the invitation';
+	const description =
+		status == 'Waiting' ? 'Not all members approve the invitation' : 'All members approve the invitation';
 	const color = status == 'Waiting' ? '#A37F11' : '#194d33';
-
+	console.log(status);
 
 	return (
 		<View style={styles.top}>
@@ -44,7 +45,7 @@ const MeetingStatus = ({ meeting, style }) => {
 					onPress={() => {
 						showMessage({
 							message: `Status: ${status}`,
-							description: `${description}`,	//	${project.participants}`,
+							description: `${description}`, //	${project.participants}`,
 							type: 'info',
 							color: 'black',
 							backgroundColor: '#c2dbe6',
@@ -58,9 +59,7 @@ const MeetingStatus = ({ meeting, style }) => {
 	);
 };
 const styles = StyleSheet.create({
-	top: {
-		paddingTop: 44,
-	},
+	top: {},
 	container: {
 		flexDirection: 'row-reverse',
 		backgroundColor: '#bedadc',

@@ -16,6 +16,8 @@ export default (
 					place: action.payload.meeting.place,
 					participants: action.payload.meeting.participants,
 					notes: action.payload.meeting.notes,
+					participantsStatus: action.payload.meeting.participantsStatus,
+					status: action.payload.meeting.status,
 				},
 			];
 		case 'edit_meeting':

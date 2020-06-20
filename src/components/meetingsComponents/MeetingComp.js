@@ -8,7 +8,6 @@ import FormSectionedMultiSelect from '../genericComponents/FormSectionedMultiSel
 import { deleteMeetingFromDb } from '../../firebase/meetingsAPI';
 import MeetingStatus from './MeetingStatus';
 
-
 const MeetingComp = ({ project, tasks, topics, navigation, meeting, deleteMeeting, editTask }) => {
 	const taskList = tasks.filter((task) => task.pid === meeting.pid);
 	const topicsList = topics.filter((topic) => topic.pid === meeting.pid);
@@ -51,10 +50,10 @@ const MeetingComp = ({ project, tasks, topics, navigation, meeting, deleteMeetin
 			</View>
 			<View style={styles.multiSelect}>
 				<View style={styles.aaa}>
-				<FormSectionedMultiSelect taskChoices={taskChoices} addTasksToMeeting={addTasksToMeeting} />
+					<FormSectionedMultiSelect taskChoices={taskChoices} addTasksToMeeting={addTasksToMeeting} />
 				</View>
 				<View style={styles.bbb}>
-				<MeetingStatus meeting={meeting}/>
+					<MeetingStatus meeting={meeting} />
 				</View>
 			</View>
 			<Alert
@@ -130,20 +129,15 @@ const styles = StyleSheet.create({
 	multiSelect: {
 		marginHorizontal: 0,
 		flexDirection: 'row-reverse',
-		alignItems:'flex-start'
 	},
-	aaa:{
-		flex: 1,
-		borderColor:'black',
-		borderWidth:1,
-		
+	aaa: {
+		flex: 3,
 	},
-	bbb:{
+	bbb: {
 		flex: 1,
-		borderColor:'black',
-		borderWidth:1,
-		alignSelf:'flex-end'
-	}
+		alignSelf: 'flex-start',
+		paddingBottom: 5,
+	},
 });
 
 const mapStateToProps = (state) => {
