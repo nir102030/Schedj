@@ -5,7 +5,7 @@ import ColorMessageComp from '../../components/calendarComponents/ColorMessageCo
 import Moment from 'moment';
 import { extendMoment } from 'moment-range';
 import { createEventsArray, findFreeTimeSlots, createMarkedDates } from '../../calendar/calendarAPI';
-import Spinner from '../../components/genericComponents/Spinner';
+import SpinnerCalendar from '../../components/genericComponents/SpinnerCalendar';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
 
@@ -45,7 +45,7 @@ const ProjectCalendarScreen = ({ navigation, users, meetings }) => {
 
 	const redenrCalendar = () => {
 		return loading ? (
-			<Spinner />
+			<SpinnerCalendar />
 		) : (
 			<View>
 				<View style={{ flexDirection: 'row-reverse', marginLeft: 5, marginTop: 5, marginBottom: 5 }}>
@@ -72,6 +72,7 @@ const ProjectCalendarScreen = ({ navigation, users, meetings }) => {
 						colorName="R"
 						description="The whole day is busy, try a different day"
 					/>
+					<Text style={{fontSize:22,fontWeight:'bold',color:'#263238',alignSelf:'center',marginHorizontal:10}}>{project.name}</Text>
 				</View>
 				<Calendar
 					onDayPress={(date) => {

@@ -13,11 +13,16 @@ import { CheckBox } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
 import PickImage from '../../components/genericComponents/PickImage'
 
+
 const SettingsScreen = ({ navigation, deleteProject, projects }) => {
 	const [showAlert, setShowAlert] = useState(false);
 	const [MobileChecked, setMobileChecked] = useState(false);
 	const [EmailChecked, setEmailChecked] = useState(false);
 	const [edit, setEdit] = useState('');
+	const currentUser = firebase.auth().currentUser;
+	console.log(currentUser.name)
+
+
 	const rankItems = [1, 2, 3, 4, 5].map((num) => {
 		const label = num === 1 ? `       ${num} Star` : `       ${num} Stars`;
 		return { label: label, value: num, color: '#192C4D' };
@@ -52,7 +57,7 @@ const SettingsScreen = ({ navigation, deleteProject, projects }) => {
 		<View style={styles.container}>
 			<ScrollView>
 				<Text style={styles.subHeader}> Edit Profile </Text>
-				<FormInput title={" "}  value={edit} onChange={setEdit} viewStyle={styles.Pname} />
+				<FormInput title={currentUser.name}  value={edit} onChange={setEdit} viewStyle={styles.Pname} />
 				<View style={styles.changePic}>
 					<PickImage/>
 				</View>

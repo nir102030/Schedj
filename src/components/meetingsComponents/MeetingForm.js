@@ -13,7 +13,7 @@ import FormSectionedMultiSelectHours from '../genericComponents/FormSectionedMul
 import { createEventsArray, findFreeTimeSlots } from '../../calendar/calendarAPI';
 import Moment from 'moment';
 import { extendMoment } from 'moment-range';
-import Spinner from '../../components/genericComponents/Spinner';
+import SpinnerMeeting from '../../components/genericComponents/SpinnerMeeting';
 import firebase from 'firebase';
 
 const MeetingForm = ({ project, oldMeeting, onSubmit, type, users, meetings }) => {
@@ -109,7 +109,7 @@ const MeetingForm = ({ project, oldMeeting, onSubmit, type, users, meetings }) =
 
 	const renderForm = () => {
 		return loading ? (
-			<Spinner />
+			<SpinnerMeeting />
 		) : (
 			<View>
 				<View style={styles.header}>

@@ -13,9 +13,10 @@ const ProjectComp = ({ project, deleteProject, navigation }) => {
 	const [showAlert, setShowAlert] = useState(false);
 	const todayDate = new Date().toJSON().substring(0, 10).replace(/-/g,'/')
 	const dueDateProject = project.date.toString().substring(0, 10).replace(/-/g,'/')
-	const subDates= Math.abs(new Date(todayDate)-new Date(dueDateProject))/1000/60/60/24
+	const subDates= Math.abs(new Date(dueDateProject)-new Date(todayDate))/1000/60/60/24
 	const color = subDates <= 7 ? '#a00b0b' : '#194d33';
 	const note = subDates <= 7 ? '- Hurry Up!!!' : '- Take your time ✌';
+	const dueDate = `${project.date.toString().substring(8, 10)}/${project.date.toString().substring(5, 7)}/${project.date.toString().substring(0, 4)}`
 
 
 	const rightButtons = [
@@ -46,14 +47,14 @@ const ProjectComp = ({ project, deleteProject, navigation }) => {
 							<Text style={styles.text}>{project.name}</Text>
 							<TouchableOpacity style={styles.date} onPress={() => {
 								showMessage({
-									message: `Due date for your ${project.name} Project `,
+									message: `Due date ${project.name}`,
 									description: `${subDates} Days left for the project ${note}`,	
 									color: 'black',
 									backgroundColor: '#c2dbe6',
 								});
 							}}>
-								<Text style={{color:color,fontWeight:'bold'}}> Due Date:  </Text>
-								<Text style={{color:color}}>{project.date.toString().substring(0, 10)}</Text>
+								<Text style={{color:color,fontWeight:'bold'}}> Due Date: </Text>
+								<Text style={{color:color}}>{dueDate}</Text>
 							</TouchableOpacity>
 						</View>
 						<View style={styles.options}>
@@ -104,7 +105,7 @@ const styles = StyleSheet.create({
 	date: {
 		fontSize: 15,
 		fontWeight:'bold',
-		flex:1.9,
+		flex:2,
 		flexDirection:'row-reverse',
 		alignSelf:'center',
 		justifyContent:'flex-start',

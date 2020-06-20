@@ -1,10 +1,12 @@
 import React from 'react';
 import { View, ActivityIndicator, StyleSheet,Image } from 'react-native';
 
-const Spinner = ({ size }) => {
+const SpinnerCalendar = ({ size }) => {
+
+
 	return (
 		<View style={styles.spinner}>
-			<ActivityIndicator size={size || 'large'} />
+			<Image source={require('../../../assets/images/animat-calendar-color1.gif')} style={styles.image} />
 		</View>
 	);
 };
@@ -22,4 +24,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default Spinner;
+export default SpinnerCalendar;
