@@ -27,7 +27,7 @@ const MeetingForm = ({ project, oldMeeting, onSubmit, type, users, meetings }) =
 		if (meeting.participants.length == 0) {
 			alert('You must add at least one participant!');
 		} else {
-			onSubmit(meeting);
+			onSubmit(meeting, project);
 		}
 	};
 

@@ -28,14 +28,15 @@ const OpenScreen = ({ navigation, addProject, addMeeting, addCalendar }) => {
 	const handleNotification = (notification) => {
 		Vibration.vibrate();
 		const type = String(notification.data.type);
+		const project = notification.data.project;
+		console.log(project);
 		switch (type) {
 			case 'add_project':
-				const project = notification.data.project;
 				navigation.navigate('InviteP', { project });
 				break;
 			case 'add_meeting':
 				const meeting = notification.data.meeting;
-				navigation.navigate('InviteM', { meeting });
+				navigation.navigate('InviteM', { meeting, project });
 				break;
 			default:
 				console.log('no data');
