@@ -2,11 +2,15 @@ import React, { useEffect } from 'react';
 import { Text, StyleSheet, View, FlatList, Image, ScrollView } from 'react-native';
 import MeetingComp from './MeetingComp';
 import { getAllMeetingsFromDb } from '../../firebase/meetingsAPI';
+import firebase from 'firebase';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
 const MeetingsList = ({ meetings, project, style, deleteMeeting, addMeeting }) => {
-	const meetingsList = meetings.filter((meeting) => meeting.pid == project.id);
+	const user = firebase.auth().currentUser;
+	const meetingsList = meetings.filter(
+		(meeting) => meeting.pid == project.id && meeting.participants.find((participant) => participant == user.email)
+	);
 
 	useEffect(() => {
 		getAllMeetingsFromDb(project, meetings, addMeeting);

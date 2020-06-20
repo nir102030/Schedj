@@ -33,7 +33,7 @@ const MeetingInvitation = ({ Owner, pid, navigation, addMeeting }) => {
 		);
 		const editedMeeting = { ...meeting, participants: newParticipants, participantsStatus: newParticipantsStatus };
 		editMeetingInDb(editedMeeting);
-		navigation.navigate('Meetings');
+		navigation.navigate('Meetings', { project });
 	};
 
 	return (
