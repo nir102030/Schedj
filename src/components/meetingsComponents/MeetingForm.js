@@ -223,7 +223,7 @@ const styles = StyleSheet.create({
 	},
 	sameRow1: {
 		flexDirection: 'row-reverse',
-		marginRight:55
+		marginRight: 55,
 	},
 	note: {
 		alignSelf: 'center',
