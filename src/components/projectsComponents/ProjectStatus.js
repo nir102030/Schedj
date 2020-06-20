@@ -5,7 +5,7 @@ import { showMessage, hideMessage } from 'react-native-flash-message';
 const ProjectStatus = ({ project, style }) => {
 	const status = project.status;
 	const header = status == 'Waiting' ? 'Waiting...' : 'Approved';
-	const description = status == 'Waiting' ? 'Not all members approve the invitation' : 'All members approve the invitation';
+	const description = status == 'Waiting' ? 'Not all members approved the invitation' : 'All members approve the invitation';
 	const color = status == 'Waiting' ? '#A37F11' : '#194d33';
 
 

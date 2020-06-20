@@ -29,6 +29,7 @@ export const addProjectToDb = (user, project) => {
 			uid: user.uid,
 			id: project.id,
 			name: project.name,
+			date: project.date,
 			participants: project.participants,
 			minForMeeting: project.minForMeeting,
 			reminder: project.reminder,

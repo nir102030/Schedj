@@ -13,6 +13,7 @@ const CreateProjectScreen = ({ navigation, addProject, users }) => {
 		uid: user.uid,
 		id: Math.floor(Math.random() * 99999),
 		name: '',
+		date: 'YYYY-MM-DD',
 		minForMeeting: '',
 		participants: [],
 		reminder: '',

@@ -6,9 +6,17 @@ import Swipeable from 'react-native-swipeable-row';
 import Alert from '../genericComponents/Alert';
 import { withNavigation } from 'react-navigation';
 import { deleteProjectFromDb } from '../../firebase/projectsAPI';
+import { showMessage, hideMessage } from 'react-native-flash-message';
+
 
 const ProjectComp = ({ project, deleteProject, navigation }) => {
 	const [showAlert, setShowAlert] = useState(false);
+	const todayDate = new Date().toJSON().substring(0, 10).replace(/-/g,'/')
+	const dueDateProject = project.date.toString().substring(0, 10).replace(/-/g,'/')
+	const subDates= Math.abs(new Date(todayDate)-new Date(dueDateProject))/1000/60/60/24
+	const color = subDates <= 7 ? '#a00b0b' : '#194d33';
+	const note = subDates <= 7 ? '- Hurry Up!!!' : '- Take your time ✌';
+
 
 	const rightButtons = [
 		<TouchableHighlight>
@@ -34,7 +42,20 @@ const ProjectComp = ({ project, deleteProject, navigation }) => {
 			<Swipeable leftButtons={leftButtons} rightButtons={rightButtons}>
 				<View style={styles.container}>
 					<View style={{ flexDirection: 'column' }}>
-						<Text style={styles.text}>{project.name}</Text>
+						<View style={{ flexDirection: 'row-reverse' }}>
+							<Text style={styles.text}>{project.name}</Text>
+							<TouchableOpacity style={styles.date} onPress={() => {
+								showMessage({
+									message: `Due date for your ${project.name} Project `,
+									description: `${subDates} Days left for the project ${note}`,	
+									color: 'black',
+									backgroundColor: '#c2dbe6',
+								});
+							}}>
+								<Text style={{color:color,fontWeight:'bold'}}> Due Date:  </Text>
+								<Text style={{color:color}}>{project.date.toString().substring(0, 10)}</Text>
+							</TouchableOpacity>
+						</View>
 						<View style={styles.options}>
 							<IndexDetail
 								imageSrc={require('../../../assets/images/taskTry.png')}
@@ -80,6 +101,20 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-between',
 		paddingBottom: 15,
 	},
+	date: {
+		fontSize: 15,
+		fontWeight:'bold',
+		flex:1.9,
+		flexDirection:'row-reverse',
+		alignSelf:'center',
+		justifyContent:'flex-start',
+		// paddingLeft:10,
+		marginBottom:5,
+	},
+	e:{
+		color: 'white',
+		fontWeight:'bold',
+	},
 	TouchableOpacityLeftSide: {
 		marginVertical: 20,
 		paddingBottom: 3,
@@ -101,13 +136,13 @@ const styles = StyleSheet.create({
 	text: {
 		fontWeight: 'bold',
 		fontSize: 20,
+		flex:5,
 		color: 'white',
 		marginBottom: 10,
 		marginRight: 10,
 	},
 	options: {
 		flexDirection: 'row',
-		//justifyContent: '',
 		marginHorizontal: 100,
 		marginRight: 0,
 	},

@@ -44,7 +44,7 @@ const MeetingComp = ({ project, tasks, topics, navigation, meeting, deleteMeetin
 				<View style={{ flex: 6 }}>
 					<View style={{ flexDirection: 'row-reverse' }}>
 						<Text style={styles.header}>Meeting {meeting.mid + 1}</Text>
-						<Text style={styles.date}>{meeting.date.toString().substring(5, 10)}</Text>
+						<Text style={styles.date}>{meeting.date.toString().substring(8, 10)}-{meeting.date.toString().substring(5, 7)}</Text>
 						<Text style={styles.date}>{meeting.from.toString().substring(11, 16)}-{meeting.to.toString().substring(11, 16)}</Text>
 					</View>
 				</View>
@@ -53,9 +53,6 @@ const MeetingComp = ({ project, tasks, topics, navigation, meeting, deleteMeetin
 				<View style={styles.aaa}>
 					<FormSectionedMultiSelect taskChoices={taskChoices} addTasksToMeeting={addTasksToMeeting} />
 				</View>
-				{/* <View style={styles.ccc}> */}
-					{/* <Text style={styles.date2}>{meeting.from.toString().substring(11, 16)}-{meeting.to.toString().substring(11, 16)}</Text> */}
-				{/* </View> */}
 				<View style={styles.bbb}>
 					<MeetingStatus meeting={meeting} />
 				</View>
@@ -88,18 +85,18 @@ const styles = StyleSheet.create({
 		marginHorizontal: 10,
 		height: 32,
 		fontWeight: 'bold',
-		fontSize: 24,
+		fontSize: 22,
 		color: 'white',
 		flex: 1,
 		flexDirection: 'row-reverse',
 	},
 	date: {
 		marginVertical: 12,
-		marginHorizontal: 10,
-		height: 30,
+		marginHorizontal: 5,
+		marginRight:10,
+		height: 35,
 		fontSize: 15,
 		color: 'white',
-		flex: 1,
 		flexDirection: 'row-reverse',
 	},
 	TouchableOpacity: {
@@ -135,7 +132,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'row-reverse',
 	},
 	aaa: {
-		flex: 1.5,
+		flex: 3,
 	},
 	// ccc:{
 	// 	flex: 1,

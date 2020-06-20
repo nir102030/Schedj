@@ -7,6 +7,7 @@ export default (state = [], action) => {
 					uid: action.payload.project.uid,
 					id: action.payload.project.id,
 					name: action.payload.project.name,
+					date: action.payload.project.date,
 					participants: action.payload.project.participants,
 					minForMeeting: action.payload.project.minForMeeting,
 					reminder: action.payload.project.reminder,

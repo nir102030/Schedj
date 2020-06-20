@@ -4,6 +4,7 @@ import FormInput from '../genericComponents/FormInput';
 import FormSubmitButton from '../genericComponents/FormSubmitButton';
 import FormNotes from '../../components/genericComponents/FormNotes';
 import FormMultiSelect from '../genericComponents/FormMultiSelect';
+import FormNewDatePicker from '../genericComponents/FormNewDatePicker';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
 import Spacer from '../genericComponents/Spacer';
@@ -60,6 +61,20 @@ const ProjectForm = ({ oldProject, onSubmit, type, users }) => {
 					viewStyle={styles.projectName}
 				/>
 				<Spacer />
+				<View style={styles.datePicker} >
+				<Text style={styles.dueDate}> Due Date </Text>
+				<FormNewDatePicker
+					date={project.date}
+					onConfirm={(date) => {
+						setProject({ ...project, date: date });
+					}}
+					type="date"
+					imageSrc={require('../../../assets/images/Cal.png')}
+					startIndex={0}
+					endIndex={10}
+				/>
+				</View>
+				<Spacer />
 				<FormMultiSelect
 					list={participantsList.map((participant) => {
 						return { id: participant.email, name: participant.email };
@@ -93,7 +108,7 @@ const ProjectForm = ({ oldProject, onSubmit, type, users }) => {
 					notes={project.notes}
 					setNotes={(notes) => setProject({ ...project, notes: notes })}
 				/>
-				<Text style={styles.task}> *Define your tasks later </Text>
+				<Text style={styles.task}>  *Define your tasks later </Text>
 				<FormSubmitButton onSubmit={() => validation()} type={type} />
 			</ScrollView>
 		</View>
@@ -113,6 +128,22 @@ const styles = StyleSheet.create({
 		backgroundColor: '#e8f1f9',
 		justifyContent: 'flex-end',
 	},
+	dueDate:{
+		fontSize: 20,
+		alignSelf:'center',
+		marginRight:15,
+		marginLeft: 10,
+		paddingBottom: 6,
+		paddingTop: 6,
+		paddingRight: 10,
+		paddingLeft: 10,
+		borderWidth: 1,
+		borderColor: 'white',
+		backgroundColor: '#c3dadd',
+		borderRadius: 5,
+		color:'black',
+		
+	},
 	text: {
 		//fontWeight: 'bold',
 		fontSize: 28,
@@ -121,6 +152,10 @@ const styles = StyleSheet.create({
 		alignSelf: 'center',
 		color: '#263238',
 		flex: 4,
+	},
+	datePicker:{
+		alignSelf:'flex-end',
+		flexDirection:'row-reverse'
 	},
 	headerStyle: {
 		fontWeight: 'bold',
