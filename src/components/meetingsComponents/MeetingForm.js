@@ -167,7 +167,8 @@ const MeetingForm = ({ project, oldMeeting, onSubmit, type, users, meetings }) =
 					/>
 					<FormMultiSelect
 						list={project.participants.map((participant) => {
-							return { id: participant, name: participant };
+							const participantName = users.find((user) => user.email == participant).profileName;
+							return { id: participant, name: participantName };
 						})}
 						addItemsToList={(participants) => {
 							const oldParticipants = meeting.participants;
@@ -199,10 +200,10 @@ const styles = StyleSheet.create({
 		backgroundColor: '#e8f1f9',
 		flex: 1,
 	},
-	space:{
+	space: {
 		marginVertical: 20,
-		paddingBottom:20,
-		marginBottom:20
+		paddingBottom: 20,
+		marginBottom: 20,
 	},
 	header: {
 		flexDirection: 'row',

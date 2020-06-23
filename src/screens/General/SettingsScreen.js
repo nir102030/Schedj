@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image,TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { Button } from 'react-native-elements';
 import FormInput from '../../components/genericComponents/FormInput';
 import FormPickerSelect from '../../components/genericComponents/FormPickerSelect';
@@ -11,17 +11,17 @@ import * as actions from '../../actions';
 import Spacer from '../../components/genericComponents/Spacer';
 import { CheckBox } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
-import PickImage from '../../components/genericComponents/PickImage'
+import PickImage from '../../components/genericComponents/PickImage';
+import { editUserInDb } from '../../firebase/usersAPI';
 
-
-const SettingsScreen = ({ navigation, deleteProject, projects }) => {
+const SettingsScreen = ({ navigation, deleteProject, projects, users, editUser }) => {
 	const [showAlert, setShowAlert] = useState(false);
 	const [MobileChecked, setMobileChecked] = useState(false);
 	const [EmailChecked, setEmailChecked] = useState(false);
-	const [edit, setEdit] = useState('');
-	const currentUser = firebase.auth().currentUser;
-	console.log(currentUser.name)
-
+	const currentUserEmail = firebase.auth().currentUser.email;
+	const user = users.find((user) => user.email == currentUserEmail);
+	const [currentUser, setCurrentUser] = useState(user);
+	//console.log(currentUser);
 
 	const rankItems = [1, 2, 3, 4, 5].map((num) => {
 		const label = num === 1 ? `       ${num} Star` : `       ${num} Stars`;
@@ -57,22 +57,55 @@ const SettingsScreen = ({ navigation, deleteProject, projects }) => {
 		<View style={styles.container}>
 			<ScrollView>
 				<Text style={styles.subHeader}> Edit Profile </Text>
-				<FormInput title={currentUser.name}  value={edit} onChange={setEdit} viewStyle={styles.Pname} />
+				<FormInput
+					title={currentUser.profileName}
+					value={currentUser.profileName}
+					onChange={(profileName) => {
+						const newUser = { ...currentUser, profileName: profileName };
+						setCurrentUser(newUser);
+						editUser(newUser);
+						editUserInDb(newUser);
+					}}
+					viewStyle={styles.Pname}
+				/>
 				<View style={styles.changePic}>
-					<PickImage/>
+					{/* <PickImage
+						currentImage={currentUser.profilePic}
+						submit={(image) => {
+							const newUser = { ...currentUser, profilePic: image };
+							editUserInDb(newUser);
+						}}
+					/> */}
 				</View>
 				<Text style={styles.subHeader}> Notifications </Text>
 				<View style={styles.Check}>
-				<CheckBox title="Email" containerStyle={styles.check} checkedColor="green" checked={EmailChecked} onPress={() => setEmailChecked(!EmailChecked)}/>
-				<CheckBox title="Mobile" containerStyle={styles.check}  checkedColor="green" checked={MobileChecked} onPress={() => setMobileChecked(!MobileChecked)}/>
+					<CheckBox
+						title="Email"
+						containerStyle={styles.check}
+						checkedColor="green"
+						checked={EmailChecked}
+						onPress={() => setEmailChecked(!EmailChecked)}
+					/>
+					<CheckBox
+						title="Mobile"
+						containerStyle={styles.check}
+						checkedColor="green"
+						checked={MobileChecked}
+						onPress={() => setMobileChecked(!MobileChecked)}
+					/>
 				</View>
 				<Text style={styles.subHeader}> Reminder </Text>
 				<FormPickerSelect items={reminderItems} label={'Reminder'} />
 				<Text style={styles.subHeader}> Rank our app </Text>
 				<FormPickerSelect items={rankItems} label={'Rank'} />
-				<Spacer/>
-				<Button title="Sign Out" onPress={() => setShowAlert(true)} color={'black'} containerStyle={{width: 380,alignSelf:'center'}} />
-				<Spacer/>
+				<Spacer />
+				<Button
+					title="Sign Out"
+					onPress={() => setShowAlert(true)}
+					color={'black'}
+					containerStyle={{ width: 380, alignSelf: 'center' }}
+				/>
+				<Spacer />
 				<Alert
 					showAlert={showAlert}
 					message="Are you sure you want to sign out?"
@@ -84,20 +117,22 @@ const SettingsScreen = ({ navigation, deleteProject, projects }) => {
 						() => setShowAlert(false);
 					}}
 				/>
-				</ScrollView>
+			</ScrollView>
 		</View>
 	);
 };
 
-SettingsScreen.navigationOptions = ({navigation}) => { 
-    return{ headerRight:   
-            <View style={styles.navigator}>
+SettingsScreen.navigationOptions = ({ navigation }) => {
+	return {
+		headerRight: (
+			<View style={styles.navigator}>
 				<Text style={styles.headerStyle}> Settings </Text>
-                <TouchableOpacity onPress={() => navigation.navigate('Projects')}>
-                    <Image source={require('../../../assets/images/home.png')} style={styles.home}/>
-                </TouchableOpacity>
-            </View>
-    };
+				<TouchableOpacity onPress={() => navigation.navigate('Projects')}>
+					<Image source={require('../../../assets/images/home.png')} style={styles.home} />
+				</TouchableOpacity>
+			</View>
+		),
+	};
 };
 
 const styles = StyleSheet.create({
@@ -105,22 +140,22 @@ const styles = StyleSheet.create({
 		backgroundColor: '#e8f1f9',
 		flex: 1,
 	},
-	navigator:{
-        flexDirection: 'row',
+	navigator: {
+		flexDirection: 'row',
 	},
 	home: {
 		height: 35,
-        width: 35,
-        marginRight:10
+		width: 35,
+		marginRight: 10,
 	},
-	check:{
-		backgroundColor:'white',
-		borderRadius:10
+	check: {
+		backgroundColor: 'white',
+		borderRadius: 10,
 	},
 	changePic: {
 		flexDirection: 'row',
 		alignSelf: 'flex-end',
-		marginVertical:20
+		marginVertical: 20,
 	},
 	subHeader: {
 		marginVertical: 10,
@@ -148,7 +183,7 @@ const styles = StyleSheet.create({
 	Check: {
 		flexDirection: 'row-reverse',
 	},
-	
+
 	Pname: {
 		flexDirection: 'row',
 		marginBottom: 10,
@@ -157,7 +192,7 @@ const styles = StyleSheet.create({
 	imagePP: {
 		height: 60,
 		width: 60,
-		marginHorizontal:88
+		marginHorizontal: 88,
 	},
 	imageS: {
 		height: 60,
@@ -174,7 +209,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-	return { projects: state.projects };
+	return { projects: state.projects, users: state.users };
 };
 
 export default connect(mapStateToProps, actions)(withNavigation(SettingsScreen));

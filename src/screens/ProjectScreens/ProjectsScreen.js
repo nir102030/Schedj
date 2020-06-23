@@ -4,7 +4,7 @@ import { Text } from 'react-native-elements';
 import ProjectsList from '../../components/projectsComponents/ProjectsList';
 import { connect } from 'react-redux';
 
-const ProjectsScreen = ({ navigation, users }) => {
+const ProjectsScreen = ({ navigation }) => {
 	return (
 		<View style={styles.container}>
 			{/* <Text h4>Hello {user.email.substring(0, user.email.indexOf('@'))}</Text> */}

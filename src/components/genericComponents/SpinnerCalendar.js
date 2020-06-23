@@ -1,9 +1,7 @@
 import React from 'react';
-import { View, ActivityIndicator, StyleSheet,Image } from 'react-native';
+import { View, ActivityIndicator, StyleSheet, Image } from 'react-native';
 
 const SpinnerCalendar = ({ size }) => {
-
-
 	return (
 		<View style={styles.spinner}>
 			<Image source={require('../../../assets/images/animat-calendar-color1.gif')} style={styles.image} />
@@ -18,8 +16,8 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	image: {
-		height: 100,
-		width: 100,
+		height: 250,
+		width: 250,
 		alignSelf: 'center',
 	},
 });

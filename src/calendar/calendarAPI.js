@@ -39,7 +39,7 @@ const createEvents = async (calendarIds, startDate, endDate) => {
 			start: start.toJSON(),
 			end: end.toJSON(),
 			title: event.title.toString(),
-			type: 'calendar',
+			type: 'Busy',
 		};
 	});
 	return events;
@@ -63,7 +63,7 @@ export const createEventsArray = async (project, participants, users, meetings) 
 				start: `${meeting.from.substring(0, 19)}.000Z`,
 				end: `${meeting.to.substring(0, 19)}.000Z`,
 				title: `${meeting.mid + 1}`,
-				type: 'meeting',
+				type: 'Project Meeting',
 			};
 		});
 

@@ -1,13 +1,11 @@
 import React from 'react';
-import { View, ActivityIndicator, StyleSheet,Image } from 'react-native';
+import { View, ActivityIndicator, StyleSheet, Image } from 'react-native';
 
 const SpinnerMeeting = ({ size }) => {
-
-
 	return (
 		<View style={styles.spinner}>
 			<Image source={require('../../../assets/images/test.gif')} style={styles.image} />
-            <Image source={require('../../../assets/images/test2.gif')} style={styles.image2} />
+			{/* <Image source={require('../../../assets/images/test2.gif')} style={styles.image2} /> */}
 		</View>
 	);
 };
@@ -19,15 +17,15 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	image: {
-		height: 150,
-        width: 150,
-        borderRadius:10,
+		height: 200,
+		width: 200,
+		borderRadius: 10,
 		alignSelf: 'center',
-    },
-    image2: {
+	},
+	image2: {
 		height: 150,
-        width: 150,
-        borderRadius:10,
+		width: 150,
+		borderRadius: 10,
 		alignSelf: 'center',
 	},
 });

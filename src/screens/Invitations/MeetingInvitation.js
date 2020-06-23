@@ -3,12 +3,13 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
-import {editMeetingInDb,getMeetingFromDb} from '../../firebase/meetingsAPI'
+import { editMeetingInDb, getMeetingFromDb } from '../../firebase/meetingsAPI';
 
-const MeetingInvitation = ({ Owner, pid, navigation, addMeeting }) => {
+const MeetingInvitation = ({ Owner, pid, navigation, addMeeting, users }) => {
 	const meeting = navigation.getParam('meeting');
 	const project = navigation.getParam('project');
 	const currentUser = firebase.auth().currentUser;
+	const user = users.find((user) => user.email == currentUser.email);
 
 	const approveMeeting = () => {
 		const editedParticipantsStatus = meeting.participantsStatus.map((participantStatus) => {
@@ -38,10 +39,14 @@ const MeetingInvitation = ({ Owner, pid, navigation, addMeeting }) => {
 
 	return (
 		<View style={styles.container}>
-			<Text style={styles.Hello}>Hello {Owner}</Text>
+			<Text style={styles.Hello}>Hello {user.profileName}</Text>
 			<Text style={styles.Text}>New meeting has been scheduled! </Text>
-			<Text style={styles.projName}>{pid}Project</Text>
-			<Text style={styles.Text}>Would you like to approve the invitation ? </Text>
+			<Text style={styles.projName}>{project.name}</Text>
+			<Text style={styles.Text}>On date: {meeting.date.substring(0, 10)} </Text>
+			<Text style={styles.Text}>
+				From: {meeting.from.substring(11, 16)} To: {meeting.to.substring(11, 16)}
+			</Text>
+			<Text style={styles.Text1}>Would you like to approve the invitation ? </Text>
 			<TouchableOpacity style={styles.TouchableOpacity} onPress={approveMeeting}>
 				<Image source={require('../../../assets/images/vv.png')} style={styles.image} onPress={() => {}} />
 				<Text style={styles.answer}>Yes, I'm willing to share my schedule</Text>
@@ -53,7 +58,7 @@ const MeetingInvitation = ({ Owner, pid, navigation, addMeeting }) => {
 				<Image source={require('../../../assets/images/xx.png')} style={styles.image} onPress={() => {}} />
 				<Text style={styles.answer}>No, Reject the invitation</Text>
 			</TouchableOpacity>
-			<Image source={require('../../../assets/images/schedjTry.png')} style={styles.schedj} />
+			{/* <Image source={require('../../../assets/images/schedjTry.png')} style={styles.schedj} /> */}
 		</View>
 	);
 };
@@ -100,6 +105,13 @@ const styles = StyleSheet.create({
 		color: '#263238',
 		paddingLeft: 10,
 	},
+	Text1: {
+		fontSize: 23,
+		marginVertical: 10,
+		color: '#263238',
+		paddingLeft: 10,
+		fontWeight: 'bold',
+	},
 	projName: {
 		fontWeight: 'bold',
 		fontSize: 35,
@@ -131,4 +143,8 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default connect(null, actions)(MeetingInvitation);
+const mapStateToProps = (state) => {
+	return { users: state.users };
+};
+
+export default connect(mapStateToProps, actions)(MeetingInvitation);

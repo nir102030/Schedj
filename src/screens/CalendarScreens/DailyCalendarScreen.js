@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import EventCalendar from 'react-native-events-calendar';
-import { View, Text, Dimensions, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { View, Text, Dimensions, TouchableOpacity, StyleSheet, Image, Button } from 'react-native';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
 		marginHorizontal: 320,
 		// paddingTop: 60,
 		position: 'absolute',
-		marginTop: '160%',
+		marginTop: 600,
 		// alignItems:'flex-end'
 	},
 	TouchableOpacityA: {

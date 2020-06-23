@@ -43,7 +43,7 @@ const ProjectInvitation = ({ navigation, addProject }) => {
 				<Text style={styles.Hello}>Hello {currentUser.email}</Text>
 				<Text style={styles.Text}>You got a new invitation for:</Text>
 				<Spacer />
-				<Text style={styles.Text1}>{project.name} project</Text>
+				<Text style={styles.Text1}>{project.name}</Text>
 				<Spacer />
 				{/* <Text style={styles.Text2}>Rest of the team includes : </Text>
 				<FlatList

@@ -41,10 +41,14 @@ export const addUserToDb = (user, token) => {
 export const editUserInDbAsync = async (user) => {
 	console.log('edit is working');
 	const dbUser = getUserFromDb(user);
-	console.log(dbUser);
 	const editedDbUser = { ...dbUser, isNewUser: isNewUser };
-	console.log(editedDbUser);
 	var updates = {};
 	updates['users/' + uid] = editedDbUser;
+	firebase.database().ref().update(updates);
+};
+
+export const editUserInDb = (user) => {
+	var updates = {};
+	updates['users/' + user.uid] = user;
 	firebase.database().ref().update(updates);
 };

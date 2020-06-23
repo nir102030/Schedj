@@ -34,8 +34,10 @@ import DailyCalendarScreen from './src/screens/CalendarScreens/DailyCalendarScre
 YellowBox.ignoreWarnings([
 	'VirtualizedLists should never be nested', //This warning will be ignored.
 	'Setting a timer for a long period of time',
-	'componentWillMount has been renamed',
+	'componentWillMount has been renamed, and is not recommended for use',
 	'Failed child context type: Invalid child context `virtualizedCell.cellKey`',
+	'componentWillReceiveProps has been renamed, and is not recommended for use',
+	'Unhandled promise rejection',
 ]);
 
 const navigator = createSwitchNavigator({

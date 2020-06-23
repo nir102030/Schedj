@@ -16,7 +16,6 @@ const ProjectCalendarScreen = ({ navigation, users, meetings }) => {
 	const [freeTimeSlots, setFreeTimeSlots] = useState([]);
 	const [markedDates, setMarkedDates] = useState([]);
 	const [loading, setLoading] = useState(true);
-	console.log(project.participantsStatus)
 
 	const initiateArraysAsync = async () => {
 		const moment = extendMoment(Moment);
@@ -72,7 +71,17 @@ const ProjectCalendarScreen = ({ navigation, users, meetings }) => {
 						colorName="R"
 						description="The whole day is busy, try a different day"
 					/>
-					<Text style={{fontSize:22,fontWeight:'bold',color:'#263238',alignSelf:'center',marginHorizontal:10}}>{project.name}</Text>
+					<Text
+						style={{
+							fontSize: 22,
+							fontWeight: 'bold',
+							color: '#263238',
+							alignSelf: 'center',
+							marginHorizontal: 10,
+						}}
+					>
+						{project.name}
+					</Text>
 				</View>
 				<Calendar
 					onDayPress={(date) => {
@@ -87,6 +96,10 @@ const ProjectCalendarScreen = ({ navigation, users, meetings }) => {
 					}}
 					markedDates={markedDates}
 					markingType={'custom'}
+				/>
+				<Image
+					source={require('../../../assets/images/gif.png')}
+					style={{ height: 350, width: 400, alignSelf: 'center' }}
 				/>
 			</View>
 		);

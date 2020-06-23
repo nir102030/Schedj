@@ -3,11 +3,11 @@ import { Text, StyleSheet, View, TouchableOpacity, Image } from 'react-native';
 import { showMessage, hideMessage } from 'react-native-flash-message';
 
 const ProjectStatus = ({ project, style }) => {
-	const status = project.status;
+	const status = 'Approve';
 	const header = status == 'Waiting' ? 'Waiting...' : 'Approved';
-	const description = status == 'Waiting' ? 'Not all members approved the invitation' : 'All members approve the invitation';
+	const description =
+		status == 'Waiting' ? 'Not all members approved the invitation' : 'All members approve the invitation';
 	const color = status == 'Waiting' ? '#A37F11' : '#194d33';
-
 
 	return (
 		<View style={styles.top}>
@@ -44,7 +44,7 @@ const ProjectStatus = ({ project, style }) => {
 					onPress={() => {
 						showMessage({
 							message: `Status: ${status}`,
-							description: `${description}`,	//	${project.participants}`,
+							description: `${description}`, //	${project.participants}`,
 							type: 'info',
 							color: 'black',
 							backgroundColor: '#c2dbe6',
