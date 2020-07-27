@@ -1,12 +1,13 @@
 import firebase from 'firebase';
 
-export const getAllUsersFromDb = (addUser) => {
+export const getAllUsersFromDb = async (addUser) => {
 	const ref = firebase.database().ref('users/');
-	ref.once('value', (snapshot) => {
+	ref.on('value', (snapshot) => {
 		snapshot.forEach((childSnapShot) => {
 			addUser(childSnapShot.val());
 		});
 	});
+	return true;
 };
 
 export const getUserFromDb = (user) => {
@@ -30,11 +31,14 @@ export const addUserToDb = (user, token) => {
 		.set({
 			uid: user.uid,
 			email: user.email,
+			profileName: user.email,
+			profilePic: user.profilePic,
+			reminder: user.reminder,
+			rank: user.rank,
+			calendar: user.calendar,
+			emailNotification: user.emailNotification,
+			mobileNotification: user.mobileNotification,
 			token: token,
-			profileName: '',
-			profilePic: '',
-			reminder: '',
-			rank: '',
 		});
 };
 

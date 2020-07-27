@@ -16,18 +16,24 @@ const SignupScreen = ({ navigation, addUser, addCalendar }) => {
 			setTimeout(() => resolve(registerForPushNotifications(user), 1000));
 		});
 		let result1 = await promise1;
-
-		let promise2 = new Promise((resolve, reject) => {
-			setTimeout(() => resolve(getCalendarPermission(addCalendar, user), 1000));
-		});
-		let result2 = await promise2;
-		//console.log(result);
+		getCalendarPermission(addCalendar, user);
 	};
 
 	const onLoginSuccess = async () => {
-		const user = firebase.auth().currentUser;
-		addUser(user);
-		handleSignUpAsync(user);
+		const currentUser = firebase.auth().currentUser;
+		const newUser = {
+			uid: currentUser.uid,
+			email: currentUser.email,
+			profileName: currentUser.email,
+			profilePic: { uri: '' },
+			reminder: '',
+			rank: '',
+			calendar: { name: currentUser.email, uid: currentUser.uid, events: [] },
+			emailNotification: false,
+			mobileNotification: true,
+		};
+		// addUser(newUser);
+		handleSignUpAsync(newUser);
 		setLoading(false);
 		alert('Signed up successfully');
 	};

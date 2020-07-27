@@ -3,14 +3,8 @@ import { StyleSheet, View, FlatList } from 'react-native';
 import ProjectComp from './ProjectComp';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
-import firebase from 'firebase';
-import { getAllProjectsFromDb } from '../../firebase/projectsAPI';
 
-const ProjectList = ({ projects, style, deleteProject, addProject }) => {
-	const user = firebase.auth().currentUser;
-	useEffect(() => {
-		getAllProjectsFromDb(user, projects, addProject);
-	}, []);
+const ProjectList = ({ projects, style, deleteProject }) => {
 	function Item({ item }) {
 		return (
 			<View style={styles.item}>

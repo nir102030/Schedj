@@ -10,8 +10,9 @@ export default (state = [], action) => {
 					profilePic: action.payload.user.profilePic,
 					reminder: action.payload.user.reminder,
 					rank: action.payload.user.rank,
-					token: action.payload.user.token,
 					calendar: action.payload.user.calendar,
+					emailNotification: action.payload.user.emailNotification,
+					mobileNotification: action.payload.user.mobileNotification,
 				},
 			];
 		case 'edit_user':

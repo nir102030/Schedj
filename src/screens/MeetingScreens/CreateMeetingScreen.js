@@ -2,12 +2,21 @@ import React from 'react';
 import MeetingForm from '../../components/meetingsComponents/MeetingForm';
 import { View, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
 import { addMeetingToDb } from '../../firebase/meetingsAPI';
+import { editCalendarInDb } from '../../firebase/calendarAPI';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
 import { sendPushNotification } from '../../firebase/notifications';
 import firebase from 'firebase';
 
-const CreateMeetingScreen = ({ navigation, addMeeting, meetings, users }) => {
+const CreateMeetingScreen = ({
+	navigation,
+	addMeeting,
+	meetings,
+	users,
+	editCalendar,
+	editCalendarInDb,
+	calendars,
+}) => {
 	const project = navigation.getParam('project');
 	const date = navigation.getParam('date') ? navigation.getParam('date') : 'YYYY-MM-DD';
 	//const freeTimeSlots = navigation.getParam('freeTimeSlots') ? navigation.getParam('freeTimeSlots') : null;
@@ -37,6 +46,18 @@ const CreateMeetingScreen = ({ navigation, addMeeting, meetings, users }) => {
 	};
 
 	const addParticipantToMeeting = (user, meeting, project) => {
+		// console.log(calendars);
+		// const userCalendar = calendars.find((calendar) => calendar.uid === user.uid);
+		// const event = {
+		// 	id: Math.floor(Math.random() * 999999),
+		// 	start: meeting.from,
+		// 	end: meeting.to,
+		// 	title: 'Project Meeting',
+		// 	type: 'Meeting',
+		// };
+		// const editedCalendar = { ...userCalendar, events: { ...userCalendar.events, event } };
+		// editCalendar(editedCalendar);
+		// editCalendarInDb(editedCalendar);
 		const msgTitle = 'New Meeting Invetation';
 		const msgBody = `You have been added to meeting #${meeting.mid} in ${project.name} project`;
 		const data = { type: 'add_meeting', meeting: meeting, project: project };
@@ -52,7 +73,7 @@ const CreateMeetingScreen = ({ navigation, addMeeting, meetings, users }) => {
 				participant == user.email ? addParticipantToMeeting(user, meeting, project) : null;
 			});
 		});
-		navigation.pop();
+		navigation.navigate('Projects');
 	};
 
 	return (
@@ -67,10 +88,6 @@ const CreateMeetingScreen = ({ navigation, addMeeting, meetings, users }) => {
 	);
 };
 
-const mapStateToProps = (state) => {
-	return { meetings: state.meetings, users: state.users };
-};
-
 CreateMeetingScreen.navigationOptions = ({ navigation }) => {
 	return {
 		headerRight: (
@@ -82,6 +99,10 @@ CreateMeetingScreen.navigationOptions = ({ navigation }) => {
 			</View>
 		),
 	};
+};
+
+const mapStateToProps = (state) => {
+	return { meetings: state.meetings, users: state.users, calendars: state.calendars };
 };
 
 export default connect(mapStateToProps, actions)(CreateMeetingScreen);

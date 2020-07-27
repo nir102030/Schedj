@@ -3,7 +3,7 @@ import { Text, StyleSheet, View, TouchableOpacity, Image } from 'react-native';
 import { showMessage, hideMessage } from 'react-native-flash-message';
 
 const ProjectStatus = ({ project, style }) => {
-	const status = 'Approve';
+	const status = project.participantsStatus.find((participant) => !participant.status) ? 'Waiting' : 'Approved';
 	const header = status == 'Waiting' ? 'Waiting...' : 'Approved';
 	const description =
 		status == 'Waiting' ? 'Not all members approved the invitation' : 'All members approve the invitation';

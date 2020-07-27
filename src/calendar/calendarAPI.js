@@ -5,13 +5,16 @@ export const getCalendarPermission = async (addCalendar, user) => {
 	const { status } = await Calendar.requestCalendarPermissionsAsync();
 	if (status === 'granted') {
 		createCalendar(addCalendar, user);
-	}
+		return true;
+	} else return false;
 };
 
 export const createCalendar = async (addCalendar, user) => {
-	const calendar = await createCalendarObject(user);
-	addCalendar(calendar);
-	addCalendarToDb(calendar);
+	const calendar = new Promise((resolve, reject) => resolve(createCalendarObject(user)));
+	calendar.then((calendar) => {
+		addCalendar(calendar);
+		addCalendarToDb(calendar);
+	});
 };
 
 export const createCalendarObject = async (user) => {
@@ -19,8 +22,8 @@ export const createCalendarObject = async (user) => {
 	const calendarIds = calendars.map((calendar) => {
 		return calendar.id;
 	});
-	const startDate = new Date('June 1, 2020 00:00:00');
-	const endDate = new Date('June 30, 2020 23:00:00');
+	const startDate = new Date('August 1, 2020 00:00:00');
+	const endDate = new Date('August 31, 2020 23:00:00');
 	const events = await createEvents(calendarIds, startDate, endDate);
 	const calendar = { uid: user.uid, name: user.email, events: events };
 	return calendar;
@@ -47,7 +50,7 @@ const createEvents = async (calendarIds, startDate, endDate) => {
 
 const createTimeSlots = async (moment) => {
 	let timeSlots = [];
-	const timeInterval = '2020-06-01T08:00:00+00:00/2020-07-01T20:00:00+00:00';
+	const timeInterval = '2020-08-01T08:00:00+00:00/2020-08-31T20:00:00+00:00';
 	const range = moment.range(timeInterval);
 	const hours = Array.from(range.by('hour', { excludeEnd: true }));
 	timeSlots = hours.map((m) => m);
@@ -55,6 +58,7 @@ const createTimeSlots = async (moment) => {
 };
 
 export const createEventsArray = async (project, participants, users, meetings) => {
+	console.log(meetings);
 	const meetingsEvents = meetings
 		.filter((meeting) => meeting.pid == project.id)
 		.map((meeting) => {

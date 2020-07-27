@@ -16,12 +16,9 @@ import { editUserInDb } from '../../firebase/usersAPI';
 
 const SettingsScreen = ({ navigation, deleteProject, projects, users, editUser }) => {
 	const [showAlert, setShowAlert] = useState(false);
-	const [MobileChecked, setMobileChecked] = useState(false);
-	const [EmailChecked, setEmailChecked] = useState(false);
 	const currentUserEmail = firebase.auth().currentUser.email;
-	const user = users.find((user) => user.email == currentUserEmail);
+	const user = users.find((user) => user.email === currentUserEmail);
 	const [currentUser, setCurrentUser] = useState(user);
-	//console.log(currentUser);
 
 	const rankItems = [1, 2, 3, 4, 5].map((num) => {
 		const label = num === 1 ? `       ${num} Star` : `       ${num} Stars`;
@@ -53,6 +50,12 @@ const SettingsScreen = ({ navigation, deleteProject, projects, users, editUser }
 			});
 	};
 
+	const setUserDetails = (newUser) => {
+		setCurrentUser(newUser);
+		editUser(newUser);
+		//editUserInDb(newUser);
+	};
+
 	return (
 		<View style={styles.container}>
 			<ScrollView>
@@ -60,22 +63,17 @@ const SettingsScreen = ({ navigation, deleteProject, projects, users, editUser }
 				<FormInput
 					title={currentUser.profileName}
 					value={currentUser.profileName}
-					onChange={(profileName) => {
-						const newUser = { ...currentUser, profileName: profileName };
-						setCurrentUser(newUser);
-						editUser(newUser);
-						editUserInDb(newUser);
-					}}
+					onChange={(profileName) => setUserDetails({ ...currentUser, profileName: profileName })}
 					viewStyle={styles.Pname}
 				/>
 				<View style={styles.changePic}>
-					{/* <PickImage
-						currentImage={currentUser.profilePic}
-						submit={(image) => {
-							const newUser = { ...currentUser, profilePic: image };
-							editUserInDb(newUser);
+					<PickImage
+						image={currentUser.profilePic}
+						setImage={(image) => {
+							const newUser = { ...currentUser, profilePic: { uri: image } };
+							setUserDetails(newUser);
 						}}
-					/> */}
+					/>
 				</View>
 				<Text style={styles.subHeader}> Notifications </Text>
 				<View style={styles.Check}>
@@ -83,15 +81,21 @@ const SettingsScreen = ({ navigation, deleteProject, projects, users, editUser }
 						title="Email"
 						containerStyle={styles.check}
 						checkedColor="green"
-						checked={EmailChecked}
-						onPress={() => setEmailChecked(!EmailChecked)}
+						checked={currentUser.emailNotification}
+						onPress={() => {
+							const newUser = { ...currentUser, emailNotification: !currentUser.emailNotification };
+							setUserDetails(newUser);
+						}}
 					/>
 					<CheckBox
 						title="Mobile"
 						containerStyle={styles.check}
 						checkedColor="green"
-						checked={MobileChecked}
-						onPress={() => setMobileChecked(!MobileChecked)}
+						checked={currentUser.mobileNotification}
+						onPress={() => {
+							const newUser = { ...currentUser, mobileNotification: !currentUser.mobileNotification };
+							setUserDetails(newUser);
+						}}
 					/>
 				</View>
 				<Text style={styles.subHeader}> Reminder </Text>
@@ -109,12 +113,9 @@ const SettingsScreen = ({ navigation, deleteProject, projects, users, editUser }
 				<Alert
 					showAlert={showAlert}
 					message="Are you sure you want to sign out?"
-					onCancel={() => {
-						() => setShowAlert(false);
-					}}
+					onCancel={() => setShowAlert(false)}
 					onConfirm={() => {
 						signOut();
-						() => setShowAlert(false);
 					}}
 				/>
 			</ScrollView>

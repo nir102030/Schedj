@@ -6,6 +6,7 @@ import { YellowBox } from 'react-native';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import reducers from './src/reducers';
+import store from './src/redux/store';
 import FlashMessage from 'react-native-flash-message';
 import ProjectCalendarScreen from './src/screens/CalendarScreens/ProjectCalendarScreen';
 import ProjectsScreen from './src/screens/ProjectScreens/ProjectsScreen';
@@ -90,7 +91,7 @@ const App = createAppContainer(navigator);
 export default () => {
 	useKeepAwake();
 	return (
-		<Provider store={createStore(reducers)}>
+		<Provider store={store}>
 			<App />
 			<FlashMessage position="top" />
 		</Provider>

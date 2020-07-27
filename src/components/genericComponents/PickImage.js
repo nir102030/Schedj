@@ -3,8 +3,8 @@ import { Button, Image, View, StyleSheet } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 
-export default function ImagePickerExample({ currentImage, submit }) {
-	const [image, setImage] = useState(currentImage.uri ? currentImage.uri : null);
+export default function ImagePickerExample({ image, setImage }) {
+	const source = image.uri == '' ? null : image.uri;
 
 	useEffect(() => {
 		(async () => {
@@ -25,11 +25,8 @@ export default function ImagePickerExample({ currentImage, submit }) {
 			quality: 1,
 		});
 
-		console.log(result);
-
 		if (!result.cancelled) {
 			setImage(result.uri);
-			submit(image);
 		}
 	};
 
@@ -38,7 +35,7 @@ export default function ImagePickerExample({ currentImage, submit }) {
 			<Button title="Pick Profile Picture" onPress={pickImage} color={'#c3dadd'} />
 			{image && (
 				<Image
-					source={{ uri: image }}
+					source={{ uri: source }}
 					style={{ width: 100, height: 100, borderRadius: 10, marginVertical: 10, marginHorizontal: 60 }}
 				/>
 			)}

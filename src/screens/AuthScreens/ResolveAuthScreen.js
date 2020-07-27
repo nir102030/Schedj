@@ -3,13 +3,9 @@ import firebase from 'firebase';
 import { firebaseInit } from '../../firebase/config';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
-import { getAllUsersFromDb } from '../../firebase/usersAPI';
 
-const ResolveAuthScreen = ({ navigation, addUser }) => {
+const ResolveAuthScreen = ({ navigation }) => {
 	firebaseInit();
-	useEffect(() => {
-		getAllUsersFromDb(addUser);
-	}, []);
 
 	firebase.auth().onAuthStateChanged(function (user) {
 		if (user) {

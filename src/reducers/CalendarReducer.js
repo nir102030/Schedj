@@ -10,12 +10,11 @@ export default (state = [], action) => {
 					events: action.payload.calendar.events,
 				},
 			];
-		// case 'edit_calendar':
-		// 	return state.map((project) => {
-		// 		return project.id === action.payload.project.id ? action.payload.project : project;
-		// 	});
-		// case 'delete_calendar':
-		// 	return state.filter((project) => project.id != action.payload.project.id);
+		case 'edit_calendar':
+			return state.map((calendar) => {
+				return calendar.uid === action.payload.calendar.uid ? action.payload.calendar : calendar;
+			});
+
 		default:
 			return state;
 	}

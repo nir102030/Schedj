@@ -117,3 +117,10 @@ export const addCalendar = (calendar) => {
 		payload: { calendar },
 	};
 };
+
+export const editCalendar = (calendar) => {
+	return {
+		type: 'edit_calendar',
+		payload: { calendar },
+	};
+};

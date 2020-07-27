@@ -5,23 +5,31 @@ import * as actions from '../../actions';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
 import { Notifications } from 'expo';
-import { getProjectFromDb } from '../../firebase/projectsAPI';
-import { getMeetingFromDb } from '../../firebase/meetingsAPI';
-import { editCalendarInDb } from '../../firebase/calendarAPI';
 import { createCalendar } from '../../calendar/calendarAPI';
-import { getUserFromDb } from '../../firebase/calendarAPI';
+import { getAllUsersFromDb } from '../../firebase/usersAPI';
+import { getAllProjectsFromDb } from '../../firebase/projectsAPI';
+import { getCalendarPermission } from '../../calendar/calendarAPI';
 
-const OpenScreen = ({ navigation, addProject, addMeeting, addCalendar }) => {
+const OpenScreen = ({ navigation, addProject, editProject, addMeeting, addCalendar, addUser, projects, users }) => {
 	const user = firebase.auth().currentUser;
-	const editCalendarAsync = async () => {
-		let promise = new Promise((resolve, reject) => {
-			setTimeout(() => resolve(createCalendar(addCalendar, user)), 1000);
-		});
-		const result = await promise;
+
+	const initData = async () => {
+		const usersPromise = new Promise((resolve, reject) => resolve(getAllUsersFromDb(addUser)));
+		const projectsPromise = usersPromise.then(getAllProjectsFromDb(user, addProject, editProject));
+		const calendarPromise = projectsPromise.then(getCalendarPermission(addCalendar, user));
+		calendarPromise.then((val) => console.log(val));
 	};
 
+	// const editCalendarAsync = async () => {
+	// 	let promise = new Promise((resolve, reject) => {
+	// 		setTimeout(() => resolve(createCalendar(addCalendar, user)), 1000);
+	// 	});
+	// 	const result = await promise;
+	// };
+
 	useEffect(() => {
-		editCalendarAsync();
+		initData();
+		// editCalendarAsync();
 		_notificationSubscription = Notifications.addListener(handleNotification);
 	}, []);
 
@@ -118,4 +126,8 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default connect(null, actions)(OpenScreen);
+const mapStateToProps = (state) => {
+	return { projects: state.projects, users: state.users };
+};
+
+export default connect(mapStateToProps, actions)(OpenScreen);

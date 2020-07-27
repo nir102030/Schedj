@@ -3,8 +3,9 @@ import { StyleSheet, View, TouchableOpacity, Image } from 'react-native';
 import { Text } from 'react-native-elements';
 import ProjectsList from '../../components/projectsComponents/ProjectsList';
 import { connect } from 'react-redux';
+import * as actions from '../../actions';
 
-const ProjectsScreen = ({ navigation }) => {
+const ProjectsScreen = ({ navigation, users }) => {
 	return (
 		<View style={styles.container}>
 			{/* <Text h4>Hello {user.email.substring(0, user.email.indexOf('@'))}</Text> */}
@@ -91,4 +92,5 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
 	return { projects: state.projects, users: state.users };
 };
-export default connect(mapStateToProps)(ProjectsScreen);
+
+export default connect(mapStateToProps, actions)(ProjectsScreen);
