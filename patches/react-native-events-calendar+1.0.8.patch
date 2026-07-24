@@ -1,0 +1,30 @@
+diff --git a/node_modules/react-native-events-calendar/src/EventCalendar.js b/node_modules/react-native-events-calendar/src/EventCalendar.js
+index 4b27dc2..a4eee3b 100644
+--- a/node_modules/react-native-events-calendar/src/EventCalendar.js
++++ b/node_modules/react-native-events-calendar/src/EventCalendar.js
+@@ -22,6 +22,7 @@ export default class EventCalendar extends React.Component {
+       date: moment(this.props.initDate),
+       index: this.props.size
+     }
++    this.calendarRef = React.createRef()
+   }
+ 
+   static defaultProps = {
+@@ -69,7 +70,7 @@ export default class EventCalendar extends React.Component {
+       return
+     }
+     const date = moment(this.props.initDate).add(index - this.props.size, 'days')
+-    this.refs.calendar.scrollToIndex({ index, animated: false })
++    this.calendarRef.current.scrollToIndex({ index, animated: false })
+     this.setState({ index, date })
+   }
+ 
+@@ -93,7 +94,7 @@ export default class EventCalendar extends React.Component {
+           </TouchableOpacity>
+         </View>
+         <VirtualizedList
+-          ref='calendar'
++          ref={this.calendarRef}
+           windowSize={2}
+           initialNumToRender={2}
+           initialScrollIndex={this.props.size}

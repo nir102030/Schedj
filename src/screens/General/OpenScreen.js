@@ -3,15 +3,15 @@ import { View, StyleSheet, Image, TouchableOpacity, Text, Vibration } from 'reac
 import * as Animatable from 'react-native-animatable';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
-import firebase from 'firebase';
-import { Notifications } from 'expo';
+import { getFirebaseAuth } from '../../firebase/config';
+import * as Notifications from 'expo-notifications';
 import { createCalendar } from '../../calendar/calendarAPI';
 import { getAllUsersFromDb } from '../../firebase/usersAPI';
 import { getAllProjectsFromDb } from '../../firebase/projectsAPI';
 import { getCalendarPermission } from '../../calendar/calendarAPI';
 
 const OpenScreen = ({ navigation, addProject, editProject, addMeeting, addCalendar, addUser, projects, users }) => {
-	const user = firebase.auth().currentUser;
+	const user = getFirebaseAuth().currentUser;
 
 	const initData = async () => {
 		const usersPromise = new Promise((resolve, reject) => resolve(getAllUsersFromDb(addUser)));
@@ -30,19 +30,21 @@ const OpenScreen = ({ navigation, addProject, editProject, addMeeting, addCalend
 	useEffect(() => {
 		initData();
 		// editCalendarAsync();
-		_notificationSubscription = Notifications.addListener(handleNotification);
+		const subscription = Notifications.addNotificationReceivedListener(handleNotification);
+		return () => subscription.remove();
 	}, []);
 
 	const handleNotification = (notification) => {
 		Vibration.vibrate();
-		const type = String(notification.data.type);
-		const project = notification.data.project;
+		const data = notification.request.content.data;
+		const type = String(data.type);
+		const project = data.project;
 		switch (type) {
 			case 'add_project':
 				navigation.navigate('InviteP', { project });
 				break;
 			case 'add_meeting':
-				const meeting = notification.data.meeting;
+				const meeting = data.meeting;
 				navigation.navigate('InviteM', { meeting, project });
 				break;
 			default:
@@ -71,9 +73,9 @@ const OpenScreen = ({ navigation, addProject, editProject, addMeeting, addCalend
 	);
 };
 
-OpenScreen.navigationOptions = () => {
+OpenScreen.options = () => {
 	return {
-		headerRight: (
+		headerRight: () => (
 			<View>
 				<Text style={styles.headerStyle}> Schedj </Text>
 			</View>

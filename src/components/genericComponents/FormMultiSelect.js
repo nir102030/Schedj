@@ -21,6 +21,7 @@ class FormMultiSelect extends Component {
 			<View style={styles.container}>
 				<MultiSelect
 					hideTags
+					fixedHeight
 					items={this.items}
 					uniqueKey="id"
 					ref={(component) => {

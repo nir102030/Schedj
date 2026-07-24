@@ -9,8 +9,8 @@ import SpinnerCalendar from '../../components/genericComponents/SpinnerCalendar'
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
 
-const ProjectCalendarScreen = ({ navigation, users, meetings }) => {
-	const project = navigation.getParam('project');
+const ProjectCalendarScreen = ({ navigation, route, users, meetings }) => {
+	const project = route.params.project;
 	const participants = project.participants;
 	const [events, setEvents] = useState([]);
 	const [freeTimeSlots, setFreeTimeSlots] = useState([]);
@@ -108,9 +108,9 @@ const ProjectCalendarScreen = ({ navigation, users, meetings }) => {
 	return <View style={styles.container}>{redenrCalendar()}</View>;
 };
 
-ProjectCalendarScreen.navigationOptions = ({ navigation }) => {
+ProjectCalendarScreen.options = ({ navigation }) => {
 	return {
-		headerRight: (
+		headerRight: () => (
 			<View style={styles.navigator}>
 				<Text style={styles.headerStyle1}> Calendar </Text>
 				<TouchableOpacity onPress={() => navigation.navigate('Projects')}>

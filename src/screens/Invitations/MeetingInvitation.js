@@ -2,13 +2,13 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
-import firebase from 'firebase';
+import { getFirebaseAuth } from '../../firebase/config';
 import { editMeetingInDb, getMeetingFromDb } from '../../firebase/meetingsAPI';
 
-const MeetingInvitation = ({ Owner, pid, navigation, addMeeting, users }) => {
-	const meeting = navigation.getParam('meeting');
-	const project = navigation.getParam('project');
-	const currentUser = firebase.auth().currentUser;
+const MeetingInvitation = ({ Owner, pid, navigation, route, addMeeting, users }) => {
+	const meeting = route.params.meeting;
+	const project = route.params.project;
+	const currentUser = getFirebaseAuth().currentUser;
 	const user = users.find((user) => user.email == currentUser.email);
 
 	const approveMeeting = () => {

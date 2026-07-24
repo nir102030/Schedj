@@ -1,8 +1,9 @@
-import firebase from 'firebase';
+import { ref, onValue, get, set, update } from 'firebase/database';
+import { getFirebaseDb } from './config';
 
 export const getAllUsersFromDb = async (addUser) => {
-	const ref = firebase.database().ref('users/');
-	ref.on('value', (snapshot) => {
+	const usersRef = ref(getFirebaseDb(), 'users/');
+	onValue(usersRef, (snapshot) => {
 		snapshot.forEach((childSnapShot) => {
 			addUser(childSnapShot.val());
 		});
@@ -11,8 +12,8 @@ export const getAllUsersFromDb = async (addUser) => {
 };
 
 export const getUserFromDb = (user) => {
-	const ref = firebase.database().ref('users/' + user.uid);
-	ref.once('value', (snapshot) => {
+	const userRef = ref(getFirebaseDb(), 'users/' + user.uid);
+	get(userRef).then((snapshot) => {
 		return snapshot.val();
 	});
 };
@@ -25,21 +26,18 @@ export const addUserToDbAsync = async (user, token) => {
 };
 
 export const addUserToDb = (user, token) => {
-	firebase
-		.database()
-		.ref('users/' + user.uid)
-		.set({
-			uid: user.uid,
-			email: user.email,
-			profileName: user.email,
-			profilePic: user.profilePic,
-			reminder: user.reminder,
-			rank: user.rank,
-			calendar: user.calendar,
-			emailNotification: user.emailNotification,
-			mobileNotification: user.mobileNotification,
-			token: token,
-		});
+	set(ref(getFirebaseDb(), 'users/' + user.uid), {
+		uid: user.uid,
+		email: user.email,
+		profileName: user.email,
+		profilePic: user.profilePic,
+		reminder: user.reminder,
+		rank: user.rank,
+		calendar: user.calendar,
+		emailNotification: user.emailNotification,
+		mobileNotification: user.mobileNotification,
+		token: token,
+	});
 };
 
 export const editUserInDbAsync = async (user) => {
@@ -48,11 +46,11 @@ export const editUserInDbAsync = async (user) => {
 	const editedDbUser = { ...dbUser, isNewUser: isNewUser };
 	var updates = {};
 	updates['users/' + uid] = editedDbUser;
-	firebase.database().ref().update(updates);
+	update(ref(getFirebaseDb()), updates);
 };
 
 export const editUserInDb = (user) => {
 	var updates = {};
 	updates['users/' + user.uid] = user;
-	firebase.database().ref().update(updates);
+	update(ref(getFirebaseDb()), updates);
 };

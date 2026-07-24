@@ -1,4 +1,5 @@
-import firebase from 'firebase';
+import { ref, onValue, get, set, update, remove } from 'firebase/database';
+import { getFirebaseDb } from './config';
 import store from '../redux/store';
 import { editMeeting, addMeeting } from '../actions';
 
@@ -18,8 +19,8 @@ const editData = (editProject, dbProject) => {
 };
 
 export const getAllProjectsFromDb = async (user, addProject, editProject) => {
-	const ref = firebase.database().ref('projects/');
-	ref.on('value', (dbProjects) => {
+	const projectsRef = ref(getFirebaseDb(), 'projects/');
+	onValue(projectsRef, (dbProjects) => {
 		const state = store.getState();
 		const projects = state.projects;
 		dbProjects.forEach((dbProject) => {
@@ -38,27 +39,24 @@ export const getAllProjectsFromDb = async (user, addProject, editProject) => {
 };
 
 export const getProjectFromDb = (pid, addProject) => {
-	const ref = firebase.database().ref('projects/' + pid);
-	ref.once('value', (snapshot) => {
+	const projectRef = ref(getFirebaseDb(), 'projects/' + pid);
+	get(projectRef).then((snapshot) => {
 		addProject(snapshot.val());
 	});
 };
 
 export const addProjectToDb = (user, project) => {
-	firebase
-		.database()
-		.ref('projects/' + project.id)
-		.set({
-			uid: user.uid,
-			id: project.id,
-			name: project.name,
-			date: project.date,
-			participants: project.participants,
-			minForMeeting: project.minForMeeting,
-			reminder: project.reminder,
-			notes: project.notes,
-			participantsStatus: project.participantsStatus,
-		});
+	set(ref(getFirebaseDb(), 'projects/' + project.id), {
+		uid: user.uid,
+		id: project.id,
+		name: project.name,
+		date: project.date,
+		participants: project.participants,
+		minForMeeting: project.minForMeeting,
+		reminder: project.reminder,
+		notes: project.notes,
+		participantsStatus: project.participantsStatus,
+	});
 };
 
 export const editProjectInDb = (project, projectMeetings) => {
@@ -66,13 +64,10 @@ export const editProjectInDb = (project, projectMeetings) => {
 	const dbProject = { ...project, meetings: projectMeetings };
 	var updates = {};
 	updates['projects/' + pid] = dbProject;
-	firebase.database().ref().update(updates);
+	update(ref(getFirebaseDb()), updates);
 };
 
 export const deleteProjectFromDb = (project) => {
 	const pid = project.id;
-	firebase
-		.database()
-		.ref('projects/' + pid)
-		.remove();
+	remove(ref(getFirebaseDb(), 'projects/' + pid));
 };

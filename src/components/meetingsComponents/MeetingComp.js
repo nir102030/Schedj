@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Text, StyleSheet, View, TouchableOpacity, Image } from 'react-native';
-import { withNavigation } from 'react-navigation';
+import { useNavigation } from '@react-navigation/native';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import Alert from '../genericComponents/Alert';
@@ -8,7 +8,8 @@ import FormSectionedMultiSelect from '../genericComponents/FormSectionedMultiSel
 import { deleteMeetingFromDb } from '../../firebase/meetingsAPI';
 import MeetingStatus from './MeetingStatus';
 
-const MeetingComp = ({ project, tasks, topics, navigation, meeting, deleteMeeting, editTask }) => {
+const MeetingComp = ({ project, tasks, topics, meeting, deleteMeeting, editTask }) => {
+	const navigation = useNavigation();
 	const taskList = tasks.filter((task) => task.pid === meeting.pid);
 	const topicsList = topics.filter((topic) => topic.pid === meeting.pid);
 	const [showAlert, setShowAlert] = useState(false);
@@ -149,4 +150,4 @@ const mapStateToProps = (state) => {
 	return { tasks: state.tasks, topics: state.topics };
 };
 
-export default connect(mapStateToProps, actions)(withNavigation(MeetingComp));
+export default connect(mapStateToProps, actions)(MeetingComp);

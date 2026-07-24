@@ -8,11 +8,11 @@ import FormNewDatePicker from '../genericComponents/FormNewDatePicker';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
 import Spacer from '../genericComponents/Spacer';
-import firebase from 'firebase';
+import { getFirebaseAuth } from '../../firebase/config';
 
 const ProjectForm = ({ oldProject, onSubmit, type, users }) => {
 	const [project, setProject] = useState(oldProject);
-	const currentUser = firebase.auth().currentUser;
+	const currentUser = getFirebaseAuth().currentUser;
 	const participantsList = users.filter((user) => user.uid !== currentUser.uid);
 	const validation = () => {
 		if (project.name == '') {

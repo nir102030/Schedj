@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useKeepAwake } from 'expo-keep-awake';
-import { createAppContainer, createSwitchNavigator } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
-import { YellowBox } from 'react-native';
-import { createStore } from 'redux';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { LogBox } from 'react-native';
 import { Provider } from 'react-redux';
-import reducers from './src/reducers';
 import store from './src/redux/store';
 import FlashMessage from 'react-native-flash-message';
 import ProjectCalendarScreen from './src/screens/CalendarScreens/ProjectCalendarScreen';
@@ -32,7 +32,7 @@ import ResolveAuthScreen from './src/screens/AuthScreens/ResolveAuthScreen';
 import DailyCalendarScreen from './src/screens/CalendarScreens/DailyCalendarScreen';
 
 //This function ignores unresolved warnings
-YellowBox.ignoreWarnings([
+LogBox.ignoreLogs([
 	'VirtualizedLists should never be nested', //This warning will be ignored.
 	'Setting a timer for a long period of time',
 	'componentWillMount has been renamed, and is not recommended for use',
@@ -41,59 +41,60 @@ YellowBox.ignoreWarnings([
 	'Unhandled promise rejection',
 ]);
 
-const navigator = createSwitchNavigator({
-	ResolveAuth: ResolveAuthScreen,
-	loginFlow: createStackNavigator({
-		SignUp: SignupScreen,
-		LogIn: LoginScreen,
-	}),
-	mainFlow: createSwitchNavigator({
-		OpenS: OpenScreen,
-		mainApp: createStackNavigator(
-			{
-				Projects: ProjectsScreen,
-				Calendar: ProjectCalendarScreen,
-				DailyCalendar: DailyCalendarScreen,
-				CreateP: CreateProjectScreen,
-				EditP: EditProjectScreen,
-				InviteP: ProjectInvitation,
-				Meetings: MeetingsScreen,
-				CreateM: CreateMeetingScreen,
-				EditM: EditMeetingScreen,
-				InviteM: MeetingInvitation,
-				Tasks: TasksScreen,
-				CreateT: CreateTaskScreen,
-				EditT: EditTaskScreen,
-				AboutUs: AboutUsScreen,
-				Settings: SettingsScreen,
-				Gantt: GanttScreen,
-				ComeSoon: ComingSoonScreen,
-				SignInG: SignInGoogleScreen,
-			},
-			{
-				defaultNavigationOptions: {
-					title: '',
-					headerTitleStyle: {
-						fontWeight: 'bold',
-						textAlign: 'right',
-						fontSize: 38,
-						color: '#193c4d',
-						paddingBottom: 5,
-					},
-				},
-			}
-		),
-	}),
-});
+const Stack = createNativeStackNavigator();
 
-const App = createAppContainer(navigator);
+const defaultScreenOptions = {
+	title: '',
+	headerTitleStyle: {
+		fontWeight: 'bold',
+		textAlign: 'right',
+		fontSize: 38,
+		color: '#193c4d',
+		paddingBottom: 5,
+	},
+};
 
-export default () => {
+// Screens that belong to the auth/splash flow: no header, matching the old
+// switch-navigator's chrome-less behavior for these screens.
+const noHeaderOptions = { headerShown: false, gestureEnabled: false };
+
+const App = () => {
 	useKeepAwake();
 	return (
-		<Provider store={store}>
-			<App />
-			<FlashMessage position="top" />
-		</Provider>
+		<GestureHandlerRootView style={{ flex: 1 }}>
+			<SafeAreaProvider>
+				<Provider store={store}>
+					<NavigationContainer>
+						<Stack.Navigator initialRouteName="ResolveAuth" screenOptions={defaultScreenOptions}>
+							<Stack.Screen name="ResolveAuth" component={ResolveAuthScreen} options={noHeaderOptions} />
+							<Stack.Screen name="SignUp" component={SignupScreen} options={noHeaderOptions} />
+							<Stack.Screen name="LogIn" component={LoginScreen} options={noHeaderOptions} />
+							<Stack.Screen name="OpenS" component={OpenScreen} options={noHeaderOptions} />
+							<Stack.Screen name="Projects" component={ProjectsScreen} options={ProjectsScreen.options} />
+							<Stack.Screen name="Calendar" component={ProjectCalendarScreen} options={ProjectCalendarScreen.options} />
+							<Stack.Screen name="DailyCalendar" component={DailyCalendarScreen} />
+							<Stack.Screen name="CreateP" component={CreateProjectScreen} options={CreateProjectScreen.options} />
+							<Stack.Screen name="EditP" component={EditProjectScreen} options={EditProjectScreen.options} />
+							<Stack.Screen name="InviteP" component={ProjectInvitation} />
+							<Stack.Screen name="Meetings" component={MeetingsScreen} options={MeetingsScreen.options} />
+							<Stack.Screen name="CreateM" component={CreateMeetingScreen} options={CreateMeetingScreen.options} />
+							<Stack.Screen name="EditM" component={EditMeetingScreen} options={EditMeetingScreen.options} />
+							<Stack.Screen name="InviteM" component={MeetingInvitation} />
+							<Stack.Screen name="Tasks" component={TasksScreen} options={TasksScreen.options} />
+							<Stack.Screen name="CreateT" component={CreateTaskScreen} options={CreateTaskScreen.options} />
+							<Stack.Screen name="EditT" component={EditTaskScreen} />
+							<Stack.Screen name="AboutUs" component={AboutUsScreen} options={AboutUsScreen.options} />
+							<Stack.Screen name="Settings" component={SettingsScreen} options={SettingsScreen.options} />
+							<Stack.Screen name="Gantt" component={GanttScreen} />
+							<Stack.Screen name="ComeSoon" component={ComingSoonScreen} options={ComingSoonScreen.options} />
+							<Stack.Screen name="SignInG" component={SignInGoogleScreen} />
+						</Stack.Navigator>
+					</NavigationContainer>
+					<FlashMessage position="top" />
+				</Provider>
+			</SafeAreaProvider>
+		</GestureHandlerRootView>
 	);
 };
+
+export default App;

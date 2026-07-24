@@ -2,8 +2,8 @@ import React from 'react';
 import { Text, StyleSheet, View, TouchableOpacity, Image } from 'react-native';
 import MeetingList from '../../components/meetingsComponents/MeetingsList';
 
-const MeetingsScreen = ({ navigation }) => {
-	const project = navigation.getParam('project');
+const MeetingsScreen = ({ navigation, route }) => {
+	const project = route.params.project;
 
 	return (
 		<View style={styles.container}>
@@ -19,9 +19,9 @@ const MeetingsScreen = ({ navigation }) => {
 	);
 };
 
-MeetingsScreen.navigationOptions = ({ navigation }) => {
+MeetingsScreen.options = ({ navigation }) => {
 	return {
-		headerRight: (
+		headerRight: () => (
 			<View style={styles.navigator}>
 				<Text style={styles.headerStyle}> Meetings </Text>
 				<TouchableOpacity onPress={() => navigation.navigate('Projects')}>

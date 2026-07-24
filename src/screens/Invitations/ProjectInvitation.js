@@ -1,16 +1,15 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, FlatList } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { withNavigation } from 'react-navigation';
-import firebase from 'firebase';
+import { getFirebaseAuth } from '../../firebase/config';
 import Spacer from '../../components/genericComponents/Spacer';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
 import { editProjectInDb, getProjectFromDb } from '../../firebase/projectsAPI';
 
-const ProjectInvitation = ({ navigation, addProject }) => {
-	const project = navigation.getParam('project');
-	const currentUser = firebase.auth().currentUser;
+const ProjectInvitation = ({ navigation, route, addProject }) => {
+	const project = route.params.project;
+	const currentUser = getFirebaseAuth().currentUser;
 
 	const approveProject = () => {
 		const editedParticipantsStatus = project.participantsStatus.map((participantStatus) => {
@@ -148,4 +147,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default connect(null, actions)(withNavigation(ProjectInvitation));
+export default connect(null, actions)(ProjectInvitation);

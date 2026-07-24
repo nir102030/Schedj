@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { Text, StyleSheet, View, TouchableOpacity, TouchableHighlight, Image } from 'react-native';
 import ProjectStatus from './ProjectStatus';
 import IndexDetail from './IndexDetail';
-import Swipeable from 'react-native-swipeable-row';
+import { Swipeable } from 'react-native-gesture-handler';
 import Alert from '../genericComponents/Alert';
-import { withNavigation } from 'react-navigation';
+import { useNavigation } from '@react-navigation/native';
 import { deleteProjectFromDb } from '../../firebase/projectsAPI';
 import { showMessage, hideMessage } from 'react-native-flash-message';
 
 
-const ProjectComp = ({ project, deleteProject, navigation }) => {
+const ProjectComp = ({ project, deleteProject }) => {
+	const navigation = useNavigation();
 	const [showAlert, setShowAlert] = useState(false);
 	const todayDate = new Date().toJSON().substring(0, 10).replace(/-/g,'/')
 	const dueDateProject = project.date.toString().substring(0, 10).replace(/-/g,'/')
@@ -20,7 +21,7 @@ const ProjectComp = ({ project, deleteProject, navigation }) => {
 
 
 	const rightButtons = [
-		<TouchableHighlight>
+		<TouchableHighlight key="delete">
 			<TouchableOpacity style={styles.TouchableOpacityLeftSide} onPress={() => setShowAlert(true)}>
 				<Image source={require('../../../assets/images/delete.png')} style={styles.image} />
 			</TouchableOpacity>
@@ -28,7 +29,7 @@ const ProjectComp = ({ project, deleteProject, navigation }) => {
 	];
 
 	const leftButtons = [
-		<TouchableHighlight>
+		<TouchableHighlight key="edit">
 			<TouchableOpacity
 				style={styles.TouchableOpacityRightSide}
 				onPress={() => navigation.navigate('EditP', { project })}
@@ -40,7 +41,7 @@ const ProjectComp = ({ project, deleteProject, navigation }) => {
 
 	return (
 		<View style={styles.general}>
-			<Swipeable leftButtons={leftButtons} rightButtons={rightButtons}>
+			<Swipeable renderLeftActions={()=>leftButtons} renderRightActions={() => rightButtons}>
 				<View style={styles.container}>
 					<View style={{ flexDirection: 'column' }}>
 						<View style={{ flexDirection: 'row-reverse' }}>
@@ -153,4 +154,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default withNavigation(ProjectComp);
+export default ProjectComp;

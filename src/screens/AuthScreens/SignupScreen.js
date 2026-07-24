@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import AuthForm from '../../components/AuthComponenets/AuthForm';
 import { View, StyleSheet, Image } from 'react-native';
 import { Button, colors } from 'react-native-elements';
-import firebase from 'firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { getFirebaseAuth } from '../../firebase/config';
 import { getCalendarPermission } from '../../calendar/calendarAPI';
 import { registerForPushNotifications } from '../../firebase/notifications';
 import * as actions from '../../actions';
@@ -20,7 +21,7 @@ const SignupScreen = ({ navigation, addUser, addCalendar }) => {
 	};
 
 	const onLoginSuccess = async () => {
-		const currentUser = firebase.auth().currentUser;
+		const currentUser = getFirebaseAuth().currentUser;
 		const newUser = {
 			uid: currentUser.uid,
 			email: currentUser.email,
@@ -45,9 +46,7 @@ const SignupScreen = ({ navigation, addUser, addCalendar }) => {
 
 	const signUp = (email, password) => {
 		setLoading(true);
-		firebase
-			.auth()
-			.createUserWithEmailAndPassword(email, password)
+		createUserWithEmailAndPassword(getFirebaseAuth(), email, password)
 			.then(() => {
 				onLoginSuccess();
 			})

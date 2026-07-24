@@ -4,11 +4,11 @@ import { Text, StyleSheet, View, Image, ScrollView, TouchableOpacity } from 'rea
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
 import { addProjectToDb } from '../../firebase/projectsAPI';
-import firebase from 'firebase';
+import { getFirebaseAuth } from '../../firebase/config';
 import { sendPushNotification } from '../../firebase/notifications';
 
 const CreateProjectScreen = ({ navigation, addProject, users }) => {
-	const user = firebase.auth().currentUser;
+	const user = getFirebaseAuth().currentUser;
 	const project = {
 		uid: user.uid,
 		id: Math.floor(Math.random() * 99999),
@@ -48,9 +48,9 @@ const mapStateToProps = (state) => {
 	return { users: state.users };
 };
 
-CreateProjectScreen.navigationOptions = ({ navigation }) => {
+CreateProjectScreen.options = ({ navigation }) => {
 	return {
-		headerRight: (
+		headerRight: () => (
 			<View style={styles.navigator}>
 				<Text style={styles.headerStyle}> Add New Project </Text>
 				<TouchableOpacity onPress={() => navigation.navigate('Projects')}>

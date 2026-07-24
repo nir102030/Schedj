@@ -32,9 +32,9 @@ const ProjectsScreen = ({ navigation, users }) => {
 	);
 };
 
-ProjectsScreen.navigationOptions = () => {
+ProjectsScreen.options = () => {
 	return {
-		headerRight: (
+		headerRight: () => (
 			<View>
 				<Text style={styles.headerStyle}> Projects </Text>
 			</View>

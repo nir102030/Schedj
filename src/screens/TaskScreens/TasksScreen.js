@@ -6,8 +6,8 @@ import { getAllTopicsFromDb } from '../../firebase/topicsAPI';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
-const TasksScreen = ({ navigation, topics, addTopic }) => {
-	const project = navigation.getParam('project');
+const TasksScreen = ({ navigation, route, topics, addTopic }) => {
+	const project = route.params.project;
 
 	useEffect(() => {
 		getAllTopicsFromDb(project, topics, addTopic);
@@ -21,8 +21,8 @@ const TasksScreen = ({ navigation, topics, addTopic }) => {
 	);
 };
 
-TasksScreen.navigationOptions = ({navigation}) => { 
-    return{ headerRight:   
+TasksScreen.options = ({navigation}) => {
+    return{ headerRight: () =>
             <View style={styles.navigator}>
                 <Text style={styles.headerStyle}> Tasks </Text>
                 <TouchableOpacity onPress={() => navigation.navigate('Projects')}>

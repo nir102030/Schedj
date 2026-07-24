@@ -10,8 +10,8 @@ const AboutUsScreen = () => {
     );
 };
 
-AboutUsScreen.navigationOptions = ({navigation}) => { 
-    return{ headerRight:   
+AboutUsScreen.options = ({navigation}) => {
+    return{ headerRight: () =>
             <View style={styles.navigator} >
                 <Text style={styles.headerStyle}> About Us © </Text>
                 <TouchableOpacity onPress={() => navigation.navigate('Projects')}>

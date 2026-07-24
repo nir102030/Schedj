@@ -1,0 +1,24 @@
+diff --git a/node_modules/react-native-gantt-chart/src/GanttChart.js b/node_modules/react-native-gantt-chart/src/GanttChart.js
+index ff36ea9..969bc88 100644
+--- a/node_modules/react-native-gantt-chart/src/GanttChart.js
++++ b/node_modules/react-native-gantt-chart/src/GanttChart.js
+@@ -35,7 +35,9 @@ class GanttChart extends PureComponent {
+     }
+   }
+ 
+-  componentWillMount() {
++  constructor(props) {
++    super(props)
++
+     this.panResponder = PanResponder.create({
+       onStartShouldSetPanResponder: () => true,
+       onPanResponderMove: event => {
+@@ -64,7 +66,7 @@ class GanttChart extends PureComponent {
+   calcExtent = () => {
+     const { data, gridMin, gridMax } = this.props
+ 
+-    dateTimes = data.reduce((acc, cur) => {
++    const dateTimes = data.reduce((acc, cur) => {
+       acc.push(cur.start.getTime(), cur.end.getTime())
+       return acc
+     }, [])

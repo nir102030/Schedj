@@ -14,8 +14,8 @@ const ComingSoonScreen = ({navigation}) => {
     );
 };
 
-ComingSoonScreen.navigationOptions = ({navigation}) => { 
-    return{ headerRight:   
+ComingSoonScreen.options = ({navigation}) => {
+    return{ headerRight: () =>
             <View style={styles.navigator}>
                 <Text style={styles.headerStyle}> Coming Soon </Text>
                 <TouchableOpacity onPress={() => navigation.navigate('Projects')}>

@@ -5,9 +5,9 @@ import { editMeetingInDb } from '../../firebase/meetingsAPI';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
 
-const EditMeetingScreen = ({ navigation, editMeeting, meetings, users }) => {
-	const meeting = navigation.getParam('meeting');
-	const project = navigation.getParam('project');
+const EditMeetingScreen = ({ navigation, route, editMeeting, meetings, users }) => {
+	const meeting = route.params.meeting;
+	const project = route.params.project;
 
 	const onSubmit = (meeting) => {
 		editMeeting(meeting);
@@ -27,9 +27,9 @@ const EditMeetingScreen = ({ navigation, editMeeting, meetings, users }) => {
 	);
 };
 
-EditMeetingScreen.navigationOptions = ({ navigation }) => {
+EditMeetingScreen.options = ({ navigation }) => {
 	return {
-		headerRight: (
+		headerRight: () => (
 			<View style={styles.navigator}>
 				<Text style={styles.headerStyle}> Edit Meeting </Text>
 				<TouchableOpacity onPress={() => navigation.navigate('Projects')}>

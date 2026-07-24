@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Text, StyleSheet, View, TouchableOpacity, Image } from 'react-native';
 import * as Progress from 'react-native-progress';
-import { withNavigation } from 'react-navigation';
 import TaskStatusSetter from './TaskStatusSetter';
 import { showMessage, hideMessage } from 'react-native-flash-message';
 import { connect } from 'react-redux';
@@ -143,4 +142,4 @@ const styles = StyleSheet.create({
 	}
 });
 
-export default connect(null, actions)(withNavigation(TaskComp));
+export default connect(null, actions)(TaskComp);

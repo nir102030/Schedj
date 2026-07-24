@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
-import FormDatePicker from '../../components/genericComponents/FormDatePicker';
 import FormInput from '../../components/genericComponents/FormInput';
 import FormHour from '../../components/genericComponents/FormHour';
-import TimePicker from 'react-native-24h-timepicker';
 import FormNewDatePicker from '../genericComponents/FormNewDatePicker';
 import FormSubmitButton from '../genericComponents/FormSubmitButton';
 import FormNotes from '../genericComponents/FormNotes';
@@ -14,14 +12,14 @@ import { createEventsArray, findFreeTimeSlots } from '../../calendar/calendarAPI
 import Moment from 'moment';
 import { extendMoment } from 'moment-range';
 import SpinnerMeeting from '../../components/genericComponents/SpinnerMeeting';
-import firebase from 'firebase';
+import { getFirebaseAuth } from '../../firebase/config';
 
 const MeetingForm = ({ project, oldMeeting, onSubmit, type, users, meetings }) => {
 	const [meeting, setMeeting] = useState(oldMeeting);
 	const [freeTimeSlots, setFreeTimeSlots] = useState([]);
 	const [freeTimesList, setFreeTimesList] = useState([]);
 	const [loading, setLoading] = useState([]);
-	const currentUser = firebase.auth().currentUser;
+	const currentUser = getFirebaseAuth().currentUser;
 
 	const validation = () => {
 		if (meeting.participants.length == 0) {
