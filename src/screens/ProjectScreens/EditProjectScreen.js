@@ -5,8 +5,8 @@ import { editProjectInDb } from '../../firebase/projectsAPI';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
 
-const EditProjectScreen = ({ navigation, editProject, projects, meetings }) => {
-	const id = navigation.getParam('project').id;
+const EditProjectScreen = ({ navigation, route, editProject, projects, meetings }) => {
+	const id = route.params.project.id;
 	const project = projects.find((project) => project.id === id);
 	const projectMeetings = meetings.filter((meeting) => meeting.pid === id);
 
@@ -23,8 +23,8 @@ const mapStateToProps = (state) => {
 	return { projects: state.projects, meetings: state.meetings };
 };
 
-EditProjectScreen.navigationOptions = ({navigation}) => { 
-    return{ headerRight:   
+EditProjectScreen.options = ({navigation}) => {
+    return{ headerRight: () =>
             <View style={styles.navigator}>
                 <Text style={styles.headerStyle}> Edit Project </Text>
                 <TouchableOpacity onPress={() => navigation.navigate('Projects')}>

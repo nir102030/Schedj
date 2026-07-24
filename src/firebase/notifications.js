@@ -1,17 +1,26 @@
-import * as Permissions from 'expo-permissions';
-import { Notifications } from 'expo';
+import * as Notifications from 'expo-notifications';
+import Constants from 'expo-constants';
 import { addUserToDbAsync } from '../firebase/usersAPI';
 import { Platform, Vibration } from 'react-native';
 
 //Show the user a pop up to allow the notifications and if he allows it store the token in the user db
 export const registerForPushNotifications = async (user) => {
+	if (Platform.OS === 'android') {
+		await Notifications.setNotificationChannelAsync('default', {
+			name: 'default',
+			sound: 'default',
+			importance: Notifications.AndroidImportance.MAX,
+			vibrationPattern: [0, 250, 250, 250],
+		});
+	}
+
 	// Check for existing permissions
-	const { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
+	const { status } = await Notifications.getPermissionsAsync();
 	let finalStatus = status;
 
 	// If no existing permission, ask user for permission
 	if (status !== 'granted') {
-		const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+		const { status } = await Notifications.requestPermissionsAsync();
 		finalStatus = status;
 	}
 
@@ -21,19 +30,11 @@ export const registerForPushNotifications = async (user) => {
 	}
 
 	//Get push notification token
-	let token = await Notifications.getExpoPushTokenAsync();
+	const projectId = Constants.expoConfig?.extra?.eas?.projectId;
+	let { data: token } = await Notifications.getExpoPushTokenAsync({ projectId });
 
 	//Add token to firebase
 	addUserToDbAsync(user, token);
-
-	if (Platform.OS === 'android') {
-		Notifications.createChannelAndroidAsync('default', {
-			name: 'default',
-			sound: true,
-			priority: 'max',
-			vibrate: [0, 250, 250, 250],
-		});
-	}
 };
 
 export const sendPushNotification = async (user, msgTitle, msgBody, data) => {

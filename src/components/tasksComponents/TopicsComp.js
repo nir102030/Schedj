@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Text, StyleSheet, View, TouchableOpacity, Image, TextInput } from 'react-native';
-import { withNavigation } from 'react-navigation';
+import { useNavigation } from '@react-navigation/native';
 import TaskList from './TaskList';
 import Alert from '../../components/genericComponents/Alert';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
 
-const TopicsComp = ({ navigation, project, topic, editTopic, deleteTopic }) => {
+const TopicsComp = ({ project, topic, editTopic, deleteTopic }) => {
+	const navigation = useNavigation();
 	const [newTopic, setNewTopic] = useState(topic);
 	const [showAlert, setShowAlert] = useState(false);
 
@@ -94,4 +95,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default connect(null, actions)(withNavigation(TopicsComp));
+export default connect(null, actions)(TopicsComp);

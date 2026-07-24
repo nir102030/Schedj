@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { View } from 'react-native';
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
+import { MaterialIcons } from '@expo/vector-icons';
 
 const FormSectionedMultiSelectHours = ({ addHoursToMeeting, hours }) => {
 	const [selectedItems, setSelectedItems] = useState([]);
 	const [items, setItems] = useState(hours);
 
-	onSelectedItemsChange = (selectedItems) => {
+	const onSelectedItemsChange = (selectedItems) => {
 		setSelectedItems(selectedItems);
 		addHoursToMeeting(selectedItems);
 	};
@@ -17,6 +18,7 @@ const FormSectionedMultiSelectHours = ({ addHoursToMeeting, hours }) => {
 		<View>
 			<SectionedMultiSelect
 				items={items}
+				IconRenderer={MaterialIcons}
 				uniqueKey="id"
 				subKey="children"
 				selectText="Pick Hours"

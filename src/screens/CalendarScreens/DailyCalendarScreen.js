@@ -3,13 +3,11 @@ import EventCalendar from 'react-native-events-calendar';
 import { View, Text, Dimensions, TouchableOpacity, StyleSheet, Image, Button } from 'react-native';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
-import firebase from 'firebase';
-import { withNavigation } from 'react-navigation';
 
-const DailyCalendar = ({ navigation, calendars }) => {
-	const initialDate = navigation.getParam('date').dateString;
-	const project = navigation.getParam('project');
-	const freeTimeSlots = navigation.getParam('freeTimeSlots').map((freeTimeSlot) => {
+const DailyCalendar = ({ navigation, route, calendars }) => {
+	const initialDate = route.params.date.dateString;
+	const project = route.params.project;
+	const freeTimeSlots = route.params.freeTimeSlots.map((freeTimeSlot) => {
 		const to = new Date(freeTimeSlot);
 		to.setTime(to.getTime() - 2 * 60 * 60 * 1000);
 		return {
@@ -22,7 +20,7 @@ const DailyCalendar = ({ navigation, calendars }) => {
 		const hour = dateString.substring(dateString.indexOf('T') + 1, dateString.indexOf('.'));
 		return `${date} ${hour}`;
 	};
-	const dailyEvents = navigation.getParam('events').map((event) => {
+	const dailyEvents = route.params.events.map((event) => {
 		return {
 			start: getDateFormat(event.start),
 			end: getDateFormat(event.end),
@@ -59,7 +57,7 @@ const mapStateToProps = (state) => {
 	return { calendars: state.calendars };
 };
 
-export default connect(mapStateToProps, actions)(withNavigation(DailyCalendar));
+export default connect(mapStateToProps, actions)(DailyCalendar);
 
 const styles = StyleSheet.create({
 	home: {

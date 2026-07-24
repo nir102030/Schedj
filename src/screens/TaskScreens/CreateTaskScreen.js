@@ -6,8 +6,8 @@ import * as actions from '../../actions';
 import { connect } from 'react-redux';
 import { addTaskToDb } from '../../firebase/tasksAPI';
 
-const CreateTaskScreen = ({ navigation, addTask }) => {
-	const topic = navigation.getParam('topic');
+const CreateTaskScreen = ({ navigation, route, addTask }) => {
+	const topic = route.params.topic;
 
 	const task = {
 		pid: topic.pid,
@@ -29,8 +29,8 @@ const CreateTaskScreen = ({ navigation, addTask }) => {
 	return <TaskForm oldTask={task} onSubmit={(task) => onSubmit(task)} type="create" />;
 };
 
-CreateTaskScreen.navigationOptions = ({navigation}) => { 
-    return{ headerRight:   
+CreateTaskScreen.options = ({navigation}) => {
+    return{ headerRight: () =>
             <View style={styles.navigator}>
                 <Text style={styles.headerStyle}> Add New Task </Text>
                 <TouchableOpacity onPress={() => navigation.navigate('Projects')}>

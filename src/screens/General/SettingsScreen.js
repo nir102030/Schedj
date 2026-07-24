@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { Button } from 'react-native-elements';
 import FormInput from '../../components/genericComponents/FormInput';
 import FormPickerSelect from '../../components/genericComponents/FormPickerSelect';
-import { withNavigation } from 'react-navigation';
-import firebase from 'firebase';
+import { signOut as firebaseSignOut } from 'firebase/auth';
+import { getFirebaseAuth } from '../../firebase/config';
 import Alert from '../../components/genericComponents/Alert';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
@@ -16,9 +16,17 @@ import { editUserInDb } from '../../firebase/usersAPI';
 
 const SettingsScreen = ({ navigation, deleteProject, projects, users, editUser }) => {
 	const [showAlert, setShowAlert] = useState(false);
-	const currentUserEmail = firebase.auth().currentUser.email;
+	const currentUserEmail = getFirebaseAuth().currentUser.email;
 	const user = users.find((user) => user.email === currentUserEmail);
 	const [currentUser, setCurrentUser] = useState(user);
+
+	console.log('Current User:', currentUser);
+
+	useEffect(() => {
+		if (user && (!currentUser || currentUser.uid !== user.uid)) {
+			setCurrentUser(user);
+		}
+	}, [user]);
 
 	const rankItems = [1, 2, 3, 4, 5].map((num) => {
 		const label = num === 1 ? `       ${num} Star` : `       ${num} Stars`;
@@ -39,9 +47,7 @@ const SettingsScreen = ({ navigation, deleteProject, projects, users, editUser }
 	};
 
 	const signOut = () => {
-		firebase
-			.auth()
-			.signOut()
+		firebaseSignOut(getFirebaseAuth())
 			.then(() => {
 				onSignOutSucces();
 			})
@@ -55,6 +61,10 @@ const SettingsScreen = ({ navigation, deleteProject, projects, users, editUser }
 		editUser(newUser);
 		//editUserInDb(newUser);
 	};
+
+	if (!currentUser) {
+		return <View style={styles.container} />;
+	}
 
 	return (
 		<View style={styles.container}>
@@ -123,9 +133,9 @@ const SettingsScreen = ({ navigation, deleteProject, projects, users, editUser }
 	);
 };
 
-SettingsScreen.navigationOptions = ({ navigation }) => {
+SettingsScreen.options = ({ navigation }) => {
 	return {
-		headerRight: (
+		headerRight: () => (
 			<View style={styles.navigator}>
 				<Text style={styles.headerStyle}> Settings </Text>
 				<TouchableOpacity onPress={() => navigation.navigate('Projects')}>
@@ -213,4 +223,4 @@ const mapStateToProps = (state) => {
 	return { projects: state.projects, users: state.users };
 };
 
-export default connect(mapStateToProps, actions)(withNavigation(SettingsScreen));
+export default connect(mapStateToProps, actions)(SettingsScreen);

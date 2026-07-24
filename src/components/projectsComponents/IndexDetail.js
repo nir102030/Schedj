@@ -1,8 +1,9 @@
 import React from 'react';
 import {View, TouchableOpacity, Image, StyleSheet} from 'react-native';
-import {withNavigation} from 'react-navigation';
+import { useNavigation } from '@react-navigation/native';
 
-const IndexDetail = ({navigation, imageSrc, navigationScreen, project}) => {
+const IndexDetail = ({imageSrc, navigationScreen, project}) => {
+    const navigation = useNavigation();
 
     return (
         <View style={{flexDirection:'column'}}>
@@ -24,4 +25,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default withNavigation(IndexDetail);
+export default IndexDetail;

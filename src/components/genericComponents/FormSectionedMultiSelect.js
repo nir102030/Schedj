@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
+import { MaterialIcons } from '@expo/vector-icons';
 
 export default class FormSectionedMultiSelect extends Component {
  
@@ -20,6 +21,7 @@ export default class FormSectionedMultiSelect extends Component {
             <View>
                 <SectionedMultiSelect
                     items={this.items}
+                    IconRenderer={MaterialIcons}
                     uniqueKey="id"
                     subKey="children"
                     selectText="Attach Tasks"

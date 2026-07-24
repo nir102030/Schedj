@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import AuthForm from '../../components/AuthComponenets/AuthForm';
 import { View, StyleSheet,Image } from 'react-native';
-import firebase from 'firebase';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { getFirebaseAuth } from '../../firebase/config';
 
 const LoginScreen = ({ navigation }) => {
 	const [loading, setLoading] = useState(false);
@@ -19,9 +20,7 @@ const LoginScreen = ({ navigation }) => {
 
 	const signIn = (email, password) => {
 		setLoading(true);
-		firebase
-			.auth()
-			.signInWithEmailAndPassword(email, password)
+		signInWithEmailAndPassword(getFirebaseAuth(), email, password)
 			.then(() => {
 				onLoginSuccess();
 			})

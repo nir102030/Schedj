@@ -6,10 +6,11 @@ import { editCalendarInDb } from '../../firebase/calendarAPI';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
 import { sendPushNotification } from '../../firebase/notifications';
-import firebase from 'firebase';
+import { getFirebaseAuth } from '../../firebase/config';
 
 const CreateMeetingScreen = ({
 	navigation,
+	route,
 	addMeeting,
 	meetings,
 	users,
@@ -17,11 +18,11 @@ const CreateMeetingScreen = ({
 	editCalendarInDb,
 	calendars,
 }) => {
-	const project = navigation.getParam('project');
-	const date = navigation.getParam('date') ? navigation.getParam('date') : 'YYYY-MM-DD';
-	//const freeTimeSlots = navigation.getParam('freeTimeSlots') ? navigation.getParam('freeTimeSlots') : null;
+	const project = route.params.project;
+	const date = route.params.date ? route.params.date : 'YYYY-MM-DD';
+	//const freeTimeSlots = route.params.freeTimeSlots ? route.params.freeTimeSlots : null;
 	const projectMeetings = meetings.filter((meeting) => meeting.pid === project.id);
-	const user = firebase.auth().currentUser;
+	const user = getFirebaseAuth().currentUser;
 	const maxMeetingIndx =
 		projectMeetings == ''
 			? -1
@@ -88,9 +89,9 @@ const CreateMeetingScreen = ({
 	);
 };
 
-CreateMeetingScreen.navigationOptions = ({ navigation }) => {
+CreateMeetingScreen.options = ({ navigation }) => {
 	return {
-		headerRight: (
+		headerRight: () => (
 			<View style={styles.navigator}>
 				<Text style={styles.headerStyle}> Add New Meeting </Text>
 				<TouchableOpacity onPress={() => navigation.navigate('Projects')}>
